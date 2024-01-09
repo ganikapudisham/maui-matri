@@ -1,0 +1,987 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChristianJodi.Views.ProfileDetailsPage"
+             Title="ProfileDetailsPage">
+    <VerticalStackLayout>
+                <ContentView>
+            <ScrollView>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="4*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="16" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="16" />
+                        </Grid.ColumnDefinitions>
+
+                <Frame
+Grid.Row="1"
+Grid.Column="1"
+Margin="0,10,0,0"
+Padding="16,24,16,0"
+BackgroundColor="White"
+BorderColor="White"
+
+CornerRadius="4"
+HasShadow="true"
+HorizontalOptions="FillAndExpand"
+
+
+
+>
+                    <StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <!--  Header  -->
+                            <Label Grid.Row="0" Grid.ColumnSpan="2"
+        Margin="0,0,0,16"
+        FontSize="20"
+        Text="Basic Details" />
+
+                            <Label Grid.Row="1" Grid.Column="0"
+        Margin="0,0,0,5"
+        FontSize="12" FontAttributes="Bold, Italic" 
+        Text="ID" />
+
+                            <Label Grid.Row="1" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  WebsiteIdentifier}"  />
+
+                            <Label Grid.Row="2" Grid.Column="0"
+        Margin="0,0,0,5"
+        FontSize="12" FontAttributes="Bold, Italic" 
+        Text="Last Active On" />
+
+                            <Label Grid.Row="2" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  LastLoggedIn}" />
+
+                            <Label Grid.Row="3" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text="Name" />
+
+                            <Label Grid.Row="3" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  FirstName}" />
+
+                            <Label Grid.Row="4" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text="Mother Tongue" />
+
+                            <Label Grid.Row="4" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  MotherTongue}" />
+
+                            <Label Grid.Row="5" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "BirthDate" />
+
+                            <Label Grid.Row="5" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  BirthDate}" />
+
+                            <Label Grid.Row="6" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "CreatedBy" />
+
+                            <Label Grid.Row="6" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  ProfileCreatedBy}" />
+                        </Grid>
+                    </StackLayout>
+
+                </Frame>
+
+                <Frame
+Grid.Row="2"
+Grid.Column="1"
+Margin="0,10,0,0"
+Padding="16,24,16,0"
+BackgroundColor="White"
+BorderColor="White"
+
+CornerRadius="4"
+HasShadow="true"
+HorizontalOptions="FillAndExpand"
+
+
+
+>
+
+                    <StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.ColumnSpan="2"
+        Margin="0,0,0,0"
+        FontSize="10"
+        Text="Religion" />
+
+                            <!--  Header  -->
+                            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+        Margin="0,0,0,5"
+        FontSize="12" FontAttributes="Bold, Italic" 
+        Text="Religion" />
+
+                            <Label Grid.Row="1" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  Religion}" />
+
+                            <Label Grid.Row="2" Grid.Column="0"
+        Margin="0,0,0,5"
+        FontSize="12" FontAttributes="Bold, Italic" 
+        Text="Caste" />
+
+                            <Label Grid.Row="2" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  Caste}" />
+
+                            <Label Grid.Row="3" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text="Denomination" />
+
+                            <Label Grid.Row="3" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  Denomination}" />
+
+                            <!-- -->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "SubCaste" />
+
+                                <Label Grid.Row="0" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  SubCaste}" />
+
+                                <Label Grid.Row="1" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "Community" />
+
+                                <Label Grid.Row="1" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  Community}" />
+
+                                <Label Grid.Row="2" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text="Birth Time" />
+
+                                <Label Grid.Row="2" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text ="{Binding BirthTime}" />
+
+                                <Label Grid.Row="3" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "Birth Place" />
+
+                                <Label Grid.Row="3" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  BirthPlace}" />
+
+                                <Label Grid.Row="4" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12" Text = "Gothram" />
+
+                                <Label Grid.Row="4" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  Gothram}" />
+
+                                <Label Grid.Row="5" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "Raasi" />
+
+                                <Label Grid.Row="5" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  Raasi}" />
+
+                                <Label Grid.Row="6" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "Star" />
+
+                                <Label Grid.Row="6" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  Star}" />
+                            </Grid>
+                            <!-- -->
+                            <Label Grid.Row="4" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "Caste Details" />
+
+                            <Label Grid.Row="4" Grid.Column="1"
+        Margin="0,0,0,5" FontSize="14"
+        
+        Text="{Binding  CasteInformation}" />
+
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+
+                <Frame
+Grid.Row="3"
+Grid.Column="1"
+Margin="0,10,0,0"
+Padding="16,24,16,0"
+BackgroundColor="White"
+BorderColor="White"
+
+CornerRadius="4"
+HasShadow="true"
+HorizontalOptions="FillAndExpand"
+
+
+
+>
+
+                    <StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <!--  Header  -->
+                            <Label Grid.Row="0" Grid.ColumnSpan="2"
+        Margin="0,0,0,16"
+        FontSize="20"
+        Text="About Me" />
+
+                            <Label Grid.Row="1" Grid.Column="0"
+        Margin="0,0,0,5" FontSize="12" FontAttributes="Bold, Italic" Text="Height" />
+
+                            <Label Grid.Row="1" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  Height}" />
+
+                            <Label Grid.Row="2" Grid.Column="0"
+        Margin="0,0,0,5"
+        FontSize="12" FontAttributes="Bold, Italic" 
+        Text="Weight" />
+
+                            <Label Grid.Row="2" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  Weight}" />
+
+                            <Label Grid.Row="3" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text="BloodGroup" />
+
+                            <Label Grid.Row="3" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  BloodGroup}" />
+
+                            <Label Grid.Row="4" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text="Physical Status" />
+
+                            <Label Grid.Row="4" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding PhysicalStatus}" />
+
+                            <Label Grid.Row="5" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "Body Type" />
+
+                            <Label Grid.Row="5" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  BodyType}" />
+
+                            <Label Grid.Row="6" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "Complexion" />
+
+                            <Label Grid.Row="6" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  Complexion}" />
+
+                            <Label Grid.Row="7" Grid.ColumnSpan="2"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  AboutMe}" />
+
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+
+                <Frame
+Grid.Row="4"
+Grid.Column="1"
+Margin="0,10,0,0"
+Padding="16,24,16,0"
+BackgroundColor="White"
+BorderColor="White"
+
+CornerRadius="4"
+HasShadow="true"
+HorizontalOptions="FillAndExpand"
+
+
+
+>
+
+                    <StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+        Margin="0,0,0,16" Grid.Row="0" Grid.ColumnSpan="2"
+        FontSize="20"
+        Text="Academics/Job" />
+
+                            <Label Grid.Row="1" Grid.Column="0"
+        Margin="0,0,0,5"
+        FontSize="12" FontAttributes="Bold, Italic" 
+        Text="Education" />
+
+                            <Label Grid.Row="1" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  Education}" />
+
+                            <Label Grid.Row="2" Grid.Column="0"
+        Margin="0,0,0,5"
+        FontSize="12" FontAttributes="Bold, Italic" 
+        Text="Education Details" />
+
+                            <Label Grid.Row="2" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  EducationDetails}" />
+
+                            <Label Grid.Row="3" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text="Annual Income" />
+
+                            <Label Grid.Row="3" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  AnnualIncome}" />
+
+                            <Label Grid.Row="4" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text="Job Type" />
+
+                            <Label Grid.Row="4" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding JobType}" />
+
+                            <Label Grid.Row="5" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "Job" />
+
+                            <Label Grid.Row="5" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  Job}" />
+
+                            <Label Grid.Row="6" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "Employment Details" />
+
+                            <Label Grid.Row="6" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  EmploymentDetails}" />
+
+                            <Label Grid.Row="7" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "Income Details" />
+
+                            <Label Grid.Row="7" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  IncomeDetails}" />
+
+                            <Label Grid.Row="8" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "Property Details" />
+
+                            <Label Grid.Row="8" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  PropertyDetails}" />
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+
+                <Frame
+Grid.Row="5"
+Grid.Column="1"
+Margin="0,10,0,0"
+Padding="16,24,16,0"
+BackgroundColor="White"
+BorderColor="White"
+
+CornerRadius="4"
+HasShadow="true"
+HorizontalOptions="FillAndExpand"
+
+
+
+>
+
+                    <StackLayout>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+        Margin="0,0,0,16" Grid.Row="0" Grid.ColumnSpan="2"
+        FontSize="20"
+        Text="Family Details" />
+
+                            <Label Grid.Row="1" Grid.Column="0"
+        Margin="0,0,0,5"
+        FontSize="12" FontAttributes="Bold, Italic"  Text="Family Type" />
+
+                            <Label Grid.Row="1" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  FamilyType}" />
+
+                            <Label Grid.Row="2" Grid.Column="0"
+        Margin="0,0,0,5"
+        FontSize="12" FontAttributes="Bold, Italic" 
+        Text="Family Value" />
+
+                            <Label Grid.Row="2" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  FamilyValue}" />
+
+                            <Label Grid.Row="3" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text="Family Status" />
+
+                            <Label Grid.Row="3" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  FamilyStatus}" />
+
+                            <Label Grid.Row="4" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text="Family Details" />
+
+                            <Label Grid.Row="4" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding FamilyDetails}" />
+
+                            <Label Grid.Row="5" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "Brothers" />
+
+                            <Label Grid.Row="5" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  BrothersCount}" />
+
+                            <Label Grid.Row="6" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "Brothers Married" />
+
+                            <Label Grid.Row="6" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  BrothersMarried}" />
+
+                            <Label Grid.Row="7" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "About Brothers" />
+
+                            <Label Grid.Row="7" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  AboutBrothers}" />
+
+                            <Label Grid.Row="8" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "Sisters" />
+
+                            <Label Grid.Row="8" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  SistersCount}" />
+
+                            <Label Grid.Row="9" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "Sisters Married" />
+
+                            <Label Grid.Row="9" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  SistersMarried}" />
+
+                            <Label Grid.Row="10" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "About Sisters" />
+
+                            <Label Grid.Row="10" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  AboutSisters}" />
+
+                            <Label Grid.Row="11" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "Mothers Occupation" />
+
+                            <Label Grid.Row="11" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  MothersOccupation}" />
+
+                            <Label Grid.Row="12" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text = "Fathers Occupation" />
+
+                            <Label Grid.Row="12" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  FathersOccupation}" />
+
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+
+                <Frame
+Grid.Row="6"
+Grid.Column="1"
+Margin="0,10,0,0"
+Padding="16,24,16,0"
+BackgroundColor="White"
+BorderColor="White"
+
+CornerRadius="4"
+HasShadow="true"
+HorizontalOptions="FillAndExpand"
+
+
+
+>
+
+                    <StackLayout>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label
+        Margin="0,0,0,16" Grid.Row="0" Grid.ColumnSpan="2"
+        FontSize="20" 
+        Text="Diet" />
+
+                            <Label Grid.Row="1" Grid.Column="0"
+        Margin="0,0,0,5" FontSize="14" Text="Diet" FontAttributes="Bold, Italic" />
+
+                            <Label Grid.Row="1" Grid.Column="1"
+        Margin="0,0,0,5"  FontSize="12" FontAttributes="Bold, Italic" 
+        
+        Text="{Binding  Diet}" />
+
+                            <Label Grid.Row="2" Grid.Column="0"
+        Margin="0,0,0,5" FontSize="12" FontAttributes="Bold, Italic" 
+        Text="Smoke" />
+
+                            <Label Grid.Row="2" Grid.Column="1"
+        Margin="0,0,0,5" FontSize="14"
+        
+        Text="{Binding  Smoke}" />
+
+                            <Label Grid.Row="3" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12" Text="Drink" />
+
+                            <Label Grid.Row="3" Grid.Column="1"
+        Margin="0,0,0,5" FontSize="14"
+        
+        Text="{Binding  Drink}" />
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+
+                <Frame
+Grid.Row="7"
+Grid.Column="1"
+Margin="0,10,0,0"
+Padding="16,24,16,0"
+BackgroundColor="White"
+BorderColor="White"
+
+CornerRadius="4"
+HasShadow="true"
+HorizontalOptions="FillAndExpand"
+
+
+
+>
+
+                    <StackLayout>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.ColumnSpan="2"
+        Margin="0,0,0,16"
+        FontSize="20"
+        Text="About Partner" />
+
+                            <Label Grid.Row="1" Grid.Column="0"
+        Margin="0,0,0,5" FontSize="12" FontAttributes="Bold, Italic" Text="Same Caste" />
+
+                            <Label Grid.Row="1" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  CasteCriteria}" />
+
+                            <Label Grid.Row="2" Grid.Column="0"
+        Margin="0,0,0,5"
+        FontSize="12" FontAttributes="Bold, Italic" 
+        Text="Same Denomination" />
+
+                            <Label Grid.Row="2" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  DenominationCriteria}" />
+
+                            <Label Grid.Row="3" Grid.Column="0"
+        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+        FontSize="12"
+        Text="About Partner" />
+
+                            <Label Grid.Row="3" Grid.Column="1"
+        Margin="0,0,0,5"
+        FontSize="14"
+        
+        Text="{Binding  AboutPartner}" />
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+
+                <Frame
+            Grid.Row="8"
+            Grid.Column="1"
+            Margin="0,10,0,0"
+            Padding="16,24,16,0"
+            BackgroundColor="White"
+            BorderColor="White"
+            CornerRadius="4"
+            HasShadow="true"
+            HorizontalOptions="FillAndExpand"
+                            >
+
+                            <StackLayout>
+
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Row="0" Grid.ColumnSpan="2"
+                    Margin="0,0,0,16"
+                    FontSize="20"
+                    Text="Address" />
+
+                                    <Label Grid.Row="1" Grid.Column="0"
+                    Margin="0,0,0,5" FontSize="12" FontAttributes="Bold, Italic"  Text="City" />
+
+                                    <Label Grid.Row="1" Grid.Column="1"
+                    Margin="0,0,0,5"
+                    FontSize="14"
+                                           Text="{Binding City}"/>
+
+                                    <Label Grid.Row="2" Grid.Column="0"
+                    Margin="0,0,0,5"
+                    FontSize="12" FontAttributes="Bold, Italic" 
+                    Text="Nativity" />
+
+                                    <Label Grid.Row="2" Grid.Column="1"
+                    Margin="0,0,0,5"
+                    FontSize="14"
+                     Text="{Binding Nativity}" />
+
+                                    <Label Grid.Row="3" Grid.Column="0"
+                    Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+                    FontSize="12"
+                    Text="ResidingTown" />
+
+                                    <Label Grid.Row="3" Grid.Column="1"
+                    Margin="0,0,0,5"
+                    FontSize="14"
+                     Text="{Binding ResidingTown}"/>
+
+                                    <Label Grid.Row="4" Grid.Column="0"
+                    Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+                    FontSize="12"
+                    Text="State" />
+
+                                    <Label Grid.Row="4" Grid.Column="1"
+                    Margin="0,0,0,5"
+                    FontSize="14"
+                    Text="{Binding State}" />
+
+                                    <Label Grid.Row="5" Grid.Column="0"
+                    Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+                    FontSize="12"
+                    Text = "StateOfResidence" />
+
+                                    <Label Grid.Row="5" Grid.Column="1"
+                    Margin="0,0,0,5"
+                    FontSize="14"
+                    Text="{Binding StateOfResidence}" />
+
+                                    <Label Grid.Row="6" Grid.Column="0"
+                    Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+                    FontSize="12" Text = "Nationality" />
+
+                                    <Label Grid.Row="6" Grid.Column="1"
+                    Margin="0,0,0,5"
+                    FontSize="14"
+                    Text="{Binding Nationality}" />
+
+                                    <Label Grid.Row="7" Grid.Column="0"
+                    Margin="0,0,0,5" FontAttributes="Bold, Italic" 
+                    FontSize="12" Text = "Country" />
+
+                                    <Label Grid.Row="7" Grid.Column="1"
+                    Margin="0,0,0,5"
+                    FontSize="14"
+                    Text="{Binding Country}" />
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+                        
+                    </Grid>
+            </ScrollView>
+        </ContentView>
+    </VerticalStackLayout>
+</ContentPage>

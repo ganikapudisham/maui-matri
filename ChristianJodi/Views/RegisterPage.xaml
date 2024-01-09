@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChristianJodi.Views.RegisterPage"
+                          xmlns:viewmodel="clr-namespace:ChristianJodi.ViewModel"
+x:DataType="viewmodel:RegisterViewModel"
+             Title="Register">
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to .NET Register!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Label 
+Text="Cancel"
+VerticalOptions="Center" 
+HorizontalOptions="Center" >
+
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding CancelCommand}" />
+            </Label.GestureRecognizers>
+
+        </Label>
+    </VerticalStackLayout>
+</ContentPage>
