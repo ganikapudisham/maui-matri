@@ -1,10 +1,15 @@
 ﻿using ChristianJodi.Business;
+using ChristianJodi.CustomExceptions;
+using ChristianJodi.FontsAwesome;
 using ChristianJodi.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using MvvmHelpers;
+using Newtonsoft.Json;
 
 namespace ChristianJodi.ViewModel
 {
-    public partial class ProfileDetailsViewModel : ObservableObject, IQueryAttributable
+    public partial class ProfileDetailsViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject, IQueryAttributable
     {
         IServiceManager _serviceManager;
         public ProfileDetailsViewModel(IServiceManager serviceManager)
@@ -43,6 +48,8 @@ namespace ChristianJodi.ViewModel
         public string profileCreatedBy;
         [ObservableProperty]
         public string lastLoggedIn;
+        [ObservableProperty]
+        public bool showHinduFields;
 
         [ObservableProperty]
         public string height;
@@ -146,9 +153,27 @@ namespace ChristianJodi.ViewModel
         [ObservableProperty]
         public string residingTown;
 
+        [ObservableProperty]
+        public string likeIcon = FontAwesomeIcons.ThumbsUp; //FontAwesomeIcons.ThumbsUp;
+        [ObservableProperty]
+        public string blockIcon = FontAwesomeIcons.Ban;// FontAwesomeIcons.Ban;
+
+        [ObservableProperty]
+        public bool liked = false;
+        [ObservableProperty]
+        public bool blocked = false;
+
+        public ObservableRangeCollection<FileMetadata> profilePhotos { get; private set; } = new ObservableRangeCollection<FileMetadata>();
+
         public async Task GetProfileDetails(Guid userToken, Guid profileToken)
         {
+            var sessionToken = await SecureStorage.GetAsync("Token");
+            var showHinduFields = await SecureStorage.GetAsync("ShowHinduFields");
+
+            ShowHinduFields = Convert.ToBoolean(showHinduFields);
+
             var profileDetails = await _serviceManager.GetProfileById(userToken, profileToken);
+            profilePhotos.AddRange(profileDetails.Photos);
             InitialiseAddress(profileDetails);
             InitialiseBasicDetails(profileDetails);
             InitialiseBreadAndButter(profileDetails);
@@ -256,6 +281,62 @@ namespace ChristianJodi.ViewModel
             City = profileDetails.City;
             Nativity = profileDetails.Nativity;
             ResidingTown= profileDetails.ResidingTown;
+        }
+
+        [RelayCommand]
+        public void Like()
+        {
+            Task.Run(async () => { await LikeCommandAsync(); });
+        }
+
+        private async Task LikeCommandAsync()
+        {
+            Liked = !Liked;
+
+            if (Liked)
+            {
+                Blocked = false;
+            }
+            var sessionToken = await SecureStorage.GetAsync("Token");
+            var request = new Request { To = ProfileIdentifier, Type = RequestAction.Favourite.ToString() };
+            await Mark(sessionToken, request);
+        }
+
+        [RelayCommand]
+        public void Block()
+        {
+            Task.Run(async () => { await BlockCommandAsync(); });
+        }
+
+        private async Task BlockCommandAsync()
+        {
+            Blocked = !Blocked;
+
+            if (Blocked)
+            {
+                Liked = false;
+            }
+            var sessionToken = await SecureStorage.GetAsync("Token");
+            var request = new Request { To = ProfileIdentifier, Type = RequestAction.Block.ToString() };
+            await Mark(sessionToken, request);
+        }
+
+        private async Task Mark(string sessionToken, Request request)
+        {
+            try
+            {
+                await _serviceManager.MarkProfile(new Guid(sessionToken), request);
+            }
+            catch (ChristianJodiInternetException exception)
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
+            }
+            catch (Exception exception)
+            {
+                var jsonResponse = exception.Message;
+                var errorMessage = JsonConvert.DeserializeObject<ChristianJodiException>(jsonResponse);
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", errorMessage.Message, "OK");
+            }
         }
     }
 }

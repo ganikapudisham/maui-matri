@@ -43,6 +43,7 @@ namespace ChristianJodi.ViewModel
 
         public ObservableRangeCollection<MiniProfile> dbProfilesWithPaging { get; private set; } = new ObservableRangeCollection<MiniProfile>();
 
+        
         [RelayCommand]
         public async Task Cancel()
         {

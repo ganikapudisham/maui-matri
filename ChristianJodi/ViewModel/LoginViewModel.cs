@@ -65,10 +65,10 @@ namespace ChristianJodi.ViewModel
 
                 //Save app Base wether If Hindu Users
 
-                //var appDetails = await _serviceManager.GetAppDetails(session.SessionToken);
-                //await SecureStorage.SetAsync("ShowHinduFields", appDetails.ShowHinduFields.ToString());
+                var appDetails = await _serviceManager.GetAppDetails(session.SessionToken);
+                await SecureStorage.SetAsync("ShowHinduFields", appDetails.ShowHinduFields.ToString());
 
-                //await SecureStorage.SetAsync("SubScriptionType", session.SubscriptionActive.ToString());
+                await SecureStorage.SetAsync("SubScriptionType", session.SubscriptionActive.ToString());
 
                 await Shell.Current.GoToAsync("//AllProfilesPage");
             }
