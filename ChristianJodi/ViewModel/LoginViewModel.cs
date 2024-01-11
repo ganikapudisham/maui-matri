@@ -12,13 +12,19 @@ namespace ChristianJodi.ViewModel
         {
             _serviceManager = serviceManager;
         }
+#if DEBUG
+        [ObservableProperty]
+        public string eMobile = "icm";
 
+        [ObservableProperty]
+        public string ePassword = "icm";
+#else
         [ObservableProperty]
         public string eMobile;
 
         [ObservableProperty]
         public string ePassword;
-
+#endif
         [ObservableProperty]
         public bool isBusy;
 

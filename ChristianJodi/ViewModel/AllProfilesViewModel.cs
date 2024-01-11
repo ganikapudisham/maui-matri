@@ -22,7 +22,6 @@ namespace ChristianJodi.ViewModel
             PageSizeList.Add(new PageSize { Text = "50", Value = 50 });
             pPageSize = PageSizeList[0];
             Task.Run(() => this.GetProfiles(1, pPageSize.Value)).Wait();
-            //SelectedProfile = Profiles[0];
         }
         public ObservableRangeCollection<PageSize> PageSizeList { get; private set; } = new ObservableRangeCollection<PageSize>();
 
@@ -38,11 +37,7 @@ namespace ChristianJodi.ViewModel
         [ObservableProperty]
         public MiniProfile selectedProfile;
 
-
         public ObservableRangeCollection<MiniProfile> Profiles { get; private set; } = new ObservableRangeCollection<MiniProfile>();
-
-        public ObservableRangeCollection<MiniProfile> dbProfilesWithPaging { get; private set; } = new ObservableRangeCollection<MiniProfile>();
-
         
         [RelayCommand]
         public async Task Cancel()
@@ -120,7 +115,6 @@ namespace ChristianJodi.ViewModel
                 ePN= ePN - 1;
                 await GetProfiles(ePN, Convert.ToInt16(PPageSize.Value));
                 EPageNumber = ePN.ToString();
-                //SelectedProfile = Profiles[0];
             }
         }
 
@@ -132,7 +126,6 @@ namespace ChristianJodi.ViewModel
                 ePN = ePN + 1;
                 await GetProfiles(ePN, Convert.ToInt16(PPageSize.Value));
                 EPageNumber = ePN.ToString();
-                //SelectedProfile = Profiles[0];
             }
         }
 
@@ -140,7 +133,6 @@ namespace ChristianJodi.ViewModel
         {
             await GetProfiles(1, Convert.ToInt16(PPageSize.Value));
             EPageNumber = "1";
-            //SelectedProfile = Profiles[0];
         }
 
         private async Task LastAsync()
@@ -148,7 +140,6 @@ namespace ChristianJodi.ViewModel
             int ePN = totalPages;
             await GetProfiles(ePN, Convert.ToInt16(PPageSize.Value));
             EPageNumber = ePN.ToString();
-            //SelectedProfile = Profiles[0];
         }
 
         private async Task GoToPageAsync()

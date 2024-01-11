@@ -6,16 +6,21 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MvvmHelpers;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 
 namespace ChristianJodi.ViewModel
 {
     public partial class ProfileDetailsViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject, IQueryAttributable
     {
         IServiceManager _serviceManager;
+
+        public ObservableRangeCollection<ProfilePhoto> ProfilePhotos { get; private set; }
         public ProfileDetailsViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
             //https://jesseliberty.com/2022/10/29/net-maui-forget-me-not-part-5/
+
+            ProfilePhotos = new ObservableRangeCollection<ProfilePhoto>();
         }
 
         [ObservableProperty]
@@ -154,26 +159,33 @@ namespace ChristianJodi.ViewModel
         public string residingTown;
 
         [ObservableProperty]
-        public string likeIcon = FontAwesomeIcons.ThumbsUp; //FontAwesomeIcons.ThumbsUp;
+        public string likeIcon = FontAwesomeIcons.ThumbsUp;
         [ObservableProperty]
-        public string blockIcon = FontAwesomeIcons.Ban;// FontAwesomeIcons.Ban;
+        public string blockIcon = FontAwesomeIcons.Ban;
 
         [ObservableProperty]
         public bool liked = false;
         [ObservableProperty]
         public bool blocked = false;
 
-        public ObservableRangeCollection<FileMetadata> profilePhotos { get; private set; } = new ObservableRangeCollection<FileMetadata>();
-
         public async Task GetProfileDetails(Guid userToken, Guid profileToken)
         {
+            ProfilePhotos.Clear();
             var sessionToken = await SecureStorage.GetAsync("Token");
             var showHinduFields = await SecureStorage.GetAsync("ShowHinduFields");
 
             ShowHinduFields = Convert.ToBoolean(showHinduFields);
 
             var profileDetails = await _serviceManager.GetProfileById(userToken, profileToken);
-            profilePhotos.AddRange(profileDetails.Photos);
+
+            var tempProfilePhotos = new List<ProfilePhoto>();
+            foreach (var pt in profileDetails.Photos)
+            {
+                tempProfilePhotos.Add(new ProfilePhoto(pt.Name));
+            }
+            
+            ProfilePhotos.AddRange(tempProfilePhotos);
+
             InitialiseAddress(profileDetails);
             InitialiseBasicDetails(profileDetails);
             InitialiseBreadAndButter(profileDetails);
@@ -186,7 +198,7 @@ namespace ChristianJodi.ViewModel
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-           var queryParam = query[nameof(ProfileDetailsInput)] as ProfileDetailsInput;
+            var queryParam = query[nameof(ProfileDetailsInput)] as ProfileDetailsInput;
             var targetId = queryParam.TargetProfileId;
             var sourceId = queryParam.LoggedInId;
             Task.Run(() => this.GetProfileDetails(sourceId, targetId)).Wait();
@@ -274,13 +286,13 @@ namespace ChristianJodi.ViewModel
 
         public void InitialiseAddress(Model.Profile profileDetails)
         {
-            Nationality= profileDetails.Nationality;
-            Country= profileDetails.Country;
+            Nationality = profileDetails.Nationality;
+            Country = profileDetails.Country;
             State = profileDetails.State;
             StateOfResidence = profileDetails.StateOfResidence;
             City = profileDetails.City;
             Nativity = profileDetails.Nativity;
-            ResidingTown= profileDetails.ResidingTown;
+            ResidingTown = profileDetails.ResidingTown;
         }
 
         [RelayCommand]

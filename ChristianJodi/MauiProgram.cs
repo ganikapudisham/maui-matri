@@ -52,6 +52,9 @@ namespace ChristianJodi
             builder.Services.AddSingleton<ProfileDetailsViewModel>();
             builder.Services.AddSingleton<ProfileDetailsPage>();
 
+            builder.Services.AddSingleton<SettingsViewModel>();
+            builder.Services.AddSingleton<SettingsPage>();
+
             builder.Services.AddSingleton<IServiceManager, ServiceManager>();
             builder.Services.AddSingleton<IServiceRepository, ServiceRepository>();
 

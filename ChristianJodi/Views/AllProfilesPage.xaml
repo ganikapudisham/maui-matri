@@ -3,7 +3,6 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChristianJodi.Views.AllProfilesPage"
-             xmlns:viewmodel="clr-namespace:ChristianJodi.ViewModel" 
              xmlns:FoA="clr-namespace:ChristianJodi.FontsAwesome;assembly=ChristianJodi"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="All Profiles">

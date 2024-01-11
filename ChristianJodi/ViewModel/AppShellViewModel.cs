@@ -15,6 +15,7 @@ namespace ChristianJodi.ViewModel
         {
             _serviceManager = serviceManager;
             Routing.RegisterRoute("profiledetails", typeof(ProfileDetailsPage));
+            Routing.RegisterRoute("settings", typeof(SettingsPage));
         }
 
         [RelayCommand]
