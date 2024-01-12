@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MvvmHelpers;
 using Newtonsoft.Json;
+using Syncfusion.Maui.Carousel;
 using System.Collections.ObjectModel;
 
 namespace ChristianJodi.ViewModel
@@ -14,13 +15,11 @@ namespace ChristianJodi.ViewModel
     {
         IServiceManager _serviceManager;
 
-        public ObservableRangeCollection<ProfilePhoto> ProfilePhotos { get; private set; }
+        private List<CarouselModel> _profilePhotos = new List<CarouselModel>();
         public ProfileDetailsViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
-            //https://jesseliberty.com/2022/10/29/net-maui-forget-me-not-part-5/
-
-            ProfilePhotos = new ObservableRangeCollection<ProfilePhoto>();
+            
         }
 
         [ObservableProperty]
@@ -168,9 +167,14 @@ namespace ChristianJodi.ViewModel
         [ObservableProperty]
         public bool blocked = false;
 
+        public List<CarouselModel> ProfilePhotos
+        {
+            get { return _profilePhotos; }
+            set { _profilePhotos = value; }
+        }
+
         public async Task GetProfileDetails(Guid userToken, Guid profileToken)
         {
-            ProfilePhotos.Clear();
             var sessionToken = await SecureStorage.GetAsync("Token");
             var showHinduFields = await SecureStorage.GetAsync("ShowHinduFields");
 
@@ -178,14 +182,11 @@ namespace ChristianJodi.ViewModel
 
             var profileDetails = await _serviceManager.GetProfileById(userToken, profileToken);
 
-            var tempProfilePhotos = new List<ProfilePhoto>();
             foreach (var pt in profileDetails.Photos)
             {
-                tempProfilePhotos.Add(new ProfilePhoto(pt.Name));
+                ProfilePhotos.Add(new CarouselModel( pt.Name ));
             }
             
-            ProfilePhotos.AddRange(tempProfilePhotos);
-
             InitialiseAddress(profileDetails);
             InitialiseBasicDetails(profileDetails);
             InitialiseBreadAndButter(profileDetails);

@@ -135,21 +135,41 @@ namespace ChristianJodi.Data.Impl
             {
                 var httpClient = CreateHttpClient(new Guid(sessionToken));
                 response = await httpClient.GetAsync(url);
-                response.EnsureSuccessStatusCode();
-                var responseJson = await response.Content.ReadAsStringAsync();
-                if (IsValidateJSON(responseJson))
+                if (!response.IsSuccessStatusCode)
                 {
-                    objectToReturn = JsonConvert.DeserializeObject<TResult>(responseJson);
+                    if (response.StatusCode == HttpStatusCode.BadRequest)
+                    {
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        var t = JsonConvert.DeserializeObject<ChristianJodiException>(responseBody);
+                        throw new Exception(t?.Message);
+                    }
+                    else if (response.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        throw new Exception("Not found, please try again with different data");
+                    }
+                    else if (response.StatusCode == HttpStatusCode.InternalServerError)
+                    {
+                        throw new Exception("Something went wrong, please try again");
+                    }
+                }
+                else
+                {
+                    var responseJson = await response.Content.ReadAsStringAsync();
+
+                    if (IsValidateJSON(responseJson))
+                    {
+                        objectToReturn = JsonConvert.DeserializeObject<TResult>(responseJson);
+                    }
                 }
             }
             catch (HttpRequestException ex)
             {
                 //HandleHttpRequestException(response, ex, url);
             }
-            catch (Exception error)
+            catch (Exception ex)
             {
                 //logWriter.WriteError(error);
-                throw;
+                throw ex;
             }
             return objectToReturn;
         }

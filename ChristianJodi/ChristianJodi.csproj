@@ -58,6 +58,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Views\ForgotPassword\Styles.xaml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Remove="Views\ForgotPassword\Styles.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Fonts\AboutAssets.txt" />
 	  <None Remove="Resources\Fonts\fa-brands-400.ttf" />
 	  <None Remove="Resources\Fonts\FontAwesome5Solid.otf" />
@@ -72,6 +80,8 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+		<PackageReference Include="Syncfusion.Maui.Carousel" Version="24.1.45" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="24.1.45" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -101,7 +111,7 @@
 	  <MauiXaml Update="Views\ContactUsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ForgotPasswordPage.xaml">
+	  <MauiXaml Update="Views\ForgotPassword\ForgotPasswordPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\InvitePage.xaml">

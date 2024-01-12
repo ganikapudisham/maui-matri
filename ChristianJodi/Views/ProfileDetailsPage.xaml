@@ -5,12 +5,17 @@
              xmlns:custom="clr-namespace:ChristianJodi.FontsAwesome;assembly=ChristianJodi"
              xmlns:FoA="clr-namespace:ChristianJodi.FontsAwesome;assembly=ChristianJodi"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:carousel="clr-namespace:Syncfusion.Maui.Carousel;assembly=Syncfusion.Maui.Carousel"
              Title="ProfileDetailsPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <toolkit:BoolToObjectConverter x:Key="BoolToObjectConverter-Liked" TrueObject="#008000" FalseObject="#808080" />
             <toolkit:BoolToObjectConverter x:Key="BoolToObjectConverter-Blocked" TrueObject="#FF6347" FalseObject="#808080" />
+            <DataTemplate x:Key="itemTemplate">
+                <Image Source="{Binding Image}" 
+                       Aspect="AspectFit"/>
+            </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -26,36 +31,16 @@
                     </ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <CarouselView ItemsSource="{Binding ProfilePhotos}"
-              IndicatorView="indicatorView">
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                <Frame HasShadow="True"
-                       BorderColor="DarkGray"
-                       CornerRadius="5"
-                       Margin="20"
-                       HeightRequest="300"
-                       HorizontalOptions="Center"   
-                       VerticalOptions="Center">
-                                    <StackLayout>
-                                        <Image Source="{Binding ImageUrl}" 
-                               Aspect="AspectFill"
-                               HeightRequest="150"
-                               WidthRequest="150"
-                               HorizontalOptions="Center" />
-                                    </StackLayout>
-                                </Frame>
-                            </StackLayout>
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
-                <IndicatorView x:Name="indicatorView"
-                       IndicatorsShape="Square"
-                       IndicatorColor="LightGray"
-                       SelectedIndicatorColor="DarkGray"
-                       HorizontalOptions="Center"
-                       Margin="0,0,0,40" />
+                <carousel:SfCarousel
+    x:Name="carousel"
+                    ItemTemplate="{StaticResource itemTemplate}"
+    HeightRequest="400"
+    ItemHeight="300"
+    ItemWidth="200"
+    ItemsSource="{Binding ProfilePhotos}"
+    ViewMode="Default"
+    WidthRequest="800" />
+                 
 
                 <ContentView Grid.Row="1" Grid.Column="0">
                     <Grid>
