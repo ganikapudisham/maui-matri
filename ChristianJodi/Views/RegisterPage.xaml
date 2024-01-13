@@ -2,24 +2,146 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChristianJodi.Views.RegisterPage"
-                          xmlns:viewmodel="clr-namespace:ChristianJodi.ViewModel"
-x:DataType="viewmodel:RegisterViewModel"
+             xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
              Title="Register">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET Register!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <StackLayout Spacing="0">
 
-        <Label 
-Text="Cancel"
-VerticalOptions="Center" 
-HorizontalOptions="Center" >
+        <Grid
+                 Margin="0,12,0,16"
+                 Padding="0"
+                 ColumnSpacing="16"
+                 RowSpacing="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding CancelCommand}" />
-            </Label.GestureRecognizers>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        </Label>
-    </VerticalStackLayout>
+            <Border
+                     Grid.Row="0"
+                     Margin="0"
+                Grid.ColumnSpan="3">
+
+                <Entry
+                         Margin="12,0"
+                         FontSize="16"
+                         HeightRequest="40"
+                         Placeholder="First Name"
+                         Text="{Binding FirstName}"
+                    >
+
+                </Entry>
+            </Border>
+
+            <Border
+                     Grid.Row="1"
+                     Margin="0"
+                Grid.ColumnSpan="3">
+                <Entry
+                         Margin="12,0"
+                         FontSize="16"
+                         HeightRequest="40"
+                         Placeholder="Last Name"
+                         Text="{Binding LastName}"
+                    >
+                </Entry>
+
+            </Border>
+
+            <Border
+                     Grid.Row="2"
+                     Margin="0"
+                Grid.ColumnSpan="3">
+                <Entry
+                         Margin="12,0"
+                         FontSize="16"
+                         HeightRequest="40"
+                         Placeholder="Mobile"
+                         Keyboard="Numeric"
+                         Text="{Binding UserName}"
+                    >
+                </Entry>
+            </Border>
+
+            <Border
+                     Grid.Row="3"
+                     Margin="0"
+                Grid.ColumnSpan="3">
+                <Entry
+                         Margin="12,0"
+                         FontSize="16"
+                         HeightRequest="40"
+                         Placeholder="Password" IsPassword="True"
+                         Text="{Binding Password}"
+                    >
+                </Entry>
+            </Border>
+
+            <Border Grid.Row="4" Grid.Column="0" Margin="0">
+                <editors:SfComboBox SelectedItem="{Binding SelectedGender, Mode=TwoWay}" 
+                     DisplayMemberPath="Name" ItemsSource="{Binding Genders}" Grid.Row="4" 
+                                      HeightRequest="50" Placeholder="Gender">
+                </editors:SfComboBox>
+            </Border>
+
+            <Border Grid.Row="5" Grid.Column="0"
+                     Margin="0" 
+                    >
+                <editors:SfComboBox SelectedItem="{Binding SelectedBirthDate, Mode=TwoWay}" 
+                                 DisplayMemberPath="Name" ItemsSource="{Binding BDDates}" Grid.Row="5" 
+                                                  HeightRequest="50" Placeholder="Date">
+                </editors:SfComboBox>
+            </Border>
+
+            <Border Grid.Row="5" Grid.Column="1"
+                     Margin="0" 
+                    >
+                <editors:SfComboBox  SelectedItem="{Binding SelectedBirthMonth, Mode=TwoWay}" 
+                                  DisplayMemberPath="Name" ItemsSource="{Binding BDMonths}" Grid.Row="6" 
+                                                  HeightRequest="50" Placeholder="Month">
+                </editors:SfComboBox>
+            </Border>
+
+            <Border Grid.Row="5" Grid.Column="2"
+                     Margin="0" 
+                    >
+                <editors:SfComboBox  SelectedItem="{Binding SelectedBirthYear, Mode=TwoWay}" 
+                                  DisplayMemberPath="Name" ItemsSource="{Binding BDYears}" Grid.Row="7" 
+                                  HeightRequest="50" Placeholder="Year">
+                </editors:SfComboBox>
+            </Border>
+
+            <buttons:SfButton
+         Grid.Row="6"
+         Command="{Binding RegisterCommand}"
+         HorizontalOptions="Center"
+         Style="{StaticResource SfButtonStyle}"
+         Text="REGISTER"
+         WidthRequest="245" Grid.ColumnSpan="3"  />
+
+            <buttons:SfButton
+         Grid.Row="7"
+         Command="{Binding CancelCommand}"
+         HorizontalOptions="Center"
+         Style="{StaticResource SfButtonStyle}"
+         Text="CANCEL"
+         WidthRequest="245" Grid.ColumnSpan="3" />
+
+            <ActivityIndicator Grid.Row="8" IsRunning="True" IsVisible="{Binding IsBusy}" />
+        </Grid>
+    </StackLayout>
 </ContentPage>

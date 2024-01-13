@@ -78,36 +78,7 @@ namespace ChristianJodi.ViewModel
         }
 
         [RelayCommand]
-        public void First()
-        {
-            Task.Run(async () => { await FirstAsync(); });
-        }
-
-        [RelayCommand]
-        public void Previous()
-        {
-            Task.Run(async () => { await PreviousAsync(); });
-        }
-
-        [RelayCommand]
-        public void Next()
-        {
-            Task.Run(async () => { await NextAsync(); });
-        }
-
-        [RelayCommand]
-        public void Last()
-        {
-            Task.Run(async () => { await LastAsync(); });
-        }
-
-        [RelayCommand]
-        public void GoToPage()
-        {
-            Task.Run(async () => { await GoToPageAsync(); });
-        }
-
-        private async Task PreviousAsync()
+        private async Task Previous()
         {
             int ePN = Convert.ToInt32(EPageNumber);
             if (ePN >= 2 && ePN <= totalPages)
@@ -118,7 +89,8 @@ namespace ChristianJodi.ViewModel
             }
         }
 
-        private async Task NextAsync()
+        [RelayCommand]
+        private async Task Next()
         {
             int ePN = Convert.ToInt32(EPageNumber);
             if (ePN < totalPages)
@@ -129,20 +101,23 @@ namespace ChristianJodi.ViewModel
             }
         }
 
-        private async Task FirstAsync()
+        [RelayCommand]
+        private async Task First()
         {
             await GetProfiles(1, Convert.ToInt16(PPageSize.Value));
             EPageNumber = "1";
         }
 
-        private async Task LastAsync()
+        [RelayCommand]
+        private async Task Last()
         {
             int ePN = totalPages;
             await GetProfiles(ePN, Convert.ToInt16(PPageSize.Value));
             EPageNumber = ePN.ToString();
         }
 
-        private async Task GoToPageAsync()
+        [RelayCommand]
+        private async Task GoToPage()
         {
             int ePN = Convert.ToInt32(EPageNumber);
             if (ePN != 0 && ePN <= totalPages)
