@@ -1,10 +1,10 @@
 If photos exist, do not show request photo button
 if profie is blocked remove from all profiles
-move down dots from above of the profile image
 
 
-1)Login
-2)Forgot Password
-3)Register
+1)UI Login 
+2)UI Forgot Password
+3)UI Register
 4)UI of Profiles list
 5)UI of ViewProfile
+6)Activity Indicator on click of profile - profiles list page

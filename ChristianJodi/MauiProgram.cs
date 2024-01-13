@@ -21,12 +21,13 @@ namespace ChristianJodi
                 .ConfigureSyncfusionCore()
                 .ConfigureFonts(fonts =>
                 {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-
                     fonts.AddFont("fa-brands-400.ttf", "FontBrands");
                     fonts.AddFont("FontAwesome5Solid.otf", "FontAwesomeSolid");
                     //fonts.AddFont("fa-solid-900.ttf", "FontSolid");
+                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Roboto-Medium.ttf", "Roboto-Medium");
+                    fonts.AddFont("Roboto-Regular.ttf", "Roboto-Regular");
                 });
 
             builder.Services.AddSingleton<LoginViewModel>();
@@ -39,14 +40,8 @@ namespace ChristianJodi
             builder.Services.AddSingleton<ForgotPasswordViewModel>();
             builder.Services.AddSingleton<ForgotPasswordPage>();
 
-            builder.Services.AddSingleton<AuthenticatedViewModel>();
-            builder.Services.AddSingleton<AuthenticatedPage>();
-
             builder.Services.AddSingleton<AllProfilesViewModel>();
             builder.Services.AddSingleton<AllProfilesPage>();
-
-            builder.Services.AddSingleton<LogoutViewModel>();
-            builder.Services.AddSingleton<LogoutPage>();
 
             builder.Services.AddSingleton<AppShellViewModel>();
             builder.Services.AddSingleton<AppShell>();

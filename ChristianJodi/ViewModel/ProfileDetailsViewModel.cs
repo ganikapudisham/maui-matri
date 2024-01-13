@@ -181,6 +181,7 @@ namespace ChristianJodi.ViewModel
             ShowHinduFields = Convert.ToBoolean(showHinduFields);
 
             var profileDetails = await _serviceManager.GetProfileById(userToken, profileToken);
+            ProfilePhotos.Clear();
 
             foreach (var pt in profileDetails.Photos)
             {

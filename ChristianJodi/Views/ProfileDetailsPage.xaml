@@ -6,7 +6,7 @@
              xmlns:FoA="clr-namespace:ChristianJodi.FontsAwesome;assembly=ChristianJodi"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:carousel="clr-namespace:Syncfusion.Maui.Carousel;assembly=Syncfusion.Maui.Carousel"
-             Title="ProfileDetailsPage">
+             Title="Profile Details">
 
     <ContentPage.Resources>
         <ResourceDictionary>
