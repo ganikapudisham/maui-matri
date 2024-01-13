@@ -191,8 +191,8 @@ namespace ChristianJodi.ViewModel
             }
         }
 
-        private ObservableCollection<Master> Genders;
-        public ObservableCollection<Master> genders
+        private ObservableCollection<Master> genders;
+        public ObservableCollection<Master> Genders
         {
             get { return genders; }
             set

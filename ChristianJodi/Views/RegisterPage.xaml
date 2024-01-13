@@ -91,10 +91,10 @@
                 </Entry>
             </Border>
 
-            <Border Grid.Row="4" Grid.Column="0" Margin="0">
+            <Border Grid.Row="4" Grid.ColumnSpan="3" Margin="0">
                 <editors:SfComboBox SelectedItem="{Binding SelectedGender, Mode=TwoWay}" 
                      DisplayMemberPath="Name" ItemsSource="{Binding Genders}" Grid.Row="4" 
-                                      HeightRequest="50" Placeholder="Gender">
+                                      HeightRequest="50" Placeholder="Gender" IsEditable="True">
                 </editors:SfComboBox>
             </Border>
 
@@ -103,7 +103,7 @@
                     >
                 <editors:SfComboBox SelectedItem="{Binding SelectedBirthDate, Mode=TwoWay}" 
                                  DisplayMemberPath="Name" ItemsSource="{Binding BDDates}" Grid.Row="5" 
-                                                  HeightRequest="50" Placeholder="Date">
+                                                  HeightRequest="50" Placeholder="Date" IsEditable="True">
                 </editors:SfComboBox>
             </Border>
 
@@ -112,7 +112,7 @@
                     >
                 <editors:SfComboBox  SelectedItem="{Binding SelectedBirthMonth, Mode=TwoWay}" 
                                   DisplayMemberPath="Name" ItemsSource="{Binding BDMonths}" Grid.Row="6" 
-                                                  HeightRequest="50" Placeholder="Month">
+                                                  HeightRequest="50" Placeholder="Month" IsEditable="True">
                 </editors:SfComboBox>
             </Border>
 
@@ -121,7 +121,7 @@
                     >
                 <editors:SfComboBox  SelectedItem="{Binding SelectedBirthYear, Mode=TwoWay}" 
                                   DisplayMemberPath="Name" ItemsSource="{Binding BDYears}" Grid.Row="7" 
-                                  HeightRequest="50" Placeholder="Year">
+                                  HeightRequest="50" Placeholder="Year" IsEditable="True">
                 </editors:SfComboBox>
             </Border>
 
