@@ -83,7 +83,8 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
             <VerticalStackLayout Grid.Row="1">
-                <Grid ColumnSpacing="1">
+                <Frame Margin="0,10,0,10">
+                    <Grid ColumnSpacing="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
@@ -99,7 +100,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-
+                   
                     <Label Grid.Row="0" FontSize="Medium" Grid.Column="0" Grid.ColumnSpan="6" Text="Records Per Page" 
        VerticalOptions="End" HorizontalOptions="Start"></Label>
                     <Picker x:Name="PickerPageSize" Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="3"
@@ -156,7 +157,9 @@
                             Color="gray" />
                         </ImageButton.Source>
                     </ImageButton>
+                    
                 </Grid>
+                </Frame>
             </VerticalStackLayout>
         </Grid>
     </ScrollView>

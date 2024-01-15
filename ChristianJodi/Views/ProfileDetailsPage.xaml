@@ -6,6 +6,9 @@
              xmlns:FoA="clr-namespace:ChristianJodi.FontsAwesome;assembly=ChristianJodi"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:carousel="clr-namespace:Syncfusion.Maui.Carousel;assembly=Syncfusion.Maui.Carousel"
+            xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Accordion;assembly=Syncfusion.Maui.Expander"
+            xmlns:thickness ="clr-namespace:Microsoft.Maui;assembly=Microsoft.Maui"
+            Background="White"
              Title="Profile Details">
 
     <ContentPage.Resources>
@@ -32,1026 +35,461 @@
                 </Grid.ColumnDefinitions>
 
                 <carousel:SfCarousel
-    x:Name="carousel"
-                    ItemTemplate="{StaticResource itemTemplate}"
-    HeightRequest="400"
-    ItemHeight="300"
-    ItemWidth="200"
-    ItemsSource="{Binding ProfilePhotos}"
-    ViewMode="Default"
-    WidthRequest="800" />
+                            x:Name="carousel"
+                            ItemTemplate="{StaticResource itemTemplate}"
+                            HeightRequest="400"
+                            ItemHeight="300"
+                            ItemWidth="200"
+                            ItemsSource="{Binding ProfilePhotos}"
+                            ViewMode="Default"
+                            WidthRequest="800" />
                  
 
-                <ContentView Grid.Row="1" Grid.Column="0">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="4*" />
-                        </Grid.RowDefinitions>
+                <ContentView Grid.Row="1" Grid.ColumnSpan ="2">
+                    <syncfusion:SfAccordion x:Name="accordion" ExpandMode="SingleOrNone"
+                        VerticalOptions="{OnPlatform Default=Fill}" 
+                        IsClippedToBounds="True"
+                        Grid.ColumnSpan="{OnPlatform Default=2, MacCatalyst=1,WinUI=1}" 
+                        Grid.Column="{OnPlatform Default=0, MacCatalyst=1,WinUI=1}" 
+                        HorizontalOptions="Fill">
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        
-                        <Frame 
-                    Grid.Row="1"
-Grid.Column="0"
-Margin="0,10,0,0"
-Padding="16,24,16,0"
-BackgroundColor="White"
-BorderColor="White"
-CornerRadius="20"
-HasShadow="true"
-HorizontalOptions="Fill">
-                    <StackLayout>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,2" FontSize="20" Text="Actions" />
+                        <syncfusion:AccordionItem IsExpanded="True">
+                                    <syncfusion:AccordionItem.Header>
+                                        <Grid HeightRequest="48">
+                                            <Label Text="Basic Information" Margin="16,14,0,14" CharacterSpacing="0.25" 
+                                                   FontFamily="Roboto-Regular"  FontSize="14" />
+                                        </Grid>
+                                    </syncfusion:AccordionItem.Header>
+                                    <syncfusion:AccordionItem.Content>
+                                        <Grid ColumnSpacing="10" RowSpacing="2" BackgroundColor="White"  >
+                                            <Grid Margin="16,6,0,0">
+                                                <Grid.Resources>
+                                                    <Style TargetType="Label">
+                                                        <Setter Property="FontFamily" Value="Roboto-Regular"/>
+                                                    </Style>
+                                                </Grid.Resources>
+                                                <Grid.RowDefinitions >
+                                                    <RowDefinition Height="25"/>
+                                                    <RowDefinition Height="25"/>
+                                                    <RowDefinition Height="25"/>
+                                                    <RowDefinition Height="25"/>
+                                                    <RowDefinition Height="25"/>
+                                                    <RowDefinition Height="25"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                        <Label Text="Id" Grid.Row="0" Grid.Column="0"  
+                                                       Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Active On " Grid.Row="1" Grid.Column="0" 
+                                                       Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Name" Grid.Row="2" Grid.Column="0" 
+                                                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Mother Tongue " Grid.Row="3" Grid.Column="0" 
+                                                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Birth date" Grid.Row="4" Grid.Column="0" 
+                                                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding WebsiteIdentifier}" Grid.Row="0" Grid.Column="1" 
+                                                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding LastLoggedIn}" Grid.Row="1" Grid.Column="1" 
+                                                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding FirstName}" Grid.Row="2" Grid.Column="1" 
+                                                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding MotherTongue}" Grid.Row="3" Grid.Column="1" 
+                                                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding BirthDate}" Grid.Row="4" Grid.Column="1" 
+                                                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                            </Grid>
 
-                            <Label IsVisible="{Binding Liked}" Grid.Row="0" x:Name="lblLiked"></Label>
-                            <Label IsVisible="{Binding Blocked}" Grid.Row="0" x:Name="lblBlocked"></Label>
-
-                            <ImageButton BackgroundColor="Transparent" Grid.Row="1" CornerRadius="20" Grid.Column="0" 
-                                         HeightRequest="20" Command="{Binding LikeCommand}" HorizontalOptions="End">
-                                <ImageButton.Source>
-                                    <FontImageSource BindingContext="{x:Reference lblLiked}" 
-                                                     Color="{Binding IsVisible, Converter={StaticResource BoolToObjectConverter-Liked}}" 
-                                                     FontFamily="FontAwesomeSolid" 
-                                                     Glyph="{x:Static FoA:FontAwesomeIcons.ThumbsUp}"
-                                                     >
-                                        
-                                    </FontImageSource>
-                                </ImageButton.Source>
-                            </ImageButton>
-
-                            <ImageButton Grid.Row="1" Grid.Column="1" CornerRadius="20" HeightRequest="20"
-                                         Command="{Binding BlockCommand}" HorizontalOptions="Start">
-                                <ImageButton.Source>
-                                    <FontImageSource BindingContext="{x:Reference lblBlocked}"
-                                                     Color="{Binding IsVisible, Converter={StaticResource BoolToObjectConverter-Blocked}}"  
-                                                     FontFamily="FontAwesomeSolid" 
-                                                     Glyph="{x:Static FoA:FontAwesomeIcons.Ban}">
-
-                                    </FontImageSource>
-                                </ImageButton.Source>
-                            </ImageButton>
-
-                            <Button Grid.Row="2" Grid.Column="0" TextColor="White" Text="Request Photo" 
-          Command="{Binding PhotoRequestCommand}" BackgroundColor="#93c393" 
-BorderColor="DarkSeaGreen" BorderWidth="1" Margin="0,10,10,10" />
-
-                            <Button Grid.Row="2" Grid.Column="1" TextColor="White" Text="Send Interest" 
-          Command="{Binding SendInterestCommand}" BackgroundColor="#93c393" 
-BorderColor="DarkSeaGreen" BorderWidth="1" Margin="0,10,0,10"/>
-
-                            <Button Grid.Row="3" Grid.ColumnSpan="2" TextColor="White" Text="Horoscope Request" 
-        Command="{Binding HoroscopeRequestCommand}" BackgroundColor="#93c393" 
-BorderColor="DarkSeaGreen" BorderWidth="1" Margin="0,10,0,10" IsVisible="{Binding ShowHinduFields}"/> 
-
-                        </Grid>
-                    </StackLayout>
-
-                </Frame>
-                        
-                        <Frame
-    Grid.Row="2"
-    Grid.Column="0"
-    Margin="0,10,0,0"
-    Padding="16,24,16,0"
-    BackgroundColor="White"
-    BorderColor="White"
-    CornerRadius="20"
-    HasShadow="true"
-    HorizontalOptions="Fill">
-                            <StackLayout>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Grid.Row="0" Grid.ColumnSpan="2"
-        Margin="0,0,0,16"
-        FontSize="20"
-        Text="Basic Details" />
-
-                                    <Label Grid.Row="1" Grid.Column="0"
-        Margin="0,0,0,5"
-        FontSize="12" FontAttributes="Bold, Italic" 
-        Text="ID" />
-
-                                    <Label Grid.Row="1" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  WebsiteIdentifier}"  />
-
-                                    <Label Grid.Row="2" Grid.Column="0"
-        Margin="0,0,0,5"
-        FontSize="12" FontAttributes="Bold, Italic" 
-        Text="Last Active On" />
-
-                                    <Label Grid.Row="2" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  LastLoggedIn}" />
-
-                                    <Label Grid.Row="3" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text="Name" />
-
-                                    <Label Grid.Row="3" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  FirstName}" />
-
-                                    <Label Grid.Row="4" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text="Mother Tongue" />
-
-                                    <Label Grid.Row="4" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  MotherTongue}" />
-
-                                    <Label Grid.Row="5" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "BirthDate" />
-
-                                    <Label Grid.Row="5" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  BirthDate}" />
-
-                                    <Label Grid.Row="6" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "CreatedBy" />
-
-                                    <Label Grid.Row="6" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  ProfileCreatedBy}" />
+                                        </Grid>
+                                    </syncfusion:AccordionItem.Content>
+                                </syncfusion:AccordionItem>
+                        <syncfusion:AccordionItem IsExpanded="True">
+                            <syncfusion:AccordionItem.Header>
+                                <Grid  HeightRequest="48" >
+                                    <Label Text="Religion" Margin="16,14,0,14" CharacterSpacing="0.25" 
+                   FontFamily="Roboto-Regular"  FontSize="14" />
                                 </Grid>
-                            </StackLayout>
-
-                        </Frame>
-
-                        <Frame
-Grid.Row="3"
-Grid.Column="0"
-Margin="0,10,0,0"
-Padding="16,24,16,0"
-BackgroundColor="White"
-BorderColor="White"
-CornerRadius="20"
-HasShadow="true"
-HorizontalOptions="Fill">
-
-                            <StackLayout>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Label Grid.Row="0" Grid.ColumnSpan="2"
-                                Margin="0,0,0,16"
-                                FontSize="20"
-                                Text="Religion" />
-
-                                    <Label Grid.Row="1" Grid.Column="0"
-        Margin="0,0,0,5"
-        FontSize="12" FontAttributes="Bold, Italic" 
-        Text="Religion" />
-
-                                    <Label Grid.Row="1" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  Religion}" />
-
-                                    <Label Grid.Row="2" Grid.Column="0"
-        Margin="0,0,0,5"
-        FontSize="12" FontAttributes="Bold, Italic" 
-        Text="Caste" />
-
-                                    <Label Grid.Row="2" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  Caste}" />
-
-                                    <Label Grid.Row="3" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text="Denomination" />
-
-                                    <Label Grid.Row="3" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  Denomination}" />
-
-
-                                    <Grid IsVisible="{Binding ShowHinduFields}">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
+                            </syncfusion:AccordionItem.Header>
+                            <syncfusion:AccordionItem.Content>
+                                <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="White" >
+                                    <Grid Margin="16,6,0,0">
+                                        <Grid.Resources>
+                                            <Style TargetType="Label">
+                                                <Setter Property="FontFamily" Value="Roboto-Regular"/>
+                                            </Style>
+                                        </Grid.Resources>
+                                        <Grid.RowDefinitions >
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-                                        <Label Grid.Row="0" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "SubCaste" />
-
-                                        <Label Grid.Row="0" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  SubCaste}" />
-
-                                        <Label Grid.Row="1" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "Community" />
-
-                                        <Label Grid.Row="1" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  Community}" />
-
-                                        <Label Grid.Row="2" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text="Birth Time" />
-
-                                        <Label Grid.Row="2" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text ="{Binding BirthTime}" />
-
-                                        <Label Grid.Row="3" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "Birth Place" />
-
-                                        <Label Grid.Row="3" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  BirthPlace}" />
-
-                                        <Label Grid.Row="4" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12" Text = "Gothram" />
-
-                                        <Label Grid.Row="4" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  Gothram}" />
-
-                                        <Label Grid.Row="5" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "Raasi" />
-
-                                        <Label Grid.Row="5" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  Raasi}" />
-
-                                        <Label Grid.Row="6" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "Star" />
-
-                                        <Label Grid.Row="6" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  Star}" />
+                                        <Label Text="Religion" Grid.Row="0" Grid.Column="0"  
+                       Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Caste" Grid.Row="1" Grid.Column="0" 
+                       Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Denomination" Grid.Row="2" Grid.Column="0" 
+                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Caste Details" Grid.Row="3" Grid.Column="0" 
+                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="{Binding Religion}" Grid.Row="0" Grid.Column="1" 
+                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding Caste}" Grid.Row="1" Grid.Column="1" 
+                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding Denomination}" Grid.Row="2" Grid.Column="1" 
+                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding CasteInformation}" Grid.Row="3" Grid.Column="1" 
+                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                     </Grid>
 
-                                    <Label Grid.Row="7" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "Caste Details" />
+                                </Grid>
+                            </syncfusion:AccordionItem.Content>
+                        </syncfusion:AccordionItem>
+                        <syncfusion:AccordionItem IsExpanded="True">
+                            <syncfusion:AccordionItem.Header>
+                                <Grid  HeightRequest="48">
+                                    <Label Text="About Me" Margin="16,14,0,14" CharacterSpacing="0.25" 
+                                FontFamily="Roboto-Regular"  FontSize="14" />
+                                </Grid>
+                            </syncfusion:AccordionItem.Header>
+                            <syncfusion:AccordionItem.Content>
+                                <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="White"  >
+                                    <Grid Margin="16,6,0,0">
+                                        <Grid.Resources>
+                                            <Style TargetType="Label">
+                                                <Setter Property="FontFamily" Value="Roboto-Regular"/>
+                                            </Style>
+                                        </Grid.Resources>
+                                        <Grid.RowDefinitions >
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Height" Grid.Row="0" Grid.Column="0"  
+                                    Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Weight" Grid.Row="1" Grid.Column="0" 
+                                    Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Physical status" Grid.Row="2" Grid.Column="0" 
+                                     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Body type" Grid.Row="3" Grid.Column="0" 
+                                     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="Complexion" Grid.Row="4" Grid.Column="0" 
+                                    Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
 
-                                    <Label Grid.Row="7" Grid.Column="1"
-        Margin="0,0,0,5" FontSize="14"
-        
-        Text="{Binding  CasteInformation}" />
+                                        <Label Text="{Binding Height}" Grid.Row="0" Grid.Column="1" 
+                                     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding Weight}" Grid.Row="1" Grid.Column="1" 
+                                     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding PhysicalStatus}" Grid.Row="2" Grid.Column="1" 
+                                     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding BodyType}" Grid.Row="3" Grid.Column="1" 
+                                     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding Complexion}" Grid.Row="4" Grid.Column="1" 
+                                     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding AboutMe}" Grid.Row="5" Grid.ColumnSpan="2" 
+Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
+                                    </Grid>
 
                                 </Grid>
-                            </StackLayout>
-                        </Frame>
+                            </syncfusion:AccordionItem.Content>
+                        </syncfusion:AccordionItem>
+                        <syncfusion:AccordionItem IsExpanded="True">
+                            <syncfusion:AccordionItem.Header>
+                                <Grid  HeightRequest="48">
+                                    <Label Text="Academics/Job" Margin="16,14,0,14" CharacterSpacing="0.25" 
+FontFamily="Roboto-Regular"  FontSize="14" />
+                                </Grid>
+                            </syncfusion:AccordionItem.Header>
+                            <syncfusion:AccordionItem.Content>
+                                <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="White"  >
+                                    <Grid Margin="16,6,0,0">
+                                        <Grid.Resources>
+                                            <Style TargetType="Label">
+                                                <Setter Property="FontFamily" Value="Roboto-Regular"/>
+                                            </Style>
+                                        </Grid.Resources>
+                                        <Grid.RowDefinitions >
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Education" Grid.Row="0" Grid.Column="0"  
+                                            Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Education details" Grid.Row="1" Grid.Column="0" 
+    Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Job type" Grid.Row="2" Grid.Column="0" 
+     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Job" Grid.Row="3" Grid.Column="0" 
+     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="Employment details" Grid.Row="4" Grid.Column="0" 
+Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="Annual income" Grid.Row="5" Grid.Column="0" 
+    Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Income details" Grid.Row="6" Grid.Column="0" 
+    Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="Property details" Grid.Row="7" Grid.Column="0" 
+    Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
 
-                        <Frame
-Grid.Row="4"
-Grid.Column="0"
-Margin="0,10,0,0"
-Padding="16,24,16,0"
-BackgroundColor="White"
-BorderColor="White"
 
-CornerRadius="20"
-HasShadow="true"
-HorizontalOptions="Fill">
-
-                            <StackLayout>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Label Grid.Row="0" Grid.ColumnSpan="2"
-        Margin="0,0,0,16"
-        FontSize="20"
-        Text="About Me" />
-
-                                    <Label Grid.Row="1" Grid.Column="0"
-        Margin="0,0,0,5" FontSize="12" FontAttributes="Bold, Italic" Text="Height" />
-
-                                    <Label Grid.Row="1" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  Height}" />
-
-                                    <Label Grid.Row="2" Grid.Column="0"
-        Margin="0,0,0,5"
-        FontSize="12" FontAttributes="Bold, Italic" 
-        Text="Weight" />
-
-                                    <Label Grid.Row="2" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  Weight}" />
-
-                                    <Label Grid.Row="3" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text="BloodGroup" />
-
-                                    <Label Grid.Row="3" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  BloodGroup}" />
-
-                                    <Label Grid.Row="4" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text="Physical Status" />
-
-                                    <Label Grid.Row="4" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding PhysicalStatus}" />
-
-                                    <Label Grid.Row="5" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "Body Type" />
-
-                                    <Label Grid.Row="5" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  BodyType}" />
-
-                                    <Label Grid.Row="6" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "Complexion" />
-
-                                    <Label Grid.Row="6" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  Complexion}" />
-
-                            <Label Grid.Row="7" Grid.Column="0"
-Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-FontSize="12"
-Text = "About me" />
-
-                            <Label Grid.Row="7" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  AboutMe}" />
+                                        <Label Text="{Binding Education}" Grid.Row="0" Grid.Column="1" 
+     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding EducationDetails}" Grid.Row="1" Grid.Column="1" 
+     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding JobType}" Grid.Row="2" Grid.Column="1" 
+     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding Job}" Grid.Row="3" Grid.Column="1" 
+     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding EmploymentDetails}" Grid.Row="4" Grid.Column="1" 
+     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding AnnualIncome}" Grid.Row="5" Grid.Column="1" 
+Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding IncomeDetails}" Grid.Row="6" Grid.Column="1" 
+Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding PropertyDetails}" Grid.Row="7" Grid.Column="1" 
+Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                    </Grid>
 
                                 </Grid>
-                            </StackLayout>
-                        </Frame>
-
-                        <Frame
-Grid.Row="5"
-Grid.Column="0"
-Margin="0,10,0,0"
-Padding="16,24,16,0"
-BackgroundColor="White"
-BorderColor="White"
-CornerRadius="20"
-HasShadow="true"
-HorizontalOptions="Fill">
-
-                            <StackLayout>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Label
-        Margin="0,0,0,16" Grid.Row="0" Grid.ColumnSpan="2"
-        FontSize="20"
-        Text="Academics/Job" />
-
-                                    <Label Grid.Row="1" Grid.Column="0"
-        Margin="0,0,0,5"
-        FontSize="12" FontAttributes="Bold, Italic" 
-        Text="Education" />
-
-                                    <Label Grid.Row="1" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  Education}" />
-
-                                    <Label Grid.Row="2" Grid.Column="0"
-        Margin="0,0,0,5"
-        FontSize="12" FontAttributes="Bold, Italic" 
-        Text="Education Details" />
-
-                                    <Label Grid.Row="2" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  EducationDetails}" />
-
-                                    <Label Grid.Row="3" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text="Annual Income" />
-
-                                    <Label Grid.Row="3" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  AnnualIncome}" />
-
-                                    <Label Grid.Row="4" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text="Job Type" />
-
-                                    <Label Grid.Row="4" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding JobType}" />
-
-                                    <Label Grid.Row="5" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "Job" />
-
-                                    <Label Grid.Row="5" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  Job}" />
-
-                                    <Label Grid.Row="6" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "Employment Details" />
-
-                                    <Label Grid.Row="6" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  EmploymentDetails}" />
-
-                                    <Label Grid.Row="7" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "Income Details" />
-
-                                    <Label Grid.Row="7" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  IncomeDetails}" />
-
-                                    <Label Grid.Row="8" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "Property Details" />
-
-                                    <Label Grid.Row="8" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  PropertyDetails}" />
+                            </syncfusion:AccordionItem.Content>
+                        </syncfusion:AccordionItem>
+                        <syncfusion:AccordionItem IsExpanded="True">
+                            <syncfusion:AccordionItem.Header>
+                                <Grid  HeightRequest="48">
+                                    <Label Text="Family Details" Margin="16,14,0,14" CharacterSpacing="0.25" 
+                                                   FontFamily="Roboto-Regular"  FontSize="14" />
                                 </Grid>
-                            </StackLayout>
-                        </Frame>
+                            </syncfusion:AccordionItem.Header>
+                            <syncfusion:AccordionItem.Content>
+                                <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="White"  >
+                                    <Grid Margin="16,6,0,0">
+                                        <Grid.Resources>
+                                            <Style TargetType="Label">
+                                                <Setter Property="FontFamily" Value="Roboto-Regular"/>
+                                            </Style>
+                                        </Grid.Resources>
+                                        <Grid.RowDefinitions >
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="About Father" Grid.Row="0" Grid.Column="0"  
+                                                       Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="About Mother" Grid.Row="1" Grid.Column="0"  
+                                                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Brothers" Grid.Row="2" Grid.Column="0" 
+                                                       Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Brothers Married" Grid.Row="3" Grid.Column="0" 
+                                                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="About Brothers" Grid.Row="4" Grid.Column="0" 
+                                                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Sisters" Grid.Row="5" Grid.Column="0" 
+                                                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="Sisters Married" Grid.Row="6" Grid.Column="0" 
+                                                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="About Sisters" Grid.Row="7" Grid.Column="0" 
+                                                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="Family Details" Grid.Row="8" Grid.Column="0" 
+                                                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
 
-                        <Frame
-Grid.Row="6"
-Grid.Column="0"
-Margin="0,10,0,0"
-Padding="16,24,16,0"
-BackgroundColor="White"
-BorderColor="White"
-CornerRadius="20"
-HasShadow="true"
-HorizontalOptions="Fill">
-
-                            <StackLayout>
-
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Label
-        Margin="0,0,0,16" Grid.Row="0" Grid.ColumnSpan="2"
-        FontSize="20"
-        Text="Family Details" />
-
-                                    <Label Grid.Row="1" Grid.Column="0"
-        Margin="0,0,0,5"
-        FontSize="12" FontAttributes="Bold, Italic"  Text="Family Type" />
-
-                                    <Label Grid.Row="1" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  FamilyType}" />
-
-                                    <Label Grid.Row="2" Grid.Column="0"
-        Margin="0,0,0,5"
-        FontSize="12" FontAttributes="Bold, Italic" 
-        Text="Family Value" />
-
-                                    <Label Grid.Row="2" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  FamilyValue}" />
-
-                                    <Label Grid.Row="3" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text="Family Status" />
-
-                                    <Label Grid.Row="3" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  FamilyStatus}" />
-
-                                    <Label Grid.Row="4" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text="Family Details" />
-
-                                    <Label Grid.Row="4" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding FamilyDetails}" />
-
-                                    <Label Grid.Row="5" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "Brothers" />
-
-                                    <Label Grid.Row="5" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  BrothersCount}" />
-
-                                    <Label Grid.Row="6" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "Brothers Married" />
-
-                                    <Label Grid.Row="6" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  BrothersMarried}" />
-
-                                    <Label Grid.Row="7" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "About Brothers" />
-
-                                    <Label Grid.Row="7" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  AboutBrothers}" />
-
-                                    <Label Grid.Row="8" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "Sisters" />
-
-                                    <Label Grid.Row="8" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  SistersCount}" />
-
-                                    <Label Grid.Row="9" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "Sisters Married" />
-
-                                    <Label Grid.Row="9" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  SistersMarried}" />
-
-                                    <Label Grid.Row="10" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "About Sisters" />
-
-                                    <Label Grid.Row="10" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  AboutSisters}" />
-
-                                    <Label Grid.Row="11" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "Mothers Occupation" />
-
-                                    <Label Grid.Row="11" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  MothersOccupation}" />
-
-                                    <Label Grid.Row="12" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text = "Fathers Occupation" />
-
-                                    <Label Grid.Row="12" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        
-        Text="{Binding  FathersOccupation}" />
+                                       <Label Text="{Binding FathersOccupation}" Grid.Row="0" Grid.Column="1" 
+                                                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding MothersOccupation}" Grid.Row="1" Grid.Column="1" 
+                                                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding BrothersCount}" Grid.Row="2" Grid.Column="1" 
+                                                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding BrothersMarried}" Grid.Row="3" Grid.Column="1" 
+                                                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding AboutBrothers}" Grid.Row="4" Grid.Column="1" 
+                                                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding SistersCount}" Grid.Row="5" Grid.Column="1" 
+                                                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding SistersMarried}" Grid.Row="6" Grid.Column="1" 
+                                                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding AboutSisters}" Grid.Row="7" Grid.Column="1" 
+                                                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding FamilyDetails}" Grid.Row="8" Grid.Column="1" 
+                                                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                    </Grid>
 
                                 </Grid>
-                            </StackLayout>
-                        </Frame>
-
-                        <Frame
-Grid.Row="7"
-Grid.Column="0"
-Margin="0,10,0,0"
-Padding="16,24,16,0"
-BackgroundColor="White"
-BorderColor="White"
-CornerRadius="20"
-HasShadow="true"
-HorizontalOptions="Fill">
-
-                            <StackLayout>
-
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Label
-        Margin="0,0,0,16" Grid.Row="0" Grid.ColumnSpan="2"
-        FontSize="20" 
-        Text="Diet" />
-
-                                    <Label Grid.Row="1" Grid.Column="0"
-        Margin="0,0,0,5" FontSize="14" Text="Diet" FontAttributes="Bold, Italic" />
-
-                                    <Label Grid.Row="1" Grid.Column="1"
-        Margin="0,0,0,5"  FontSize="12" FontAttributes="Bold, Italic" 
-        
-        Text="{Binding  Diet}" />
-
-                                    <Label Grid.Row="2" Grid.Column="0"
-        Margin="0,0,0,5" FontSize="12" FontAttributes="Bold, Italic" 
-        Text="Smoke" />
-
-                                    <Label Grid.Row="2" Grid.Column="1"
-        Margin="0,0,0,5" FontSize="14"
-        
-        Text="{Binding  Smoke}" />
-
-                                    <Label Grid.Row="3" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12" Text="Drink" />
-
-                                    <Label Grid.Row="3" Grid.Column="1"
-        Margin="0,0,0,5" FontSize="14"
-        
-        Text="{Binding  Drink}" />
+                            </syncfusion:AccordionItem.Content>
+                        </syncfusion:AccordionItem>
+                        <syncfusion:AccordionItem IsExpanded="True">
+                            <syncfusion:AccordionItem.Header>
+                                <Grid  HeightRequest="48">
+                                    <Label Text="Diet" Margin="16,14,0,14" CharacterSpacing="0.25" 
+                   FontFamily="Roboto-Regular"  FontSize="14" />
                                 </Grid>
-                            </StackLayout>
-                        </Frame>
+                            </syncfusion:AccordionItem.Header>
+                            <syncfusion:AccordionItem.Content>
+                                <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="White"  >
+                                    <Grid Margin="16,6,0,0">
+                                        <Grid.Resources>
+                                            <Style TargetType="Label">
+                                                <Setter Property="FontFamily" Value="Roboto-Regular"/>
+                                            </Style>
+                                        </Grid.Resources>
+                                        <Grid.RowDefinitions >
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Diet" Grid.Row="0" Grid.Column="0"  
+                       Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Smoke" Grid.Row="1" Grid.Column="0" 
+                       Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Alcohol" Grid.Row="2" Grid.Column="0" 
+                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="{Binding Diet}" Grid.Row="0" Grid.Column="1" 
+                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding Smoke}" Grid.Row="1" Grid.Column="1" 
+                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding Drink}" Grid.Row="2" Grid.Column="1" 
+                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                    </Grid>
 
-                        <Frame
-Grid.Row="8"
-Grid.Column="0"
-Margin="0,10,0,0"
-Padding="16,24,16,0"
-BackgroundColor="White"
-BorderColor="White"
-CornerRadius="20"
-HasShadow="true"
-HorizontalOptions="Fill">
-
-                            <StackLayout>
-
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Grid.Row="0" Grid.ColumnSpan="2"
-        Margin="0,0,0,16"
-        FontSize="20"
-        Text="About Partner" />
-
-                                    <Label Grid.Row="1" Grid.Column="0"
-        Margin="0,0,0,5" FontSize="12" FontAttributes="Bold, Italic" Text="Same Caste" />
-
-                                    <Label Grid.Row="1" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        Text="{Binding  CasteCriteria}" />
-
-                                    <Label Grid.Row="2" Grid.Column="0"
-        Margin="0,0,0,5"
-        FontSize="12" FontAttributes="Bold, Italic" 
-        Text="Same Denomination" />
-
-                                    <Label Grid.Row="2" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        Text="{Binding  DenominationCriteria}" />
-
-                                    <Label Grid.Row="3" Grid.Column="0"
-        Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-        FontSize="12"
-        Text="About Partner" />
-
-                                    <Label Grid.Row="3" Grid.Column="1"
-        Margin="0,0,0,5"
-        FontSize="14"
-        Text="{Binding  AboutPartner}" />
                                 </Grid>
-                            </StackLayout>
-                        </Frame>
-
-                        <Frame
-            Grid.Row="9"
-            Grid.Column="0"
-            Margin="0,10,0,0"
-            Padding="16,24,16,0"
-            BackgroundColor="White"
-            BorderColor="White"
-            CornerRadius="20"
-            HasShadow="true"
-            HorizontalOptions="Fill">
-
-                            <StackLayout>
-
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Grid.Row="0" Grid.ColumnSpan="2"
-                    Margin="0,0,0,16"
-                    FontSize="20"
-                    Text="Address" />
-
-                                    <Label Grid.Row="1" Grid.Column="0"
-                    Margin="0,0,0,5" FontSize="12" FontAttributes="Bold, Italic"  Text="City" />
-
-                                    <Label Grid.Row="1" Grid.Column="1"
-                    Margin="0,0,0,5"
-                    FontSize="14"
-                                           Text="{Binding City}"/>
-
-                                    <Label Grid.Row="2" Grid.Column="0"
-                    Margin="0,0,0,5"
-                    FontSize="12" FontAttributes="Bold, Italic" 
-                    Text="Nativity" />
-
-                                    <Label Grid.Row="2" Grid.Column="1"
-                    Margin="0,0,0,5"
-                    FontSize="14"
-                     Text="{Binding Nativity}" />
-
-                                    <Label Grid.Row="3" Grid.Column="0"
-                    Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-                    FontSize="12"
-                    Text="ResidingTown" />
-
-                                    <Label Grid.Row="3" Grid.Column="1"
-                    Margin="0,0,0,5"
-                    FontSize="14"
-                     Text="{Binding ResidingTown}" />
-
-                                    <Label Grid.Row="4" Grid.Column="0"
-                    Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-                    FontSize="12"
-                    Text="State" />
-
-                                    <Label Grid.Row="4" Grid.Column="1"
-                    Margin="0,0,0,5"
-                    FontSize="14"
-                    Text="{Binding State}" />
-
-                                    <Label Grid.Row="5" Grid.Column="0"
-                    Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-                    FontSize="12"
-                    Text = "StateOfResidence" />
-
-                                    <Label Grid.Row="5" Grid.Column="1"
-                    Margin="0,0,0,5"
-                    FontSize="14"
-                    Text="{Binding StateOfResidence}" />
-
-                                    <Label Grid.Row="6" Grid.Column="0"
-                    Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-                    FontSize="12" Text = "Nationality" />
-
-                                    <Label Grid.Row="6" Grid.Column="1"
-                    Margin="0,0,0,5"
-                    FontSize="14"
-                    Text="{Binding Nationality}" />
-
-                                    <Label Grid.Row="7" Grid.Column="0"
-                    Margin="0,0,0,5" FontAttributes="Bold, Italic" 
-                    FontSize="12" Text = "Country" />
-
-                                    <Label Grid.Row="7" Grid.Column="1"
-                    Margin="0,0,0,5"
-                    FontSize="14"
-                    Text="{Binding Country}" />
+                            </syncfusion:AccordionItem.Content>
+                        </syncfusion:AccordionItem>
+                        <syncfusion:AccordionItem IsExpanded="True">
+                            <syncfusion:AccordionItem.Header>
+                                <Grid  HeightRequest="48">
+                                    <Label Text="Looking For" Margin="16,14,0,14" CharacterSpacing="0.25" 
+                                FontFamily="Roboto-Regular"  FontSize="14" />
                                 </Grid>
-                            </StackLayout>
-                        </Frame>
-                    </Grid>
+                            </syncfusion:AccordionItem.Header>
+                            <syncfusion:AccordionItem.Content>
+                                <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="White"  >
+                                    <Grid Margin="16,6,0,0">
+                                        <Grid.Resources>
+                                            <Style TargetType="Label">
+                                                <Setter Property="FontFamily" Value="Roboto-Regular"/>
+                                            </Style>
+                                        </Grid.Resources>
+                                        <Grid.RowDefinitions >
+                                            <RowDefinition Height="20"/>
+                                            <RowDefinition Height="20"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Same caste" Grid.Row="0" Grid.Column="0"  
+                                    Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Same denomination" Grid.Row="1" Grid.Column="0" 
+                                    Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="About Partner" Grid.Row="2" Grid.Column="0" 
+                                     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}' />
+                                        <Label Text="{Binding CasteCriteria}" Grid.Row="0" Grid.Column="1" 
+                                     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding DenominationCriteria}" Grid.Row="1" Grid.Column="1" 
+                                     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding AboutPartner}" Grid.Row="2" Grid.Column="1" MaxLines="10"
+                                     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                    </Grid>
+
+                                </Grid>
+                            </syncfusion:AccordionItem.Content>
+                        </syncfusion:AccordionItem>
+                        <syncfusion:AccordionItem IsExpanded="True">
+                            <syncfusion:AccordionItem.Header>
+                                <Grid  HeightRequest="48">
+                                    <Label Text="Address" Margin="16,14,0,14" CharacterSpacing="0.25" 
+FontFamily="Roboto-Regular"  FontSize="14" />
+                                </Grid>
+                            </syncfusion:AccordionItem.Header>
+                            <syncfusion:AccordionItem.Content>
+                                <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="White"  >
+                                    <Grid Margin="16,6,0,0">
+                                        <Grid.Resources>
+                                            <Style TargetType="Label">
+                                                <Setter Property="FontFamily" Value="Roboto-Regular"/>
+                                            </Style>
+                                        </Grid.Resources>
+                                        <Grid.RowDefinitions >
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="City" Grid.Row="0" Grid.Column="0"  
+    Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Nativity" Grid.Row="1" Grid.Column="0" 
+    Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="Residing Town" Grid.Row="2" Grid.Column="0" 
+     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="State" Grid.Row="3" Grid.Column="0" 
+     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                        <Label Text="State of residence" Grid.Row="4" Grid.Column="0" 
+     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="Residing Country" Grid.Row="5" Grid.Column="0" 
+Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="Nationality" Grid.Row="6" Grid.Column="0" 
+Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding City}" Grid.Row="0" Grid.Column="1" 
+     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding Nativity}" Grid.Row="1" Grid.Column="1" 
+     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding ResidingTown}" Grid.Row="2" Grid.Column="1" 
+     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding State}" Grid.Row="3" Grid.Column="1" 
+     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding StateOfResidence}" Grid.Row="4" Grid.Column="1" 
+     Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding Country}" Grid.Row="5" Grid.Column="1" 
+Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        <Label Text="{Binding Nationality}" Grid.Row="6" Grid.Column="1" 
+Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                    </Grid>
+
+                                </Grid>
+                            </syncfusion:AccordionItem.Content>
+                        </syncfusion:AccordionItem>
+                    </syncfusion:SfAccordion>
                 </ContentView>
             </Grid>
         </ContentView>
