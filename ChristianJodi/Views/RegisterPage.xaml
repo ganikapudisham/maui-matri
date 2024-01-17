@@ -7,36 +7,9 @@
              Title="Register">
     <StackLayout Spacing="0">
 
-        <Grid
-                 Margin="0,12,0,16"
-                 Padding="0"
-                 ColumnSpacing="16"
-                 RowSpacing="4">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+        <Frame CornerRadius="10" HeightRequest="45" Margin="10,10,10,10" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Border
-                     Grid.Row="0"
-                     Margin="0"
-                Grid.ColumnSpan="3">
-
-                <Entry
+            <Entry
                          Margin="12,0"
                          FontSize="16"
                          HeightRequest="40"
@@ -45,13 +18,10 @@
                     >
 
                 </Entry>
-            </Border>
+            </Frame>
 
-            <Border
-                     Grid.Row="1"
-                     Margin="0"
-                Grid.ColumnSpan="3">
-                <Entry
+        <Frame CornerRadius="10" HeightRequest="45" Margin="10,10,10,10" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+            <Entry
                          Margin="12,0"
                          FontSize="16"
                          HeightRequest="40"
@@ -59,13 +29,9 @@
                          Text="{Binding LastName}"
                     >
                 </Entry>
+        </Frame>
 
-            </Border>
-
-            <Border
-                     Grid.Row="2"
-                     Margin="0"
-                Grid.ColumnSpan="3">
+        <Frame CornerRadius="10" HeightRequest="45" Margin="10,10,10,10" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
                 <Entry
                          Margin="12,0"
                          FontSize="16"
@@ -75,13 +41,10 @@
                          Text="{Binding UserName}"
                     >
                 </Entry>
-            </Border>
+            </Frame>
 
-            <Border
-                     Grid.Row="3"
-                     Margin="0"
-                Grid.ColumnSpan="3">
-                <Entry
+            <Frame CornerRadius="10" HeightRequest="45" Margin="10,10,10,10" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                    <Entry
                          Margin="12,0"
                          FontSize="16"
                          HeightRequest="40"
@@ -89,59 +52,44 @@
                          Text="{Binding Password}"
                     >
                 </Entry>
-            </Border>
+                </Frame>
 
-            <Border Grid.Row="4" Grid.ColumnSpan="3" Margin="0">
-                <editors:SfComboBox SelectedItem="{Binding SelectedGender, Mode=TwoWay}" 
-                     DisplayMemberPath="Name" ItemsSource="{Binding Genders}" Grid.Row="4" 
+                <Frame CornerRadius="10" HeightRequest="45" Margin="10,10,10,10" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                        <editors:SfComboBox SelectedItem="{Binding SelectedGender, Mode=TwoWay}" 
+                     DisplayMemberPath="Name" ItemsSource="{Binding Genders}"  
                                       HeightRequest="50" Placeholder="Gender" IsEditable="True">
                 </editors:SfComboBox>
-            </Border>
+                    </Frame>
 
-            <Border Grid.Row="5" Grid.Column="0"
-                     Margin="0" 
-                    >
-                <editors:SfComboBox SelectedItem="{Binding SelectedBirthDate, Mode=TwoWay}" 
-                                 DisplayMemberPath="Name" ItemsSource="{Binding BDDates}" Grid.Row="5" 
-                                                  HeightRequest="50" Placeholder="Date" IsEditable="True">
+                    <Frame CornerRadius="10" HeightRequest="45" Margin="10,10,10,10" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                            <editors:SfComboBox SelectedItem="{Binding SelectedBirthDate, Mode=TwoWay}" 
+                                 DisplayMemberPath="Name" ItemsSource="{Binding BDDates}"   
+                                                  HeightRequest="50" Placeholder="Birth Date" IsEditable="True">
                 </editors:SfComboBox>
-            </Border>
+                        </Frame>
 
-            <Border Grid.Row="5" Grid.Column="1"
-                     Margin="0" 
-                    >
-                <editors:SfComboBox  SelectedItem="{Binding SelectedBirthMonth, Mode=TwoWay}" 
-                                  DisplayMemberPath="Name" ItemsSource="{Binding BDMonths}" Grid.Row="6" 
-                                                  HeightRequest="50" Placeholder="Month" IsEditable="True">
+                        <Frame CornerRadius="10" HeightRequest="45" Margin="10,10,10,10" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                                <editors:SfComboBox  SelectedItem="{Binding SelectedBirthMonth, Mode=TwoWay}" 
+                                  DisplayMemberPath="Name" ItemsSource="{Binding BDMonths}"   
+                                                  HeightRequest="50" Placeholder="Birth Month" IsEditable="True">
                 </editors:SfComboBox>
-            </Border>
+                            </Frame>
 
-            <Border Grid.Row="5" Grid.Column="2"
-                     Margin="0" 
-                    >
-                <editors:SfComboBox  SelectedItem="{Binding SelectedBirthYear, Mode=TwoWay}" 
-                                  DisplayMemberPath="Name" ItemsSource="{Binding BDYears}" Grid.Row="7" 
-                                  HeightRequest="50" Placeholder="Year" IsEditable="True">
-                </editors:SfComboBox>
-            </Border>
+                            <Frame CornerRadius="10" HeightRequest="45" Margin="10,10,10,10" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                                    <editors:SfComboBox  SelectedItem="{Binding SelectedBirthYear, Mode=TwoWay}" 
+                                  DisplayMemberPath="Name" ItemsSource="{Binding BDYears}"   
+                                  HeightRequest="50" Placeholder="Birth Year" IsEditable="True">
+                                    </editors:SfComboBox>
+                                </Frame>
 
-            <buttons:SfButton
-         Grid.Row="6"
-         Command="{Binding RegisterCommand}"
-         HorizontalOptions="Center"
-         Style="{StaticResource SfButtonStyle}"
-         Text="REGISTER"
-         WidthRequest="245" Grid.ColumnSpan="3"  />
+        <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" ZIndex="2" />
+        
+        <Button BackgroundColor="#93c393" Command="{Binding RegisterCommand}" HorizontalOptions="Center"
+         Style="{StaticResource SfButtonStyle}" Text="REGISTER" WidthRequest="245"/>
 
-            <buttons:SfButton
-         Grid.Row="7"
-         Command="{Binding CancelCommand}"
-         HorizontalOptions="Center"
-         Style="{StaticResource SfButtonStyle}"
-         Text="CANCEL"
-         WidthRequest="245" Grid.ColumnSpan="3" />
+        <Button BackgroundColor="#FF6600"  Command="{Binding CancelCommand}" HorizontalOptions="Center" Margin="0,10,0,0"
+         Style="{StaticResource SfButtonStyle}" Text="CANCEL" WidthRequest="245"/>
 
-            <ActivityIndicator Grid.Row="8" IsRunning="True" IsVisible="{Binding IsBusy}" />
-        </Grid>
+            
     </StackLayout>
 </ContentPage>
