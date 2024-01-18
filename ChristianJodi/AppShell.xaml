@@ -91,7 +91,7 @@
         <ShellContent ContentTemplate="{DataTemplate local:AllProfilesPage}" Route="AllProfilesPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Search" Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaSearch}, Size=50,Color=Grey}" 
+    <!--<FlyoutItem Title="Search" Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaSearch}, Size=50,Color=Grey}" 
                 FlyoutIcon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaSearch}, Size=50,Color=Grey}">
         <ShellContent ContentTemplate="{DataTemplate local:SearchPage}" Route="SearchPage" />
     </FlyoutItem>
@@ -122,7 +122,7 @@
                 FlyoutIcon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaInfoCircle}, Size=50,Color=Grey}" 
                 Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaInfoCircle}, Size=50,Color=Grey}" >
         <ShellContent ContentTemplate="{DataTemplate local:AboutUsPage}" Route="AboutUsPage" />
-    </FlyoutItem>
+    </FlyoutItem>-->
 
     <MenuItem Command="{Binding LogOutCommand}"
     Text="LogOut" IconImageSource="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaTimes}, Size=50,Color=Grey}">

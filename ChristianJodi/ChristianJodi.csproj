@@ -41,10 +41,13 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg">
+		  <Color>#512BD4</Color>
+		  <ForegroundFile>Resources\AppIcon\appiconfg.svg</ForegroundFile>
+		</MauiIcon>
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -62,10 +65,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiAsset Remove="Resources\Raw\AboutAssets.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Remove="Views\ForgotPassword\Styles.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\AppIcon\appicon.svg" />
 	  <None Remove="Resources\Fonts\AboutAssets.txt" />
 	  <None Remove="Resources\Fonts\fa-brands-400.ttf" />
 	  <None Remove="Resources\Fonts\FontAwesome5Solid.otf" />
@@ -73,21 +81,28 @@
 	  <None Remove="Resources\Fonts\Roboto-Medium.ttf" />
 	  <None Remove="Resources\Fonts\Roboto-Regular.ttf" />
 	  <None Remove="Resources\Fonts\UIFontIcons.ttf" />
+	  <None Remove="Resources\Images\christianjodi.png" />
+	  <None Remove="Resources\Images\cj1.png" />
+	  <None Remove="Resources\Images\cj12.png" />
+	  <None Remove="Resources\Images\cj21.png" />
+	  <None Remove="Resources\Images\logo.png" />
+	  <None Remove="Resources\Raw\AboutAssets.txt" />
+	  <None Remove="Resources\Splash\splash - Copy.png" />
+	  <None Remove="Resources\Splash\splash - Copy.svg" />
+	  <None Remove="Resources\Splash\splash.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="7.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.6" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
-		<PackageReference Include="Syncfusion.Maui.Buttons" Version="24.1.45" />
-		<PackageReference Include="Syncfusion.Maui.Carousel" Version="24.1.45" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="24.1.45" />
-		<PackageReference Include="Syncfusion.Maui.Expander" Version="24.1.45" />
-		<PackageReference Include="Syncfusion.Maui.Inputs" Version="24.1.45" />
+		<PackageReference Include="Syncfusion.Maui.Carousel" Version="24.1.46" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="24.1.46" />
+		<PackageReference Include="Syncfusion.Maui.Expander" Version="24.1.46" />
+		<PackageReference Include="Syncfusion.Maui.Inputs" Version="24.1.46" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -162,5 +177,13 @@
 	  <None Update="Views\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Resources\Raw\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.Maui.Controls.Compatibility" Version="8.0.6" />
 	</ItemGroup>
 </Project>

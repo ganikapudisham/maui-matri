@@ -8,7 +8,7 @@
             Padding="30,0" 
             VerticalOptions="Center">
 
-        <!--<Image Source="company_logo.jpg" HeightRequest="150" WidthRequest="150" />-->
+        <Image Source="logo.png"/>
 
         <VerticalStackLayout Spacing="5">
             <Label Text="Welcome!" FontSize="28" TextColor="Gray" HorizontalTextAlignment="Center" />
