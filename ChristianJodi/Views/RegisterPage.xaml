@@ -85,10 +85,10 @@
         <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" ZIndex="2" />
         
         <Button BackgroundColor="#93c393" Command="{Binding RegisterCommand}" HorizontalOptions="Center"
-         Style="{StaticResource SfButtonStyle}" Text="REGISTER" WidthRequest="245"/>
+           Text="REGISTER" WidthRequest="245"/>
 
         <Button BackgroundColor="#FF6600"  Command="{Binding CancelCommand}" HorizontalOptions="Center" Margin="0,10,0,0"
-         Style="{StaticResource SfButtonStyle}" Text="CANCEL" WidthRequest="245"/>
+          Text="CANCEL" WidthRequest="245"/>
 
             
     </StackLayout>

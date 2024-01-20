@@ -2,9 +2,9 @@ If photos exist, do not show request photo button
 if profie is blocked remove from all profiles
 
 
-1)UI Login 
-2)UI Forgot Password
-3)UI Register
-4)UI of Profiles list
-5)UI of ViewProfile
+1)UI Login - done
+2)UI Forgot Password - done
+3)UI Register - done
+4)UI of Profiles list - done
+5)UI of ViewProfile - done
 6)Activity Indicator on click of profile - profiles list page

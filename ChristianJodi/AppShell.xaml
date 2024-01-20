@@ -9,7 +9,8 @@
     xmlns:viewmodel="clr-namespace:ChristianJodi.ViewModel"
     FlyoutBackgroundColor="{AppThemeBinding 
                     Dark={StaticResource WindowBackgroundColorDark}, 
-                    Light={StaticResource WindowBackgroundColor}}" FlyoutIsPresented="{Binding IsFlyoutPresented}">
+                    Light={StaticResource WindowBackgroundColor}}" 
+                    FlyoutIsPresented="{Binding IsFlyoutPresented}">
 
     <Shell.Resources>
         <ResourceDictionary>
