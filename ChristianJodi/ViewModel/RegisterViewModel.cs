@@ -85,32 +85,32 @@ namespace ChristianJodi.ViewModel
         [RelayCommand]
         public async Task Register()
         {
-            if (string.IsNullOrWhiteSpace(firstName))
+            if (string.IsNullOrWhiteSpace(FirstName))
             {
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please provide FirstName", "Ok");
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(lastName))
+            if (string.IsNullOrWhiteSpace(LastName))
             {
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please provide LastName", "Ok");
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(userName))
+            if (string.IsNullOrWhiteSpace(UserName))
             {
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please provide Mobile Number", "Ok");
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(Password))
             {
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please provide Password", "Ok");
                 return;
             }
 
 
-            if (string.IsNullOrWhiteSpace(selectedGender.Name))
+            if (string.IsNullOrWhiteSpace(SelectedGender.Name))
             {
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please specify Gender", "Ok");
                 return;
@@ -134,31 +134,31 @@ namespace ChristianJodi.ViewModel
                 return;
             }
 
-            var year = Convert.ToInt16(selectedBirthYear.Name);
-            var month = Convert.ToInt16(selectedBirthMonth.Id);
-            var date = Convert.ToInt16(selectedBirthDate.Name);
+            var year = Convert.ToInt16(SelectedBirthYear.Name);
+            var month = Convert.ToInt16(SelectedBirthMonth.Id);
+            var date = Convert.ToInt16(SelectedBirthDate.Name);
 
             var birth = new DateTime(year, month, date);
 
-            isBusy = true;
+            IsBusy = true;
             try
             {
-                var isSuccess = await _serviceManager.RegisterUserAsync(firstName, lastName, userName,
-                    password, password, selectedGender.Name, birth, "");
+                var isSuccess = await _serviceManager.RegisterUserAsync(FirstName, LastName, UserName,
+                    Password, Password, SelectedGender.Name, birth, "");
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", "Thank You For Registering With Us. You Can Now LogIn.", "Ok");
                 await Shell.Current.GoToAsync("///LoginPage");
             }
             catch (ChristianJodiInternetException exception)
             {
-                isBusy = false;
+                IsBusy = false;
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "Ok");
             }
             catch (Exception exception)
             {
-                isBusy = false;
+                IsBusy = false;
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", exception?.Message, "Ok");
             }
-            isBusy = false;
+            IsBusy = false;
         }
 
         private ObservableCollection<Master> bdDates;

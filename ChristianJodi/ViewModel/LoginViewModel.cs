@@ -31,13 +31,16 @@ namespace ChristianJodi.ViewModel
         [RelayCommand]
         public async Task Login()
         {
-            if (string.IsNullOrWhiteSpace(eMobile))
+            var fireBase = DependencyService.Get<IFirebaseAnalytics>();
+            fireBase?.LogEvent("visited");
+
+            if (string.IsNullOrWhiteSpace(EMobile))
             {
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please provide mobile number", "OK");
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(ePassword))
+            if (string.IsNullOrWhiteSpace(EPassword))
             {
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please provide password", "OK");
                 return;
@@ -45,7 +48,7 @@ namespace ChristianJodi.ViewModel
 
             IsBusy = true;
 
-            await Authenticate(eMobile, ePassword);
+            await Authenticate(EMobile, EPassword);
 
             IsBusy = false;
         }

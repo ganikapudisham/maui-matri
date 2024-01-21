@@ -29,7 +29,7 @@ namespace ChristianJodi.ViewModel
         [RelayCommand]
         public async Task ForgotPassword()
         {
-            if (string.IsNullOrWhiteSpace(emailId))
+            if (string.IsNullOrWhiteSpace(EmailId))
             {
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please specify emailId", "OK");
                 return;
@@ -38,7 +38,7 @@ namespace ChristianJodi.ViewModel
             IsBusy = true;
             try
             {
-                var result = await _serviceManager.ForgetPasswordAsync(emailId);
+                var result = await _serviceManager.ForgetPasswordAsync(EmailId);
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", "Password sent to your EmailId, please check email", "OK");
                 await Shell.Current.GoToAsync("//loginPage");
             }

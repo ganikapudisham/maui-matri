@@ -5,8 +5,9 @@ using ChristianJodi.Data.Impl;
 using ChristianJodi.ViewModel;
 using ChristianJodi.Views;
 using CommunityToolkit.Maui;
-using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
+using ChristianJodi.Services;
+using Microsoft.Extensions.Logging;
 
 namespace ChristianJodi
 {
@@ -54,6 +55,10 @@ namespace ChristianJodi
 
             builder.Services.AddSingleton<IServiceManager, ServiceManager>();
             builder.Services.AddSingleton<IServiceRepository, ServiceRepository>();
+
+            //builder.Services.AddSingleton<ICloseApplication, CloseApplication>();
+            //builder.Services.AddSingleton<IFirebaseAnalytics, FirebaseAnalytics>();
+            //builder.Services.AddSingleton<IAppVersionProvider, AppVersionProvider>();
 
 #if DEBUG
             builder.Logging.AddDebug();
