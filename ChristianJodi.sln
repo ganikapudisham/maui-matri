@@ -5,12 +5,6 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChristianJodi", "ChristianJodi\ChristianJodi.csproj", "{BFDA4D14-3E98-4445-86BC-40EF7726EFCF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChristianJodi.Model", "ChristianJodi.Model\ChristianJodi.Model.csproj", "{88248D76-3275-4A79-A3C4-9346D4E714F7}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChristianJodi.Data", "ChristianJodi.Data\ChristianJodi.Data.csproj", "{749FD45C-2E01-41DE-9148-B36C56A6DD10}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChristianJodi.Business", "ChristianJodi.Business\ChristianJodi.Business.csproj", "{2A3BCF23-1F6B-4B6E-8728-8C64F79BED16}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{731FDA4D-4E56-4BAF-BFBB-976670F210FC}"
 	ProjectSection(SolutionItems) = preProject
 		ReferenceSites.txt = ReferenceSites.txt
@@ -29,18 +23,6 @@ Global
 		{BFDA4D14-3E98-4445-86BC-40EF7726EFCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFDA4D14-3E98-4445-86BC-40EF7726EFCF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BFDA4D14-3E98-4445-86BC-40EF7726EFCF}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{88248D76-3275-4A79-A3C4-9346D4E714F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88248D76-3275-4A79-A3C4-9346D4E714F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88248D76-3275-4A79-A3C4-9346D4E714F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88248D76-3275-4A79-A3C4-9346D4E714F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{749FD45C-2E01-41DE-9148-B36C56A6DD10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{749FD45C-2E01-41DE-9148-B36C56A6DD10}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{749FD45C-2E01-41DE-9148-B36C56A6DD10}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{749FD45C-2E01-41DE-9148-B36C56A6DD10}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2A3BCF23-1F6B-4B6E-8728-8C64F79BED16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A3BCF23-1F6B-4B6E-8728-8C64F79BED16}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A3BCF23-1F6B-4B6E-8728-8C64F79BED16}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A3BCF23-1F6B-4B6E-8728-8C64F79BED16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

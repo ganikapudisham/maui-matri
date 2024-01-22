@@ -43,9 +43,9 @@
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg">
 		  <Color>#512BD4</Color>
-		  <ForegroundFile>Resources\AppIcon\appiconfg.svg</ForegroundFile>
+		  <ForegroundFile>Resources\AppIcon\appiconfg1.svg</ForegroundFile>
 		</MauiIcon>
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" />
+		<MauiSplashScreen Include="Resources\Splash\splasht.svg" />
 
 		<!-- Splash Screen -->
 
@@ -89,7 +89,7 @@
 	  <None Remove="Resources\Raw\AboutAssets.txt" />
 	  <None Remove="Resources\Splash\splash - Copy.png" />
 	  <None Remove="Resources\Splash\splash - Copy.svg" />
-	  <None Remove="Resources\Splash\splash.svg" />
+	  <None Remove="Resources\Splash\splasht.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -98,6 +98,7 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.6" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
 		<PackageReference Include="Syncfusion.Maui.Carousel" Version="24.1.46" />
 		<PackageReference Include="Syncfusion.Maui.Core" Version="24.1.46" />
@@ -106,8 +107,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\ChristianJodi.Business\ChristianJodi.Business.csproj" />
-	  <ProjectReference Include="..\ChristianJodi.Model\ChristianJodi.Model.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
