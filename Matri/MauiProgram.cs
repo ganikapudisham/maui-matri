@@ -62,11 +62,11 @@ namespace Matri
             builder.Services.AddSingleton<SearchViewModel>();
             builder.Services.AddSingleton<SearchPage>();
 
-            //builder.Services.AddSingleton<SearchByIdViewModel>();
-            //builder.Services.AddSingleton<SearchByIdPage>();
+            builder.Services.AddSingleton<SearchByIdViewModel>();
+            builder.Services.AddSingleton<SearchByIdPage>();
 
-            //builder.Services.AddSingleton<SearchAdvancedViewModel>();
-            //builder.Services.AddSingleton<SearchAdvancedPage>();
+            builder.Services.AddSingleton<SearchAdvancedViewModel>();
+            builder.Services.AddSingleton<SearchAdvancedPage>();
 
             //builder.Services.AddSingleton<ICloseApplication, CloseApplication>();
             //builder.Services.AddSingleton<IFirebaseAnalytics, FirebaseAnalytics>();

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Matri.Views.RegisterPage"
              xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
-             Title="RegisterPage">
+             Title="Register">
     <StackLayout Spacing="0">
 
         <Frame CornerRadius="10" HeightRequest="45" Margin="10,10,10,10" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">

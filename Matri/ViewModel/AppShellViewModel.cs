@@ -18,8 +18,8 @@ namespace Matri.ViewModel
             _serviceManager = serviceManager;
             Routing.RegisterRoute("profiledetails", typeof(ProfileDetailsPage));
             //Routing.RegisterRoute("settings", typeof(SettingsPage));
-            //Routing.RegisterRoute("searchbyid", typeof(SearchByIdPage));
-            //Routing.RegisterRoute("searchadvanced", typeof(SearchAdvancedPage));
+            Routing.RegisterRoute("searchbyid", typeof(SearchByIdPage));
+            Routing.RegisterRoute("searchadvanced", typeof(SearchAdvancedPage));
         }
 
         [RelayCommand]

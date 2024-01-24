@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    
+                    >
+
+    <Color x:Key="Transparent">Transparent</Color>
+    <x:String x:Key="Next">&#xe71a;</x:String>
+
+    <!--  Common style for icon label  -->
+    <Style x:Key="IconLabelStyle" TargetType="Label">
+        <Setter Property="Margin" Value="16,8" />
+        <Setter Property="TextColor" Value="Gray600" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="FontAwesomeSolid" />
+    </Style>
+
+    <!--  Common style for borders  -->
+    <!--  Common style for buttons  -->
+    <!--  Common borderless entry style  -->
+    <!--  Common label style  -->
+    <!--  Common style for  Label  -->
+    <Style x:Key="LabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="Montserrat-Medium" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextColor" Value="Gray900" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="Margin" Value="16, 12" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
+        <Setter Property="LineHeight" Value="{OnPlatform Default=-1, Android=1.5}" />
+        <Setter Property="MaxLines" Value="2" />
+    </Style>
+
+    <!--  Common style for separator BoxView  -->
+    <Style x:Key="SeparatorStyle" TargetType="BoxView">
+        <Setter Property="HeightRequest" Value="1" />
+        <!--<Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />-->
+    </Style>
+
+</ResourceDictionary>

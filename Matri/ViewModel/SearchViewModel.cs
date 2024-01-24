@@ -1,22 +1,30 @@
 ﻿using Matri.Business;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Matri.FontsAwesome;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Matri.ViewModel
 {
-    public class SearchViewModel : ObservableObject
+    public partial class SearchViewModel : ObservableObject
     {
         IServiceManager _serviceManager;
         public SearchViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
         }
+        [ObservableProperty]
+        public string searchIcon=FontAwesomeIcons.FaSearch;
+        [ObservableProperty]
+        public string searchPlusIcon=FontAwesomeIcons.SearchPlus;
 
-        public async Task SearchByIdCommand()
+        [RelayCommand]
+        public async Task SearchById()
         {
             await Shell.Current.GoToAsync("searchbyid");
         }
 
-        public async Task SearchAdvancedCommand()
+        [RelayCommand]
+        public async Task SearchAdvanced()
         {
             await Shell.Current.GoToAsync("searchadvanced");
         }

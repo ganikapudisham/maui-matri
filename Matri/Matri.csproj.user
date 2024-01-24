@@ -2,12 +2,19 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <IsFirstTimeProjectOpen>False</IsFirstTimeProjectOpen>
-    <ActiveDebugFramework>net8.0-android</ActiveDebugFramework>
-    <ActiveDebugProfile>Pixel 5 - API 33 (Android 13.0 - API 33)</ActiveDebugProfile>
+    <ActiveDebugFramework>net8.0-android34.0</ActiveDebugFramework>
+    <ActiveDebugProfile>Phone Xxh-DPI 6.7in - API 34 (Android 14.0 - API 34)</ActiveDebugProfile>
     <SelectedPlatformGroup>Emulator</SelectedPlatformGroup>
-    <DefaultDevice>pixel_5_-_api_33</DefaultDevice>
+    <DefaultDevice>phone_xxh-dpi_6_7in_-_api_34</DefaultDevice>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetPlatformIdentifier)'=='iOS'">
+    <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+    <PlatformTarget>arm64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <MauiXaml Update="Resources\Styles\StyleSearchPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Themes\LightTheme.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

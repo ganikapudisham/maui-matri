@@ -22,3 +22,5 @@ saved in gmail
 https://github.com/intel/haxm/releases
 
 https://www.google.com/search?q=I+keep+getting+the+error+System+UI+is+not+responding+android+emulator&sca_esv=599454066&sxsrf=ACQVn09YKMM_tWgOrCvMG60CpPfPyrVEHg%3A1705582867555&ei=EyGpZe-9IeeQ4-EPuvCdsAs&ved=0ahUKEwivk9Kn_-aDAxVnyDgGHTp4B7YQ4dUDCBA&uact=5&oq=I+keep+getting+the+error+System+UI+is+not+responding+android+emulator&gs_lp=Egxnd3Mtd2l6LXNlcnAiRUkga2VlcCBnZXR0aW5nIHRoZSBlcnJvciBTeXN0ZW0gVUkgaXMgbm90IHJlc3BvbmRpbmcgYW5kcm9pZCBlbXVsYXRvcjIEECEYCkiPIlDLBVikHnABeAGQAQCYAZsCoAGVF6oBBTAuNi44uAEDyAEA-AEBwgIKEAAYRxjWBBiwA8ICBRAhGKABwgIHECEYChigAeIDBBgAIEGIBgGQBgg&sclient=gws-wiz-serp
+
+InitializeContext issue occurs due to Namespace Changes. Avoid it

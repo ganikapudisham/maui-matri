@@ -4,7 +4,7 @@
              x:Class="Matri.Views.AllProfilesPage"
              xmlns:FoA="clr-namespace:Matri.FontsAwesome;assembly=Matri"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Title="AllProfilesPage" BackgroundColor="White">
+             Title="All Profiles" BackgroundColor="White">
     <ScrollView>
         <Grid>
             <Grid.RowDefinitions>
