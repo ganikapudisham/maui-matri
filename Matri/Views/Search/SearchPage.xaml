@@ -6,7 +6,7 @@
              Title="Search">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <ResourceDictionary Source="../../Resources/Styles/StyleSearchPage.xaml" />
+            <ResourceDictionary Source="/Resources/Styles/StyleSearch.xaml" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout BackgroundColor="{DynamicResource Gray-100}" Spacing="0">

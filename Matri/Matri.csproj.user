@@ -12,7 +12,13 @@
     <PlatformTarget>arm64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <MauiXaml Update="Resources\Styles\StyleSearchPage.xaml">
+    <MauiXaml Update="Resources\Styles\StyleSearchAdvanced.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Resources\Styles\StyleSearchById.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Resources\Styles\StyleSearch.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Themes\LightTheme.xaml">
@@ -31,6 +37,9 @@
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Views\Register\RegisterPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Views\Search\Results\SearchResultsPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Views\Search\SearchPage.xaml">

@@ -38,5 +38,7 @@
                 <customButton:SfButton
                     Command="{Binding FindCommand}"
                     Text="SEARCH" />
-            </StackLayout>
+
+        <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="True" Color="Orange"  />
+    </StackLayout>
 </ContentPage>

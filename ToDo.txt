@@ -11,3 +11,12 @@ if profie is blocked remove from all profiles
 
 
 Increase validity of KeyStack
+
+Get Master Data after login, save to local & populated when clicked advanced search.
+Too many API calls on Advanced search.
+
+Plese check internet connection
+
+Search Not found section needs to be added
+
+Save master data to local sql lite database

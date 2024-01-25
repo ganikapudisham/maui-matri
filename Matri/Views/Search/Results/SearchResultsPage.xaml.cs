@@ -2,9 +2,9 @@ using Matri.ViewModel;
 
 namespace Matri.Views;
 
-public partial class SearchAdvancedPage : ContentPage
+public partial class SearchResultsPage : ContentPage
 {
-	public SearchAdvancedPage(SearchAdvancedViewModel viewModel)
+	public SearchResultsPage(SearchResultsViewModel viewModel)
 	{
 		InitializeComponent();
         BindingContext = viewModel;

@@ -2,11 +2,398 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Matri.Views.SearchAdvancedPage"
+             xmlns:control="clr-namespace:Matri.Controls;assembly=Matri"
+             xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="Search Advanced">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary Source="/Resources/Styles/StyleSearchAdvanced.xaml" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <!--<control:CustomShadowFrame
+            Margin="16,24,16,32"
+            Padding="16"
+            BackgroundColor="{DynamicResource Black}"
+            BorderColor="{DynamicResource Black}"
+            CornerRadius="4"
+            HasShadow="True"
+            HorizontalOptions="Center"
+            WidthRequest="{OnIdiom Default='550',
+                                   Phone='-1'}">-->
+
+                    <StackLayout ZIndex="2" BackgroundColor="{DynamicResource GrayWhite}" Spacing="0">
+
+                        <Grid
+                    Margin="0,12,0,16"
+                    Padding="0"
+                    ColumnSpacing="16"
+                    RowSpacing="4">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="12"
+                        Text="Age"
+                        TextColor="{DynamicResource Gray800}" />
+
+
+                            <Border
+                        Grid.Row="1" Grid.Column="0"
+                        Margin="0"
+                        Style="{StaticResource FormBorderStyle}">
+
+                                <Entry
+                            Margin="12,0"
+                            FontSize="16"
+                            HeightRequest="40"
+                            Keyboard="Numeric"
+                            MaxLength="3"
+                            Placeholder="From"
+                            PlaceholderColor="{DynamicResource Gray700}"
+                            Text="{Binding AgeFrom}"
+                            TextColor="{DynamicResource Gray900}">
+
+                                </Entry>
+
+                            </Border>
+
+                            <Border
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        BackgroundColor="{DynamicResource GrayWhite}">
+
+                                <Entry
+                            x:Name="cvvEntry"
+                            Margin="12,0"
+                            FontSize="16"
+                            HeightRequest="40"
+                            Keyboard="Numeric"
+                            MaxLength="3"
+                            Placeholder="To"
+                            PlaceholderColor="{DynamicResource Gray700}"
+                            Text="{Binding AgeTo}"
+                            TextColor="{DynamicResource Gray900}">
+
+                                </Entry>
+                            </Border>
+
+                            <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="12"
+                        Text="Height"
+                        TextColor="{DynamicResource Gray800}" />
+
+                            <Border
+                Grid.Row="3"
+                Grid.Column="0"
+                Padding="6,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                    x:Name="DDLHeightFrom" SelectedItem="{Binding SelectedHeightFrom, Mode=TwoWay}"
+                    Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding MDHeightsFrom}">
+                                     
+                                </editors:SfComboBox>
+                            </Border>
+
+                            <Border
+                Grid.Row="3"
+                Grid.Column="1"
+                Padding="6,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                    x:Name="DDLHeightTo" SelectedItem="{Binding SelectedHeightTo, Mode=TwoWay}"
+                    Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding MDHeightsFrom}">
+                                     
+                                </editors:SfComboBox>
+                            </Border>
+
+                            <Label
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="12"
+                        Text="Marital Status"
+                        TextColor="{DynamicResource Gray800}" />
+
+                            <Border
+                Grid.Row="5"
+                Grid.Column="0" Grid.ColumnSpan="2"
+                Padding="6,0,0,0"
+                                >
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                    x:Name="DDLMaritalStatus" SelectedItem="{Binding SelectedMaritalStatus, Mode=TwoWay}"
+                    Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding MDMaritalStatus}">
+                                     
+                                </editors:SfComboBox>
+                            </Border>
+
+                            <Label
+                        Grid.Row="7"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="12"
+                        Text="Mother Tongue"
+                        TextColor="{DynamicResource Gray800}" />
+
+                            <Border
+                Grid.Row="8"
+                Grid.Column="0" Grid.ColumnSpan="2"
+                Padding="6,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                    x:Name="DDLLanguage" SelectedItem="{Binding SelectedMotherTongue, Mode=TwoWay}"
+                    Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding MDLanguages}">
+                                     
+                                </editors:SfComboBox>
+                            </Border>
+
+                            <Label
+                        Grid.Row="9"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="12"
+                        Text="Religion"
+                        TextColor="{DynamicResource Gray800}" />
+
+                            <Border
+                Grid.Row="10"  Grid.ColumnSpan="2"
+                Grid.Column="0"
+                Padding="6,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                        <!--<editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                    x:Name="DDLReligions" SelectedItem="{Binding SelectedReligion, Mode=TwoWay}"
+                    Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding MDReligions}">
+                            <editors:SfComboBox.Behaviors>
+                                <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding ReligionChangedCommand}"
+CommandParameter="{ Binding .}" />
+                                </editors:SfComboBox.Behaviors>
+                        </editors:SfComboBox>-->
+                            </Border>
+
+                            <StackLayout Grid.Row="11">
+                                <Grid>
+                                    <Grid.RowDefinitions></Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                                <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="12"
+                        Text="Caste"
+                        TextColor="{DynamicResource Gray800}" />
+
+                                <Border
+                Grid.Row="1"  Grid.ColumnSpan="2"
+                Grid.Column="0"
+                Padding="6,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                            <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                    x:Name="DDLCastes" Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding MDCastes}">
+                                         
+                                    </editors:SfComboBox>
+                                </Border>
+                            </StackLayout>
+
+                            <StackLayout Grid.Row="13" IsVisible="{Binding ShowDenominations}">
+
+                                <Grid>
+                                    <Grid.RowDefinitions></Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+
+                                <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="12"
+                        Text="Denomination"
+                        TextColor="{DynamicResource Gray800}" />
+
+                                <Border
+                Grid.Row="1"  Grid.ColumnSpan="2" Grid.Column="0"
+                Padding="6,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                            <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                    x:Name="DDLDenominations" SelectedItem="{Binding SelectedDenomination, Mode=TwoWay}"
+                    Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding MDDenominations}" IsVisible="{Binding ShowDenominations}">
+                                         
+                                    </editors:SfComboBox>
+                                </Border>
+                            </StackLayout>
+                            <Label
+                        Grid.Row="15"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="12"
+                        Text="State"
+                        TextColor="{DynamicResource Gray800}" />
+
+                            <Border
+                Grid.Row="16"
+                Grid.Column="0"  Grid.ColumnSpan="2"
+                Padding="6,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                    x:Name="DDLState" SelectedItem="{Binding SelectedState, Mode=TwoWay}"
+                    Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding MDStates}">
+                                     
+                                </editors:SfComboBox>
+                            </Border>
+
+                            <Label
+                        Grid.Row="17"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="12"
+                        Text="District/Region"
+                        TextColor="{DynamicResource Gray800}" />
+
+                            <Border
+                        Grid.Row="18" Grid.Column="0"
+                        Margin="0"
+                        Style="{StaticResource FormBorderStyle}">
+
+                                <Entry
+                            Margin="12,0"
+                            FontSize="16"
+                            HeightRequest="40"
+                            MaxLength="3"
+                            Placeholder="District/Region"
+                            PlaceholderColor="{DynamicResource Gray700}"
+                            Text="{Binding District}"
+                            TextColor="{DynamicResource Gray900}">
+
+                                </Entry>
+
+                            </Border>
+
+                            <Label
+                        Grid.Row="19"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="12"
+                        Text="Education"
+                        TextColor="{DynamicResource Gray800}" />
+
+                            <Border
+                Grid.Row="20"
+                Grid.Column="0"  Grid.ColumnSpan="2"
+                Padding="6,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                    x:Name="DDLAcademics" SelectedItem="{Binding SelectedEducation, Mode=TwoWay}"
+                    Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding MDAcademics}">
+                                     
+                                </editors:SfComboBox>
+                            </Border>
+
+                            <Label
+                        Grid.Row="21"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="12"
+                        Text="Job"
+                        TextColor="{DynamicResource Gray800}" />
+
+                            <Border
+                Grid.Row="22"
+                Grid.Column="0" Grid.ColumnSpan="2"
+                Padding="6,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                    x:Name="DDLJob" SelectedItem="{Binding SelectedJob, Mode=TwoWay}"
+                    Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding MDJobs}">
+                                     
+                                </editors:SfComboBox>
+                            </Border>
+
+                            <CheckBox Grid.Row="23"
+                    Margin="4,16,0,4"
+                    IsChecked="{Binding WithPhoto}"
+                    VerticalOptions="Center" />
+
+                            <Label
+                        Grid.Row="24"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="12"
+                        Text="Residing Country"
+                        TextColor="{DynamicResource Gray800}" />
+
+                            <Border
+                Grid.Row="25"
+                Grid.Column="0" Grid.ColumnSpan="2"
+                Padding="0,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                    x:Name="DDLResidingCountry" SelectedItem="{Binding SelectedResidingCountry, Mode=TwoWay}"
+                    Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding MDCountries}">
+                                     
+                                </editors:SfComboBox>
+                            </Border>
+
+                        </Grid>
+                    </StackLayout>
+
+                <!--</control:CustomShadowFrame>-->
+
+                <Button
+            Grid.Row="1"
+            Command="{Binding SearchCommand}"
+            HorizontalOptions="Center"
+            Text="SEARCH"
+            WidthRequest="245" />
+
+            </Grid>
     </VerticalStackLayout>
 </ContentPage>

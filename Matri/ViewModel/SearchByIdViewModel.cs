@@ -17,11 +17,15 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public string profileId;
 
+        [ObservableProperty]
+        public bool isBusy;
+
         [RelayCommand]
         public async Task Find() //3 letter prefix is mandatory
         {
             try
             {
+                IsBusy = true;
                 var sessionToken = await SecureStorage.GetAsync("Token");
                 var targetProfileId = await _serviceManager.ConvertNumberToGuid(new Guid(sessionToken), ProfileId); ;
 
@@ -33,15 +37,17 @@ namespace Matri.ViewModel
                 profileDetailsInput.TargetProfileId = targetProfileId;
 
                 var profileDetailsParams = new Dictionary<string, object> { { "ProfileDetailsInput", profileDetailsInput } };
-
+                IsBusy = false;
                 await Shell.Current.GoToAsync("profiledetails", profileDetailsParams);
             }
             catch (MatriInternetException exception)
             {
+                IsBusy = false;
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
             }
             catch (Exception exception)
             {
+                IsBusy = false;
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", exception?.Message, "OK");
             }
         }

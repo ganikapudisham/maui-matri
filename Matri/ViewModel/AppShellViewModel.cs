@@ -20,6 +20,7 @@ namespace Matri.ViewModel
             //Routing.RegisterRoute("settings", typeof(SettingsPage));
             Routing.RegisterRoute("searchbyid", typeof(SearchByIdPage));
             Routing.RegisterRoute("searchadvanced", typeof(SearchAdvancedPage));
+            Routing.RegisterRoute("searchresults", typeof(SearchResultsPage));
         }
 
         [RelayCommand]
