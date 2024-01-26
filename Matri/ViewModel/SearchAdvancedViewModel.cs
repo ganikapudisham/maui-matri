@@ -11,7 +11,6 @@ namespace Matri.ViewModel
     public partial class SearchAdvancedViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
         IServiceManager _serviceManager;
-
         public SearchAdvancedViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
@@ -182,12 +181,6 @@ namespace Matri.ViewModel
         private Master selectedMaritalStatus;
 
         [ObservableProperty]
-        private Master selectedSubCaste;
-
-        [ObservableProperty]
-        private Master selectedCommunity;
-
-        [ObservableProperty]
         public bool showDenominations = false;
 
         private async Task InitialiseMasterData()
@@ -195,63 +188,46 @@ namespace Matri.ViewModel
             var token = await SecureStorage.GetAsync("Token");
 
             var masterDataMaritalStatus = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=marital");
+            SelectedMaritalStatus = masterDataMaritalStatus[0];
             MDMaritalStatus.AddRange(masterDataMaritalStatus);
 
             var masterDataHeights = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=height");
+            SelectedHeightFrom = masterDataHeights[0];
+            SelectedHeightTo = masterDataHeights[0];
             MDHeightsTo.AddRange(masterDataHeights);
             MDHeightsFrom.AddRange(masterDataHeights);
 
             var masterDataMotherTongues = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=languages");
+            SelectedMotherTongue = masterDataMotherTongues[0];
             MDLanguages.AddRange(masterDataMotherTongues);
 
             var masterDataReligions = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=religion");
+            SelectedReligion = masterDataReligions[0];
             MDReligions.AddRange(masterDataReligions);
 
             var masterDataStates = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=states");
+            SelectedState = masterDataStates[0];
             MDStates.AddRange(masterDataStates);
 
             var masterDataEducation = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=education");
+            SelectedEducation = masterDataEducation[0];
             MDAcademics.AddRange(masterDataEducation);
 
             var masterDataJobs = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=jobs");
+            SelectedJob = masterDataJobs[0];
             MDJobs.AddRange(masterDataJobs);
 
             var masterDataCountries = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=countries");
+            SelectedResidingCountry = masterDataCountries[0];
             MDCountries.AddRange(masterDataCountries);
 
-            //var castes = await _serviceManager.GetMasterData(new Guid(token), $"castes?religion=hindu");
-            //MDCastes.AddRange(castes);
+            var castes = await _serviceManager.GetMasterData(new Guid(token), $"castes?religion=hindu");
+            SelectedCaste = castes[0];
+            MDCastes.AddRange(castes);
 
-            //var denominations = await _serviceManager.GetMasterData(new Guid(token), $"castes?religion=christian");
-            //MDDenominations.AddRange(denominations);
-        }
-
-        [RelayCommand]
-        public async Task ReligionChanged(object selectedObject)
-        {
-            if (selectedObject != null && selectedObject is SearchAdvancedViewModel)
-            {
-                var item = (SearchAdvancedViewModel)selectedObject;
-
-                var selectedReligion = item.SelectedReligion.Name;
-                var token = await SecureStorage.GetAsync("Token");
-
-                if (selectedReligion.ToLower() == "hindu")
-                {
-                    MDCastes.Clear();
-                    var castes = await _serviceManager.GetMasterData(new Guid(token), $"castes?religion={selectedReligion}");
-                    MDCastes.AddRange(castes);
-                    ShowDenominations = false;
-                }
-                if (selectedReligion.ToLower() == "christian")
-                {
-                    MDDenominations.Clear();
-                    var denominations = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=denomination");
-                    MDDenominations.AddRange(denominations);
-                    ShowDenominations = true;
-                }
-
-            }
+            var denominations = await _serviceManager.GetMasterData(new Guid(token), $"castes?religion=christian");
+            SelectedDenomination = denominations[0];
+            MDDenominations.AddRange(denominations);
         }
 
         [RelayCommand]
@@ -280,8 +256,7 @@ namespace Matri.ViewModel
 
             var searchParamters = new SearchParameters();
 
-            searchParamters.SubCaste = SelectedSubCaste.Id;
-            searchParamters.Community = SelectedCommunity.Id;
+            searchParamters.SubCaste = SelectedCaste.Id;
             searchParamters.PageSize = 10;
             searchParamters.StartPage = 1;
             searchParamters.AgeFrom = AgeFrom;

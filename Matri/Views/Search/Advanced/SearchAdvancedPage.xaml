@@ -4,14 +4,14 @@
              x:Class="Matri.Views.SearchAdvancedPage"
              xmlns:control="clr-namespace:Matri.Controls;assembly=Matri"
              xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:EtI="clr-namespace:Matri.ComboBoxCommand"
              Title="Search Advanced">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary Source="/Resources/Styles/StyleSearchAdvanced.xaml" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <VerticalStackLayout>
+    <ScrollView>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -203,14 +203,13 @@
                 Grid.Column="0"
                 Padding="6,0,0,0"
                 Style="{StaticResource FormBorderStyle}">
-                        <!--<editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
                     x:Name="DDLReligions" SelectedItem="{Binding SelectedReligion, Mode=TwoWay}"
                     Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding MDReligions}">
                             <editors:SfComboBox.Behaviors>
-                                <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding ReligionChangedCommand}"
-CommandParameter="{ Binding .}" />
+                                <EtI:EventToCommandBehavior  />
                                 </editors:SfComboBox.Behaviors>
-                        </editors:SfComboBox>-->
+                        </editors:SfComboBox>
                             </Border>
 
                             <StackLayout Grid.Row="11">
@@ -265,7 +264,7 @@ CommandParameter="{ Binding .}" />
                 Style="{StaticResource FormBorderStyle}">
                             <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
                     x:Name="DDLDenominations" SelectedItem="{Binding SelectedDenomination, Mode=TwoWay}"
-                    Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding MDDenominations}" IsVisible="{Binding ShowDenominations}">
+                    Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding MDDenominations}">
                                          
                                     </editors:SfComboBox>
                                 </Border>
@@ -395,5 +394,5 @@ CommandParameter="{ Binding .}" />
             WidthRequest="245" />
 
             </Grid>
-    </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

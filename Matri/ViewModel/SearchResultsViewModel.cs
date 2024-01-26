@@ -21,7 +21,7 @@ namespace Matri.ViewModel
             PageSizeList.Add(new PageSize { Text = "20", Value = 20 });
             PageSizeList.Add(new PageSize { Text = "50", Value = 50 });
             pPageSize = PageSizeList[0];
-            Task.Run(() => this.GetProfiles(1, pPageSize.Value)).Wait();
+            //Task.Run(() => this.GetProfiles(1, pPageSize.Value)).Wait();
         }
 
         public ObservableRangeCollection<PageSize> PageSizeList { get; private set; } = new ObservableRangeCollection<PageSize>();
