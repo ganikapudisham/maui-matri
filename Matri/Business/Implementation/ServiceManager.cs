@@ -268,13 +268,12 @@ namespace Matri.Business.Impl
 
         public async Task<bool> ContactUs(Guid sessiontoken, ContactUs contactUs)
         {
-            var url = Constants.API_URL_ContactUs;// "email/contactus";
-            return await _serviceRepository.PostAsync<ContactUs, bool>(sessiontoken.ToString(), url, contactUs);
+            return await _serviceRepository.PostAsync<ContactUs, bool>(sessiontoken.ToString(), Constants.API_URL_ContactUs, contactUs);
         }
 
-        public async Task<List<Master>> GetMasterData(Guid sessiontoken, string type)
+        public async Task<MDD> GetMasterData(Guid sessiontoken)
         {
-            return await _serviceRepository.GetAsync<List<Master>>(sessiontoken.ToString(), type);
+            return await _serviceRepository.GetAsync<MDD>(sessiontoken.ToString(), Constants.API_URL_MasterData);
         }
 
         public async Task<Paging<MiniProfile>> Search(Guid sessiontoken, SearchParameters searchParameters)

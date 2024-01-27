@@ -5,6 +5,7 @@
              xmlns:control="clr-namespace:Matri.Controls;assembly=Matri"
              xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
              xmlns:EtI="clr-namespace:Matri.ComboBoxCommand"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
              Title="Search Advanced">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -234,7 +235,8 @@
                 Padding="6,0,0,0"
                 Style="{StaticResource FormBorderStyle}">
                             <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
-                    x:Name="DDLCastes" Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding MDCastes}">
+                    x:Name="DDLCastes" Style="{StaticResource ComboBoxStyle}" 
+                            SelectedItem="{Binding SelectedCaste, Mode=TwoWay}" ItemsSource="{Binding MDCastes}">
                                          
                                     </editors:SfComboBox>
                                 </Border>
@@ -356,10 +358,12 @@
                                 </editors:SfComboBox>
                             </Border>
 
-                            <CheckBox Grid.Row="23"
+                            <syncfusion:SfCheckBox Grid.Row="23"
                     Margin="4,16,0,4"
+                    FontFamily="Montserrat-Medium"
                     IsChecked="{Binding WithPhoto}"
-                    VerticalOptions="Center" />
+                    TextColor="{DynamicResource Gray900}"
+                    VerticalOptions="Center" Text="With Photo" />
 
                             <Label
                         Grid.Row="24"

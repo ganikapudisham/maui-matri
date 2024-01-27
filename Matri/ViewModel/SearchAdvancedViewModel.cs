@@ -31,11 +31,17 @@ namespace Matri.ViewModel
             Task.Run(async () => { await InitialiseMasterData(); });
         }
 
-        public int AgeFrom = 18;
-        public int AgeTo = 100;
+        [ObservableProperty]
+        public int ageFrom = 18;
 
-        public string District;
-        public bool WithPhoto = false;
+        [ObservableProperty]
+        public int ageTo = 100;
+
+        [ObservableProperty]
+        public string district;
+
+        [ObservableProperty]
+        public bool withPhoto = false;
 
         private ObservableRangeCollection<Master> mdMaritalStatus;
         public ObservableRangeCollection<Master> MDMaritalStatus
@@ -188,38 +194,38 @@ namespace Matri.ViewModel
             var token = await SecureStorage.GetAsync("Token");
 
             var masterData = await _serviceManager.GetMasterData(new Guid(token));
-
-            SelectedMaritalStatus = masterData.MaritalStatuses[0];
+            
             MDMaritalStatus.AddRange(masterData.MaritalStatuses);
+            SelectedMaritalStatus = masterData.MaritalStatuses[0];
 
-            SelectedHeightFrom = masterData.Heights[0];
-            SelectedHeightTo = masterData.Heights[0];
             MDHeightsTo.AddRange(masterData.Heights);
             MDHeightsFrom.AddRange(masterData.Heights);
-
-            SelectedMotherTongue = masterData.Languages[0];
+            SelectedHeightFrom = masterData.Heights[0];
+            SelectedHeightTo = masterData.Heights[0];
+            
             MDLanguages.AddRange(masterData.Languages);
+            SelectedMotherTongue = masterData.Languages[0];
 
-            SelectedReligion = masterData.Religions[0];
             MDReligions.AddRange(masterData.Religions);
+            SelectedReligion = masterData.Religions[0];
 
-            SelectedState = masterData.IndianStates[0];
             MDStates.AddRange(masterData.IndianStates);
-
-            SelectedEducation = masterData.Academics[0];
+            SelectedState = masterData.IndianStates[0];
+            
             MDAcademics.AddRange(masterData.Academics);
-
-            SelectedJob = masterData.Jobs[0];
+            SelectedEducation = masterData.Academics[0];
+            
             MDJobs.AddRange(masterData.Jobs);
-
-            SelectedResidingCountry = masterData.Countries[0];
+            SelectedJob = masterData.Jobs[0];
+            
             MDCountries.AddRange(masterData.Countries);
-
-            SelectedCaste = masterData.Castes[0];
+            SelectedResidingCountry = masterData.Countries[0];
+            
             MDCastes.AddRange(masterData.Castes);
+            SelectedCaste = masterData.Castes[0];
 
-            SelectedDenomination = masterData.Denominations[0];
             MDDenominations.AddRange(masterData.Denominations);
+            SelectedDenomination = masterData.Denominations[0];
         }
 
         [RelayCommand]
@@ -266,6 +272,7 @@ namespace Matri.ViewModel
             searchParamters.Education = SelectedEducation.Id;
             searchParamters.Job = SelectedJob.Id;
             searchParamters.ResidingCountry = SelectedResidingCountry.Id;
+            searchParamters.Community = "SELECT";
 
             var searchParams = new Dictionary<string, object> { { "SearchParameters", searchParamters } };
 

@@ -9,78 +9,85 @@ xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <CollectionView Grid.Row="0" x:Name="profilesCollectionView" ItemsSource="{Binding Profiles}" 
-                        VerticalOptions="FillAndExpand" SelectionMode="Single" 
-                        SelectionChangedCommand="{Binding ViewProfileCommand}"
-                        SelectedItem="{Binding SelectedProfile}"
-                        SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={x:Reference profilesCollectionView}}"
-                        >
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="1"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="94"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Frame HorizontalOptions="Center" IsClippedToBounds="True" CornerRadius="4" HasShadow="False" Grid.Row="0" 
-                               Grid.Column="0" HeightRequest="72" WidthRequest="72" Padding="0">
-                                <Image Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="FillAndExpand" 
-                                   HeightRequest="72" WidthRequest="72" 
-                                   Aspect="Fill">
-                                    <Image.Source>
-                                        <UriImageSource Uri="{Binding ThumbNailUri}"/>
-                                    </Image.Source>
-                                </Image>
-                            </Frame>
-                            <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="Center">
+            <StackLayout Grid.Row="0" IsVisible="{Binding ShowRecordsNotFoundSection}">
+                <Label FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="We Did Not Find Any Match Records. Please Try Again With Different Search Criteria"></Label>
+            </StackLayout>
+            <StackLayout Grid.Row="1" IsVisible="{Binding ShowRecordsSection}">
+                <CollectionView x:Name="profilesCollectionView" ItemsSource="{Binding Profiles}" 
+            VerticalOptions="FillAndExpand" SelectionMode="Single" 
+            SelectionChangedCommand="{Binding ViewProfileCommand}"
+            SelectedItem="{Binding SelectedProfile}"
+            SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={x:Reference profilesCollectionView}}"
+            >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="1"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="94"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="60"/>
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Row="0" Grid.Column="0"  Text="{Binding FirstName}" LineBreakMode="WordWrap" 
-                                   TextColor="#DE000000" FontFamily="Roboto-Medium" 
-                                   FontSize="{OnPlatform Android={OnIdiom Phone=15, Tablet=22}, iOS=16, WinUI=14,MacCatalyst=16}" 
-                                   CharacterSpacing="0.1" Margin="0,10,0,0"/>
-                                <!--<Label Grid.Row="0" Grid.Column="1" Text="1w ago" TextColor="#666666" 
-                                   FontSize="{OnPlatform Default=10,WinUI=12,MacCatalyst=12}" FontFamily="Roboto-Regular" 
-                                   HorizontalOptions="End" CharacterSpacing="0.15" Margin="0,10,11,0"/>-->
-                                <Label Grid.Row="1" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
-                                   LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
-                                   Text="{Binding Height}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
-                                   Margin="0,4,0,0" />
-                                <Label Grid.Row="2" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
-                                   LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
-                                   Text="{Binding Age}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
-                                   Margin="0,4,0,0" />
-                                <Label Grid.Row="3" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
-                                   LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
-                                   Text="{Binding Education}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
-                                   Margin="0,4,0,0" />
-                                <Label Grid.Row="4" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
-                                   LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
-                                   Text="{Binding Job}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
-                                   Margin="0,4,0,10" />
+                                <Frame HorizontalOptions="Center" IsClippedToBounds="True" CornerRadius="4" HasShadow="False" Grid.Row="0" 
+                   Grid.Column="0" HeightRequest="72" WidthRequest="72" Padding="0">
+                                    <Image Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="FillAndExpand" 
+                       HeightRequest="72" WidthRequest="72" 
+                       Aspect="Fill">
+                                        <Image.Source>
+                                            <UriImageSource Uri="{Binding ThumbNailUri}"/>
+                                        </Image.Source>
+                                    </Image>
+                                </Frame>
+                                <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="Center">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="60"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Row="0" Grid.Column="0"  Text="{Binding FirstName}" LineBreakMode="WordWrap" 
+                       TextColor="#DE000000" FontFamily="Roboto-Medium" 
+                       FontSize="{OnPlatform Android={OnIdiom Phone=15, Tablet=22}, iOS=16, WinUI=14,MacCatalyst=16}" 
+                       CharacterSpacing="0.1" Margin="0,10,0,0"/>
+                                    <!--<Label Grid.Row="0" Grid.Column="1" Text="1w ago" TextColor="#666666" 
+                       FontSize="{OnPlatform Default=10,WinUI=12,MacCatalyst=12}" FontFamily="Roboto-Regular" 
+                       HorizontalOptions="End" CharacterSpacing="0.15" Margin="0,10,11,0"/>-->
+                                    <Label Grid.Row="1" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
+                       LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
+                       Text="{Binding Height}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
+                       Margin="0,4,0,0" />
+                                    <Label Grid.Row="2" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
+                       LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
+                       Text="{Binding Age}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
+                       Margin="0,4,0,0" />
+                                    <Label Grid.Row="3" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
+                       LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
+                       Text="{Binding Education}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
+                       Margin="0,4,0,0" />
+                                    <Label Grid.Row="4" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
+                       LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
+                       Text="{Binding Job}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
+                       Margin="0,4,0,10" />
+                                </Grid>
+                                <BoxView Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" BackgroundColor="Black" HeightRequest="1" 
+                     VerticalOptions="End" />
                             </Grid>
-                            <BoxView Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" BackgroundColor="Black" HeightRequest="1" 
-                                 VerticalOptions="End" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <VerticalStackLayout Grid.Row="1">
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+            <VerticalStackLayout Grid.Row="2" IsVisible="{Binding ShowPagingSection}">
                 <Frame Margin="0,10,0,10">
                     <Grid ColumnSpacing="1">
                         <Grid.RowDefinitions>

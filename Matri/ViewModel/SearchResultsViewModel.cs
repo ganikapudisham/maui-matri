@@ -41,6 +41,13 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public SearchParameters searchParametersF;
 
+        [ObservableProperty]
+        public bool showRecordsSection;
+        [ObservableProperty]
+        public bool showRecordsNotFoundSection;
+        [ObservableProperty]
+        public bool showPagingSection;
+
         public ObservableRangeCollection<MiniProfile> Profiles { get; private set; } = new ObservableRangeCollection<MiniProfile>();
 
         [RelayCommand]
@@ -168,13 +175,15 @@ namespace Matri.ViewModel
 
                 if (dbProfilesWithPaging.MetaData.TotalRecords == 0)
                 {
-                    //ShowRecordsNotFoundSection.Value = true;
-                    //ShowRecordsSection.Value = false;
+                    ShowRecordsNotFoundSection = true;
+                    ShowRecordsSection = false;
+                    ShowPagingSection = false;
                 }
                 else
                 {
-                    //ShowRecordsNotFoundSection.Value = false;
-                    //ShowRecordsSection.Value = true;
+                    ShowRecordsNotFoundSection = false;
+                    ShowRecordsSection = true;
+                    ShowPagingSection = true;
                 }
             }
             catch (MatriInternetException exception)

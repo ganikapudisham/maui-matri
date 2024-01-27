@@ -41,7 +41,7 @@ namespace Matri.Business
 
         Task<bool> ContactUs(Guid sessiontoken, ContactUs contactUs);
 
-        Task<List<Master>> GetMasterData(Guid sessiontoken, string type);
+        Task<MDD> GetMasterData(Guid sessiontoken);
 
         Task<Paging<MiniProfile>> Search(Guid sessiontoken, SearchParameters searchParameters);
 
