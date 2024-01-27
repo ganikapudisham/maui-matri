@@ -7,7 +7,7 @@
              Title="Search By Id">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <ResourceDictionary Source="../../../Resources/Styles/StyleSearchById.xaml" />
+            <ResourceDictionary Source="/Resources/Styles/StyleSearchById.xaml" />
         </ResourceDictionary>
     </ContentPage.Resources>
 

@@ -187,47 +187,39 @@ namespace Matri.ViewModel
         {
             var token = await SecureStorage.GetAsync("Token");
 
-            var masterDataMaritalStatus = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=marital");
-            SelectedMaritalStatus = masterDataMaritalStatus[0];
-            MDMaritalStatus.AddRange(masterDataMaritalStatus);
+            var masterData = await _serviceManager.GetMasterData(new Guid(token));
 
-            var masterDataHeights = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=height");
-            SelectedHeightFrom = masterDataHeights[0];
-            SelectedHeightTo = masterDataHeights[0];
-            MDHeightsTo.AddRange(masterDataHeights);
-            MDHeightsFrom.AddRange(masterDataHeights);
+            SelectedMaritalStatus = masterData.MaritalStatuses[0];
+            MDMaritalStatus.AddRange(masterData.MaritalStatuses);
 
-            var masterDataMotherTongues = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=languages");
-            SelectedMotherTongue = masterDataMotherTongues[0];
-            MDLanguages.AddRange(masterDataMotherTongues);
+            SelectedHeightFrom = masterData.Heights[0];
+            SelectedHeightTo = masterData.Heights[0];
+            MDHeightsTo.AddRange(masterData.Heights);
+            MDHeightsFrom.AddRange(masterData.Heights);
 
-            var masterDataReligions = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=religion");
-            SelectedReligion = masterDataReligions[0];
-            MDReligions.AddRange(masterDataReligions);
+            SelectedMotherTongue = masterData.Languages[0];
+            MDLanguages.AddRange(masterData.Languages);
 
-            var masterDataStates = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=states");
-            SelectedState = masterDataStates[0];
-            MDStates.AddRange(masterDataStates);
+            SelectedReligion = masterData.Religions[0];
+            MDReligions.AddRange(masterData.Religions);
 
-            var masterDataEducation = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=education");
-            SelectedEducation = masterDataEducation[0];
-            MDAcademics.AddRange(masterDataEducation);
+            SelectedState = masterData.IndianStates[0];
+            MDStates.AddRange(masterData.IndianStates);
 
-            var masterDataJobs = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=jobs");
-            SelectedJob = masterDataJobs[0];
-            MDJobs.AddRange(masterDataJobs);
+            SelectedEducation = masterData.Academics[0];
+            MDAcademics.AddRange(masterData.Academics);
 
-            var masterDataCountries = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=countries");
-            SelectedResidingCountry = masterDataCountries[0];
-            MDCountries.AddRange(masterDataCountries);
+            SelectedJob = masterData.Jobs[0];
+            MDJobs.AddRange(masterData.Jobs);
 
-            var castes = await _serviceManager.GetMasterData(new Guid(token), $"castes?religion=hindu");
-            SelectedCaste = castes[0];
-            MDCastes.AddRange(castes);
+            SelectedResidingCountry = masterData.Countries[0];
+            MDCountries.AddRange(masterData.Countries);
 
-            var denominations = await _serviceManager.GetMasterData(new Guid(token), $"castes?religion=christian");
-            SelectedDenomination = denominations[0];
-            MDDenominations.AddRange(denominations);
+            SelectedCaste = masterData.Castes[0];
+            MDCastes.AddRange(masterData.Castes);
+
+            SelectedDenomination = masterData.Denominations[0];
+            MDDenominations.AddRange(masterData.Denominations);
         }
 
         [RelayCommand]

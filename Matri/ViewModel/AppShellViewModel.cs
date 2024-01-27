@@ -27,7 +27,7 @@ namespace Matri.ViewModel
         public async Task LogOut()
         {
             var token = await SecureStorage.GetAsync("Token");
-            flyoutIsPresented = false;
+            FlyoutIsPresented = false;
             await _serviceManager.LogoutAsync(new Guid(token));
             await Shell.Current.GoToAsync("///LoginPage");
         }
