@@ -4,9 +4,9 @@ using Matri.CustomExceptions;
 using Matri.Model;
 using Newtonsoft.Json;
 
-namespace Matri.ViewModels
+namespace Matri.ViewModel
 {
-    public class EditContactViewModel : ObservableObject
+    public class EditContactsViewModel : ObservableObject
     {
         IServiceManager _serviceManager;
         //private readonly IUserDialogs _userDialogs;
@@ -17,7 +17,7 @@ namespace Matri.ViewModels
         //public INC<string> MobileNumber = new NC<string>();
         //public INC<string> PostalAddress = new NC<string>();
         //public INC<string> EmailId = new NC<string>();
-        public EditContactViewModel(IServiceManager serviceManager)
+        public EditContactsViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
             //_userDialogs = userDialog;

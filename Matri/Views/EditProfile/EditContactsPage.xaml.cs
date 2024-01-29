@@ -1,9 +1,12 @@
+using Matri.ViewModel;
+
 namespace Matri.Views;
 
 public partial class EditContactsPage : ContentPage
 {
-	public EditContactsPage()
+	public EditContactsPage(EditContactsViewModel viewModel)
 	{
 		InitializeComponent();
-	}
+        BindingContext = viewModel;
+    }
 }

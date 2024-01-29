@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Matri.Business;
 using Matri.Model;
-namespace Matri.ViewModels
+namespace Matri.ViewModel
 {
     public class EditReligionViewModel : ObservableObject
     {

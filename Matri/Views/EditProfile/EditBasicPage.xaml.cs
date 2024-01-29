@@ -1,9 +1,12 @@
+using Matri.ViewModel;
+
 namespace Matri.Views;
 
 public partial class EditBasicPage : ContentPage
 {
-	public EditBasicPage()
+	public EditBasicPage(EditBasicViewModel viewModel)
 	{
 		InitializeComponent();
-	}
+        BindingContext = viewModel;
+    }
 }

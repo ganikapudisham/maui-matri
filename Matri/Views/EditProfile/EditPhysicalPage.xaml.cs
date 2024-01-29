@@ -1,9 +1,12 @@
+using Matri.ViewModel;
+
 namespace Matri.Views;
 
 public partial class EditPhysicalPage : ContentPage
 {
-	public EditPhysicalPage()
+	public EditPhysicalPage(EditPhysicalViewModel viewModel)
 	{
 		InitializeComponent();
-	}
+        BindingContext = viewModel;
+    }
 }

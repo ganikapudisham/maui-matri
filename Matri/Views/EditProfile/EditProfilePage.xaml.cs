@@ -1,12 +1,12 @@
-using Matri.ViewModels;
+using Matri.ViewModel;
 
 namespace Matri.Views;
 
-public partial class EditProfilePage : TabbedPage
+public partial class EditProfilePage : ContentPage
 {
 	public EditProfilePage(EditProfileViewModel viewModel)
 	{
 		InitializeComponent();
-        BindingContext = viewModel;
+		BindingContext = viewModel;
     }
 }

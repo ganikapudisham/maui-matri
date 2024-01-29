@@ -3,7 +3,7 @@ using Matri.Business;
 using Matri.Model;
 using Newtonsoft.Json;
 
-namespace Matri.ViewModels
+namespace Matri.ViewModel
 {
     public class EditFamilyViewModel : ObservableObject
     {

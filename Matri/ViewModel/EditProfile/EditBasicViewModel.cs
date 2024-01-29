@@ -4,7 +4,7 @@ using Matri.CustomExceptions;
 using Matri.Model;
 using Newtonsoft.Json;
 
-namespace Matri.ViewModels
+namespace Matri.ViewModel
 {
     public class EditBasicViewModel : ObservableObject
     {

@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Matri.Model;
 
-namespace Matri.ViewModels
+namespace Matri.ViewModel
 {
     public class EditExpectationsViewModel : ObservableObject
     {

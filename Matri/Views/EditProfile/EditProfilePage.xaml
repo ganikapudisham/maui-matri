@@ -1,16 +1,69 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:TPC="clr-namespace:Matri.Views"
-            x:Class="Matri.Views.EditProfilePage">
-    <TPC:EditAcademicsPage></TPC:EditAcademicsPage>
-    <TPC:EditBasicPage></TPC:EditBasicPage>
-    <TPC:EditContactsPage></TPC:EditContactsPage>
-    <TPC:EditExpectationsPage></TPC:EditExpectationsPage>
-    <TPC:EditFamilyPage></TPC:EditFamilyPage>
-    <TPC:EditHoroscopePage></TPC:EditHoroscopePage>
-    <TPC:EditLifeStylePage></TPC:EditLifeStylePage>
-    <TPC:EditPhotoPage></TPC:EditPhotoPage>
-    <TPC:EditPhysicalPage></TPC:EditPhysicalPage>
-    <TPC:EditReligionPage></TPC:EditReligionPage>
-</TabbedPage>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Matri.Views.EditProfilePage"
+             xmlns:tabView="clr-namespace:Syncfusion.Maui.TabView;assembly=Syncfusion.Maui.TabView"
+             xmlns:control="clr-namespace:Matri.Controls"
+             xmlns:page="clr-namespace:Matri.Views"
+             Title="Edit Profile">
+
+    <tabView:SfTabView TabWidthMode="SizeToContent">
+        <tabView:SfTabView.Items>
+            <control:CustomTabItem Header="Basic">
+                <control:CustomTabItem.Page>
+                    <page:EditBasicPage  />
+                </control:CustomTabItem.Page>
+            </control:CustomTabItem>
+
+            <control:CustomTabItem Header="Education">
+                <control:CustomTabItem.Page>
+                    <page:EditAcademicsPage />
+                </control:CustomTabItem.Page>
+            </control:CustomTabItem>
+
+            <control:CustomTabItem Header="Contacts">
+                <control:CustomTabItem.Page>
+                    <page:EditContactsPage />
+                </control:CustomTabItem.Page>
+            </control:CustomTabItem>
+
+            <control:CustomTabItem Header="Expectations">
+                <control:CustomTabItem.Page>
+                    <page:EditExpectationsPage />
+                </control:CustomTabItem.Page>
+            </control:CustomTabItem>
+
+            <control:CustomTabItem Header="Family">
+                <control:CustomTabItem.Page>
+                    <page:EditFamilyPage />
+                </control:CustomTabItem.Page>
+            </control:CustomTabItem>
+
+            <control:CustomTabItem Header="Horoscope">
+                <control:CustomTabItem.Page>
+                    <page:EditHoroscopePage />
+                </control:CustomTabItem.Page>
+            </control:CustomTabItem>
+
+            <control:CustomTabItem Header="Lifestyle">
+                <control:CustomTabItem.Page>
+                    <page:EditLifeStylePage />
+                </control:CustomTabItem.Page>
+            </control:CustomTabItem>
+
+            <control:CustomTabItem Header="Photos">
+                <control:CustomTabItem.Page>
+                    <page:EditPhotoPage />
+                </control:CustomTabItem.Page>
+            </control:CustomTabItem>
+
+            <control:CustomTabItem Header="Physical">
+                <control:CustomTabItem.Page>
+                    <page:EditPhysicalPage />
+                </control:CustomTabItem.Page>
+            </control:CustomTabItem>
+
+        </tabView:SfTabView.Items>
+    </tabView:SfTabView>
+
+</ContentPage>
