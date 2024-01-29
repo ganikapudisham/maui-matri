@@ -9,9 +9,11 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
 
-                <ResourceDictionary Source="Resources/Styles/StyleSearchAdvanced.xaml" />
-                <ResourceDictionary Source="Resources/Styles/StyleSearchById.xaml" />
-                <ResourceDictionary Source="Resources/Styles/StyleSearch.xaml" />
+                <ResourceDictionary Source="Resources/Styles/StylesSearchAdvanced.xaml" />
+                <ResourceDictionary Source="Resources/Styles/StylesSearchById.xaml" />
+                <ResourceDictionary Source="Resources/Styles/StylesSearch.xaml" />
+
+                <ResourceDictionary Source="Resources/Styles/StylesMyAccount.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

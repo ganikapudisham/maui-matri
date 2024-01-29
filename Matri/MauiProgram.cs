@@ -4,6 +4,7 @@ using Matri.Business.Impl;
 using Matri.Data;
 using Matri.Data.Impl;
 using Matri.ViewModel;
+using Matri.ViewModels;
 using Matri.Views;
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
@@ -70,6 +71,12 @@ namespace Matri
 
             builder.Services.AddSingleton<SearchResultsViewModel>();
             builder.Services.AddSingleton<SearchResultsPage>();
+
+            builder.Services.AddSingleton<MyAccountViewModel>();
+            builder.Services.AddSingleton<MyAccountPage>();
+
+            builder.Services.AddSingleton<EditProfileViewModel>();
+            builder.Services.AddSingleton<EditProfilePage>();
 
             //builder.Services.AddSingleton<ICloseApplication, CloseApplication>();
             //builder.Services.AddSingleton<IFirebaseAnalytics, FirebaseAnalytics>();

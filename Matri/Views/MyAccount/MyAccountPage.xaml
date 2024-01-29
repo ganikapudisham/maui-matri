@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Matri.Views.MyAccountPage"
+             xmlns:controls="clr-namespace:Matri.Controls"
+             Title="MyAccountPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary Source="/Resources/Styles/StylesMyAccount.xaml" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout BackgroundColor="{DynamicResource Gray100}" Spacing="0">
+
+            <!--  Header label for account setting  -->
+            <Label
+            Margin="16,0,0,0"
+            FontFamily="Montserrat-SemiBold"
+            FontSize="12"
+            HeightRequest="50"
+            HorizontalOptions="FillAndExpand"
+            LineHeight="{OnPlatform Default=-1,
+                                    Android=1.25}"
+            Text="ACCOUNT"
+            TextColor="{DynamicResource Gray800}"
+            VerticalOptions="Center"
+            VerticalTextAlignment="Center" />
+
+
+            <!--  Grid for Edit profile label and navigation bar icon  -->
+            <controls:TapAnimationGrid
+            BackgroundColor="{DynamicResource GrayWhite}"
+            ColumnSpacing="0"
+            Command="{Binding EditProfileCommand}"
+            RowSpacing="0"
+            Tapped="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Edit profile icon  -->
+
+                <Label
+                Grid.Column="0"
+                Margin="16,0,0,0"
+                Style="{StaticResource IconLabelStyle}"
+                    Text="{Binding EditMyProfile}"/>
+
+                <!--  Edit profile label  -->
+
+                <Label
+                Grid.Column="1"
+                Style="{StaticResource LabelStyle}"
+                Text="Edit Profile" />
+
+                <!--  Navigation icon  -->
+
+                <Label
+                Grid.Column="2"
+                Style="{StaticResource IconLabelStyle}"
+                Text="{StaticResource Next}" />
+            </controls:TapAnimationGrid>
+            <BoxView Style="{StaticResource SeparatorStyle}" />
+
+            <!--  Grid for Change password label and navigation bar icon  -->
+            <controls:TapAnimationGrid
+            BackgroundColor="{DynamicResource GrayWhite}"
+            ColumnSpacing="0"
+            Command="{Binding ChangePasswordCommand}"
+            RowSpacing="0"
+            Tapped="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <!--  Change password icon  -->
+                <Label
+                Grid.Column="0"
+                Margin="16,0,0,0"
+                Style="{StaticResource IconLabelStyle}"
+                    Text="{Binding ChangePassword}"/>
+                <!--  Change password label  -->
+                <Label
+                Grid.Column="1"
+                Style="{StaticResource LabelStyle}"
+                Text="Change Password" />
+                <!--  Navigation icon  -->
+                <Label
+                Grid.Column="2"
+                Style="{StaticResource IconLabelStyle}"
+                Text="{StaticResource Next}" />
+            </controls:TapAnimationGrid>
+            <BoxView Style="{StaticResource SeparatorStyle}" />
+
+            <controls:TapAnimationGrid
+            BackgroundColor="{DynamicResource GrayWhite}"
+            ColumnSpacing="0"
+                Command="{Binding ViewMyProfileCommand}"
+            RowSpacing="0"
+            Tapped="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <!--  Change password icon  -->
+                <Label
+                Grid.Column="0"
+                Margin="16,0,0,0"
+                Style="{StaticResource IconLabelStyle}"
+                    Text="{Binding ViewMyProfile}" />
+                <!--  Change password label  -->
+                <Label
+                Grid.Column="1"
+                Style="{StaticResource LabelStyle}"
+                Text="View My Profile" />
+                <!--  Navigation icon  -->
+                <Label
+                Grid.Column="2"
+                Style="{StaticResource IconLabelStyle}"
+                Text="{StaticResource Next}" />
+            </controls:TapAnimationGrid>
+            <BoxView Style="{StaticResource SeparatorStyle}" />
+
+            <Label
+            Margin="16,0,0,0"
+            FontFamily="Montserrat-SemiBold"
+            FontSize="12"
+            HeightRequest="50"
+            HorizontalOptions="FillAndExpand"
+            LineHeight="{OnPlatform Default=-1,
+                                    Android=1.25}"
+            Text="PROFILES"
+            TextColor="{DynamicResource Gray800}"
+            VerticalOptions="Center"
+            VerticalTextAlignment="Center" />
+
+            <!--  Grid for Edit profile label and navigation bar icon  -->
+            <controls:TapAnimationGrid
+            BackgroundColor="{DynamicResource GrayWhite}"
+            ColumnSpacing="0"
+            Command="{Binding ViewFavouritesCommand}"
+            RowSpacing="0"
+            Tapped="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <!--  Edit profile icon  -->
+                <Label
+                Grid.Column="0"
+                Margin="16,0,0,0"
+                Style="{StaticResource IconLabelStyle}"
+                    Text="{Binding LikedProfiles}" TextColor="Green"/>
+                <!--  Edit profile label  -->
+                <Label
+                Grid.Column="1"
+                Style="{StaticResource LabelStyle}"
+                Text="View Liked Profiles" />
+                <!--  Navigation icon  -->
+                <Label
+                Grid.Column="2"
+                Style="{StaticResource IconLabelStyle}"
+                Text="{StaticResource Next}" />
+            </controls:TapAnimationGrid>
+            <BoxView Style="{StaticResource SeparatorStyle}" />
+
+            <!--  Grid for Change password label and navigation bar icon  -->
+            <controls:TapAnimationGrid
+            BackgroundColor="{DynamicResource GrayWhite}"
+            ColumnSpacing="0"
+                Command="{Binding ViewBlockedProfilesCommand}"
+            RowSpacing="0"
+            Tapped="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <!--  Change password icon  -->
+                <Label
+                Grid.Column="0"
+                Margin="16,0,0,0"
+                Style="{StaticResource IconLabelStyle}"
+                Text="{Binding BlockedProfiles}" TextColor="Red" />
+                <!--  Change password label  -->
+                <Label
+                Grid.Column="1"
+                Style="{StaticResource LabelStyle}"
+                Text="View Blocked Profiles" />
+                <!--  Navigation icon  -->
+                <Label
+                Grid.Column="2"
+                Style="{StaticResource IconLabelStyle}"
+                Text="{StaticResource Next}" />
+            </controls:TapAnimationGrid>
+            <BoxView Style="{StaticResource SeparatorStyle}" />
+
+            <!--  Grid for Change password label and navigation bar icon  -->
+            <controls:TapAnimationGrid
+            BackgroundColor="{DynamicResource GrayWhite}"
+            ColumnSpacing="0"
+                Command ="{Binding ViewVisitorsCommand}"
+            RowSpacing="0"
+            Tapped="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <!--  Change password icon  -->
+                <Label
+                Grid.Column="0"
+                Margin="16,0,0,0"
+                Style="{StaticResource IconLabelStyle}"
+                    Text="{Binding Visitors}" />
+                <!--  Change password label  -->
+                <Label
+                Grid.Column="1"
+                Style="{StaticResource LabelStyle}"
+                Text="View Visitors" />
+                <!--  Navigation icon  -->
+                <Label
+                Grid.Column="2"
+                Style="{StaticResource IconLabelStyle}"
+                Text="{StaticResource Next}" />
+            </controls:TapAnimationGrid>
+            <BoxView Style="{StaticResource SeparatorStyle}" />
+
+            <!-- -->
+
+            <Label
+            Margin="16,0,0,0"
+            FontFamily="Montserrat-SemiBold"
+            FontSize="12"
+            HeightRequest="50"
+            HorizontalOptions="FillAndExpand"
+            LineHeight="{OnPlatform Default=-1,
+                                    Android=1.25}"
+            Text="REQUESTS"
+            TextColor="{DynamicResource Gray800}"
+            VerticalOptions="Center"
+            VerticalTextAlignment="Center" />
+
+            <!--  Grid for Edit profile label and navigation bar icon  -->
+            <controls:TapAnimationGrid
+            BackgroundColor="{DynamicResource GrayWhite}"
+            ColumnSpacing="0"
+                Command="{Binding ViewRequestsSentCommand}"
+            RowSpacing="0"
+            Tapped="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <!--  Edit profile icon  -->
+                <Label
+                Grid.Column="0"
+                Margin="16,0,0,0"
+                Style="{StaticResource IconLabelStyle}"
+                    Text="{Binding Sent}" />
+                <!--  Edit profile label  -->
+                <Label
+                Grid.Column="1"
+                Style="{StaticResource LabelStyle}"
+                Text="View Request Sent" />
+                <!--  Navigation icon  -->
+                <Label
+                Grid.Column="2"
+                Style="{StaticResource IconLabelStyle}"
+                Text="{StaticResource Next}" />
+            </controls:TapAnimationGrid>
+            <BoxView Style="{StaticResource SeparatorStyle}" />
+
+            <!--  Grid for Change password label and navigation bar icon  -->
+            <controls:TapAnimationGrid
+            BackgroundColor="{DynamicResource GrayWhite}"
+            ColumnSpacing="0"
+            Command="{Binding ViewRequestsReceivedCommand}"
+            RowSpacing="0"
+            Tapped="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <!--  Change password icon  -->
+                <Label
+                Grid.Column="0"
+                Margin="16,0,0,0"
+                Style="{StaticResource IconLabelStyle}"
+                    Text="{Binding Received}"/>
+                <!--  Change password label  -->
+                <Label
+                Grid.Column="1"
+                Style="{StaticResource LabelStyle}"
+                Text="View Requests Received" />
+                <!--  Navigation icon  -->
+                <Label
+                Grid.Column="2"
+                Style="{StaticResource IconLabelStyle}"
+                Text="{StaticResource Next}" />
+            </controls:TapAnimationGrid>
+            <BoxView Style="{StaticResource SeparatorStyle}" />
+
+            <!-- -->
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
