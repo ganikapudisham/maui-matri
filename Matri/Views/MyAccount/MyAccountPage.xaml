@@ -70,7 +70,7 @@
             <controls:TapAnimationGrid
             BackgroundColor="{DynamicResource GrayWhite}"
             ColumnSpacing="0"
-            Command="{Binding ChangePasswordCommand}"
+            Command="{Binding ChangePwdCommand}"
             RowSpacing="0"
             Tapped="False">
                 <Grid.ColumnDefinitions>
@@ -144,7 +144,7 @@
             <controls:TapAnimationGrid
             BackgroundColor="{DynamicResource GrayWhite}"
             ColumnSpacing="0"
-            Command="{Binding ViewFavouritesCommand}"
+            Command="{Binding ViewLikedProfilesCommand}"
             RowSpacing="0"
             Tapped="False">
                 <Grid.ColumnDefinitions>
@@ -270,7 +270,7 @@
                 <Label
                 Grid.Column="1"
                 Style="{StaticResource LabelStyle}"
-                Text="View Request Sent" />
+                Text="View Requests Sent" />
                 <!--  Navigation icon  -->
                 <Label
                 Grid.Column="2"

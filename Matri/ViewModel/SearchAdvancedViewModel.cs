@@ -5,12 +5,22 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Maui.Controls;
 using Prism.Commands;
+using Syncfusion.Maui.Inputs;
 
 namespace Matri.ViewModel
 {
     public partial class SearchAdvancedViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
         IServiceManager _serviceManager;
+
+        private Command<SfComboBox> onReligionChangedCommand;
+
+        public Command<SfComboBox> OnReligionChangedCommand
+        {
+            get { return onReligionChangedCommand; }
+            set { onReligionChangedCommand = value; OnPropertyChanged(nameof(OnReligionChanged)); }
+        }
+
         public SearchAdvancedViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
@@ -277,6 +287,11 @@ namespace Matri.ViewModel
             var searchParams = new Dictionary<string, object> { { "SearchParameters", searchParamters } };
 
             await Shell.Current.GoToAsync("searchresults", searchParams);
+        }
+
+        private void OnReligionChanged(SfComboBox cmbReligion)
+        {
+            //var ComboSelectedLabel1 = $"Selected Index of the item is: {comboBox1.SelectedIndex}";
         }
     }
 }

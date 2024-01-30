@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Matri.Views.MyAccount.VisitorsPage"
+             xmlns:FoA="clr-namespace:Matri.FontsAwesome;assembly=Matri"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="Visitors">
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <CollectionView Grid.Row="0" x:Name="profilesCollectionView" ItemsSource="{Binding Profiles}" 
+                        VerticalOptions="FillAndExpand" SelectionMode="Single" 
+                        SelectionChangedCommand="{Binding ViewProfileCommand}"
+                        SelectedItem="{Binding SelectedProfile}"
+                        SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={x:Reference profilesCollectionView}}"
+                        >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="1"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="94"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Frame HorizontalOptions="Center" IsClippedToBounds="True" CornerRadius="4" HasShadow="False" Grid.Row="0" 
+                               Grid.Column="0" HeightRequest="72" WidthRequest="72" Padding="0">
+                                <Image Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="FillAndExpand" 
+                                   HeightRequest="72" WidthRequest="72" 
+                                   Aspect="Fill">
+                                    <Image.Source>
+                                        <UriImageSource Uri="{Binding ThumbNailUri}"/>
+                                    </Image.Source>
+                                </Image>
+                            </Frame>
+                            <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="60"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0"  Text="{Binding FirstName}" LineBreakMode="WordWrap" 
+                                   TextColor="#DE000000" FontFamily="Roboto-Medium" 
+                                   FontSize="{OnPlatform Android={OnIdiom Phone=15, Tablet=22}, iOS=16, WinUI=14,MacCatalyst=16}" 
+                                   CharacterSpacing="0.1" Margin="0,10,0,0"/>
+                                <!--<Label Grid.Row="0" Grid.Column="1" Text="1w ago" TextColor="#666666" 
+                                   FontSize="{OnPlatform Default=10,WinUI=12,MacCatalyst=12}" FontFamily="Roboto-Regular" 
+                                   HorizontalOptions="End" CharacterSpacing="0.15" Margin="0,10,11,0"/>-->
+                                <Label Grid.Row="1" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
+                                   LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
+                                   Text="{Binding Height}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
+                                   Margin="0,4,0,0" />
+                                <Label Grid.Row="2" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
+                                   LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
+                                   Text="{Binding Age}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
+                                   Margin="0,4,0,0" />
+                                <Label Grid.Row="3" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
+                                   LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
+                                   Text="{Binding Education}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
+                                   Margin="0,4,0,0" />
+                                <Label Grid.Row="4" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
+                                   LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
+                                   Text="{Binding Job}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
+                                   Margin="0,4,0,10" />
+                            </Grid>
+                            <BoxView Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" BackgroundColor="Black" HeightRequest="1" 
+                                 VerticalOptions="End" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <VerticalStackLayout Grid.Row="1">
+                <Frame Margin="0,10,0,10">
+                    <Grid ColumnSpacing="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" FontSize="Medium" Grid.Column="0" Grid.ColumnSpan="6" Text="Records Per Page" 
+   VerticalOptions="End" HorizontalOptions="Start"></Label>
+                        <Picker x:Name="PickerPageSize" Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="3"
+      VerticalOptions="Center" ItemsSource="{Binding PageSizeList}"  
+                        ItemDisplayBinding="{Binding Text}" SelectedItem="{Binding PPageSize}" >
+                            <Picker.Behaviors>
+                                <toolkit:EventToCommandBehavior
+                EventName="SelectedIndexChanged"
+                Command="{Binding SelectedPageSizeCommand}"
+                CommandParameter="{ Binding .}" />
+                            </Picker.Behaviors>
+                        </Picker>
+
+                        <Label Grid.Row="1" FontSize="Medium" Grid.Column="0" Text="Current Page" 
+   VerticalOptions="Center"  Grid.ColumnSpan="3"></Label>
+                        <Entry Keyboard="Numeric" Text="{Binding EPageNumber}"   Grid.Row="1" Grid.Column="3" FontSize="Medium" 
+    VerticalOptions="End" Margin="0,0,0,10" HorizontalOptions="End"/>
+                        <Label   Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" FontSize="Medium" 
+    VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding LNumberOfPages}" />
+
+                        <ImageButton HorizontalOptions="CenterAndExpand" Aspect="AspectFill" Grid.Row="2" Grid.Column="0"
+   HeightRequest="30" VerticalOptions="CenterAndExpand" Command="{Binding FirstCommand}" >
+                            <ImageButton.Source>
+                                <FontImageSource FontFamily="FontAwesomeSolid"
+        Glyph="{x:Static FoA:FontAwesomeIcons.AngleDoubleLeft}" Color="Gray" />
+                            </ImageButton.Source>
+                        </ImageButton>
+
+                        <ImageButton HorizontalOptions="CenterAndExpand" Aspect="AspectFill"
+   HeightRequest="30" VerticalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"
+                             Command="{Binding PreviousCommand}">
+                            <ImageButton.Source>
+                                <FontImageSource FontFamily="FontAwesomeSolid"
+                                Glyph="{x:Static FoA:FontAwesomeIcons.AngleLeft}" Color="Gray" />
+                            </ImageButton.Source>
+                        </ImageButton>
+
+                        <ImageButton HorizontalOptions="End" Aspect="AspectFill" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2"
+   HeightRequest="30" VerticalOptions="CenterAndExpand" Command="{Binding NextCommand}">
+                            <ImageButton.Source>
+                                <FontImageSource
+                        FontFamily="FontAwesomeSolid"
+                        Glyph="{x:Static FoA:FontAwesomeIcons.AngleRight}"
+                        Color="Gray" />
+                            </ImageButton.Source>
+                        </ImageButton>
+
+                        <ImageButton HorizontalOptions="EndAndExpand" Aspect="AspectFill" Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="2"
+   HeightRequest="30" VerticalOptions="CenterAndExpand" Command="{Binding LastCommand}">
+                            <ImageButton.Source>
+                                <FontImageSource
+                        FontFamily="FontAwesomeSolid"
+                        Glyph="{x:Static FoA:FontAwesomeIcons.AngleDoubleRight}"
+                        Color="gray" />
+                            </ImageButton.Source>
+                        </ImageButton>
+
+                    </Grid>
+                </Frame>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

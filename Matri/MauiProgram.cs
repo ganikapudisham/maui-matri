@@ -1,11 +1,11 @@
 ﻿using CommunityToolkit.Maui;
+using Matri.ViewModel;
 using Matri.Business;
 using Matri.Business.Impl;
 using Matri.Data;
 using Matri.Data.Impl;
-using Matri.ViewModel;
-using Matri.ViewModels;
 using Matri.Views;
+using Matri.Views.MyAccount;
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
 
@@ -77,6 +77,57 @@ namespace Matri
 
             builder.Services.AddSingleton<EditProfileViewModel>();
             builder.Services.AddSingleton<EditProfilePage>();
+
+            builder.Services.AddSingleton<EditBasicViewModel>();
+            builder.Services.AddSingleton<EditBasicPage>();
+
+            builder.Services.AddSingleton<EditAcademicsViewModel>();
+            builder.Services.AddSingleton<EditAcademicsPage>();
+
+            builder.Services.AddSingleton<EditContactsViewModel>();
+            builder.Services.AddSingleton<EditContactsPage>();
+
+            builder.Services.AddSingleton<EditExpectationsViewModel>();
+            builder.Services.AddSingleton<EditExpectationsPage>();
+
+            builder.Services.AddSingleton<EditFamilyViewModel>();
+            builder.Services.AddSingleton<EditFamilyPage>();
+
+            builder.Services.AddSingleton<EditHoroscopeViewModel>();
+            builder.Services.AddSingleton<EditHoroscopePage>();
+
+            builder.Services.AddSingleton<EditLifeStyleViewModel>();
+            builder.Services.AddSingleton<EditLifeStylePage>();
+
+            builder.Services.AddSingleton<EditPhotoViewModel>();
+            builder.Services.AddSingleton<EditPhotoPage>();
+
+            builder.Services.AddSingleton<EditPhysicalViewModel>();
+            builder.Services.AddSingleton<EditPhysicalPage>();
+
+            builder.Services.AddSingleton<EditReligionViewModel>();
+            builder.Services.AddSingleton<EditReligionPage>();
+
+            builder.Services.AddSingleton<ChangePasswordViewModel>();
+            builder.Services.AddSingleton<ChangePasswordPage>();
+
+            builder.Services.AddSingleton<BlockedProfilesViewModel>();
+            builder.Services.AddSingleton<BlockedProfilesPage>();
+
+            builder.Services.AddSingleton<LikedProfilesViewModel>();
+            builder.Services.AddSingleton<LikedProfilesPage>();
+
+            builder.Services.AddSingleton<NewProfilesViewModel>();
+            builder.Services.AddSingleton<NewProfilesPage>();
+
+            builder.Services.AddSingleton<VisitorsViewModel>();
+            builder.Services.AddSingleton<VisitorsPage>();
+
+            builder.Services.AddSingleton<RequestsReceivedViewModel>();
+            builder.Services.AddSingleton<RequestsReceivedPage>();
+
+            builder.Services.AddSingleton<RequestsSentViewModel>();
+            builder.Services.AddSingleton<RequestsSentPage>();
 
             //builder.Services.AddSingleton<ICloseApplication, CloseApplication>();
             //builder.Services.AddSingleton<IFirebaseAnalytics, FirebaseAnalytics>();

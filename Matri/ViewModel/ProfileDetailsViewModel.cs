@@ -312,7 +312,7 @@ namespace Matri.ViewModel
                 Blocked = false;
             }
             var sessionToken = await SecureStorage.GetAsync("Token");
-            var request = new Request { To = ProfileIdentifier, Type = RequestAction.Favourite.ToString() };
+            var request = new Request { To = ProfileIdentifier, Type = RequestAction.Liked.ToString() };
             await Mark(sessionToken, request);
         }
 

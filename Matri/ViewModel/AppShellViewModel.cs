@@ -3,6 +3,7 @@ using Matri.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Layouts;
+using Matri.Views.MyAccount;
 
 namespace Matri.ViewModel
 {
@@ -22,6 +23,13 @@ namespace Matri.ViewModel
             Routing.RegisterRoute("searchadvanced", typeof(SearchAdvancedPage));
             Routing.RegisterRoute("searchresults", typeof(SearchResultsPage));
             Routing.RegisterRoute("editprofile", typeof(EditProfilePage));
+            Routing.RegisterRoute("changepassword", typeof(ChangePasswordPage));
+            Routing.RegisterRoute("blockedprofiles", typeof(BlockedProfilesPage));
+            Routing.RegisterRoute("likedprofiles", typeof(LikedProfilesPage));
+            Routing.RegisterRoute("newprofiles", typeof(NewProfilesPage));
+            Routing.RegisterRoute("visitors", typeof(VisitorsPage));
+            Routing.RegisterRoute("requestsreceived", typeof(RequestsReceivedPage));
+            Routing.RegisterRoute("requestssent", typeof(RequestsSentPage));
         }
 
         [RelayCommand]

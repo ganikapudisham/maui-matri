@@ -6,7 +6,7 @@ namespace Matri.Model
 {
     public enum RequestAction
     {
-        Favourite,
+        Liked,
         Block,
         SendInterest,
         Requestphoto,
