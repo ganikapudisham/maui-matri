@@ -60,7 +60,7 @@ namespace Matri.ViewModel
                 Profiles.Clear();
 
                 var dbProfilesWithPaging = await _serviceManager.GetMarkedProfiles(new Guid(token),
-                    RequestAction.Liked.ToString(), pageNumber, pageSize);
+                    RequestAction.Favourite.ToString(), pageNumber, pageSize);
                 var dbProfiles = dbProfilesWithPaging.Data;
                 var modValue = dbProfilesWithPaging.MetaData.TotalRecords % pageSize;
 
