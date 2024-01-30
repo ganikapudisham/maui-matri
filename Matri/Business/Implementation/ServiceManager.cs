@@ -319,10 +319,10 @@ namespace Matri.Business.Impl
             return modifiedPofiles;
         }
 
-        public async Task<AppDets> GetAppDetails(Guid sessiontoken)
+        public async Task<Model.App> GetAppDetails(Guid sessiontoken)
         {
             var url = Constants.API_URL_GetAppDetails; //"app";
-            return await _serviceRepository.GetAsync<AppDets>(sessiontoken.ToString(), url);
+            return await _serviceRepository.GetAsync<Model.App>(sessiontoken.ToString(), url);
         }
 
         public async Task<Profile> GetUserData(Guid sessiontoken)

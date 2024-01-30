@@ -45,7 +45,7 @@ namespace Matri.Business
 
         Task<Paging<MiniProfile>> Search(Guid sessiontoken, SearchParameters searchParameters);
 
-        Task<AppDets> GetAppDetails(Guid sessiontoken);
+        Task<Model.App> GetAppDetails(Guid sessiontoken);
 
         Task<Profile> GetUserData(Guid sessiontoken);
 

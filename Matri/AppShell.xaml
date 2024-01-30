@@ -95,17 +95,17 @@
         <ShellContent ContentTemplate="{DataTemplate local:SearchPage}" Route="SearchPage" />
     </FlyoutItem>
 
-    <!--<FlyoutItem Title="My Account" Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.UserCircle}, Size=50,Color=Grey}" 
+    <FlyoutItem Title="My Account" Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.UserCircle}, Size=50,Color=Grey}" 
                 FlyoutIcon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.UserCircle}, Size=50,Color=Grey}">
         <ShellContent ContentTemplate="{DataTemplate local:MyAccountPage}" Route="MyAccountPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Settings" Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaCog}, Size=50,Color=Grey}" 
+    <!--<FlyoutItem Title="Settings" Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaCog}, Size=50,Color=Grey}" 
                 FlyoutIcon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaCog}, Size=50,Color=Grey}">
         <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" Route="SettingsPage" />
-    </FlyoutItem>
+    </FlyoutItem> 
 
-    <FlyoutItem Title="Invite a friend" 
+     <FlyoutItem Title="Invite a friend" 
                 FlyoutIcon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaShareAltSquare}, Size=50,Color=Grey}" 
                 Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaShareAltSquare}, Size=50,Color=Grey}" >
         <ShellContent ContentTemplate="{DataTemplate local:InvitePage}" Route="InvitePage" />
@@ -122,6 +122,10 @@
                 Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaInfoCircle}, Size=50,Color=Grey}" >
         <ShellContent ContentTemplate="{DataTemplate local:AboutUsPage}" Route="AboutUsPage" />
     </FlyoutItem>-->
+
+    <MenuItem Command="{Binding ShareCommand}" CommandParameter="{Binding Source={RelativeSource Self}}"
+    Text="Share" IconImageSource="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaShareAltSquare}, Size=50,Color=Grey}">
+    </MenuItem>
 
     <MenuItem Command="{Binding LogOutCommand}"
     Text="LogOut" IconImageSource="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaTimes}, Size=50,Color=Grey}">

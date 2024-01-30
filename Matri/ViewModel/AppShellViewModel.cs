@@ -4,15 +4,23 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Layouts;
 using Matri.Views.MyAccount;
+using Microsoft.Maui.ApplicationModel.DataTransfer;
+using Microsoft.Maui.Controls;
+using static System.Net.Mime.MediaTypeNames;
+using System.Windows.Input;
+using PlatformIntegrationDemo.Helpers;
+using Matri.Model;
 
 namespace Matri.ViewModel
 {
-    public partial class AppShellViewModel :ObservableObject
+    public partial class AppShellViewModel : ObservableObject
     {
         IServiceManager _serviceManager;
 
         [ObservableProperty]
         public bool flyoutIsPresented;
+
+        public ICommand ShareCommand { get; }
 
         public AppShellViewModel(IServiceManager serviceManager)
         {
@@ -30,6 +38,30 @@ namespace Matri.ViewModel
             Routing.RegisterRoute("visitors", typeof(VisitorsPage));
             Routing.RegisterRoute("requestsreceived", typeof(RequestsReceivedPage));
             Routing.RegisterRoute("requestssent", typeof(RequestsSentPage));
+
+            ShareCommand = new Command<Microsoft.Maui.Controls.View>(OnRequest);
+        }
+
+        public async void OnRequest(Microsoft.Maui.Controls.View element)
+        {
+            try
+            {
+                var token = await SecureStorage.GetAsync("Token");
+                var appDetails = await _serviceManager.GetAppDetails(new Guid(token));
+                await Share.RequestAsync(new ShareTextRequest
+                {
+                    Subject = "ChristianJodi",
+                    Text = "Click To Download ChristianJodi App",
+                    Uri = appDetails.GooglePlayStoreLink,
+                    Title = "Link To Download ChristianJodi App",
+                    PresentationSourceBounds = element.GetAbsoluteBounds()
+                });
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
         }
 
         [RelayCommand]
