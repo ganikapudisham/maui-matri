@@ -38,6 +38,13 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public MiniProfile selectedProfile;
 
+        [ObservableProperty]
+        public bool showRecordsSection;
+        [ObservableProperty]
+        public bool showRecordsNotFoundSection;
+        [ObservableProperty]
+        public bool showPagingSection;
+
         public ObservableRangeCollection<Visitor> Profiles { get; private set; } = new ObservableRangeCollection<Visitor>();
 
         [RelayCommand]
@@ -66,6 +73,19 @@ namespace Matri.ViewModel
                 EPageNumber = pageNumber.ToString();
 
                 Profiles.AddRange(dbProfiles);
+
+                if (dbProfilesWithPaging.MetaData.TotalRecords == 0)
+                {
+                    ShowRecordsNotFoundSection = true;
+                    ShowRecordsSection = false;
+                    ShowPagingSection = false;
+                }
+                else
+                {
+                    ShowRecordsNotFoundSection = false;
+                    ShowRecordsSection = true;
+                    ShowPagingSection = true;
+                }
             }
             catch (MatriInternetException exception)
             {

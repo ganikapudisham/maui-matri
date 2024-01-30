@@ -13,7 +13,7 @@ xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <StackLayout Grid.Row="0" IsVisible="{Binding ShowRecordsNotFoundSection}">
-                <Label FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="We Did Not Find Any Match Records. Please Try Again With Different Search Criteria"></Label>
+                <Label FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Records not found"></Label>
             </StackLayout>
             <StackLayout Grid.Row="1" IsVisible="{Binding ShowRecordsSection}">
                 <CollectionView x:Name="profilesCollectionView" ItemsSource="{Binding Profiles}" 
