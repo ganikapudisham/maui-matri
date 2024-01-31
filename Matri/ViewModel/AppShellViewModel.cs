@@ -10,6 +10,9 @@ using static System.Net.Mime.MediaTypeNames;
 using System.Windows.Input;
 using PlatformIntegrationDemo.Helpers;
 using Matri.Model;
+//using Matri.Views.Settings;
+//using Matri.Views.AboutUs;
+//using Matri.Views.ContactUs;
 
 namespace Matri.ViewModel
 {
@@ -38,6 +41,10 @@ namespace Matri.ViewModel
             Routing.RegisterRoute("visitors", typeof(VisitorsPage));
             Routing.RegisterRoute("requestsreceived", typeof(RequestsReceivedPage));
             Routing.RegisterRoute("requestssent", typeof(RequestsSentPage));
+
+            Routing.RegisterRoute("settings", typeof(SettingsPage));
+            Routing.RegisterRoute("aboutus", typeof(AboutUsPage));
+            Routing.RegisterRoute("contactus", typeof(ContactUsPage));
 
             ShareCommand = new Command<Microsoft.Maui.Controls.View>(OnRequest);
         }

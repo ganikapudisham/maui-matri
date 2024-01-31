@@ -94,6 +94,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Resources\Styles\StylesAboutUs.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\StylesContactUs.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\StylesMyAccount.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -109,7 +115,13 @@
 	  <MauiXaml Update="Themes\LightTheme.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\AboutUs\AboutUsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\AllProfiles\AllProfilesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContactUs\ContactUsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\EditProfile\EditAcademicsPage.xaml">
@@ -199,12 +211,21 @@
 	  <MauiXaml Update="Views\Search\SearchPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Settings\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Views\PromoteApp\" />
+	  <Folder Include="Model\ContactUs\" />
 	  <Folder Include="Views\Search\Advanced\" />
 	  <Folder Include="Views\Search\ById\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\AboutUs\AboutUsPage.xaml.cs">
+	    <DependentUpon>AboutUsPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 </Project>

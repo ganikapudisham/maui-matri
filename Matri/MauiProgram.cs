@@ -54,8 +54,8 @@ namespace Matri
             builder.Services.AddSingleton<ProfileDetailsViewModel>();
             builder.Services.AddSingleton<ProfileDetailsPage>();
 
-            //builder.Services.AddSingleton<SettingsViewModel>();
-            //builder.Services.AddSingleton<SettingsPage>();
+            builder.Services.AddSingleton<SettingsViewModel>();
+            builder.Services.AddSingleton<SettingsPage>();
 
             builder.Services.AddSingleton<IServiceManager, ServiceManager>();
             builder.Services.AddSingleton<IServiceRepository, ServiceRepository>();
@@ -128,6 +128,12 @@ namespace Matri
 
             builder.Services.AddSingleton<RequestsSentViewModel>();
             builder.Services.AddSingleton<RequestsSentPage>();
+
+            builder.Services.AddSingleton<AboutUsViewModel>();
+            builder.Services.AddSingleton<AboutUsPage>();
+
+            builder.Services.AddSingleton<ContactUsViewModel>();
+            builder.Services.AddSingleton<ContactUsPage>();
 
             //builder.Services.AddSingleton<ICloseApplication, CloseApplication>();
             //builder.Services.AddSingleton<IFirebaseAnalytics, FirebaseAnalytics>();

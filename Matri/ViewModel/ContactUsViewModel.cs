@@ -3,13 +3,13 @@ using System.Collections.ObjectModel;
 
 namespace Matri.ViewModel
 {
-    public partial class SettingsViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
+    public partial class ContactUsViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
         readonly IList<ProfilePhoto> source;
 
         public ObservableCollection<ProfilePhoto> Monkeys { get; private set; }
 
-        public SettingsViewModel()
+        public ContactUsViewModel()
         {
             source = new List<ProfilePhoto>();
             CreateMonkeyCollection();
