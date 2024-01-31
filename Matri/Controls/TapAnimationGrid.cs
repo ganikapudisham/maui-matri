@@ -110,12 +110,12 @@ namespace Matri.Controls
         static async void OnTapped (BindableObject bindable, object oldValue, object newValue)
         {
             var grid = (TapAnimationGrid)bindable;
-            Application.Current.Resources.TryGetValue("Gray-100", out var retVal);
+            Application.Current.Resources.TryGetValue("Gray100", out var retVal);
             grid.BackgroundColor = (Color)retVal;
 
             // To make the selected item color changes for 100 milliseconds.
             await Task.Delay(100);
-            Application.Current.Resources.TryGetValue("Gray-White", out var retValue);
+            Application.Current.Resources.TryGetValue("GrayWhite", out var retValue);
             grid.BackgroundColor = (Color)retValue;
         }
         #endregion

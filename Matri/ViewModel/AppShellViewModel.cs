@@ -10,9 +10,6 @@ using static System.Net.Mime.MediaTypeNames;
 using System.Windows.Input;
 using PlatformIntegrationDemo.Helpers;
 using Matri.Model;
-//using Matri.Views.Settings;
-//using Matri.Views.AboutUs;
-//using Matri.Views.ContactUs;
 
 namespace Matri.ViewModel
 {
@@ -29,7 +26,6 @@ namespace Matri.ViewModel
         {
             _serviceManager = serviceManager;
             Routing.RegisterRoute("profiledetails", typeof(ProfileDetailsPage));
-            //Routing.RegisterRoute("settings", typeof(SettingsPage));
             Routing.RegisterRoute("searchbyid", typeof(SearchByIdPage));
             Routing.RegisterRoute("searchadvanced", typeof(SearchAdvancedPage));
             Routing.RegisterRoute("searchresults", typeof(SearchResultsPage));

@@ -3,10 +3,122 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Matri.Views.SettingsPage"
              Title="SettingsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary Source="/Resources/Styles/StylesSettings.xaml" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <StackLayout BackgroundColor="{DynamicResource Gray100}" Spacing="0">
+
+            <!--  Header lable for notifications  -->
+            <Label
+            Margin="16,0,0,0"
+            FontFamily="{StaticResource Montserrat-SemiBold}"
+            FontSize="12"
+            HeightRequest="50"
+            HorizontalOptions="FillAndExpand"
+            LineHeight="{OnPlatform Default=-1,
+                                    Android=1.25}"
+            Text="VERSION"
+            TextColor="{DynamicResource Gray800}"
+            VerticalOptions="Center"
+            VerticalTextAlignment="Center" />
+
+            <!--  Grid for Notifications label and switch  -->
+            <Grid
+            BackgroundColor="{DynamicResource GrayWhite}"
+            ColumnSpacing="0"
+            RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <!--  Notifications icon  -->
+                <Label
+                Grid.Column="0"
+                Margin="16,0,0,0"
+                Style="{StaticResource IconLabelStyle}"
+                Text="{StaticResource Bell}" />
+                <!--  Notification label  -->
+                <Label
+                Grid.Column="1"
+                Style="{StaticResource LabelStyle}"
+                Text="My App Version" />
+                <!--  Notifications switch  -->
+                <Label
+                Grid.Column="2"
+                Margin="8,0"
+                HeightRequest="28" Text="{Binding UserAppVersion}">
+                </Label>
+            </Grid>
+            <BoxView Style="{StaticResource SeparatorStyle}" />
+
+            <!--  Grid for Email notifications and switch  -->
+            <Grid
+            BackgroundColor="{DynamicResource GrayWhite}"
+            ColumnSpacing="0"
+            RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <!--  Email notification icon  -->
+                <Label
+                Grid.Column="0"
+                Margin="16,0,0,0"
+                Style="{StaticResource IconLabelStyle}"
+                Text="{StaticResource Mail}" />
+                <!--  Email notification label  -->
+                <Label
+                Grid.Column="1"
+                Style="{StaticResource LabelStyle}"
+                Text="Latest App Version" />
+                <!--  Email notification switch  -->
+                <Label
+                Grid.Column="2"
+                Margin="8,0" Text="{Binding AppVersionLatest}"
+                HeightRequest="28">
+                </Label>
+            </Grid>
+            <BoxView BackgroundColor="{DynamicResource Gray100}" HeightRequest="20" />
+
+            <Grid
+            BackgroundColor="{DynamicResource GrayWhite}"
+            ColumnSpacing="0" IsVisible="{Binding UpdateAvailable}"
+            RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <!--  Email notification icon  -->
+                <Label
+                Grid.Column="0"
+                Margin="16,0,0,0" />
+                <!--  Email notification label  -->
+                <Label
+                Grid.Column="1"
+                Style="{StaticResource LabelStyle}" Text="{Binding VersionMessage}" />
+
+                <Label Text="Click To Download Latest Version" Style="{StaticResource LabelStyle}" HorizontalOptions="Start" 
+                   TextColor="Blue" Grid.Column="1">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToPlayStore}" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <!--  Email notification switch  -->
+                <Label
+                Grid.Column="2"
+                Margin="8,0"
+                HeightRequest="28" >
+                </Label>
+            </Grid>
+            <BoxView BackgroundColor="{DynamicResource Gray100}" HeightRequest="20" />
+
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

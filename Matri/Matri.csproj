@@ -90,6 +90,8 @@
 		<PackageReference Include="Syncfusion.Maui.Core" Version="24.1.46" />
 		<PackageReference Include="Syncfusion.Maui.Expander" Version="24.1.46" />
 		<PackageReference Include="Syncfusion.Maui.Inputs" Version="24.1.46" />
+		<PackageReference Include="Syncfusion.Maui.ListView" Version="24.1.46" />
+		<PackageReference Include="Syncfusion.Maui.Maps" Version="24.1.46" />
 		<PackageReference Include="Syncfusion.Maui.TabView" Version="24.1.46" />
 	</ItemGroup>
 
@@ -110,6 +112,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\StylesSearch.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\StylesSettings.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Themes\LightTheme.xaml">
@@ -217,15 +222,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Model\ContactUs\" />
 	  <Folder Include="Views\Search\Advanced\" />
 	  <Folder Include="Views\Search\ById\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Update="Views\AboutUs\AboutUsPage.xaml.cs">
-	    <DependentUpon>AboutUsPage.xaml</DependentUpon>
-	  </Compile>
 	</ItemGroup>
 
 </Project>

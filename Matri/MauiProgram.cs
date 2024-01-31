@@ -129,11 +129,11 @@ namespace Matri
             builder.Services.AddSingleton<RequestsSentViewModel>();
             builder.Services.AddSingleton<RequestsSentPage>();
 
-            builder.Services.AddSingleton<AboutUsViewModel>();
-            builder.Services.AddSingleton<AboutUsPage>();
+            //builder.Services.AddSingleton<AboutUsViewModel>();
+            //builder.Services.AddSingleton<AboutUsPage>();
 
-            builder.Services.AddSingleton<ContactUsViewModel>();
-            builder.Services.AddSingleton<ContactUsPage>();
+            //builder.Services.AddSingleton<ContactUsViewModel>();
+            //builder.Services.AddSingleton<ContactUsPage>();
 
             //builder.Services.AddSingleton<ICloseApplication, CloseApplication>();
             //builder.Services.AddSingleton<IFirebaseAnalytics, FirebaseAnalytics>();

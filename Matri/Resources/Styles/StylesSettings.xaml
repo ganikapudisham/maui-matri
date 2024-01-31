@@ -1,24 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ResourceDictionary
+<ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:control="clr-namespace:Matri.Controls"
     xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
-    >
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Color x:Key="Transparent">Transparent</Color>
     <x:String x:Key="Back">&#xe709;</x:String>
     <x:String x:Key="Search">&#xe705;</x:String>
-    <!--<x:String x:Key="Share">&#xe704;</x:String>-->
+    <x:String x:Key="Share">&#xe704;</x:String>
     <x:String x:Key="Next">&#xe71a;</x:String>
     <x:String x:Key="Account">&#xe70e;</x:String>
-    <!--<x:String x:Key="Bell">&#xe700;</x:String>-->
+    <x:String x:Key="Bell">&#xe700;</x:String>
     <x:String x:Key="Mail">&#xe70e;</x:String>
     <x:String x:Key="Help">&#xe72c;</x:String>
-    <!--<x:String x:Key="Visitors">&#xf0c0;</x:String>-->
-    <!--<x:String x:Key="Received">&#xf112;</x:String>
-    <x:String x:Key="Sent">&#xf064;</x:String>-->
-   
+
 
     <!--  Common style for entries  -->
     <Style x:Key="ChatSearchEntryStyle" TargetType="control:BorderlessEntry">
@@ -62,24 +57,25 @@
     <!--  Common style for icon label  -->
     <Style x:Key="IconLabelStyle" TargetType="Label">
         <Setter Property="Margin" Value="16,8" />
-        <!--<Setter Property="TextColor" Value="{DynamicResource Gray600}" />-->
+        <Setter Property="TextColor" Value="{DynamicResource Gray600}" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
-        <Setter Property="FontFamily" Value="FontAwesomeSolid" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
     </Style>
 
     <!--  Common style for SfborderStyle  -->
-    <Style x:Key="SfBorderStyle" TargetType="Border">
+    <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
         <Setter Property="BackgroundColor" Value="{DynamicResource GrayWhite}" />
-        <!--<Setter Property="CornerRadius" Value="25" />-->
+        <Setter Property="BorderColor" Value="Transparent" />
+        <Setter Property="CornerRadius" Value="25" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
     </Style>
 
     <!--  Common style for  Label  -->
     <Style x:Key="LabelStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="Montserrat-Medium" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="TextColor" Value="{DynamicResource Gray900}" />
         <Setter Property="VerticalOptions" Value="Center" />
@@ -88,9 +84,9 @@
         <Setter Property="Margin" Value="16, 12" />
         <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
         <Setter Property="LineHeight" Value="{OnPlatform Default=-1, Android=1.5}" />
-        <Setter Property="MaxLines" Value="2" />    
+        <Setter Property="MaxLines" Value="2" />
     </Style>
-    
+
     <!--  Common style for separator BoxView  -->
     <Style x:Key="SeparatorStyle" TargetType="BoxView">
         <Setter Property="HeightRequest" Value="1" />
@@ -106,6 +102,18 @@
     </Style>
 
     <!--  Common style for rounded buttons  -->
-    
+    <Style
+    x:Key="RoundButtonStyle"
+    BasedOn="{StaticResource SfButtonStyle}"
+    TargetType="buttons:SfButton">
+        <Setter Property="BorderColor" Value="{DynamicResource Gray300}" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="CornerRadius" Value="22" />
+        <Setter Property="WidthRequest" Value="44" />
+        <Setter Property="HeightRequest" Value="44" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
 
 </ResourceDictionary>

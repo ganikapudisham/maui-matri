@@ -76,8 +76,8 @@
                 new RowDefinition { Height = 1 }
             };
 
-            //var boxView = new BoxView { Color = (Color)Application.Current.Resources["Gray-200"] };
-            //var boxView = new BoxView { Color = (Color)hp.GetResourceValue("Gray-200") };
+            //var boxView = new BoxView { Color = (Color)Application.Current.Resources["Gray200"] };
+            //var boxView = new BoxView { Color = (Color)hp.GetResourceValue("Gray200") };
 
             //Children.Add(this.LeadingView, 1, 0);
             //Children.Add(this.Content, 2, 0);
@@ -221,7 +221,7 @@
                 titleView.titleLabel = new Label
                 {
                     Text = newText,
-                    //TextColor = (Color)hp.GetResourceValue("Gray-900"),
+                    //TextColor = (Color)hp.GetResourceValue("Gray900"),
                     FontSize = 16,
                     Margin = new Thickness(0, 8),
                     FontFamily = Device.RuntimePlatform == Device.Android
