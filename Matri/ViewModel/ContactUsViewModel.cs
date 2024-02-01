@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Matri.Business;
 using Matri.CustomExceptions;
 using Matri.Model;
@@ -22,8 +23,6 @@ namespace Matri.ViewModel
         public ContactUsViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
-            //this.CustomMarkers = new ObservableRangeCollection<MapMarker>();
-            //this.GetPinLocation();
             Task.Run(async () => { await LoadTasks(); });
         }
 
@@ -42,27 +41,11 @@ namespace Matri.ViewModel
             PinCode = affiliateContactDetails.Pincode;
             var lon = affiliateContactDetails.Longitude;
             var lat = affiliateContactDetails.Latitude;
+
+            var sessionToken = await SecureStorage.GetAsync("Token");
+            AppDetails = await _serviceManager.GetAppDetails(new Guid(sessionToken));
         }
 
-        /// <summary>
-        /// Gets or sets the CustomMarkers collection.
-        /// </summary>
-            //public ObservableRangeCollection<MapMarker> CustomMarkers
-            //{
-            //    get
-            //    {
-            //        return this.customMarkers;
-            //    }
-
-            //    set
-            //    {
-            //        this.customMarkers = value;
-            //    }
-            //}
-
-            /// <summary>
-            /// Gets or sets the geo coordinate.
-            /// </summary>
         public Point GeoCoordinate
         {
             get
@@ -75,30 +58,6 @@ namespace Matri.ViewModel
                 this.geoCoordinate = value;
             }
         }
-
-        /// <summary>
-        /// This method is for getting the pin location detail.
-        /// </summary>
-        //private void GetPinLocation()
-        //{
-        //    this.CustomMarkers.Add(
-        //        new LocationMarker
-        //        {
-        //            PinImage = "Pin.png",
-        //            Header = Name.Value,
-        //            Address = $"{Address1.Value} {Address2.Value} {Address3.Value} {PinCode.Value}",
-        //            EmailId = Email.Value,
-        //            PhoneNumber = Telephone1.Value,
-        //            CloseImage = FontAwesomeIcons.FaTimes,
-        //            //Latitude = "17.439930",
-        //            //Longitude = "78.498276"
-        //        });
-
-        //    foreach (var marker in this.CustomMarkers)
-        //    {
-        //        this.GeoCoordinate = new Point(Convert.ToDouble(marker.Latitude, CultureInfo.CurrentCulture), Convert.ToDouble(marker.Longitude, CultureInfo.CurrentCulture));
-        //    }
-        //}
 
         [ObservableProperty]
         public string name;
@@ -132,28 +91,10 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public Model.App appDetails;
 
-        public void SendEmailCommand()
-        {
-            Task.Run(async () => { await SendEmailCommandAsync(); });
-        }
-
-        public void SendWhatsAppCommand()
-        {
-            Task.Run(async () => { await SendWhatsAppCommandAsync(); });
-        }
-
-        //public override async Task Initialize()
-        //{
-        //    await base.Initialize();
-
-        //    var sessionToken = await SecureStorage.GetAsync("Token");
-        //    AppDetails.Value = await _serviceManager.GetAppDetails(new Guid(sessionToken));
-        //}
-
-        private async Task SendEmailCommandAsync()
+        [RelayCommand]
+        public async Task SendEmail()
         {
             var validationSuccess = await Validate();
-
             if (!validationSuccess) return;
 
             var contactUs = new ContactUs
@@ -167,31 +108,40 @@ namespace Matri.ViewModel
             {
                 var sessionToken = await SecureStorage.GetAsync("Token");
                 await _serviceManager.ContactUs(new Guid(sessionToken), contactUs);
-                //await _userDialogs.AlertAsync("Thank You, We will get back to you at the earliest.");
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Thank You, We will revert at the earliest.", "OK");
             }
             catch (MatriInternetException exception)
             {
-                //await _userDialogs.AlertAsync(exception.Message);
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
             }
             catch (Exception exception)
             {
-                //await _userDialogs.AlertAsync("Failed To Send Message, Please Try Again");
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Failed To Send Message, Please Try Again", "OK");
             }
         }
 
-        private async Task SendWhatsAppCommandAsync()
+        [RelayCommand]
+        public async Task SendWhatsApp()
         {
             var validationSuccess = await Validate();
-
             if (!validationSuccess) return;
 
             try
             {
-                //Chat.Open($"+91{AppDetails.WAAdminNumber}", $"{ContactUsName} {ContactUsEmail} {ContactUsMessage}");
+                bool supportsUri = await Launcher.Default.CanOpenAsync($"whatsapp://send?phone=+91{AppDetails.WAAdminNumber}");
+
+                if (supportsUri)
+                {
+                    var message = $"{ContactUsName} {ContactUsEmail} {ContactUsMessage}";
+                    await Launcher.Default.OpenAsync($"whatsapp://send?phone=+91{AppDetails.WAAdminNumber}&text={message}");
+                }
+
+                else
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", "Failed to open WhatsApp.", "OK");
             }
             catch (Exception ex)
             {
-                //await _userDialogs.AlertAsync(ex.Message);
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", ex.Message, "OK");
             }
         }
 
@@ -199,22 +149,21 @@ namespace Matri.ViewModel
         {
             if (string.IsNullOrWhiteSpace(ContactUsName))
             {
-                //await _userDialogs.AlertAsync("Please Specify Your Name");
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please Specify Your Name", "OK");
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(ContactUsEmail))
             {
-                //await _userDialogs.AlertAsync("Please Specify Your Email");
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please Specify Your Email", "OK");
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(ContactUsMessage))
             {
-                //await _userDialogs.AlertAsync("Please Specify Message");
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please Specify Message", "OK");
                 return false;
             }
-
             return true;
         }
     }
