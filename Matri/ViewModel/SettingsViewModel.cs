@@ -37,7 +37,7 @@ namespace Matri.ViewModel
         [RelayCommand]
         public async Task UpdateApp()
         {
-            var launcherOpened = await Launcher.Default.OpenAsync(new Uri($"market://details?id={GooglePlayStoreAppId}"));
+            var launcherOpened = await Launcher.Default.OpenAsync(new Uri($"http://play.google.com/store/apps/details?id={AppInfo.PackageName}"));
 
             if (launcherOpened)
             {

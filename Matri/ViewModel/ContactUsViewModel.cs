@@ -29,8 +29,7 @@ namespace Matri.ViewModel
 
         public async Task LoadTasks()
         {
-            var userApp = DependencyService.Get<IAppVersionProvider>();
-            var affiliateContactDetails = await _serviceManager.GetAffiliateContactDetails(userApp.AppWebsite);
+            var affiliateContactDetails = await _serviceManager.GetAffiliateContactDetails("christianjodi.com");
             Name = affiliateContactDetails.Name;
             Telephone1 = affiliateContactDetails.Telephone1;
             Telephone2 = affiliateContactDetails.Telephone2;
