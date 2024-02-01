@@ -8,6 +8,7 @@ using Matri.Views;
 using Matri.Views.MyAccount;
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
+using Matri.Services;
 
 namespace Matri
 {
@@ -129,15 +130,13 @@ namespace Matri
             builder.Services.AddSingleton<RequestsSentViewModel>();
             builder.Services.AddSingleton<RequestsSentPage>();
 
-            //builder.Services.AddSingleton<AboutUsViewModel>();
-            //builder.Services.AddSingleton<AboutUsPage>();
+            builder.Services.AddSingleton<AboutUsViewModel>();
+            builder.Services.AddSingleton<AboutUsPage>();
 
-            //builder.Services.AddSingleton<ContactUsViewModel>();
-            //builder.Services.AddSingleton<ContactUsPage>();
+            builder.Services.AddSingleton<ContactUsViewModel>();
+            builder.Services.AddSingleton<ContactUsPage>();
 
-            //builder.Services.AddSingleton<ICloseApplication, CloseApplication>();
-            //builder.Services.AddSingleton<IFirebaseAnalytics, FirebaseAnalytics>();
-            //builder.Services.AddSingleton<IAppVersionProvider, AppVersionProvider>();
+            builder.Services.AddSingleton<IFirebaseAnalytics, FirebaseAnalytics>();
 
 #if DEBUG
             builder.Logging.AddDebug();
