@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Matri.Business;
+using Matri.FontsAwesome;
 using Matri.Model;
 using System.Collections.ObjectModel;
 
@@ -25,12 +26,23 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public string googlePlayStoreAppId;
         [ObservableProperty]
-        public  int userAppVersionNumber;
+        public int userAppVersionNumber;
+
+        [ObservableProperty]
+        public string myAppVersionIcon = String.Format("{0} {1}", FontAwesomeIcons.Person, FontAwesomeIcons.AppStore);
+
+        [ObservableProperty]
+        public string latestAppVersionIcon = FontAwesomeIcons.AppStore;
 
         [RelayCommand]
-        public async Task NavigateToPlayStore()
+        public async Task UpdateApp()
         {
-            await Launcher.OpenAsync(new Uri($"market://details?id={GooglePlayStoreAppId}"));
+            var launcherOpened = await Launcher.Default.OpenAsync(new Uri($"market://details?id={GooglePlayStoreAppId}"));
+
+            if (launcherOpened)
+            {
+
+            }
         }
 
         public async Task LoadTasks()
@@ -38,14 +50,11 @@ namespace Matri.ViewModel
             var sessionToken = await SecureStorage.GetAsync("Token");
             var appDetails = await _serviceManager.GetAppDetails(new Guid(sessionToken));
 
-            var userApp = DependencyService.Get<IAppVersionProvider>();
-
-            UserAppVersion = userApp.AppVersion;
+            UserAppVersion = AppInfo.Current.VersionString;
             AppVersionLatest = appDetails.LatestVersion;
-            GooglePlayStoreAppId = userApp.GooglePlayStoreAppId;
-            UserAppVersionNumber = userApp.AppVersionNumber;
+            GooglePlayStoreAppId = appDetails.GooglePlayStoreLink;
 
-            if (appDetails.LatestVersionNumber > UserAppVersionNumber)
+            if (appDetails.LatestVersion.Trim() != AppInfo.Current.VersionString.Trim())
             {
                 UpdateAvailable = true;
             }

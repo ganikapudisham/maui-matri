@@ -58,6 +58,8 @@
         public const string Eye = "\uf06e";
         public static readonly string FaShare = "\uf064";    // for xaml use: &#xf064;  -- out
 
+        public const string AppStore = "\uf36f";
+        public const string Person = "";
         #endregion
     }
 

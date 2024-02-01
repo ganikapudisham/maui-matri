@@ -11,10 +11,9 @@
     <ScrollView>
         <StackLayout BackgroundColor="{DynamicResource Gray100}" Spacing="0">
 
-            <!--  Header lable for notifications  -->
             <Label
             Margin="16,0,0,0"
-            FontFamily="{StaticResource Montserrat-SemiBold}"
+            FontFamily="Montserrat-SemiBold"
             FontSize="12"
             HeightRequest="50"
             HorizontalOptions="FillAndExpand"
@@ -25,7 +24,6 @@
             VerticalOptions="Center"
             VerticalTextAlignment="Center" />
 
-            <!--  Grid for Notifications label and switch  -->
             <Grid
             BackgroundColor="{DynamicResource GrayWhite}"
             ColumnSpacing="0"
@@ -35,18 +33,14 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <!--  Notifications icon  -->
                 <Label
                 Grid.Column="0"
                 Margin="16,0,0,0"
-                Style="{StaticResource IconLabelStyle}"
-                Text="{StaticResource Bell}" />
-                <!--  Notification label  -->
+                Style="{StaticResource IconLabelStyle}" Text="{Binding MyAppVersionIcon}"/>
                 <Label
                 Grid.Column="1"
                 Style="{StaticResource LabelStyle}"
                 Text="My App Version" />
-                <!--  Notifications switch  -->
                 <Label
                 Grid.Column="2"
                 Margin="8,0"
@@ -55,7 +49,6 @@
             </Grid>
             <BoxView Style="{StaticResource SeparatorStyle}" />
 
-            <!--  Grid for Email notifications and switch  -->
             <Grid
             BackgroundColor="{DynamicResource GrayWhite}"
             ColumnSpacing="0"
@@ -65,18 +58,15 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <!--  Email notification icon  -->
                 <Label
                 Grid.Column="0"
                 Margin="16,0,0,0"
                 Style="{StaticResource IconLabelStyle}"
-                Text="{StaticResource Mail}" />
-                <!--  Email notification label  -->
+                    Text="{Binding LatestAppVersionIcon}"/>
                 <Label
                 Grid.Column="1"
                 Style="{StaticResource LabelStyle}"
                 Text="Latest App Version" />
-                <!--  Email notification switch  -->
                 <Label
                 Grid.Column="2"
                 Margin="8,0" Text="{Binding AppVersionLatest}"
@@ -94,23 +84,22 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <!--  Email notification icon  -->
                 <Label
                 Grid.Column="0"
                 Margin="16,0,0,0" />
-                <!--  Email notification label  -->
                 <Label
                 Grid.Column="1"
                 Style="{StaticResource LabelStyle}" Text="{Binding VersionMessage}" />
 
-                <Label Text="Click To Download Latest Version" Style="{StaticResource LabelStyle}" HorizontalOptions="Start" 
+                <Label Text="Click To Download Latest Version" Style="{StaticResource LabelStyle}" 
+                       HorizontalOptions="Start" 
                    TextColor="Blue" Grid.Column="1">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding NavigateToPlayStore}" NumberOfTapsRequired="1" />
+                        <TapGestureRecognizer Command="{Binding UpdateAppCommand}" 
+                                              NumberOfTapsRequired="1" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                <!--  Email notification switch  -->
                 <Label
                 Grid.Column="2"
                 Margin="8,0"

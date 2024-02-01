@@ -41,15 +41,12 @@
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Fill" />
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="BorderWidth" Value="0" />
-        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
     </Style>
 
     <!--  Common style for icon buttons  -->
     <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="TextColor" Value="{DynamicResource Gray600}" />
         <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
-        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -62,7 +59,6 @@
     <!--  Common style for icon label  -->
     <Style x:Key="IconLabelStyle" TargetType="Label">
         <Setter Property="Margin" Value="16,8" />
-        <!--<Setter Property="TextColor" Value="{DynamicResource Gray600}" />-->
         <Setter Property="FontSize" Value="18" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
@@ -73,7 +69,6 @@
     <!--  Common style for SfborderStyle  -->
     <Style x:Key="SfBorderStyle" TargetType="Border">
         <Setter Property="BackgroundColor" Value="{DynamicResource GrayWhite}" />
-        <!--<Setter Property="CornerRadius" Value="25" />-->
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
     </Style>
 

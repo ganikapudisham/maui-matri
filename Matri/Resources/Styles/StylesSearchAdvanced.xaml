@@ -47,12 +47,12 @@
     <!--  Common style for flat buttons  -->
 
     <!--  Common style for borders  -->
-    <!--<Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
+    <Style x:Key="SfBorderStyle" TargetType="Border">
         <Setter Property="BackgroundColor" Value="{StaticResource BorderBackgroundColor}" />
-        <Setter Property="BorderColor" Value="Transparent" />
-        <Setter Property="CornerRadius" Value="20" />
-        <Setter Property="BorderWidth" Value="1" />
-    </Style>-->
+        <!--<Setter Property="BorderColor" Value="Transparent" />-->
+        <!--<Setter Property="CornerRadius" Value="20" />-->
+        <!--<Setter Property="BorderWidth" Value="1" />-->
+    </Style>
 
     <!--  Common style for gradient view  -->
 

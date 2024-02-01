@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:control="clr-namespace:Matri.Controls"
+    xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
+    <Style x:Key="SfBorderStyle" TargetType="Border">
         <Setter Property="HeightRequest" Value="40" />
-        <Setter Property="BorderColor" Value="{DynamicResource Gray300}" />
-        <Setter Property="CornerRadius" Value="3" />
         <Setter Property="Padding" Value="8,0,0,0" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
 
@@ -16,7 +16,7 @@
     <!--  Common style for buttons  -->
     <Style x:Key="SfGradientButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="TextColor" Value="{DynamicResource GrayWhite}" />
-        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+        <Setter Property="FontFamily" Value="Montserrat-SemiBold" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="HeightRequest" Value="40" />
         <Setter Property="CornerRadius" Value="24" />

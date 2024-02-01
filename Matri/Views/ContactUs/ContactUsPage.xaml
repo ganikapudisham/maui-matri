@@ -71,7 +71,6 @@
                             <Label
                             x:Name="WarningImage"
                             Margin="0,0,5,0"
-                            FontFamily="{StaticResource FontIcons}"
                             FontSize="{OnIdiom Desktop=14,
                                                Tablet=14,
                                                Phone=12}"
