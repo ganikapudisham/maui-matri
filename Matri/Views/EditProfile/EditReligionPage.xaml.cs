@@ -5,9 +5,8 @@ namespace Matri.Views;
 
 public partial class EditReligionPage : ContentPage
 {
-	public EditReligionPage(EditReligionViewModel viewModel)
+	public EditReligionPage()
     {
 		InitializeComponent();
-        BindingContext = viewModel;
     }
 }

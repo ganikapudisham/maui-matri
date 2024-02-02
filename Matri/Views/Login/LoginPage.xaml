@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Matri.Views.LoginPage"
              xmlns:FoA="clr-namespace:Matri.FontsAwesome;assembly=Matri"
-             
              Title="">
     <VerticalStackLayout 
             Spacing="25" 

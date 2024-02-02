@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Matri.Business;
 using Matri.CustomExceptions;
+using Matri.Helper;
 using Matri.Model;
 using Newtonsoft.Json;
 
@@ -17,9 +18,9 @@ namespace Matri.ViewModel
         //public INC<string> MobileNumber = new NC<string>();
         //public INC<string> PostalAddress = new NC<string>();
         //public INC<string> EmailId = new NC<string>();
-        public EditContactsViewModel(IServiceManager serviceManager)
+        public EditContactsViewModel()
         {
-            _serviceManager = serviceManager;
+            _serviceManager = ServiceHelper.GetService<IServiceManager>();
             //_userDialogs = userDialog;
 
             //MDCountries = new SmartObservableCollection<Master>();

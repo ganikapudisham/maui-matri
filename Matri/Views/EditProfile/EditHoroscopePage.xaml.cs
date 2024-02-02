@@ -4,9 +4,8 @@ namespace Matri.Views;
 
 public partial class EditHoroscopePage : ContentPage
 {
-	public EditHoroscopePage(EditHoroscopeViewModel viewModel)
+	public EditHoroscopePage()
 	{
 		InitializeComponent();
-        BindingContext = viewModel;
     }
 }

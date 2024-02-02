@@ -20,4 +20,8 @@ Plese check internet connection
 Search Not found section needs to be added
 
 Save master data to local sql lite database
+
+https://blog.ewers-peters.de/are-you-using-dependency-injection-in-your-net-maui-app-yet
  
+
+ use calendar control for birthdate

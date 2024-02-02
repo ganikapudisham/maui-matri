@@ -4,7 +4,6 @@ using MvvmHelpers;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Maui.Controls;
-using Prism.Commands;
 using Syncfusion.Maui.Inputs;
 
 namespace Matri.ViewModel

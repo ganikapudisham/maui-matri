@@ -9,6 +9,7 @@ using Matri.Views.MyAccount;
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
 using Matri.Services;
+using Matri.Helper;
 
 namespace Matri
 {
@@ -142,7 +143,12 @@ namespace Matri
             builder.Logging.AddDebug();
 #endif
 
-            return builder.Build();
+            var app= builder.Build();
+
+            ServiceHelper.Initialize(app.Services);
+
+            return app;
+
         }
     }
 }

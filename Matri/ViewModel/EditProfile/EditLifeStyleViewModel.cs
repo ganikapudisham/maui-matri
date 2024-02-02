@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Matri.Business;
+using Matri.Helper;
 using Matri.Model;
 using Newtonsoft.Json;
 
@@ -10,9 +11,9 @@ namespace Matri.ViewModel
 
         IServiceManager _serviceManager;
         //public INC<Profile> LoggedInUser = new NC<Profile>();
-        public EditLifeStyleViewModel(IServiceManager serviceManager)
+        public EditLifeStyleViewModel()
         {
-            _serviceManager = serviceManager;
+            _serviceManager = ServiceHelper.GetService<IServiceManager>();
             //_userDialogs = userDialog;
 
             //MDDrinks = new SmartObservableCollection<Master>();

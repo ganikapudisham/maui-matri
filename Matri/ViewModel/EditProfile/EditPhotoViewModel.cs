@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Matri.Business;
+using Matri.Helper;
 using Matri.Model;
 using Newtonsoft.Json;
 
@@ -9,9 +10,9 @@ namespace Matri.ViewModel
     {
         IServiceManager _serviceManager;
         //public INC<string> ImageSource = new NC<string>();
-        public EditPhotoViewModel(IServiceManager serviceManager)
+        public EditPhotoViewModel()
         {
-            _serviceManager = serviceManager;
+            _serviceManager = ServiceHelper.GetService<IServiceManager>();
         }
 
         //public override void Prepare(Profile parameter)

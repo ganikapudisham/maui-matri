@@ -2,11 +2,292 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Matri.Views.EditBasicPage"
+             xmlns:custom="clr-namespace:Matri.Controls"
+             xmlns:combobox="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             xmlns:button="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+             xmlns:vm="clr-namespace:Matri.ViewModel"
              Title="EditBasicPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary Source="/Resources/Styles/StylesEditBasic.xaml" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <vm:EditBasicViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackLayout Orientation="Vertical"   
+       HorizontalOptions="Center"   
+       VerticalOptions="Center"    
+       BackgroundColor="White">
+                <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" Grid.Row="0" />
+            </StackLayout>
+            <StackLayout BackgroundColor="{DynamicResource GrayWhite}" Spacing="0">
+
+                <Grid
+                Margin="0,12,0,16"
+                Padding="0"
+                ColumnSpacing="16"
+                RowSpacing="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                    Grid.Row="0"
+                    Grid.Column="0" Grid.ColumnSpan="3"
+                    FontFamily="Montserrat-Medium"
+                    FontSize="16"
+                    Text="First Name"
+                    TextColor="{DynamicResource Gray800}" />
+
+                    <Border
+                    Grid.Row="1"
+                    Margin="0"
+                    Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
+
+                        <custom:CustomEntry
+                        Margin="12,0"
+                        FontSize="16"
+                        HeightRequest="40"
+                        Placeholder="First Name"
+                        PlaceholderColor="{DynamicResource Gray700}"
+                        Text="{Binding FirstName}"
+                        TextColor="{DynamicResource Gray900}">
+
+                        </custom:CustomEntry>
+
+                    </Border>
+
+                    <Label
+                    Grid.Row="2"
+                    Grid.Column="0" Grid.ColumnSpan="3"
+                    FontFamily="Montserrat-Medium"
+                    FontSize="16"
+                    Text="Last Name"
+                    TextColor="{DynamicResource Gray800}" />
+
+                    <Border
+                    Grid.Row="3"
+                    Margin="0"
+                    Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
+
+                        <custom:CustomEntry
+                        Margin="12,0"
+                        FontSize="16"
+                        HeightRequest="40"
+                        Placeholder="Last Name"
+                        PlaceholderColor="{DynamicResource Gray700}"
+                            Text="{Binding LastName}"
+                        TextColor="{DynamicResource Gray900}">
+
+                        </custom:CustomEntry>
+
+                    </Border>
+
+                    <Label
+                    Grid.Row="4"
+                    Grid.Column="0" Grid.ColumnSpan="3"
+                    FontFamily="Montserrat-Medium"
+                    FontSize="16"
+                    Text="Mother Tongue"
+                    TextColor="{DynamicResource Gray800}" />
+                    <Border
+                    Grid.Row="5"
+                    Margin="0"
+                    Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
+
+                        <combobox:SfComboBox ItemsSource="{Binding MDLanguages}"
+                x:Name="DDLLanguage" SelectedItem="{Binding SelectedMotherTongue}"
+                Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
+                 IsEditable="true">
+                        </combobox:SfComboBox>
+                    </Border>
+
+                    <Label
+                    Grid.Row="6"
+                    Grid.Column="0" Grid.ColumnSpan="3"
+                    FontFamily="Montserrat-Medium"
+                    FontSize="16"
+                    Text="Marital Status"
+                    TextColor="{DynamicResource Gray800}" />
+                    <Border
+                    Grid.Row="7"
+                    Margin="0"
+                    Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
+
+                        <combobox:SfComboBox ItemsSource="{Binding MDMaritalStatus}"
+                x:Name="DDLMaritalStatus" SelectedItem="{Binding SelectedMaritalStatus}"
+                Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
+                  IsEditable="true">
+                        </combobox:SfComboBox>
+                    </Border>
+
+                    <Label
+                    Grid.Row="8"
+                    Grid.Column="0" Grid.ColumnSpan="3"
+                    FontFamily="Montserrat-Medium"
+                    FontSize="16"
+                    Text="Birth Date"
+                    TextColor="{DynamicResource Gray800}" />
+
+                    <Border Grid.Row="9" Grid.Column="0"
+                    Margin="0" Style="{StaticResource FormBorderStyle}">
+                        <combobox:SfComboBox IsEditable="true" ItemsSource="{Binding BDDates}" 
+                                     SelectedItem="{Binding SelectedBirthDate}" 
+                                DisplayMemberPath="Name"  Grid.Row="5" 
+                                                 HeightRequest="50">
+                        </combobox:SfComboBox>
+                    </Border>
+
+                    <Border Grid.Row="9" Grid.Column="1"
+                    Margin="0" Style="{StaticResource FormBorderStyle}">
+                        <combobox:SfComboBox IsEditable="true" ItemsSource="{Binding BDMonths}" 
+                                     SelectedItem="{Binding SelectedBirthMonth}" 
+                                 DisplayMemberPath="Name"  Grid.Row="6" 
+                                                 HeightRequest="50" >
+                        </combobox:SfComboBox>
+                    </Border>
+
+                    <Border Grid.Row="9" Grid.Column="2"
+                    Margin="0" Style="{StaticResource FormBorderStyle}">
+                        <combobox:SfComboBox IsEditable="true" ItemsSource="{Binding BDYears}" 
+                                     SelectedItem="{Binding SelectedBirthYear}" 
+                                 DisplayMemberPath="Name"  Grid.Row="7" 
+                                                 HeightRequest="50">
+                        </combobox:SfComboBox>
+                    </Border>
+
+                    <!-- -->
+                    <Grid Grid.Row="10" Grid.ColumnSpan="2" IsVisible="{Binding ShowHinduFields}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                    Grid.Row="0"
+                    Grid.Column="0" Grid.ColumnSpan="3"
+                    FontFamily="Montserrat-Medium"
+                    FontSize="16"
+                    Text="Birth Time"
+                    TextColor="{DynamicResource Gray800}" />
+
+                        <Border
+                    Grid.Row="0"
+                    Margin="0"
+                    Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
+
+                            <custom:CustomEntry
+                        Margin="12,0"
+                        FontSize="16"
+                        HeightRequest="40"
+                        Placeholder="Birth Time"
+                        PlaceholderColor="{DynamicResource Gray700}"
+                        Text="{Binding BirthTime}"
+                        TextColor="{DynamicResource Gray900}" />
+
+                        </Border>
+
+                        <Label
+                    Grid.Row="1"
+                    Grid.Column="0" Grid.ColumnSpan="3"
+                    FontFamily="Montserrat-Medium"
+                    FontSize="16"
+                    Text="Birth Place"
+                    TextColor="{DynamicResource Gray800}" />
+
+                        <Border
+                    Grid.Row="1"
+                    Margin="0"
+                    Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
+
+                            <custom:CustomEntry
+                        Margin="12,0"
+                        FontSize="16"
+                        HeightRequest="40"
+                        Placeholder="Birth Place"
+                        PlaceholderColor="{DynamicResource Gray700}"
+                        Text="{Binding BirthPlace}"
+                        TextColor="{DynamicResource Gray900}" />
+
+                        </Border>
+                    </Grid>
+                    <!-- -->
+                    <Label
+                    Grid.Row="11"
+                    Grid.Column="0" Grid.ColumnSpan="3"
+                    FontFamily="Montserrat-Medium"
+                    FontSize="16"
+                    Text="About Me"
+                    TextColor="{DynamicResource Gray800}" />
+
+                    <Border
+                    Grid.Row="12"
+                    Margin="0"
+                    Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
+
+                        <Editor
+                        Margin="12,0"
+                        FontSize="16"
+                        HeightRequest="100"
+                        Placeholder="About Me"
+                        PlaceholderColor="{DynamicResource Gray700}"
+                        Text="{Binding AboutMe}"
+                        TextColor="{DynamicResource Gray900}"  />
+
+                    </Border>
+
+                    <button:SfButton
+        Grid.Row="13"
+        Command="{Binding UpdateCommand}"
+        HorizontalOptions="Center"
+        Style="{StaticResource SfButtonStyle}"
+        Text="SAVE"
+        WidthRequest="245" Grid.ColumnSpan="3"  />
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+    
 </ContentPage>

@@ -1,306 +1,270 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Matri.Business;
 using Matri.CustomExceptions;
+using Matri.Helper;
 using Matri.Model;
+using MvvmHelpers;
 using Newtonsoft.Json;
+using System.Runtime.CompilerServices;
 
 namespace Matri.ViewModel
 {
-    public class EditBasicViewModel : ObservableObject
+    public partial class EditBasicViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
-        IServiceManager _serviceManager;
-        //private readonly IUserDialogs _userDialogs;
+        private readonly IServiceManager _serviceManager;
 
-        //public INC<Profile> LoggedInUser = new NC<Profile>();
-        //public INC<string> BirthPlace = new NC<string>();
-        //public INC<string> BirthTime = new NC<string>();
-        //public INC<string> AboutMe = new NC<string>();
-        //public INC<string> FirstName = new NC<string>();
-        //public INC<string> LastName = new NC<string>();
-        //public INC<bool> ShowHinduFields = new NC<bool>(false);
+        [ObservableProperty]
+        public Profile profile;
+        [ObservableProperty]
+        public string birthPlace;
+        [ObservableProperty]
+        public string birthTime;
+        [ObservableProperty]
+        public string aboutMe;
+        [ObservableProperty]
+        public string firstName;
+        [ObservableProperty]
+        public string lastName;
+        [ObservableProperty]
+        public bool showHinduFields;
+        [ObservableProperty]
+        public bool isBusy = false;
 
-        //private Master selectedMotherTongue;
-        //public Master SelectedMotherTongue
-        //{
-        //    get
-        //    {
-        //        return selectedMotherTongue;
-        //    }
-        //    set
-        //    {
-        //        selectedMotherTongue = value;
-        //        RaisePropertyChanged("SelectedMotherTongue");
-        //    }
-        //}
+        [ObservableProperty]
+        private Master selectedMotherTongue;
 
-        //private SmartObservableCollection<Master> mdLanguages;
-        //public SmartObservableCollection<Master> MDLanguages
-        //{
-        //    get { return mdLanguages; }
-        //    set
-        //    {
-        //        mdLanguages = value;
-        //    }
-        //}
-
-        //private SmartObservableCollection<Master> mdMaritalStatus;
-        //public SmartObservableCollection<Master> MDMaritalStatus
-        //{
-        //    get { return mdMaritalStatus; }
-        //    set
-        //    {
-        //        mdMaritalStatus = value;
-        //    }
-        //}
-
-        //private Master selectedMaritalStatus;
-        //public Master SelectedMaritalStatus
-        //{
-        //    get
-        //    {
-        //        return selectedMaritalStatus;
-        //    }
-        //    set
-        //    {
-        //        selectedMaritalStatus = value;
-        //        RaisePropertyChanged("SelectedMaritalStatus");
-        //    }
-        //}
-
-
-        public EditBasicViewModel(IServiceManager serviceManager)
+        private ObservableRangeCollection<Master> mdLanguages;
+        public ObservableRangeCollection<Master> MDLanguages
         {
-            _serviceManager = serviceManager;
-            //_userDialogs = userDialog;
-            //MDLanguages = new SmartObservableCollection<Master>();
-            //MDMaritalStatus = new SmartObservableCollection<Master>();
-
-            //var defaultMaster = new Master();
-            //defaultMaster.Id = "SELECT";
-            //defaultMaster.Name = "SELECT";
-
-            //SelectedMotherTongue = defaultMaster;
-            //SelectedMaritalStatus = defaultMaster;
-
-            //BDDates = new SmartObservableCollection<Master>();
-            //BDYears = new SmartObservableCollection<Master>();
-            //BDMonths = new SmartObservableCollection<Master>();
+            get { return mdLanguages; }
+            set
+            {
+                mdLanguages = value;
+            }
         }
 
-        //public override void Prepare(Profile profile)
-        //{
-            //LoggedInUser.Value = profile;
-            //FirstName.Value = profile.FirstName;
-            //LastName.Value = profile.LastName;
-            //BirthTime.Value = profile.BirthTime;
-            //BirthPlace.Value = profile.BirthPlace;
-            //AboutMe.Value = profile.AboutMe;
-
-
-            //for (var i = 1; i < 32; i++)
-            //{
-            //    BDDates.Add(new Master { Id = i.ToString(), Name = i.ToString() });
-            //}
-            //var currentYear = DateTime.Now.Year;
-            //var UpperLimit = currentYear - 19; // 18 years back
-            //var LowerLimit = UpperLimit - 70;
-            //for (var i = UpperLimit; i > LowerLimit; i--)
-            //{
-            //    BDYears.Add(new Master { Id = i.ToString(), Name = i.ToString() });
-            //}
-
-            //var months = new List<string>();
-            //months.Add("Jan");
-            //months.Add("Feb");
-            //months.Add("Mar");
-            //months.Add("Apr");
-            //months.Add("May");
-            //months.Add("Jun");
-            //months.Add("Jul");
-            //months.Add("Aug");
-            //months.Add("Sep");
-            //months.Add("Oct");
-            //months.Add("Nov");
-            //months.Add("Dec");
-
-            //for (int i = 0; i < 12; i++)
-            //{
-            //    var id = i + 1;
-            //    BDMonths.Add(new Master { Id = id.ToString(), Name = months[i] });
-            //}
-
-            //var birthDate = profile.BirthDate.Split('-');
-            //selectedBirthDate = BDDates.Where(bd => bd.Name == birthDate[2]).FirstOrDefault();
-            //SelectedBirthMonth = BDMonths.Where(bd => bd.Name == birthDate[1]).FirstOrDefault();
-            //SelectedBirthYear = bdYears.Where(bd => bd.Name == birthDate[0]).FirstOrDefault();
-        //}
-
-        //public override async Task Initialize()
-        //{
-            //await base.Initialize();
-            //var sessionToken = await SecureStorage.GetAsync("Token");
-            //var showHinduFields = await SecureStorage.GetAsync("ShowHinduFields");
-
-            //ShowHinduFields.Value = Convert.ToBoolean(showHinduFields);
-
-            //try
-            //{
-            //    var masterDataMotherTongues = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=languages");
-            //    MDLanguages.AddRange(masterDataMotherTongues);
-
-            //    var userMotherTongue = masterDataMotherTongues.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.MotherTongue.ToLower()).FirstOrDefault();
-            //    SelectedMotherTongue = userMotherTongue;
-
-            //    var masterDataMaritalStatus = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=marital");
-            //    MDMaritalStatus.AddRange(masterDataMaritalStatus);
-
-            //    var userMaritalStatus = masterDataMaritalStatus.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.MaritalStatus.ToLower()).FirstOrDefault();
-            //    SelectedMaritalStatus = userMaritalStatus;
-            //}
-            //catch (Exception e)
-            //{
-            //}
-        //}
-
-        //private SmartObservableCollection<Master> bdDates;
-        //public SmartObservableCollection<Master> BDDates
-        //{
-        //    get { return bdDates; }
-        //    set
-        //    {
-        //        bdDates = value;
-        //    }
-        //}
-
-        //private SmartObservableCollection<Master> bdMonths;
-        //public SmartObservableCollection<Master> BDMonths
-        //{
-        //    get { return bdMonths; }
-        //    set
-        //    {
-        //        bdMonths = value;
-        //    }
-        //}
-
-        //private SmartObservableCollection<Master> bdYears;
-        //public SmartObservableCollection<Master> BDYears
-        //{
-        //    get { return bdYears; }
-        //    set
-        //    {
-        //        bdYears = value;
-        //    }
-        //}
-
-        //private Master selectedBirthDate;
-        //public Master SelectedBirthDate
-        //{
-        //    get
-        //    {
-        //        return selectedBirthDate;
-        //    }
-        //    set
-        //    {
-        //        selectedBirthDate = value;
-        //        RaisePropertyChanged("SelectedBirthDate");
-        //    }
-        //}
-
-        //private Master selectedBirthMonth;
-        //public Master SelectedBirthMonth
-        //{
-        //    get
-        //    {
-        //        return selectedBirthMonth;
-        //    }
-        //    set
-        //    {
-        //        selectedBirthMonth = value;
-        //        RaisePropertyChanged("SelectedBirthMonth");
-        //    }
-        //}
-
-        //private Master selectedBirthYear;
-        //public Master SelectedBirthYear
-        //{
-        //    get
-        //    {
-        //        return selectedBirthYear;
-        //    }
-        //    set
-        //    {
-        //        selectedBirthYear = value;
-        //        RaisePropertyChanged("SelectedBirthYear");
-        //    }
-        //}
-
-        public void CommandUpdate()
+        private ObservableRangeCollection<Master> mdMaritalStatus;
+        public ObservableRangeCollection<Master> MDMaritalStatus
         {
-            Task.Run(async () => { await UpdateAsync(); });
+            get { return mdMaritalStatus; }
+            set
+            {
+                mdMaritalStatus = value;
+            }
         }
 
-        private async Task UpdateAsync()
+        [ObservableProperty]
+        private Master selectedMaritalStatus;
+
+        public EditBasicViewModel()
         {
-            //if (string.IsNullOrWhiteSpace(FirstName.Value))
-            //{
-            //    await _userDialogs.AlertAsync("Please Provide First Name");
-            //    return;
-            //}
+            _serviceManager = ServiceHelper.GetService<IServiceManager>();
+            MDLanguages = new ObservableRangeCollection<Master>();
+            MDMaritalStatus = new ObservableRangeCollection<Master>();
 
-            //if (string.IsNullOrWhiteSpace(LastName.Value))
-            //{
-            //    await _userDialogs.AlertAsync("Please Provide Last Name");
-            //    return;
-            //}
+            var defaultMaster = new Master();
+            defaultMaster.Id = "SELECT";
+            defaultMaster.Name = "SELECT";
 
-            //if (selectedMaritalStatus==null)
-            //{
-            //    await _userDialogs.AlertAsync("Please Provide Marital Status");
-            //    return;
-            //}
+            SelectedMotherTongue = defaultMaster;
+            SelectedMaritalStatus = defaultMaster;
 
-            //if (SelectedMotherTongue == null)
-            //{
-            //    await _userDialogs.AlertAsync("Please Specify Mother Tongue");
-            //    return;
-            //}
+            BDDates = new ObservableRangeCollection<Master>();
+            BDYears = new ObservableRangeCollection<Master>();
+            BDMonths = new ObservableRangeCollection<Master>();
 
-            //var firstName = FirstName.Value;
-            //var lastName = LastName.Value;
-            //var aboutMe = AboutMe.Value;
-            //var birthPlace = BirthPlace.Value;
-            //var birthTime = BirthTime.Value;
+            Task.Run(async () => { await Init(); });
+        }
 
-            //var year = Convert.ToInt16(selectedBirthYear.Name);
-            //var month = Convert.ToInt16(selectedBirthMonth.Id);
-            //var date = Convert.ToInt16(selectedBirthDate.Name);
+        public async Task Init()
+        {
 
-            //var BirthDateInApiFormat = $"{year}-{month:00}-{date:00}";
+            var sessionToken = await SecureStorage.GetAsync("Token");
+            Profile = await _serviceManager.GetUserData(new Guid(sessionToken)); ;
+            FirstName = Profile.FirstName;
+            LastName = Profile.LastName;
+            BirthTime = Profile.BirthTime;
+            BirthPlace = Profile.BirthPlace;
+            AboutMe = Profile.AboutMe;
 
-            //var sessionToken = await SecureStorage.GetAsync("Token");
 
-            //var basicDetails = new Profile { FirstName = firstName, LastName = lastName, AboutMe = aboutMe, 
-            //    BirthTime = birthTime, BirthPlace = birthPlace,MaritalStatus=SelectedMaritalStatus.Id, 
-            //    MotherTongue=SelectedMotherTongue.Id, BirthDate= BirthDateInApiFormat};
-            //try
-            //{
-            //    var status = await _serviceManager.UpdateBasicDetails(new Guid(sessionToken), basicDetails);
+            for (var i = 1; i < 32; i++)
+            {
+                BDDates.Add(new Master { Id = i.ToString("00"), Name = i.ToString("00") });
+            }
 
-            //    if (status)
-            //    {
-            //        await _userDialogs.AlertAsync("Basic Details Have Been Updated");
-            //    }
-            //}
-            //catch (MatriInternetException exception)
-            //{
-            //    await _userDialogs.AlertAsync(exception.Message);
-            //}
-            //catch (Exception exception)
-            //{
-            //    var jsonResponse = exception.Message;
-            //    var errorMessage = JsonConvert.DeserializeObject<MatriException>(jsonResponse);
-            //    await _userDialogs.AlertAsync(errorMessage.Message);
-            //}
+            var currentYear = DateTime.Now.Year;
+            var UpperLimit = currentYear - 19; // 18 years back
+            var LowerLimit = UpperLimit - 70;
+
+            for (var i = UpperLimit; i > LowerLimit; i--)
+            {
+                BDYears.Add(new Master { Id = i.ToString(), Name = i.ToString() });
+            }
+
+            var months = new List<string>();
+            months.Add("Jan");
+            months.Add("Feb");
+            months.Add("Mar");
+            months.Add("Apr");
+            months.Add("May");
+            months.Add("Jun");
+            months.Add("Jul");
+            months.Add("Aug");
+            months.Add("Sep");
+            months.Add("Oct");
+            months.Add("Nov");
+            months.Add("Dec");
+
+            for (int i = 0; i < 12; i++)
+            {
+                var id = i + 1;
+                BDMonths.Add(new Master { Id = id.ToString("00"), Name = months[i] });
+            }
+
+            var birthDate = Profile.BirthDate.Split('-');
+            SelectedBirthDate = BDDates.Where(bd => bd.Name == birthDate[2]).FirstOrDefault();
+            SelectedBirthMonth = BDMonths.Where(bm => bm.Name == birthDate[1]).FirstOrDefault();
+            SelectedBirthYear = BDYears.Where(bys => bys.Name == birthDate[0]).FirstOrDefault();
+
+
+            var showHinduFields = await SecureStorage.GetAsync("ShowHinduFields");
+
+            ShowHinduFields = Convert.ToBoolean(showHinduFields);
+
+            try
+            {
+                var md = await _serviceManager.GetMasterData(new Guid(sessionToken));
+                MDLanguages.AddRange(md.Languages);
+
+                var userMotherTongue = md.Languages.Where(mt => mt.Id.ToLower() == Profile.MotherTongue.ToLower()).FirstOrDefault();
+                SelectedMotherTongue = userMotherTongue;
+
+                MDMaritalStatus.AddRange(md.MaritalStatuses);
+
+                var userMaritalStatus = md.MaritalStatuses.Where(mt => mt.Id.ToLower() == Profile.MaritalStatus.ToLower()).FirstOrDefault();
+                SelectedMaritalStatus = userMaritalStatus;
+            }
+            catch (Exception e)
+            {
+            }
+        }
+
+        private ObservableRangeCollection<Master> bdDates;
+        public ObservableRangeCollection<Master> BDDates
+        {
+            get { return bdDates; }
+            set
+            {
+                bdDates = value;
+            }
+        }
+
+        private ObservableRangeCollection<Master> bdMonths;
+        public ObservableRangeCollection<Master> BDMonths
+        {
+            get { return bdMonths; }
+            set
+            {
+                bdMonths = value;
+            }
+        }
+
+        private ObservableRangeCollection<Master> bdYears;
+        public ObservableRangeCollection<Master> BDYears
+        {
+            get { return bdYears; }
+            set
+            {
+                bdYears = value;
+            }
+        }
+
+        [ObservableProperty]
+        private Master selectedBirthDate;
+
+        [ObservableProperty]
+        private Master selectedBirthMonth;
+
+        [ObservableProperty]
+        private Master selectedBirthYear;
+
+
+        [RelayCommand]
+        public async Task Update()
+        {
+            if (string.IsNullOrWhiteSpace(FirstName))
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please Provide First Name", "OK");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(LastName))
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please Provide Last Name", "OK");
+                return;
+            }
+
+            if (SelectedMaritalStatus == null)
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please Provide Marital Status", "OK");
+                return;
+            }
+
+            if (SelectedMotherTongue == null)
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please Specify Mother Tongue", "OK");
+                return;
+            }
+
+            var firstName = FirstName;
+            var lastName = LastName;
+            var aboutMe = AboutMe;
+            var birthPlace = BirthPlace;
+            var birthTime = BirthTime;
+
+            var year = Convert.ToInt16(SelectedBirthYear.Name);
+            var month = Convert.ToInt16(SelectedBirthMonth.Id);
+            var date = Convert.ToInt16(SelectedBirthDate.Name);
+
+            var BirthDateInApiFormat = $"{year}-{month:00}-{date:00}";
+
+            var sessionToken = await SecureStorage.GetAsync("Token");
+
+            var basicDetails = new Profile
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                AboutMe = aboutMe,
+                BirthTime = birthTime,
+                BirthPlace = birthPlace,
+                MaritalStatus = SelectedMaritalStatus.Id,
+                MotherTongue = SelectedMotherTongue.Id,
+                BirthDate = BirthDateInApiFormat
+            };
+            try
+            {
+                IsBusy = true;
+                var status = await _serviceManager.UpdateBasicDetails(new Guid(sessionToken), basicDetails);
+                IsBusy = false;
+                if (status)
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", "Basic Details Updated", "OK");
+                }
+            }
+            catch (MatriInternetException exception)
+            {
+                IsBusy = false;
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
+            }
+            catch (Exception exception)
+            {
+                IsBusy = false;
+                var jsonResponse = exception.Message;
+                var errorMessage = JsonConvert.DeserializeObject<MatriException>(jsonResponse);
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", errorMessage.Message, "OK");
+            }
         }
     }
 }

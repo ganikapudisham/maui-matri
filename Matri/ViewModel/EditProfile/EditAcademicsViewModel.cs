@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Matri.Business;
 using Matri.CustomExceptions;
+using Matri.Helper;
 using Matri.Model;
 using Newtonsoft.Json;
 
@@ -16,9 +17,9 @@ namespace Matri.ViewModel
         //public INC<string> EmployementDetails = new NC<string>();
         //public INC<string> IncomeDetails = new NC<string>();
         //public INC<string> PropertyDetails = new NC<string>();
-        public EditAcademicsViewModel(IServiceManager serviceManager)
+        public EditAcademicsViewModel()
         {
-            _serviceManager = serviceManager;
+            _serviceManager = ServiceHelper.GetService<IServiceManager>();
 
             //MDAcademics = new SmartObservableCollection<Master>();
             //MDIncomes = new SmartObservableCollection<Master>();

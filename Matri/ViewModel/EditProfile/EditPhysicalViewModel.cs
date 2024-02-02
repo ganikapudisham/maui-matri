@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Matri.Business;
+using Matri.Helper;
 using Matri.Model;
 using Newtonsoft.Json;
 
@@ -9,9 +10,9 @@ namespace Matri.ViewModel
     {
         IServiceManager _serviceManager;
         //public INC<Profile> LoggedInUser = new NC<Profile>();
-        public EditPhysicalViewModel(IServiceManager serviceManager)
+        public EditPhysicalViewModel()
         {
-            _serviceManager = serviceManager;
+            _serviceManager = ServiceHelper.GetService<IServiceManager>();
 
             //MDHeights = new SmartObservableCollection<Master>();
             //MDWeights = new SmartObservableCollection<Master>();

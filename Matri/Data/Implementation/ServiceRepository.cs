@@ -189,6 +189,7 @@ namespace Matri.Data.Impl
 
         public async Task<TOut> PutAsync<TIn, TOut>(string sessionToken, string uri, TIn content)
         {
+            TOut objectToReturn = default(TOut);
             try
             {
                 var httpClient = CreateHttpClient(new Guid(sessionToken));
@@ -198,15 +199,39 @@ namespace Matri.Data.Impl
                 using (HttpResponseMessage response = await httpClient.PutAsync(uri, serialized))
                 {
                     response.EnsureSuccessStatusCode();
-                    string responseBody = await response.Content.ReadAsStringAsync();
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        if (response.StatusCode == HttpStatusCode.BadRequest)
+                        {
+                            string responseBody = await response.Content.ReadAsStringAsync();
+                            var t = JsonConvert.DeserializeObject<MatriException>(responseBody);
+                            throw new Exception(t?.Message);
+                        }
+                        else if (response.StatusCode == HttpStatusCode.NotFound)
+                        {
+                            throw new Exception("Not found, please try again with different data");
+                        }
+                        else if (response.StatusCode == HttpStatusCode.InternalServerError)
+                        {
+                            throw new Exception("Something went wrong, please try again");
+                        }
+                    }
+                    else
+                    {
+                        var responseJson = await response.Content.ReadAsStringAsync();
 
-                    return JsonConvert.DeserializeObject<TOut>(responseBody);
+                        if (IsValidateJSON(responseJson))
+                        {
+                            objectToReturn = JsonConvert.DeserializeObject<TOut>(responseJson);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+            return objectToReturn;
         }
     }
 }

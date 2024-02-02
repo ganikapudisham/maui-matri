@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Matri.Business;
+using Matri.Helper;
 using Matri.Model;
 using Newtonsoft.Json;
 
@@ -23,9 +24,9 @@ namespace Matri.ViewModel
         //public INC<int> NumberOfSistersMarried = new NC<int>();
 
         //public INC<string> FamilyDetails = new NC<string>();
-        public EditFamilyViewModel(IServiceManager serviceManager)
+        public EditFamilyViewModel()
         {
-            _serviceManager = serviceManager;
+            _serviceManager = ServiceHelper.GetService<IServiceManager>();
             //_userDialogs = userDialog;
 
             //MDFamilyStatuses = new SmartObservableCollection<Master>();

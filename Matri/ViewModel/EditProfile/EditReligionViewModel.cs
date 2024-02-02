@@ -1,8 +1,6 @@
-﻿using Prism.Commands;
-using Newtonsoft.Json;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Matri.Business;
-using Matri.Model;
+using Matri.Helper;
 namespace Matri.ViewModel
 {
     public class EditReligionViewModel : ObservableObject
@@ -22,9 +20,9 @@ namespace Matri.ViewModel
         //public INC<bool> ShowHinduFields = new NC<bool>(false);
 
         //public DelegateCommand<object> SelectionChangedCommand { get; set; }
-        public EditReligionViewModel(IServiceManager serviceManager)
+        public EditReligionViewModel()
         {
-            _serviceManager = serviceManager;
+            _serviceManager = ServiceHelper.GetService<IServiceManager>();
             //_userDialogs = userDialog;
 
             //MDReligions = new SmartObservableCollection<Master>();

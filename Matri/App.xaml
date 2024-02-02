@@ -18,6 +18,8 @@
                 <ResourceDictionary Source="Resources/Styles/StylesAboutUs.xaml" />
                 <ResourceDictionary Source="Resources/Styles/StylesContactUs.xaml" />
                 <ResourceDictionary Source="Resources/Styles/StylesSettings.xaml" />
+
+                <ResourceDictionary Source="Resources/Styles/StylesEditBasic.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
