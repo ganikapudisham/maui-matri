@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Matri.Abstract;
 using Matri.Business;
 using Matri.CustomExceptions;
 using Matri.Helper;
@@ -14,6 +15,7 @@ namespace Matri.ViewModel
     public partial class EditPhysicalViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
         IServiceManager _serviceManager;
+        ISharedService _sharedService;
 
         [ObservableProperty]
         public Profile profile;
@@ -21,58 +23,59 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public bool isBusy = true;
 
-        private Command<SfComboBox> onHeightChangedCommand;
+        //private Command<SfComboBox> onHeightChangedCommand;
 
-        public Command<SfComboBox> OnHeightChangedCommand
-        {
-            get { return onHeightChangedCommand; }
-            set { onHeightChangedCommand = value; OnPropertyChanged(nameof(OnHeightChanged)); }
-        }
+        //public Command<SfComboBox> OnHeightChangedCommand
+        //{
+        //    get { return onHeightChangedCommand; }
+        //    set { onHeightChangedCommand = value; OnPropertyChanged(nameof(OnHeightChanged)); }
+        //}
 
-        private Command<SfComboBox> onWeightChangedCommand;
+        //private Command<SfComboBox> onWeightChangedCommand;
 
-        public Command<SfComboBox> OnWeightChangedCommand
-        {
-            get { return onWeightChangedCommand; }
-            set { onWeightChangedCommand = value; OnPropertyChanged(nameof(OnWeightChanged)); }
-        }
+        //public Command<SfComboBox> OnWeightChangedCommand
+        //{
+        //    get { return onWeightChangedCommand; }
+        //    set { onWeightChangedCommand = value; OnPropertyChanged(nameof(OnWeightChanged)); }
+        //}
 
-        private Command<SfComboBox> onPhysicalChangedCommand;
+        //private Command<SfComboBox> onPhysicalChangedCommand;
 
-        public Command<SfComboBox> OnPhysicalChangedCommand
-        {
-            get { return onPhysicalChangedCommand; }
-            set { onPhysicalChangedCommand = value; OnPropertyChanged(nameof(OnPhysicalChanged)); }
-        }
+        //public Command<SfComboBox> OnPhysicalChangedCommand
+        //{
+        //    get { return onPhysicalChangedCommand; }
+        //    set { onPhysicalChangedCommand = value; OnPropertyChanged(nameof(OnPhysicalChanged)); }
+        //}
 
-        private Command<SfComboBox> onComplexionChangedCommand;
+        //private Command<SfComboBox> onComplexionChangedCommand;
 
-        public Command<SfComboBox> OnComplexionChangedCommand
-        {
-            get { return onComplexionChangedCommand; }
-            set { onComplexionChangedCommand = value; OnPropertyChanged(nameof(OnComplexionChanged)); }
-        }
+        //public Command<SfComboBox> OnComplexionChangedCommand
+        //{
+        //    get { return onComplexionChangedCommand; }
+        //    set { onComplexionChangedCommand = value; OnPropertyChanged(nameof(OnComplexionChanged)); }
+        //}
 
-        private Command<SfComboBox> onBodyTypeChangedCommand;
+        //private Command<SfComboBox> onBodyTypeChangedCommand;
 
-        public Command<SfComboBox> OnBodyTypeChangedCommand
-        {
-            get { return onBodyTypeChangedCommand; }
-            set { onBodyTypeChangedCommand = value; OnPropertyChanged(nameof(OnBodyTypeChanged)); }
-        }
+        //public Command<SfComboBox> OnBodyTypeChangedCommand
+        //{
+        //    get { return onBodyTypeChangedCommand; }
+        //    set { onBodyTypeChangedCommand = value; OnPropertyChanged(nameof(OnBodyTypeChanged)); }
+        //}
 
-        private Command<SfComboBox> onCreatedByChangedCommand;
+        //private Command<SfComboBox> onCreatedByChangedCommand;
 
-        public Command<SfComboBox> OnCreatedByChangedCommand
-        {
-            get { return onCreatedByChangedCommand; }
-            set { onCreatedByChangedCommand = value; OnPropertyChanged(nameof(OnCreatedByChanged)); }
-        }
+        //public Command<SfComboBox> OnCreatedByChangedCommand
+        //{
+        //    get { return onCreatedByChangedCommand; }
+        //    set { onCreatedByChangedCommand = value; OnPropertyChanged(nameof(OnCreatedByChanged)); }
+        //}
 
 
         public EditPhysicalViewModel()
         {
             _serviceManager = ServiceHelper.GetService<IServiceManager>();
+            _sharedService = ServiceHelper.GetService<ISharedService>();
 
             MDHeights = new ObservableRangeCollection<Master>();
             MDWeights = new ObservableRangeCollection<Master>();
@@ -99,19 +102,23 @@ namespace Matri.ViewModel
 
         public async Task Init()
         {
-            
+            var weightList = new List<Master>();
             for (var i = 40; i <= 120; i++)
             {
-                MDWeights.Add(new Master { Id = i.ToString(), Name = i.ToString() });
+                weightList.Add(new Master { Id = i.ToString(), Name = i.ToString() });
             }
+
+            MDWeights.AddRange(weightList);
 
             var sessionToken = await SecureStorage.GetAsync("Token");
 
-            Profile = await _serviceManager.GetUserData(new Guid(sessionToken));
+            Profile = _sharedService.GetValue<Profile>("LoggedInUser");
+            var md = _sharedService.GetValue<MDD>("MasterData");
+
             SelectedWeight = MDWeights.Where(mdw => mdw.Name == Profile.Weight.ToString()).FirstOrDefault();
             try
             {
-                var md = await _serviceManager.GetMasterData(new Guid(sessionToken));
+                //var md = await _serviceManager.GetMasterData(new Guid(sessionToken));
                 MDHeights.AddRange(md.Heights);
                 SelectedHeight = md.Heights.Where(mt => mt.Id.ToLower() == Profile.Height.ToLower()).FirstOrDefault();
 
@@ -135,22 +142,22 @@ namespace Matri.ViewModel
         }
 
         [ObservableProperty]
-        private Master selectedHeight;
+        public Master selectedHeight;
 
         [ObservableProperty]
-        private Master selectedWeight;
+        public Master selectedWeight;
 
         [ObservableProperty]
-        private Master selectedPhysicalStatus;
+        public Master selectedPhysicalStatus;
 
         [ObservableProperty]
-        private Master selectedBodyType;
+        public Master selectedBodyType;
 
         [ObservableProperty]
-        private Master selectedComplexion;
+        public Master selectedComplexion;
 
         [ObservableProperty]
-        private Master selectedCreatedBy;
+        public Master selectedCreatedBy;
 
         private ObservableRangeCollection<Master> mDHeights;
 
@@ -278,27 +285,6 @@ namespace Matri.ViewModel
             }
             IsBusy = false;
         }
-
-        private async void OnHeightChanged(SfComboBox cmbReligion)
-        { }
-
-        private async void OnWeightChanged(SfComboBox cmbReligion)
-        { }
-
-        private async void OnPhysicalChanged(SfComboBox cmbReligion)
-        { }
-
-        private async void OnComplexionChanged(SfComboBox cmbReligion)
-        { }
-
-        private async void OnReligionChanged(SfComboBox cmbReligion)
-        { }
-
-        private async void OnBodyTypeChanged(SfComboBox cmbReligion)
-        { }
-
-        private async void OnCreatedByChanged(SfComboBox cmbReligion)
-        { }
     }
 }
 

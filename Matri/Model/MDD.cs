@@ -22,6 +22,12 @@ namespace Matri.Model
             Religions = new List<Master>();
             Castes = new List<Master>();
             Denominations = new List<Master>();
+            PhysicalStatuses = new List<Master>();
+            BodyTypes = new List<Master>();
+            Complexions = new List<Master>();
+            JobTypes = new List<Master>();
+            Incomes = new List<Master>();
+            ProfileCreatedBy = new List<Master>();
         }
 
         [DataMember]
@@ -53,5 +59,23 @@ namespace Matri.Model
 
         [DataMember]
         public IList<Master> Denominations { get; set; }
+
+        [DataMember]
+        public IList<Master> PhysicalStatuses { get; set; }
+
+        [DataMember]
+        public IList<Master> BodyTypes { get; set; }
+
+        [DataMember]
+        public IList<Master> Complexions { get; set; }
+
+        [DataMember]
+        public IList<Master> JobTypes { get; set; }
+
+        [DataMember]
+        public IList<Master> Incomes { get; set; }
+
+        [DataMember]
+        public IList<Master> ProfileCreatedBy { get; set; }
     }
 }

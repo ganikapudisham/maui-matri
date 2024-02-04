@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
 using Matri.Services;
 using Matri.Helper;
+using Matri.Abstract;
 
 namespace Matri
 {
@@ -138,6 +139,7 @@ namespace Matri
             builder.Services.AddSingleton<ContactUsPage>();
 
             builder.Services.AddSingleton<IFirebaseAnalytics, FirebaseAnalytics>();
+            builder.Services.AddSingleton<ISharedService, SharedService>();
 
 #if DEBUG
             builder.Logging.AddDebug();

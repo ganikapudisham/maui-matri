@@ -84,11 +84,6 @@
                     x:Name="DDLHeight" 
                     Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
                      ItemsSource="{Binding MDHeights}" SelectedItem="{Binding SelectedHeight}" IsEditable="true">
-                            <combobox:SfComboBox.Behaviors>
-                                <toolkit:EventToCommandBehavior EventName="SelectionChanged" 
-Command="{Binding OnHeightChangedCommand}"
-CommandParameter="{x:Reference DDLHeight}"/>
-                            </combobox:SfComboBox.Behaviors>
                         </combobox:SfComboBox>
 
                         </Border>
@@ -105,15 +100,10 @@ CommandParameter="{x:Reference DDLHeight}"/>
                         Margin="0"
                         Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
 
-                            <combobox:SfComboBox
+                        <combobox:SfComboBox ItemsSource="{Binding MDWeights}"
                     x:Name="DDLWeight" SelectedItem="{Binding SelectedWeight}"
                     Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
-                    ItemsSource="{Binding MDWeights}" IsEditable="true">
-                            <combobox:SfComboBox.Behaviors>
-                                <toolkit:EventToCommandBehavior EventName="SelectionChanged" 
-Command="{Binding OnWeightChangedCommand}"
-CommandParameter="{x:Reference DDLWeight}"/>
-                            </combobox:SfComboBox.Behaviors>
+                     IsEditable="true">
                         </combobox:SfComboBox>
 
                         </Border>
@@ -130,15 +120,10 @@ CommandParameter="{x:Reference DDLWeight}"/>
                         Margin="0"
                         Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
 
-                            <combobox:SfComboBox
+                        <combobox:SfComboBox ItemsSource="{Binding MDPhysicalStatus}"
                     x:Name="DDLPhysicalStatus" SelectedItem="{Binding SelectedPhysicalStatus}"
                     Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
-                    ItemsSource="{Binding MDPhysicalStatus}" IsEditable="true">
-                            <combobox:SfComboBox.Behaviors>
-                                <toolkit:EventToCommandBehavior EventName="SelectionChanged" 
-Command="{Binding OnPhysicalChangedCommand}"
-CommandParameter="{x:Reference DDLPhysicalStatus}"/>
-                            </combobox:SfComboBox.Behaviors>
+                     IsEditable="true">
                         </combobox:SfComboBox>
                         </Border>
 
@@ -154,15 +139,10 @@ CommandParameter="{x:Reference DDLPhysicalStatus}"/>
                         Margin="0"
                         Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
 
-                            <combobox:SfComboBox
+                        <combobox:SfComboBox ItemsSource="{Binding MDBodyTypes}"
                     x:Name="DDLBodyType" SelectedItem="{Binding SelectedBodyType}"
                     Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
-                    ItemsSource="{Binding MDBodyTypes}" IsEditable="true">
-                            <combobox:SfComboBox.Behaviors>
-                                <toolkit:EventToCommandBehavior EventName="SelectionChanged" 
-Command="{Binding OnBodyTypeChangedCommand}"
-CommandParameter="{x:Reference DDLBodyType}"/>
-                            </combobox:SfComboBox.Behaviors>
+                     IsEditable="true">
                         </combobox:SfComboBox>
                         </Border>
 
@@ -175,14 +155,9 @@ CommandParameter="{x:Reference DDLBodyType}"/>
                         TextColor="{DynamicResource Gray800}" />
                         <Border Grid.Row="9" Grid.ColumnSpan="3"
                         Margin="0" Style="{StaticResource FormBorderStyle}">
-                            <combobox:SfComboBox x:Name="DDLComplexions" IsEditable="true" SelectedItem="{Binding SelectedComplexion}" 
+                            <combobox:SfComboBox x:Name="DDLComplexions" IsEditable="true" 
                                     DisplayMemberPath="Name" ItemsSource="{Binding MDComplexions}" Grid.Row="5" 
-                                                     HeightRequest="50">
-                            <combobox:SfComboBox.Behaviors>
-                                <toolkit:EventToCommandBehavior EventName="SelectionChanged" 
-Command="{Binding OnComplexionChangedCommand}"
-CommandParameter="{x:Reference DDLComplexions}"/>
-                            </combobox:SfComboBox.Behaviors>
+                                    SelectedItem="{Binding SelectedComplexion}" HeightRequest="50">
                         </combobox:SfComboBox>
                         </Border>
 
@@ -197,14 +172,9 @@ CommandParameter="{x:Reference DDLComplexions}"/>
                         Grid.Row="13"
                         Margin="0"
                         Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
-                            <combobox:SfComboBox x:Name="DDLCreatedBy" IsEditable="true" SelectedItem="{Binding SelectedCreatedBy}" 
+                            <combobox:SfComboBox x:Name="DDLCreatedBy" IsEditable="true"  
                                     DisplayMemberPath="Name" ItemsSource="{Binding MDProfileCreators}" Grid.Row="5" 
-                                                     HeightRequest="50" >
-                            <combobox:SfComboBox.Behaviors>
-                                <toolkit:EventToCommandBehavior EventName="SelectionChanged" 
-        Command="{Binding OnCreatedByChangedCommand}"
-        CommandParameter="{x:Reference DDLCreatedBy}"/>
-                            </combobox:SfComboBox.Behaviors>
+                                     SelectedItem="{Binding SelectedCreatedBy}" HeightRequest="50" >
                         </combobox:SfComboBox>
 
                         </Border>

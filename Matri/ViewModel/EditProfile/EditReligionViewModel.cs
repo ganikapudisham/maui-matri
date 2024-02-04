@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Matri.Abstract;
 using Matri.Business;
 using Matri.CustomExceptions;
 using Matri.Helper;
@@ -12,9 +13,11 @@ namespace Matri.ViewModel
 {
     public partial class EditReligionViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
+        readonly IServiceManager _serviceManager;
+        private readonly ISharedService _sharedService;
+
         [ObservableProperty]
         public bool showDenominations = false;
-        readonly IServiceManager _serviceManager;
         [ObservableProperty]
         public Profile profile;
         [ObservableProperty]
@@ -47,6 +50,7 @@ namespace Matri.ViewModel
         public EditReligionViewModel()
         {
             _serviceManager = ServiceHelper.GetService<IServiceManager>();
+            _sharedService = ServiceHelper.GetService<ISharedService>();
 
             MDReligions = new ObservableRangeCollection<Master>();
             MDCastes = new ObservableRangeCollection<Master>();
@@ -75,7 +79,8 @@ namespace Matri.ViewModel
             try
             {
                 var sessionToken = await SecureStorage.GetAsync("Token");
-                Profile = await _serviceManager.GetUserData(new Guid(sessionToken));
+                Profile = _sharedService.GetValue<Profile>("LoggedInUser");
+                var md = _sharedService.GetValue<MDD>("MasterData");
 
                 Star = Profile.Star;
                 Raasi = Profile.Raasi;
@@ -90,7 +95,7 @@ namespace Matri.ViewModel
 
                 ShowHinduFields = Convert.ToBoolean(showHinduFields);
 
-                var md = await _serviceManager.GetMasterData(new Guid(token));
+                //var md = await _serviceManager.GetMasterData(new Guid(token));
                 MDReligions.AddRange(md.Religions);
 
                 SelectedReligion = md.Religions.Where(mt => mt.Id.ToLower() == Profile.Religion.ToLower()).FirstOrDefault();

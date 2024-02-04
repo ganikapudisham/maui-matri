@@ -2,15 +2,19 @@
 using CommunityToolkit.Mvvm.Input;
 using Matri.CustomExceptions;
 using Matri.Business;
+using Matri.Abstract;
+using Matri.Model;
 
 namespace Matri.ViewModel
 {
     public partial class LoginViewModel : ObservableObject
     {
         IServiceManager _serviceManager;
-        public LoginViewModel(IServiceManager serviceManager)
+        ISharedService _sharedService;
+        public LoginViewModel(IServiceManager serviceManager, ISharedService sharedService)
         {
             _serviceManager = serviceManager;
+            _sharedService = sharedService;
         }
 #if DEBUG
         [ObservableProperty]
@@ -60,6 +64,12 @@ namespace Matri.ViewModel
                 await SecureStorage.SetAsync("ShowHinduFields", appDetails.ShowHinduFields.ToString());
 
                 await SecureStorage.SetAsync("SubScriptionType", session.SubscriptionActive.ToString());
+
+                var sessionToken = await SecureStorage.GetAsync("Token");
+                var user = await _serviceManager.GetUserData(new Guid(sessionToken));
+                var masterData = await _serviceManager.GetMasterData(new Guid(sessionToken));
+                _sharedService.Add<Profile>("LoggedInUser", user);
+                _sharedService.Add<MDD>("MasterData", masterData);
 
                 await Shell.Current.GoToAsync("//AllProfilesPage");
             }

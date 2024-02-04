@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Matri.Abstract;
 using Matri.Business;
 using Matri.CustomExceptions;
 using Matri.Helper;
@@ -13,6 +14,7 @@ namespace Matri.ViewModel
     public partial class EditBasicViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
         private readonly IServiceManager _serviceManager;
+        private readonly ISharedService _sharedService;
 
         [ObservableProperty]
         public Profile profile;
@@ -32,7 +34,7 @@ namespace Matri.ViewModel
         public bool isBusy = true;
 
         [ObservableProperty]
-        private Master selectedMotherTongue;
+        public Master selectedMotherTongue;
 
         private ObservableRangeCollection<Master> mdLanguages;
         public ObservableRangeCollection<Master> MDLanguages
@@ -55,11 +57,12 @@ namespace Matri.ViewModel
         }
 
         [ObservableProperty]
-        private Master selectedMaritalStatus;
+        public Master selectedMaritalStatus;
 
         public EditBasicViewModel()
         {
             _serviceManager = ServiceHelper.GetService<IServiceManager>();
+            _sharedService = ServiceHelper.GetService<ISharedService>();
             MDLanguages = new ObservableRangeCollection<Master>();
             MDMaritalStatus = new ObservableRangeCollection<Master>();
 
@@ -80,8 +83,9 @@ namespace Matri.ViewModel
         public async Task Init()
         {
 
-            var sessionToken = await SecureStorage.GetAsync("Token");
-            Profile = await _serviceManager.GetUserData(new Guid(sessionToken));
+            //var sessionToken = await SecureStorage.GetAsync("Token");
+            Profile =  _sharedService.GetValue<Profile>("LoggedInUser");
+            var md = _sharedService.GetValue<MDD>("MasterData");
             FirstName = Profile.FirstName;
             LastName = Profile.LastName;
             BirthTime = Profile.BirthTime;
@@ -135,7 +139,6 @@ namespace Matri.ViewModel
 
             try
             {
-                var md = await _serviceManager.GetMasterData(new Guid(sessionToken));
                 MDLanguages.AddRange(md.Languages);
 
                 SelectedMotherTongue = md.Languages.Where(mt => mt.Id.ToLower() == Profile.MotherTongue.ToLower()).FirstOrDefault();
@@ -182,13 +185,13 @@ namespace Matri.ViewModel
         }
 
         [ObservableProperty]
-        private Master selectedBirthDate;
+        public Master selectedBirthDate;
 
         [ObservableProperty]
-        private Master selectedBirthMonth;
+        public Master selectedBirthMonth;
 
         [ObservableProperty]
-        private Master selectedBirthYear;
+        public Master selectedBirthYear;
 
 
         [RelayCommand]

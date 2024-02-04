@@ -22,7 +22,7 @@ namespace Matri.ViewModel
             var religionPage2 = new EditReligionPage();
             var physicalPage3 = new EditPhysicalPage();
 
-            //var educationPage4 = new EditAcademicsPage();
+            var educationPage4 = new EditAcademicsPage();
             //var contactsPage5 = new EditContactsPage();
             //var familyPage6 = new EditFamilyPage();
 
@@ -39,8 +39,8 @@ namespace Matri.ViewModel
             var tabItemPhysical3 = new SfTabItem { Content = physicalPage3.Content, Header = "Physical" };
             tabItemPhysical3.Content.BindingContext = physicalPage3.BindingContext;
 
-            //var tabItemEducation4 = new SfTabItem { Content = educationPage4.Content, Header = "Education" };
-            //tabItemEducation4.Content.BindingContext = educationPage4.BindingContext;
+            var tabItemEducation4 = new SfTabItem { Content = educationPage4.Content, Header = "Education" };
+            tabItemEducation4.Content.BindingContext = educationPage4.BindingContext;
 
             //var tabItemContact5 = new SfTabItem { Content = contactsPage5.Content, Header = "Contact" };
             //tabItemContact5.Content.BindingContext = contactsPage5.BindingContext;
@@ -60,7 +60,7 @@ namespace Matri.ViewModel
             TabItems.Add(tabItemBasic1);
             TabItems.Add(tabItemReligion2);
             TabItems.Add(tabItemPhysical3);
-            //TabItems.Add(tabItemEducation4);
+            TabItems.Add(tabItemEducation4);
             //TabItems.Add(tabItemContact5);
             //TabItems.Add(tabItemFamily6);
             //TabItems.Add(tabItemLife7);

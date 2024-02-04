@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Matri
+namespace Matri.Abstract
 {
     public interface IFirebaseAnalytics
     {
