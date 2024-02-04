@@ -2,15 +2,302 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Matri.Views.EditReligionPage"
+             xmlns:custom="clr-namespace:Matri.Controls"
+                xmlns:combobox="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+                xmlns:button="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
              xmlns:vm="clr-namespace:Matri.ViewModel"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="EditReligionPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary Source="/Resources/Styles/StylesEditBasic.xaml" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.BindingContext>
         <vm:EditReligionViewModel/>
     </ContentPage.BindingContext>
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+                <StackLayout BackgroundColor="{DynamicResource GrayWhite}" Spacing="0">
+
+                    <Grid
+                    Margin="0,12,0,16"
+                    Padding="0"
+                    ColumnSpacing="16"
+                    RowSpacing="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="16"
+                        Text="Religion"
+                        TextColor="{DynamicResource Gray800}" />
+
+                        <Border
+                Grid.Row="1"  Grid.ColumnSpan="2"
+                Grid.Column="0"
+                Padding="6,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                            <combobox:SfComboBox
+                    x:Name="DDLReligions" SelectedItem="{Binding SelectedReligion, Mode=TwoWay}"
+                    Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
+                     ItemsSource="{Binding MDReligions}" IsEditable="true">
+                            <combobox:SfComboBox.Behaviors>
+                                <toolkit:EventToCommandBehavior EventName="SelectionChanged" 
+            Command="{Binding OnReligionChangedCommand}"
+            CommandParameter="{x:Reference DDLReligions}"/>
+                            </combobox:SfComboBox.Behaviors>
+                        </combobox:SfComboBox>
+                        </Border>
+
+                    <StackLayout Grid.Row="2">
+                            <Grid>
+                                <Grid.RowDefinitions></Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                            </Grid>
+                            <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="16"
+                        Text="Caste"
+                        TextColor="{DynamicResource Gray800}" />
+
+                            <Border
+                Grid.Row="1"  Grid.ColumnSpan="2"
+                Grid.Column="0"
+                Padding="6,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                                <combobox:SfComboBox
+                    x:Name="DDLCastes"
+                    Style="{StaticResource ComboBoxStyle}"
+                     DisplayMemberPath="Name"
+                            SelectedItem="{Binding SelectedCaste, Mode=TwoWay}"
+                            ItemsSource="{Binding MDCastes}"
+                            IsEditable="true">
+                                </combobox:SfComboBox>
+                            </Border>
+                        </StackLayout>
+
+                    <StackLayout Grid.Row="3" IsVisible="{Binding ShowDenominations}">
+
+                            <Grid>
+                                <Grid.RowDefinitions></Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                            </Grid>
+
+                            <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="16"
+                        Text="Denomination"
+                        TextColor="{DynamicResource Gray800}" />
+
+                            <Border
+                Grid.Row="1"  Grid.ColumnSpan="2" Grid.Column="0"
+                Padding="6,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                                <combobox:SfComboBox
+                    x:Name="DDLDenominations" SelectedItem="{Binding SelectedDenomination, Mode=TwoWay}"
+                    Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
+                    ItemsSource="{Binding MDDenominations}" IsEditable="true">
+                                </combobox:SfComboBox>
+                            </Border>
+                        </StackLayout>
+
+                     <Grid Grid.Row="4" IsVisible="{Binding ShowHinduFields}" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="16"
+                        Text="Star"
+                        TextColor="{DynamicResource Gray800}" />
+
+                            <Border
+                Grid.Row="5"
+                Grid.Column="0"  Grid.ColumnSpan="2"
+                Padding="6,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                                <custom:CustomEntry
+                            Margin="12,0"
+                            FontSize="16"
+                            Placeholder="Star"
+                            PlaceholderColor="{DynamicResource Gray700}" Text="{Binding Star}"
+                            TextColor="{DynamicResource Gray900}"/>
+                            </Border>
+
+                            <Label
+                        Grid.Row="6"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="16"
+                        Text="Raasi"
+                        TextColor="{DynamicResource Gray800}" />
+
+                            <Border
+                Grid.Row="7"
+                Grid.Column="0" Grid.ColumnSpan="2"
+                Padding="6,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                                <custom:CustomEntry
+                            Margin="12,0"
+                            FontSize="16"
+                            Placeholder="Raasi"
+                            PlaceholderColor="{DynamicResource Gray700}" Text="{Binding Raasi}"
+                            TextColor="{DynamicResource Gray900}"/>
+                            </Border>
+
+                            <Label
+                        Grid.Row="8"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="16"
+                        Text="Gothram"
+                        TextColor="{DynamicResource Gray800}" />
+
+                            <Border
+                Grid.Row="9"
+                Grid.Column="0" Grid.ColumnSpan="2"
+                Padding="0,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                                <custom:CustomEntry
+                            Margin="12,0"
+                            FontSize="16"
+                            Placeholder="Gothram"
+                            PlaceholderColor="{DynamicResource Gray700}" Text="{Binding Gothram}"
+                            TextColor="{DynamicResource Gray900}"/>
+                            </Border>
+
+                            <Label
+                        Grid.Row="10"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="16"
+                        Text="Dosham"
+                        TextColor="{DynamicResource Gray800}" />
+
+                            <Border
+                Grid.Row="11"
+                Grid.Column="0" Grid.ColumnSpan="2"
+                Padding="0,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                                <custom:CustomEntry
+                            Margin="12,0"
+                            FontSize="16"
+                            Placeholder="Chevvai Dosham"
+                            PlaceholderColor="{DynamicResource Gray700}" Text="{Binding ChevvaiDosham}"
+                            TextColor="{DynamicResource Gray900}"/>
+                            </Border>
+                        </Grid> 
+
+                    <Label
+                        Grid.Row="5"
+                        Grid.Column="0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="16"
+                        Text="Caste Details"
+                        TextColor="{DynamicResource Gray800}" />
+
+                        <Border
+                Grid.Row="6"
+                Grid.Column="0" Grid.ColumnSpan="2"
+                Padding="0,0,0,0"
+                Style="{StaticResource FormBorderStyle}">
+                            <Editor
+                            Margin="12,0"
+                            HeightRequest="100"
+                            FontSize="16"
+                            Placeholder="Caste Details"
+                            PlaceholderColor="{DynamicResource Gray700}"
+                            Text="{Binding CasteDetails}"
+                            TextColor="{DynamicResource Gray900}"/>
+                        </Border>
+
+                      <button:SfCheckBox Grid.Row="7" Grid.ColumnSpan="2"
+                    Margin="4,16,0,4"
+                    CornerRadius="2"
+                    FontFamily="Montserrat-Medium"
+                    FontSize="16" IsChecked="{Binding CasteIsImportant}"
+                    Text="Caste Is Important"
+                    TextColor="{DynamicResource Gray900}"
+                    VerticalOptions="Center" />
+
+                        <button:SfCheckBox Grid.Row="8" Grid.ColumnSpan="2"
+                    Margin="4,16,0,4"
+                    CornerRadius="2"
+                    FontFamily="Montserrat-Medium"
+                    FontSize="16" IsChecked="{Binding DenominationIsImportant}"
+                    Text="Denomination Is Important"
+                    TextColor="{DynamicResource Gray900}"
+                    VerticalOptions="Center" /> 
+
+                    </Grid>
+
+                <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" Grid.Row="0" />
+            </StackLayout>
+
+
+            <button:SfButton
+            Grid.Row="1"
+            Command="{Binding UpdateCommand}"
+            HorizontalOptions="Center"
+            Style="{StaticResource SfButtonStyle}"
+            Text="SAVE"
+            WidthRequest="245" />
+
+        </Grid>
+    </ScrollView>
 </ContentPage>

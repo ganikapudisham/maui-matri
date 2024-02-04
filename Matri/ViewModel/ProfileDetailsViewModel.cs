@@ -347,9 +347,7 @@ namespace Matri.ViewModel
             }
             catch (Exception exception)
             {
-                var jsonResponse = exception.Message;
-                var errorMessage = JsonConvert.DeserializeObject<MatriException>(jsonResponse);
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", errorMessage.Message, "OK");
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
             }
         }
     }

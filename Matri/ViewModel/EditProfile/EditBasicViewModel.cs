@@ -29,7 +29,7 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public bool showHinduFields;
         [ObservableProperty]
-        public bool isBusy = false;
+        public bool isBusy = true;
 
         [ObservableProperty]
         private Master selectedMotherTongue;
@@ -81,7 +81,7 @@ namespace Matri.ViewModel
         {
 
             var sessionToken = await SecureStorage.GetAsync("Token");
-            Profile = await _serviceManager.GetUserData(new Guid(sessionToken)); ;
+            Profile = await _serviceManager.GetUserData(new Guid(sessionToken));
             FirstName = Profile.FirstName;
             LastName = Profile.LastName;
             BirthTime = Profile.BirthTime;
@@ -138,16 +138,16 @@ namespace Matri.ViewModel
                 var md = await _serviceManager.GetMasterData(new Guid(sessionToken));
                 MDLanguages.AddRange(md.Languages);
 
-                var userMotherTongue = md.Languages.Where(mt => mt.Id.ToLower() == Profile.MotherTongue.ToLower()).FirstOrDefault();
-                SelectedMotherTongue = userMotherTongue;
+                SelectedMotherTongue = md.Languages.Where(mt => mt.Id.ToLower() == Profile.MotherTongue.ToLower()).FirstOrDefault();
 
                 MDMaritalStatus.AddRange(md.MaritalStatuses);
 
-                var userMaritalStatus = md.MaritalStatuses.Where(mt => mt.Id.ToLower() == Profile.MaritalStatus.ToLower()).FirstOrDefault();
-                SelectedMaritalStatus = userMaritalStatus;
+                SelectedMaritalStatus = md.MaritalStatuses.Where(mt => mt.Id.ToLower() == Profile.MaritalStatus.ToLower()).FirstOrDefault();
+                IsBusy = false;
             }
             catch (Exception e)
             {
+                IsBusy = false;
             }
         }
 
@@ -261,9 +261,7 @@ namespace Matri.ViewModel
             catch (Exception exception)
             {
                 IsBusy = false;
-                var jsonResponse = exception.Message;
-                var errorMessage = JsonConvert.DeserializeObject<MatriException>(jsonResponse);
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", errorMessage.Message, "OK");
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
             }
         }
     }

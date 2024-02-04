@@ -25,3 +25,8 @@ https://blog.ewers-peters.de/are-you-using-dependency-injection-in-your-net-maui
  
 
  use calendar control for birthdate
+
+ change enum in API 
+ database was changed from unmarried to never married , but enum in c# was not changed
+
+ https://www.youtube.com/watch?v=WTiU7UxJzKs&t=151s

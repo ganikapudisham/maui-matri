@@ -2,9 +2,222 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Matri.Views.EditPhysicalPage"
-             xmlns:vm="clr-namespace:Matri.ViewModel"
+            xmlns:combobox="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+            xmlns:button="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+            xmlns:vm="clr-namespace:Matri.ViewModel"
+            xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="EditPhysicalPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary Source="/Resources/Styles/StylesEditBasic.xaml" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.BindingContext>
         <vm:EditPhysicalViewModel/>
-    </ContentPage.BindingContext>
+        </ContentPage.BindingContext>
+
+    <ScrollView>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackLayout Orientation="Vertical"   
+           HorizontalOptions="Center"   
+           VerticalOptions="Center"    
+           BackgroundColor="White">
+                <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" Grid.Row="0" />
+            </StackLayout>
+                <StackLayout BackgroundColor="{DynamicResource GrayWhite}" Spacing="0">
+
+                    <Grid
+                    Margin="0,12,0,16"
+                    Padding="0"
+                    ColumnSpacing="16"
+                    RowSpacing="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                        Grid.Row="0"
+                        Grid.Column="0" Grid.ColumnSpan="3"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="16"
+                        Text="Height"
+                        TextColor="{DynamicResource Gray800}" />
+                        <Border
+                        Grid.Row="1"
+                        Margin="0"
+                        Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
+
+                            <combobox:SfComboBox
+                    x:Name="DDLHeight" 
+                    Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
+                     ItemsSource="{Binding MDHeights}" SelectedItem="{Binding SelectedHeight}" IsEditable="true">
+                            <combobox:SfComboBox.Behaviors>
+                                <toolkit:EventToCommandBehavior EventName="SelectionChanged" 
+Command="{Binding OnHeightChangedCommand}"
+CommandParameter="{x:Reference DDLHeight}"/>
+                            </combobox:SfComboBox.Behaviors>
+                        </combobox:SfComboBox>
+
+                        </Border>
+
+                        <Label
+                        Grid.Row="2"
+                        Grid.Column="0" Grid.ColumnSpan="3"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="16"
+                        Text="Weight"
+                        TextColor="{DynamicResource Gray800}" />
+                        <Border
+                        Grid.Row="3"
+                        Margin="0"
+                        Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
+
+                            <combobox:SfComboBox
+                    x:Name="DDLWeight" SelectedItem="{Binding SelectedWeight}"
+                    Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
+                    ItemsSource="{Binding MDWeights}" IsEditable="true">
+                            <combobox:SfComboBox.Behaviors>
+                                <toolkit:EventToCommandBehavior EventName="SelectionChanged" 
+Command="{Binding OnWeightChangedCommand}"
+CommandParameter="{x:Reference DDLWeight}"/>
+                            </combobox:SfComboBox.Behaviors>
+                        </combobox:SfComboBox>
+
+                        </Border>
+
+                        <Label
+                        Grid.Row="4"
+                        Grid.Column="0" Grid.ColumnSpan="3"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="16"
+                        Text="Physical Status"
+                        TextColor="{DynamicResource Gray800}" />
+                        <Border
+                        Grid.Row="5"
+                        Margin="0"
+                        Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
+
+                            <combobox:SfComboBox
+                    x:Name="DDLPhysicalStatus" SelectedItem="{Binding SelectedPhysicalStatus}"
+                    Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
+                    ItemsSource="{Binding MDPhysicalStatus}" IsEditable="true">
+                            <combobox:SfComboBox.Behaviors>
+                                <toolkit:EventToCommandBehavior EventName="SelectionChanged" 
+Command="{Binding OnPhysicalChangedCommand}"
+CommandParameter="{x:Reference DDLPhysicalStatus}"/>
+                            </combobox:SfComboBox.Behaviors>
+                        </combobox:SfComboBox>
+                        </Border>
+
+                        <Label
+                        Grid.Row="6"
+                        Grid.Column="0" Grid.ColumnSpan="3"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="16"
+                        Text="Body Type"
+                        TextColor="{DynamicResource Gray800}" />
+                        <Border
+                        Grid.Row="7"
+                        Margin="0"
+                        Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
+
+                            <combobox:SfComboBox
+                    x:Name="DDLBodyType" SelectedItem="{Binding SelectedBodyType}"
+                    Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
+                    ItemsSource="{Binding MDBodyTypes}" IsEditable="true">
+                            <combobox:SfComboBox.Behaviors>
+                                <toolkit:EventToCommandBehavior EventName="SelectionChanged" 
+Command="{Binding OnBodyTypeChangedCommand}"
+CommandParameter="{x:Reference DDLBodyType}"/>
+                            </combobox:SfComboBox.Behaviors>
+                        </combobox:SfComboBox>
+                        </Border>
+
+                        <Label
+                        Grid.Row="8"
+                        Grid.Column="0" Grid.ColumnSpan="3"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="16"
+                        Text="Complexion"
+                        TextColor="{DynamicResource Gray800}" />
+                        <Border Grid.Row="9" Grid.ColumnSpan="3"
+                        Margin="0" Style="{StaticResource FormBorderStyle}">
+                            <combobox:SfComboBox x:Name="DDLComplexions" IsEditable="true" SelectedItem="{Binding SelectedComplexion}" 
+                                    DisplayMemberPath="Name" ItemsSource="{Binding MDComplexions}" Grid.Row="5" 
+                                                     HeightRequest="50">
+                            <combobox:SfComboBox.Behaviors>
+                                <toolkit:EventToCommandBehavior EventName="SelectionChanged" 
+Command="{Binding OnComplexionChangedCommand}"
+CommandParameter="{x:Reference DDLComplexions}"/>
+                            </combobox:SfComboBox.Behaviors>
+                        </combobox:SfComboBox>
+                        </Border>
+
+                        <Label
+                        Grid.Row="12"
+                        Grid.Column="0" Grid.ColumnSpan="3"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="16"
+                        Text="Profile Create By"
+                        TextColor="{DynamicResource Gray800}" />
+                        <Border
+                        Grid.Row="13"
+                        Margin="0"
+                        Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
+                            <combobox:SfComboBox x:Name="DDLCreatedBy" IsEditable="true" SelectedItem="{Binding SelectedCreatedBy}" 
+                                    DisplayMemberPath="Name" ItemsSource="{Binding MDProfileCreators}" Grid.Row="5" 
+                                                     HeightRequest="50" >
+                            <combobox:SfComboBox.Behaviors>
+                                <toolkit:EventToCommandBehavior EventName="SelectionChanged" 
+        Command="{Binding OnCreatedByChangedCommand}"
+        CommandParameter="{x:Reference DDLCreatedBy}"/>
+                            </combobox:SfComboBox.Behaviors>
+                        </combobox:SfComboBox>
+
+                        </Border>
+
+                        <button:SfButton
+            Grid.Row="14"
+            Command="{Binding UpdateCommand}"
+            HorizontalOptions="Center"
+            Style="{StaticResource SfButtonStyle}"
+            Text="SAVE"
+            WidthRequest="245" Grid.ColumnSpan="3"  />
+                    </Grid>
+                </StackLayout>
+        </Grid>
+    </ScrollView>
 </ContentPage>

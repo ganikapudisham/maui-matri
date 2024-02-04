@@ -198,7 +198,6 @@ namespace Matri.Data.Impl
 
                 using (HttpResponseMessage response = await httpClient.PutAsync(uri, serialized))
                 {
-                    response.EnsureSuccessStatusCode();
                     if (!response.IsSuccessStatusCode)
                     {
                         if (response.StatusCode == HttpStatusCode.BadRequest)

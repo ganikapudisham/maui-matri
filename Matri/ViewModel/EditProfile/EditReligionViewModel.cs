@@ -1,300 +1,248 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Matri.Business;
+using Matri.CustomExceptions;
 using Matri.Helper;
+using Matri.Model;
+using MvvmHelpers;
+using Newtonsoft.Json;
+using Syncfusion.Maui.Inputs;
+
 namespace Matri.ViewModel
 {
-    public class EditReligionViewModel : ObservableObject
+    public partial class EditReligionViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
-        //public INC<bool> ShowDenominations = new NC<bool>(false);
+        [ObservableProperty]
+        public bool showDenominations = false;
         readonly IServiceManager _serviceManager;
-        //private readonly IUserDialogs _userDialogs;
-        //public INC<Profile> LoggedInUser = new NC<Profile>();
+        [ObservableProperty]
+        public Profile profile;
+        [ObservableProperty]
+        public string star;
+        [ObservableProperty]
+        public string raasi;
+        [ObservableProperty]
+        public string gothram;
+        [ObservableProperty]
+        public string chevvaiDosham;
+        [ObservableProperty]
+        public string casteDetails;
+        [ObservableProperty]
+        public bool casteIsImportant;
+        [ObservableProperty]
+        public bool denominationIsImportant;
+        [ObservableProperty]
+        public bool showHinduFields = false;
+        [ObservableProperty]
+        public bool isBusy = true;
 
-        //public INC<string> Star = new NC<string>();
-        //public INC<string> Raasi = new NC<string>();
-        //public INC<string> Gothram = new NC<string>();
-        //public INC<string> ChevvaiDosham = new NC<string>();
-        //public INC<string> CasteDetails = new NC<string>();
-        //public INC<bool> CasteIsImportant = new NC<bool>();
-        //public INC<bool> DenominationIsImportant = new NC<bool>();
-        //public INC<bool> ShowHinduFields = new NC<bool>(false);
+        private Command<SfComboBox> onReligionChangedCommand;
 
-        //public DelegateCommand<object> SelectionChangedCommand { get; set; }
+        public Command<SfComboBox> OnReligionChangedCommand
+        {
+            get { return onReligionChangedCommand; }
+            set { onReligionChangedCommand = value; OnPropertyChanged(nameof(OnReligionChanged)); }
+        }
+
         public EditReligionViewModel()
         {
             _serviceManager = ServiceHelper.GetService<IServiceManager>();
-            //_userDialogs = userDialog;
 
-            //MDReligions = new SmartObservableCollection<Master>();
-            //MDCastes = new SmartObservableCollection<Master>();
-            //MDDenominations = new SmartObservableCollection<Master>();
+            MDReligions = new ObservableRangeCollection<Master>();
+            MDCastes = new ObservableRangeCollection<Master>();
+            MDDenominations = new ObservableRangeCollection<Master>();
 
-            //SelectionChangedCommand = new DelegateCommand<object>(CmdReligionChanged);
+            var defaultMaster = new Master();
+            defaultMaster.Id = "SELECT";
+            defaultMaster.Name = "SELECT";
 
-            //var defaultMaster = new Master();
-            //defaultMaster.Id = "SELECT";
-            //defaultMaster.Name = "SELECT";
+            SelectedReligion = defaultMaster;
+            SelectedCaste = defaultMaster;
+            SelectedDenomination = defaultMaster;
 
-            //SelectedCommunity = defaultMaster;
-            //SelectedSubCaste = defaultMaster;
-            //SelectedReligion = defaultMaster;
-            //SelectedCaste = defaultMaster;
-            //SelectedDenomination = defaultMaster;
+            SelectedCommunity = defaultMaster;
+            SelectedSubCaste = defaultMaster;
+
+            Task.Run(async () =>
+            {
+                await Init();
+            });
         }
 
-        //public override void Prepare(Profile profile)
-        //{
-            //LoggedInUser.Value = profile;
-            //Star.Value = profile.Star;
-            //Raasi.Value = profile.Raasi;
-            //Gothram.Value = profile.Gothram;
-            //ChevvaiDosham.Value = profile.ChevvaiDosham;
-            //CasteDetails.Value = profile.CasteInformation;
-            //CasteIsImportant.Value = profile.CasteCriteria;
-            //DenominationIsImportant.Value = profile.DenominationCriteria;
-        //}
-
-        //public override async Task Initialize()
-        //{
-            //await base.Initialize();
-
-            //try
-            //{
-            //    var token = await SecureStorage.GetAsync("Token");
-            //    var showHinduFields = await SecureStorage.GetAsync("ShowHinduFields");
-
-            //    ShowHinduFields.Value = Convert.ToBoolean(showHinduFields);
-
-            //    var masterDataReligions = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=religion");
-            //    MDReligions.AddRange(masterDataReligions);
-
-            //    var userReligion = masterDataReligions.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.Religion.ToLower()).FirstOrDefault();
-            //    SelectedReligion = userReligion;
-
-            //    MDCastes.Clear();
-            //    var castes = await _serviceManager.GetMasterData(new Guid(token), $"castes?religion=hindu");
-            //    MDCastes.AddRange(castes);
-            //    var userCaste = castes.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.Caste.ToLower()).FirstOrDefault();
-            //    SelectedCaste = userCaste;
-
-            //    if (userReligion.Name.ToLower() == "hindu")
-            //    {
-            //        ShowDenominations.Value = false;
-            //    }
-            //    if (userReligion.Name.ToLower() == "christian")
-            //    {
-            //        MDDenominations.Clear();
-            //        var denominations = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=denomination");
-            //        MDDenominations.AddRange(denominations);
-
-            //        var userDenomination = denominations.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.Denomination.ToLower()).FirstOrDefault();
-            //        SelectedDenomination = userDenomination;
-            //        ShowDenominations.Value = true;
-            //    }
-
-            //}
-            //catch (Exception e)
-            //{
-            //    //logger.Debug(e.Message);
-            //}
-        //}
-
-        public void CmdReligionChanged(object selectedObject)
+        public async Task Init()
         {
-            //ShowCastes.Value = true;
-            //ShowDenominations.Value = false;
-            Task.Run(async () => { await CmdReligionChangedAsync(selectedObject); });
+            IsBusy = true;
+            try
+            {
+                var sessionToken = await SecureStorage.GetAsync("Token");
+                Profile = await _serviceManager.GetUserData(new Guid(sessionToken));
+
+                Star = Profile.Star;
+                Raasi = Profile.Raasi;
+                Gothram = Profile.Gothram;
+                ChevvaiDosham = Profile.ChevvaiDosham;
+                CasteDetails = Profile.CasteInformation;
+                CasteIsImportant = Profile.CasteCriteria;
+                DenominationIsImportant = Profile.DenominationCriteria;
+
+                var token = await SecureStorage.GetAsync("Token");
+                var showHinduFields = await SecureStorage.GetAsync("ShowHinduFields");
+
+                ShowHinduFields = Convert.ToBoolean(showHinduFields);
+
+                var md = await _serviceManager.GetMasterData(new Guid(token));
+                MDReligions.AddRange(md.Religions);
+
+                SelectedReligion = md.Religions.Where(mt => mt.Id.ToLower() == Profile.Religion.ToLower()).FirstOrDefault();
+
+                MDCastes.AddRange(md.Castes);
+                SelectedCaste = md.Castes.Where(mt => mt.Id.ToLower() == Profile.Caste.ToLower()).FirstOrDefault();
+
+                if (SelectedReligion.Name.ToLower() == "hindu")
+                {
+                    ShowDenominations = false;
+                }
+                else if (SelectedReligion.Name.ToLower() == "christian")
+                {
+                    ShowDenominations = true;
+                    MDDenominations.Clear();
+                    MDDenominations.AddRange(md.Denominations);
+
+                    SelectedDenomination = md.Denominations.Where(mt => mt.Id.ToLower() == Profile.Denomination.ToLower()).FirstOrDefault();
+                }
+                IsBusy = false;
+            }
+            catch (Exception e)
+            {
+                IsBusy = false;
+            }
         }
 
-        private async Task CmdReligionChangedAsync(object selectedObject)
+        public ObservableRangeCollection<Master> mDReligions;
+        public ObservableRangeCollection<Master> MDReligions
         {
-            //var selectedItem = selectedObject as Syncfusion.XForms.ComboBox.SelectionChangedEventArgs;
-            //var religion = (selectedItem.Value as Master).Id;
-            //var token = await SecureStorage.GetAsync("Token");
-
-            //if (religion.ToLower() == "hindu")
-            //{
-            //    var castes = await _serviceManager.GetMasterData(new Guid(token), $"castes?religion={religion}");
-            //    Device.BeginInvokeOnMainThread(() =>
-            //    {
-            //        MDCastes.Clear();
-            //        MDCastes.AddRange(castes);
-            //        var userCaste = castes.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.Caste.ToLower()).FirstOrDefault();
-            //        SelectedCaste = userCaste;
-            //        ShowDenominations.Value = false;
-            //    });
-            //    //ShowCastes.Value = true;
-            //}
-            //if (religion.ToLower() == "christian")
-            //{
-            //    var denominations = await _serviceManager.GetMasterData(new Guid(token), "masterdata?type=denomination");
-            //    Device.BeginInvokeOnMainThread(() =>
-            //    {
-            //        MDDenominations.Clear();
-            //        MDDenominations.AddRange(denominations);
-            //        var userDenomination = denominations.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.Denomination.ToLower()).FirstOrDefault();
-            //        SelectedDenomination = userDenomination;
-            //        ShowDenominations.Value = true;
-            //        //ShowCastes.Value = false;
-            //    });
-            //}
+            get { return mDReligions; }
+            set
+            {
+                mDReligions = value;
+            }
+        }
+        private ObservableRangeCollection<Master> mDCastes;
+        public ObservableRangeCollection<Master> MDCastes
+        {
+            get { return mDCastes; }
+            set
+            {
+                mDCastes = value;
+            }
+        }
+        private ObservableRangeCollection<Master> mDDenominations;
+        public ObservableRangeCollection<Master> MDDenominations
+        {
+            get { return mDDenominations; }
+            set
+            {
+                mDDenominations = value;
+            }
         }
 
-        //private SmartObservableCollection<Master> mdReligions;
-        //public SmartObservableCollection<Master> MDReligions
-        //{
-        //    get { return mdReligions; }
-        //    set
-        //    {
-        //        mdReligions = value;
-        //    }
-        //}
+        [ObservableProperty]
+        public Master selectedDenomination;
+        [ObservableProperty]
+        public Master selectedCaste;
+        [ObservableProperty]
+        public Master selectedReligion;
+        [ObservableProperty]
+        public Master selectedSubCaste;
+        [ObservableProperty]
+        public Master selectedCommunity;
 
-        //private SmartObservableCollection<Master> mdCastes;
-        //public SmartObservableCollection<Master> MDCastes
-        //{
-        //    get { return mdCastes; }
-        //    set
-        //    {
-        //        mdCastes = value;
-        //    }
-        //}
-
-        //private SmartObservableCollection<Master> mdDenominations;
-        //public SmartObservableCollection<Master> MDDenominations
-        //{
-        //    get { return mdDenominations; }
-        //    set
-        //    {
-        //        mdDenominations = value;
-        //    }
-        //}
-
-        //private Master selectedCommunity;
-        //public Master SelectedCommunity
-        //{
-        //    get
-        //    {
-        //        return selectedCommunity;
-        //    }
-        //    set
-        //    {
-        //        selectedCommunity = value;
-        //        RaisePropertyChanged("SelectedCommunity");
-        //    }
-        //}
-
-        //private Master selectedSubCaste;
-        //public Master SelectedSubCaste
-        //{
-        //    get
-        //    {
-        //        return selectedSubCaste;
-        //    }
-        //    set
-        //    {
-        //        selectedSubCaste = value;
-        //        RaisePropertyChanged("SelectedSubCaste");
-        //    }
-        //}
-
-        //private Master selectedDenomination;
-        //public Master SelectedDenomination
-        //{
-        //    get
-        //    {
-        //        return selectedDenomination;
-        //    }
-        //    set
-        //    {
-        //        selectedDenomination = value;
-        //        RaisePropertyChanged("SelectedDenomination");
-        //    }
-        //}
-
-        //private Master selectedCaste;
-        //public Master SelectedCaste
-        //{
-        //    get
-        //    {
-        //        return selectedCaste;
-        //    }
-        //    set
-        //    {
-        //        selectedCaste = value;
-        //        RaisePropertyChanged("SelectedCaste");
-        //    }
-        //}
-
-        //private Master selectedReligion;
-        //public Master SelectedReligion
-        //{
-        //    get
-        //    {
-        //        return selectedReligion;
-        //    }
-        //    set
-        //    {
-        //        selectedReligion = value;
-        //        RaisePropertyChanged("SelectedReligion");
-        //    }
-        //}
-
-        //public void CommandUpdate()
-        //{
-        //    Task.Run(async () => { await UpdateAsync(); });
-        //}
-
-        private async Task UpdateAsync()
+        [RelayCommand]
+        public async Task Update()
         {
-            //if (selectedReligion == null)
-            //{
-            //    await _userDialogs.AlertAsync("Please Specify Religion");
-            //    return;
-            //}
+            if (selectedReligion == null)
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please Specify Religion", "OK");
+                return;
+            }
 
-            //if (selectedCaste == null)
-            //{
-            //    await _userDialogs.AlertAsync("Please Specify Caste");
-            //    return;
-            //}
+            if (selectedCaste == null)
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please Specify Caste", "OK");
+                return;
+            }
 
-            //var sessionToken = await SecureStorage.GetAsync("Token");
+            var sessionToken = await SecureStorage.GetAsync("Token");
 
             //var regligionDetails = new Profile
             //{
-            //    Religion = SelectedReligion.Id,
-            //    Denomination = SelectedDenomination.Id,
-            //    Caste = SelectedCaste.Id,
-            //    SubCaste = SelectedSubCaste.Id,
-            //    Community = SelectedCommunity.Id,
-            //    Star = Star.Value,
-            //    Raasi = Raasi.Value,
-            //    Gothram = Gothram.Value,
-            //    ChevvaiDosham = ChevvaiDosham.Value,
-            //    CasteInformation = CasteDetails.Value,
-            //    CasteCriteria = CasteIsImportant.Value,
-            //    DenominationCriteria = DenominationIsImportant.Value
+            Profile.Religion = SelectedReligion.Id;
+            Profile.Denomination = SelectedDenomination.Id;
+            Profile.Caste = SelectedCaste.Id;
+            Profile.Star = Star;
+            Profile.Raasi = Raasi;
+            Profile.Gothram = Gothram;
+            Profile.ChevvaiDosham = ChevvaiDosham;
+            Profile.CasteInformation = CasteDetails;
+            Profile.CasteCriteria = CasteIsImportant;
+            Profile.DenominationCriteria = DenominationIsImportant;
             //};
-            //try
-            //{
-            //    var status = await _serviceManager.UpdateReligionDetails(new Guid(sessionToken), regligionDetails);
 
-            //    if (status)
-            //    {
-            //        await _userDialogs.AlertAsync("Religious Details Have Been Updated");
-            //    }
-            //}
-            //catch (MatriInternetException exception)
-            //{
-            //    await _userDialogs.AlertAsync(exception.Message);
-            //}
-            //catch (Exception exception)
-            //{
-            //    var jsonResponse = exception.Message;
-            //    var errorMessage = JsonConvert.DeserializeObject<JioMatriException>(jsonResponse);
-            //    await _userDialogs.AlertAsync(errorMessage.Message);
-            //}
+
+
+            try
+            {
+                IsBusy = true;
+                var status = await _serviceManager.UpdateReligionDetails(new Guid(sessionToken), Profile);
+
+                if (status)
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", "Religious Details Updated", "OK");
+                }
+                IsBusy = false;
+            }
+            catch (MatriInternetException exception)
+            {
+                IsBusy = false;
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
+            }
+            catch (Exception exception)
+            {
+                IsBusy = false;
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
+            }
+        }
+
+        private async void OnReligionChanged(SfComboBox cmbReligion)
+        {
+            var selectedItem = cmbReligion.SelectedItem;
+            var religion = (selectedItem as Master).Id;
+
+            var token = await SecureStorage.GetAsync("Token");
+            var md = await _serviceManager.GetMasterData(new Guid(token));
+
+            if (religion.ToLower() == "hindu")
+            {
+                
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    MDCastes.Clear();
+                    MDCastes.AddRange(md.Castes);
+                    var userCaste = md.Castes.Where(mt => mt.Id.ToLower() == Profile.Caste.ToLower()).FirstOrDefault();
+                    SelectedCaste = userCaste;
+                    ShowDenominations = false;
+                });
+            }
+            if (religion.ToLower() == "christian")
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    MDDenominations.Clear();
+                    MDDenominations.AddRange(md.Denominations);
+                    SelectedDenomination = md.Denominations.Where(mt => mt.Id.ToLower() == Profile.Denomination.ToLower()).FirstOrDefault();
+                    ShowDenominations = true;
+                });
+            }
         }
     }
 }

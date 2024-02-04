@@ -1,327 +1,304 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Matri.Business;
+using Matri.CustomExceptions;
 using Matri.Helper;
 using Matri.Model;
+using MvvmHelpers;
 using Newtonsoft.Json;
+using Syncfusion.Maui.Inputs;
+using System.Collections.ObjectModel;
 
 namespace Matri.ViewModel
 {
-    public class EditPhysicalViewModel : ObservableObject
+    public partial class EditPhysicalViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
         IServiceManager _serviceManager;
-        //public INC<Profile> LoggedInUser = new NC<Profile>();
+
+        [ObservableProperty]
+        public Profile profile;
+
+        [ObservableProperty]
+        public bool isBusy = true;
+
+        private Command<SfComboBox> onHeightChangedCommand;
+
+        public Command<SfComboBox> OnHeightChangedCommand
+        {
+            get { return onHeightChangedCommand; }
+            set { onHeightChangedCommand = value; OnPropertyChanged(nameof(OnHeightChanged)); }
+        }
+
+        private Command<SfComboBox> onWeightChangedCommand;
+
+        public Command<SfComboBox> OnWeightChangedCommand
+        {
+            get { return onWeightChangedCommand; }
+            set { onWeightChangedCommand = value; OnPropertyChanged(nameof(OnWeightChanged)); }
+        }
+
+        private Command<SfComboBox> onPhysicalChangedCommand;
+
+        public Command<SfComboBox> OnPhysicalChangedCommand
+        {
+            get { return onPhysicalChangedCommand; }
+            set { onPhysicalChangedCommand = value; OnPropertyChanged(nameof(OnPhysicalChanged)); }
+        }
+
+        private Command<SfComboBox> onComplexionChangedCommand;
+
+        public Command<SfComboBox> OnComplexionChangedCommand
+        {
+            get { return onComplexionChangedCommand; }
+            set { onComplexionChangedCommand = value; OnPropertyChanged(nameof(OnComplexionChanged)); }
+        }
+
+        private Command<SfComboBox> onBodyTypeChangedCommand;
+
+        public Command<SfComboBox> OnBodyTypeChangedCommand
+        {
+            get { return onBodyTypeChangedCommand; }
+            set { onBodyTypeChangedCommand = value; OnPropertyChanged(nameof(OnBodyTypeChanged)); }
+        }
+
+        private Command<SfComboBox> onCreatedByChangedCommand;
+
+        public Command<SfComboBox> OnCreatedByChangedCommand
+        {
+            get { return onCreatedByChangedCommand; }
+            set { onCreatedByChangedCommand = value; OnPropertyChanged(nameof(OnCreatedByChanged)); }
+        }
+
+
         public EditPhysicalViewModel()
         {
             _serviceManager = ServiceHelper.GetService<IServiceManager>();
 
-            //MDHeights = new SmartObservableCollection<Master>();
-            //MDWeights = new SmartObservableCollection<Master>();
+            MDHeights = new ObservableRangeCollection<Master>();
+            MDWeights = new ObservableRangeCollection<Master>();
 
-            //MDPhysicalStatus = new SmartObservableCollection<Master>();
-            //MDBodyTypes = new SmartObservableCollection<Master>();
+            MDPhysicalStatus = new ObservableRangeCollection<Master>();
+            MDBodyTypes = new ObservableRangeCollection<Master>();
 
-            //MDComplexions = new SmartObservableCollection<Master>();
-            //MDBloodGroups = new SmartObservableCollection<Master>();
+            MDComplexions = new ObservableRangeCollection<Master>();
+            MDProfileCreators = new ObservableRangeCollection<Master>();
 
-            //MDProfileCreators = new SmartObservableCollection<Master>();
+            var defaultMaster = new Master();
+            defaultMaster.Id = "SELECT";
+            defaultMaster.Name = "SELECT";
 
-            //var defaultMaster = new Master();
-            //defaultMaster.Id = "SELECT";
-            //defaultMaster.Name = "SELECT";
+            SelectedHeight = defaultMaster;
+            SelectedWeight = defaultMaster;
+            SelectedComplexion = defaultMaster;
+            SelectedPhysicalStatus = defaultMaster;
+            SelectedBodyType = defaultMaster;
+            SelectedCreatedBy = defaultMaster;
 
-            //SelectedHeight = defaultMaster;
-            //SelectedWeight = defaultMaster;
-            //SelectedComplexion = defaultMaster;
-            //SelectedPhysicalStatus = defaultMaster;
-            //SelectedBodyType = defaultMaster;
-            //SelectedBloodGroup = defaultMaster;
-            //SelectedCreatedBy = defaultMaster;
+            Task.Run(async () => { await Init(); });
         }
 
-        //private Master selectedHeight;
-        //public Master SelectedHeight
-        //{
-        //    get
-        //    {
-        //        return selectedHeight;
-        //    }
-        //    set
-        //    {
-        //        selectedHeight = value;
-        //        RaisePropertyChanged("SelectedHeight");
-        //    }
-        //}
-
-        //private Master selectedWeight;
-        //public Master SelectedWeight
-        //{
-        //    get
-        //    {
-        //        return selectedWeight;
-        //    }
-        //    set
-        //    {
-        //        selectedWeight = value;
-        //        RaisePropertyChanged("SelectedWeight");
-        //    }
-        //}
-
-        //private Master selectedPhysicalStatus;
-        //public Master SelectedPhysicalStatus
-        //{
-        //    get
-        //    {
-        //        return selectedPhysicalStatus;
-        //    }
-        //    set
-        //    {
-        //        selectedPhysicalStatus = value;
-        //        RaisePropertyChanged("SelectedPhysicalStatus");
-        //    }
-        //}
-
-        //private Master selectedBodyType;
-        //public Master SelectedBodyType
-        //{
-        //    get
-        //    {
-        //        return selectedBodyType;
-        //    }
-        //    set
-        //    {
-        //        selectedBodyType = value;
-        //        RaisePropertyChanged("SelectedBodyType");
-        //    }
-        //}
-
-        //private Master selectedComplexion;
-        //public Master SelectedComplexion
-        //{
-        //    get
-        //    {
-        //        return selectedComplexion;
-        //    }
-        //    set
-        //    {
-        //        selectedComplexion = value;
-        //        RaisePropertyChanged("SelectedComplexion");
-        //    }
-        //}
-
-        //private Master selectedBloodGroup;
-        //public Master SelectedBloodGroup
-        //{
-        //    get
-        //    {
-        //        return selectedBloodGroup;
-        //    }
-        //    set
-        //    {
-        //        selectedBloodGroup = value;
-        //        RaisePropertyChanged("SelectedBloodGroup");
-        //    }
-        //}
-
-        //private Master selectedCreatedBy;
-        //public Master SelectedCreatedBy
-        //{
-        //    get
-        //    {
-        //        return selectedCreatedBy;
-        //    }
-        //    set
-        //    {
-        //        selectedCreatedBy = value;
-        //        RaisePropertyChanged("SelectedCreatedBy");
-        //    }
-        //}
-
-        //public override void Prepare(Profile profile)
-        //{
-        //    //LoggedInUser.Value = profile;
-
-        //    //for (var i = 40; i <= 120; i++)
-        //    //{
-        //    //    MDWeights.Add(new Master { Id = i.ToString(), Name = i.ToString() });
-        //    //}
-        //    //SelectedWeight = MDWeights.Where(mdw => mdw.Name == profile.Weight.ToString()).FirstOrDefault();
-        //}
-
-        //public override async Task Initialize()
-        //{
-        //    await base.Initialize();
-        //    var sessionToken = await SecureStorage.GetAsync("Token");
-        //    try
-        //    {
-        //        var masterDataHeights = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=height");
-        //        MDHeights.AddRange(masterDataHeights);
-        //        var userHeight = masterDataHeights.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.Height.ToLower()).FirstOrDefault();
-        //        SelectedHeight = userHeight;
-
-        //        var masterDataPhysical = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=physical");
-        //        MDPhysicalStatus.AddRange(masterDataPhysical);
-        //        var userPhysicalStatus = masterDataPhysical.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.PhysicalStatus.ToLower()).FirstOrDefault();
-        //        SelectedPhysicalStatus = userPhysicalStatus;
-
-        //        var masterDataBodyTypes = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=body");
-        //        MDBodyTypes.AddRange(masterDataBodyTypes);
-        //        var userBodyType = masterDataBodyTypes.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.BodyType.ToLower()).FirstOrDefault();
-        //        SelectedBodyType = userBodyType;
-
-        //        var masterDataComplexions = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=complexion");
-        //        MDComplexions.AddRange(masterDataComplexions);
-        //        var userComplexion = masterDataComplexions.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.Complexion.ToLower()).FirstOrDefault();
-        //        SelectedComplexion = userComplexion;
-
-        //        var masterDataBloodGroups = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=blood");
-        //        MDBloodGroups.AddRange(masterDataBloodGroups);
-        //        var userBloodGroup = masterDataBloodGroups.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.BloodGroup.ToLower()).FirstOrDefault();
-        //        SelectedBloodGroup = userBloodGroup;
-
-        //        var masterDataProfileCreators = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=profilecreatedby");
-        //        MDProfileCreators.AddRange(masterDataProfileCreators);
-        //        var userProfileCreatedBy = masterDataProfileCreators.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.ProfileCreatedBy.ToLower()).FirstOrDefault();
-        //        SelectedCreatedBy = userProfileCreatedBy;
-        //    }
-        //    catch (Exception e)
-        //    {
-
-        //    }
-        //}
-
-        //private SmartObservableCollection<Master> mdHeights;
-        //public SmartObservableCollection<Master> MDHeights
-        //{
-        //    get { return mdHeights; }
-        //    set
-        //    {
-        //        mdHeights = value;
-        //    }
-        //}
-
-        //private SmartObservableCollection<Master> mdWeights;
-        //public SmartObservableCollection<Master> MDWeights
-        //{
-        //    get { return mdWeights; }
-        //    set
-        //    {
-        //        mdWeights = value;
-        //    }
-        //}
-
-        //private SmartObservableCollection<Master> mdPhysicalStatus;
-        //public SmartObservableCollection<Master> MDPhysicalStatus
-        //{
-        //    get { return mdPhysicalStatus; }
-        //    set
-        //    {
-        //        mdPhysicalStatus = value;
-        //    }
-        //}
-
-        //private SmartObservableCollection<Master> mdBodyTypes;
-        //public SmartObservableCollection<Master> MDBodyTypes
-        //{
-        //    get { return mdBodyTypes; }
-        //    set
-        //    {
-        //        mdBodyTypes = value;
-        //    }
-        //}
-
-        //private SmartObservableCollection<Master> mdComplexions;
-        //public SmartObservableCollection<Master> MDComplexions
-        //{
-        //    get { return mdComplexions; }
-        //    set
-        //    {
-        //        mdComplexions = value;
-        //    }
-        //}
-
-        //private SmartObservableCollection<Master> mdBloodGroups;
-        //public SmartObservableCollection<Master> MDBloodGroups
-        //{
-        //    get { return mdBloodGroups; }
-        //    set
-        //    {
-        //        mdBloodGroups = value;
-        //    }
-        //}
-
-        //private SmartObservableCollection<Master> mdProfileCreators;
-        //public SmartObservableCollection<Master> MDProfileCreators
-        //{
-        //    get { return mdProfileCreators; }
-        //    set
-        //    {
-        //        mdProfileCreators = value;
-        //    }
-        //}
-
-        public void CommandUpdate()
+        public async Task Init()
         {
-            Task.Run(async () => { await UpdateAsync(); });
+            
+            for (var i = 40; i <= 120; i++)
+            {
+                MDWeights.Add(new Master { Id = i.ToString(), Name = i.ToString() });
+            }
+
+            var sessionToken = await SecureStorage.GetAsync("Token");
+
+            Profile = await _serviceManager.GetUserData(new Guid(sessionToken));
+            SelectedWeight = MDWeights.Where(mdw => mdw.Name == Profile.Weight.ToString()).FirstOrDefault();
+            try
+            {
+                var md = await _serviceManager.GetMasterData(new Guid(sessionToken));
+                MDHeights.AddRange(md.Heights);
+                SelectedHeight = md.Heights.Where(mt => mt.Id.ToLower() == Profile.Height.ToLower()).FirstOrDefault();
+
+                MDPhysicalStatus.AddRange(md.PhysicalStatuses);
+                SelectedPhysicalStatus = md.PhysicalStatuses.Where(mt => mt.Id.ToLower() == Profile.PhysicalStatus.ToLower()).FirstOrDefault();
+
+                MDBodyTypes.AddRange(md.BodyTypes);
+                SelectedBodyType = md.BodyTypes.Where(mt => mt.Id.ToLower() == Profile.BodyType.ToLower()).FirstOrDefault();
+
+                MDComplexions.AddRange(md.Complexions);
+                SelectedComplexion = md.Complexions.Where(mt => mt.Id.ToLower() == Profile.Complexion.ToLower()).FirstOrDefault();
+
+                MDProfileCreators.AddRange(md.ProfileCreatedBy);
+                SelectedCreatedBy = md.ProfileCreatedBy.Where(mt => mt.Id.ToLower() == Profile.ProfileCreatedBy.ToLower()).FirstOrDefault();
+                isBusy = false;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
-        private async Task UpdateAsync()
+        [ObservableProperty]
+        private Master selectedHeight;
+
+        [ObservableProperty]
+        private Master selectedWeight;
+
+        [ObservableProperty]
+        private Master selectedPhysicalStatus;
+
+        [ObservableProperty]
+        private Master selectedBodyType;
+
+        [ObservableProperty]
+        private Master selectedComplexion;
+
+        [ObservableProperty]
+        private Master selectedCreatedBy;
+
+        private ObservableRangeCollection<Master> mDHeights;
+
+        public ObservableRangeCollection<Master> MDHeights
         {
-            //if (SelectedHeight == null)
-            //{
-            //    await _userDialogs.AlertAsync("Please Specify Height");
-            //    return;
-            //}
-
-            //if (SelectedPhysicalStatus == null)
-            //{
-            //    await _userDialogs.AlertAsync("Please Specify Physical Status");
-            //    return;
-            //}
-
-            //if (SelectedComplexion == null)
-            //{
-            //    await _userDialogs.AlertAsync("Please Specify Complexion");
-            //    return;
-            //}
-
-            //if (SelectedBodyType == null)
-            //{
-            //    await _userDialogs.AlertAsync("Please Specify Body Type");
-            //    return;
-            //}
-
-            //var sessionToken = await SecureStorage.GetAsync("Token");
-
-            //var physicalDetails = new Profile
-            //{
-            //    Height = SelectedHeight.Id,
-            //    Weight = Convert.ToInt16(SelectedWeight.Id),
-            //    PhysicalStatus = SelectedPhysicalStatus.Id,
-            //    BodyType = SelectedBodyType.Id,
-            //    Complexion = SelectedComplexion.Id,
-            //    BloodGroup = SelectedBloodGroup.Id,
-            //    ProfileCreatedBy = SelectedCreatedBy.Id
-            //};
-            //try
-            //{
-            //    var status = await _serviceManager.UpdatePhysicalDetails(new Guid(sessionToken), physicalDetails);
-
-            //    if (status)
-            //    {
-            //        await _userDialogs.AlertAsync("Physical Details Have Been Updated");
-            //    }
-            //}
-            //catch (MatriInternetException exception)
-            //{
-            //    await _userDialogs.AlertAsync(exception.Message);
-            //}
-            //catch (Exception exception)
-            //{
-            //    var jsonResponse = exception.Message;
-            //    var errorMessage = JsonConvert.DeserializeObject<JioMatriException>(jsonResponse);
-            //    await _userDialogs.AlertAsync(errorMessage.Message);
-            //}
+            get { return mDHeights; }
+            set
+            {
+                mDHeights = value;
+            }
         }
+
+        private ObservableRangeCollection<Master> mDWeights;
+
+        public ObservableRangeCollection<Master> MDWeights
+        {
+            get { return mDWeights; }
+            set
+            {
+                mDWeights = value;
+            }
+        }
+
+        private ObservableRangeCollection<Master> mDPhysicalStatus;
+
+        public ObservableRangeCollection<Master> MDPhysicalStatus
+        {
+            get { return mDPhysicalStatus; }
+            set
+            {
+                mDPhysicalStatus = value;
+            }
+        }
+
+        private ObservableRangeCollection<Master> mDBodyTypes;
+
+        public ObservableRangeCollection<Master> MDBodyTypes
+        {
+            get { return mDBodyTypes; }
+            set
+            {
+                mDBodyTypes = value;
+            }
+        }
+
+        private ObservableRangeCollection<Master> mDComplexions;
+
+        public ObservableRangeCollection<Master> MDComplexions
+        {
+            get { return mDComplexions; }
+            set
+            {
+                mDComplexions = value;
+            }
+        }
+
+        private ObservableRangeCollection<Master> mDProfileCreators;
+
+        public ObservableRangeCollection<Master> MDProfileCreators
+        {
+            get { return mDProfileCreators; }
+            set
+            {
+                mDProfileCreators = value;
+            }
+        }
+
+
+        [RelayCommand]
+        private async Task Update()
+        {
+            IsBusy = true;
+
+            if (SelectedHeight == null)
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please Specify Height", "OK");
+                return;
+            }
+
+            if (SelectedPhysicalStatus == null)
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please Specify Physical Status", "OK");
+                return;
+            }
+
+            if (SelectedComplexion == null)
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please Specify Complexion", "OK");
+                return;
+            }
+
+            if (SelectedBodyType == null)
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please Specify Body Type", "OK");
+                return;
+            }
+
+            var sessionToken = await SecureStorage.GetAsync("Token");
+
+            Profile.Height = SelectedHeight.Id;
+            Profile.Weight = Convert.ToInt16(SelectedWeight.Id);
+            Profile.PhysicalStatus = SelectedPhysicalStatus.Id;
+            Profile.BodyType = SelectedBodyType.Id;
+            Profile.Complexion = SelectedComplexion.Id;
+            Profile.ProfileCreatedBy = SelectedCreatedBy.Id;
+
+            try
+            {
+                var status = await _serviceManager.UpdatePhysicalDetails(new Guid(sessionToken), Profile);
+
+                if (status)
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", "Physical Details Have Been Updated", "OK");
+                }
+            }
+            catch (MatriInternetException exception)
+            {
+                IsBusy = false;
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
+            }
+            catch (Exception exception)
+            {
+                IsBusy = false;
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
+            }
+            IsBusy = false;
+        }
+
+        private async void OnHeightChanged(SfComboBox cmbReligion)
+        { }
+
+        private async void OnWeightChanged(SfComboBox cmbReligion)
+        { }
+
+        private async void OnPhysicalChanged(SfComboBox cmbReligion)
+        { }
+
+        private async void OnComplexionChanged(SfComboBox cmbReligion)
+        { }
+
+        private async void OnReligionChanged(SfComboBox cmbReligion)
+        { }
+
+        private async void OnBodyTypeChanged(SfComboBox cmbReligion)
+        { }
+
+        private async void OnCreatedByChanged(SfComboBox cmbReligion)
+        { }
     }
 }
 
