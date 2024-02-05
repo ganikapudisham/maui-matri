@@ -1,233 +1,193 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Matri.Abstract;
 using Matri.Business;
 using Matri.CustomExceptions;
 using Matri.Helper;
 using Matri.Model;
+using MvvmHelpers;
 using Newtonsoft.Json;
 
 namespace Matri.ViewModel
 {
-    public class EditAcademicsViewModel : ObservableObject
+    public partial class EditAcademicsViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
 
         IServiceManager _serviceManager;
-        //private readonly IUserDialogs _userDialogs;
-        //public INC<Profile> LoggedInUser = new NC<Profile>();
-        //public INC<string> AcademicDetails = new NC<string>();
-        //public INC<string> EmployementDetails = new NC<string>();
-        //public INC<string> IncomeDetails = new NC<string>();
-        //public INC<string> PropertyDetails = new NC<string>();
+        ISharedService _sharedService;
+
+        [ObservableProperty]
+        public Profile profile;
+
+        [ObservableProperty]
+        public string academicDetails;
+
+        [ObservableProperty]
+        public string employementDetails;
+
+        [ObservableProperty]
+        public string incomeDetails;
+
+        [ObservableProperty]
+        public string propertyDetails;
+
+        [ObservableProperty]
+        public bool isBusy = true;
+
+        [ObservableProperty]
+        public Master selectedAcademic;
+
+        [ObservableProperty]
+        public Master selectedIncome;
+
+        [ObservableProperty]
+        public Master selectedSector;
+
+        [ObservableProperty]
+        public Master selectedIndustry;
         public EditAcademicsViewModel()
         {
             _serviceManager = ServiceHelper.GetService<IServiceManager>();
+            _sharedService = ServiceHelper.GetService<ISharedService>();
 
-            //MDAcademics = new SmartObservableCollection<Master>();
-            //MDIncomes = new SmartObservableCollection<Master>();
+            MDAcademics = new ObservableRangeCollection<Master>();
+            MDIncomes = new ObservableRangeCollection<Master>();
 
-            //MDSectors = new SmartObservableCollection<Master>();
-            //MDIndustries = new SmartObservableCollection<Master>();
+            MDSectors = new ObservableRangeCollection<Master>();
+            MDIndustries = new ObservableRangeCollection<Master>();
 
-            //var defaultMaster = new Master();
-            //defaultMaster.Id = "SELECT";
-            //defaultMaster.Name = "SELECT";
+            var defaultMaster = new Master();
+            defaultMaster.Id = "SELECT";
+            defaultMaster.Name = "SELECT";
 
-            //SelectedAcademic = defaultMaster;
-            //SelectedIncome = defaultMaster;
-            //SelectedSector = defaultMaster;
-            //SelectedIndustry = defaultMaster;
+            SelectedAcademic = defaultMaster;
+            SelectedIncome = defaultMaster;
+            SelectedSector = defaultMaster;
+            SelectedIndustry = defaultMaster;
+
+            Task.Run(async () => { await Init(); });
         }
 
-        //public override void Prepare(Profile profile)
-        //{
-            //LoggedInUser.Value = profile;
-
-            //EmployementDetails.Value = profile.EmploymentDetails;
-            //IncomeDetails.Value = profile.IncomeDetails;
-            //PropertyDetails.Value = profile.PropertyDetails;
-            //AcademicDetails.Value = profile.EducationDetails;
-
-        //}
-
-        //public override async Task Initialize()
-        //{
-            ////await base.Initialize();
-            ////var sessionToken = await SecureStorage.GetAsync("Token");
-            ////try
-            ////{
-            ////    var mdAcademics = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=education");
-            ////    MDAcademics.AddRange(mdAcademics);
-            ////    var userAcademic = mdAcademics.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.Education.ToLower()).FirstOrDefault();
-            ////    SelectedAcademic = userAcademic;
-
-            ////    var mdIncomes = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=incomes");
-            ////    MDIncomes.AddRange(mdIncomes);
-            ////    var userIncome = mdIncomes.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.AnnualIncome.ToLower()).FirstOrDefault();
-            ////    SelectedIncome = userIncome;
-
-            ////    var mdSectors = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=jobtypes");
-            ////    MDSectors.AddRange(mdSectors);
-            ////    var userSector = mdSectors.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.JobType.ToLower()).FirstOrDefault();
-            ////    SelectedSector = userSector;
-
-            ////    var mdIndustries = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=jobs");
-            ////    MDIndustries.AddRange(mdIndustries);
-            ////    var userIndustry = mdIndustries.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.Job.ToLower()).FirstOrDefault();
-            ////    SelectedIndustry = userIndustry;
-            //}
-            //catch (Exception e)
-            //{
-
-            //}
-        //}
-
-        public void CommandUpdate()
+        public async Task Init()
         {
-            Task.Run(async () => { await UpdateAsync(); });
+            IsBusy = true;
+            var sessionToken = await SecureStorage.GetAsync("Token");
+            Profile = _sharedService.GetValue<Profile>("LoggedInUser");
+            var md = _sharedService.GetValue<MDD>("MasterData");
+
+            EmployementDetails = Profile.EmploymentDetails;
+            IncomeDetails = Profile.IncomeDetails;
+            PropertyDetails = Profile.PropertyDetails;
+            AcademicDetails = Profile.EducationDetails;
+
+            try
+            {
+                MDAcademics.AddRange(md.Academics);
+                SelectedAcademic = md.Academics.Where(mt => mt.Id.ToLower() == Profile.Education.ToLower()).FirstOrDefault();
+
+                MDIncomes.AddRange(md.Incomes);
+                SelectedIncome = md.Incomes.Where(mt => mt.Id.ToLower() == Profile.AnnualIncome.ToLower()).FirstOrDefault();
+
+                MDSectors.AddRange(md.JobTypes);
+                SelectedSector = md.JobTypes.Where(mt => mt.Id.ToLower() == Profile.JobType.ToLower()).FirstOrDefault();
+
+                MDIndustries.AddRange(md.Jobs);
+                SelectedIndustry = md.Jobs.Where(mt => mt.Id.ToLower() == Profile.Job.ToLower()).FirstOrDefault();
+                IsBusy = false;
+            }
+            catch (Exception e)
+            {
+                IsBusy = false;
+            }
         }
 
-        private async Task UpdateAsync()
+        [RelayCommand]
+        public async Task Update()
         {
-            //if (SelectedAcademic == null)
-            //{
-            //    await _userDialogs.AlertAsync("Please Select Highest Academic Qualification");
-            //    return;
-            //}
+            if (SelectedAcademic == null)
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please Select Highest Academic Qualification", "OK");
+                return;
+            }
 
-            //if (SelectedIncome == null)
-            //{
-            //    await _userDialogs.AlertAsync("Please Specify Income");
-            //    return;
-            //}
+            if (SelectedIncome == null)
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please Specify Income", "OK");
+                return;
+            }
 
-            //var sessionToken = await SecureStorage.GetAsync("Token");
+            var sessionToken = await SecureStorage.GetAsync("Token");
 
-            //var acedemicDetails = new Profile
-            //{
-            //    EmploymentDetails = EmployementDetails.Value,
-            //    IncomeDetails = IncomeDetails.Value,
-            //    PropertyDetails = PropertyDetails.Value,
-            //    EducationDetails = AcademicDetails.Value,
-            //    Education = SelectedAcademic.Id,
-            //    AnnualIncome = SelectedIncome.Id,
-            //    Job = SelectedIndustry.Id,
-            //    JobType = SelectedSector.Id
-            //};
-            //try
-            //{
-            //    var status = await _serviceManager.UpdateEducationDetails(new Guid(sessionToken), acedemicDetails);
+            Profile.EmploymentDetails = EmployementDetails;
+            Profile.IncomeDetails = IncomeDetails;
+            Profile.PropertyDetails = PropertyDetails;
+            Profile.EducationDetails = AcademicDetails;
+            Profile.Education = SelectedAcademic.Id;
+            Profile.AnnualIncome = SelectedIncome.Id;
+            Profile.Job = SelectedIndustry.Id;
+            Profile.JobType = SelectedSector.Id;
 
-            //    if (status)
-            //    {
-            //        await _userDialogs.AlertAsync("Physical Details Have Been Updated");
-            //    }
-            //}
-            //catch (MatriInternetException exception)
-            //{
-            //    await _userDialogs.AlertAsync(exception.Message);
-            //}
-            //catch (Exception exception)
-            //{
-            //    var jsonResponse = exception.Message;
-            //    var errorMessage = JsonConvert.DeserializeObject<MatriException>(jsonResponse);
-            //    await _userDialogs.AlertAsync(errorMessage.Message);
-            //}
+            try
+            {
+                IsBusy = true;
+                var status = await _serviceManager.UpdateEducationDetails(new Guid(sessionToken), Profile);
+                IsBusy = false;
+                if (status)
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", "Physical Details Updated", "OK");
+                }
+            }
+            catch (MatriInternetException exception)
+            {
+                IsBusy = false;
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
+            }
+            catch (Exception exception)
+            {
+                IsBusy = false;
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
+            }
         }
 
-        //private SmartObservableCollection<Master> _mdAcademics;
-        //public SmartObservableCollection<Master> MDAcademics
-        //{
-        //    get { return _mdAcademics; }
-        //    set
-        //    {
-        //        _mdAcademics = value;
-        //    }
-        //}
+        private ObservableRangeCollection<Master> mDAcademics;
+        public ObservableRangeCollection<Master> MDAcademics
+        {
+            get { return mDAcademics; }
+            set
+            {
+                mDAcademics = value;
+            }
+        }
 
-        //private Master _selectedAcademic;
-        //public Master SelectedAcademic
-        //{
-        //    get
-        //    {
-        //        return _selectedAcademic;
-        //    }
-        //    set
-        //    {
-        //        _selectedAcademic = value;
-        //        RaisePropertyChanged("SelectedAcademic");
-        //    }
-        //}
+        private ObservableRangeCollection<Master> mDIncomes;
+        public ObservableRangeCollection<Master> MDIncomes
+        {
+            get { return mDIncomes; }
+            set
+            {
+                mDIncomes = value;
+            }
+        }
 
-        //private SmartObservableCollection<Master> _mdIncomes;
-        //public SmartObservableCollection<Master> MDIncomes
-        //{
-        //    get { return _mdIncomes; }
-        //    set
-        //    {
-        //        _mdIncomes = value;
-        //    }
-        //}
+        private ObservableRangeCollection<Master> mDSectors;
+        public ObservableRangeCollection<Master> MDSectors
+        {
+            get { return mDSectors; }
+            set
+            {
+                mDSectors = value;
+            }
+        }
 
-        //private Master _selectedIncome;
-        //public Master SelectedIncome
-        //{
-        //    get
-        //    {
-        //        return _selectedIncome;
-        //    }
-        //    set
-        //    {
-        //        _selectedIncome = value;
-        //        RaisePropertyChanged("SelectedIncome");
-        //    }
-        //}
-
-        //private SmartObservableCollection<Master> _mdSectors;
-        //public SmartObservableCollection<Master> MDSectors
-        //{
-        //    get { return _mdSectors; }
-        //    set
-        //    {
-        //        _mdSectors = value;
-        //    }
-        //}
-
-        //private Master _selectedSector;
-        //public Master SelectedSector
-        //{
-        //    get
-        //    {
-        //        return _selectedSector;
-        //    }
-        //    set
-        //    {
-        //        _selectedSector = value;
-        //        RaisePropertyChanged("SelectedSector");
-        //    }
-        //}
-
-        //private SmartObservableCollection<Master> _mdIndustries;
-        //public SmartObservableCollection<Master> MDIndustries
-        //{
-        //    get { return _mdIndustries; }
-        //    set
-        //    {
-        //        _mdIndustries = value;
-        //    }
-        //}
-
-        //private Master _selectedIndustry;
-        //public Master SelectedIndustry
-        //{
-        //    get
-        //    {
-        //        return _selectedIndustry;
-        //    }
-        //    set
-        //    {
-        //        _selectedIndustry = value;
-        //        RaisePropertyChanged("SelectedIndustry");
-        //    }
-        //}
+        private ObservableRangeCollection<Master> mDIndustries;
+        public ObservableRangeCollection<Master> MDIndustries
+        {
+            get { return mDIndustries; }
+            set
+            {
+                mDIndustries = value;
+            }
+        }
     }
 }
 
