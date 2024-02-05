@@ -23,11 +23,11 @@ namespace Matri.ViewModel
             var physicalPage3 = new EditPhysicalPage();
 
             var educationPage4 = new EditAcademicsPage();
-            //var contactsPage5 = new EditContactsPage();
+            var contactsPage5 = new EditContactsPage();
             //var familyPage6 = new EditFamilyPage();
 
             //var lifeStylePage7 = new EditLifeStylePage();
-            //var photoPage8 = new EditPhotoPage();
+            var photoPage8 = new EditPhotoPage();
             //var expectationsPage9 = new EditExpectationsPage();
 
             var tabItemBasic1 = new SfTabItem { Content = basicPage1.Content, Header = "Basic" };
@@ -42,8 +42,8 @@ namespace Matri.ViewModel
             var tabItemEducation4 = new SfTabItem { Content = educationPage4.Content, Header = "Education" };
             tabItemEducation4.Content.BindingContext = educationPage4.BindingContext;
 
-            //var tabItemContact5 = new SfTabItem { Content = contactsPage5.Content, Header = "Contact" };
-            //tabItemContact5.Content.BindingContext = contactsPage5.BindingContext;
+            var tabItemContact5 = new SfTabItem { Content = contactsPage5.Content, Header = "Contact" };
+            tabItemContact5.Content.BindingContext = contactsPage5.BindingContext;
 
             //var tabItemFamily6 = new SfTabItem { Content = familyPage6.Content, Header = "Family" };
             //tabItemFamily6.Content.BindingContext = familyPage6.BindingContext;
@@ -51,8 +51,8 @@ namespace Matri.ViewModel
             //var tabItemLife7 = new SfTabItem { Content = lifeStylePage7.Content, Header = "Life Style" };
             //tabItemLife7.Content.BindingContext = lifeStylePage7.BindingContext;
 
-            //var tabItemPhoto8 = new SfTabItem { Content = photoPage8.Content, Header = "Photo" };
-            //tabItemPhoto8.Content.BindingContext = photoPage8.BindingContext;
+            var tabItemPhoto8 = new SfTabItem { Content = photoPage8.Content, Header = "Photo" };
+            tabItemPhoto8.Content.BindingContext = photoPage8.BindingContext;
 
             //var tabItemExpec9 = new SfTabItem { Content = expectationsPage9.Content, Header = "Expectations" };
             //tabItemExpec9.Content.BindingContext = expectationsPage9.BindingContext;
@@ -61,10 +61,10 @@ namespace Matri.ViewModel
             TabItems.Add(tabItemReligion2);
             TabItems.Add(tabItemPhysical3);
             TabItems.Add(tabItemEducation4);
-            //TabItems.Add(tabItemContact5);
-            //TabItems.Add(tabItemFamily6);
+            TabItems.Add(tabItemContact5);
+            ////TabItems.Add(tabItemFamily6);
             //TabItems.Add(tabItemLife7);
-            //TabItems.Add(tabItemPhoto8);
+            TabItems.Add(tabItemPhoto8);
             //TabItems.Add(tabItemExpec9);
         }
 

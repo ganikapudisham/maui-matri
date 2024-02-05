@@ -7,4 +7,13 @@
     <ContentPage.BindingContext>
         <vm:EditPhotoViewModel/>
     </ContentPage.BindingContext>
+    <ScrollView>
+        <StackLayout>
+            <Button x:Name="pickPhoto" Text="Browse Photo" Command="{Binding BrowsePhotoCommand}"/>
+            <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" Grid.Row="0" />
+            <ProgressBar x:Name="progress" Progress="0.0" IsVisible="False" />
+            <Image x:Name="image" Source="{Binding ImageSource}"/>
+            <Button Text="Upload Photo" Command="{Binding UploadPhotoCommand}" />
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

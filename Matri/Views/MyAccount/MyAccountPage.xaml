@@ -17,7 +17,7 @@
             <!--  Header label for account setting  -->
             <Label
             Margin="16,0,0,0"
-            FontFamily="Montserrat-SemiBold"
+            FontFamily="Montserrat-Regular"
             FontSize="12"
             HeightRequest="50"
             HorizontalOptions="FillAndExpand"
@@ -129,7 +129,7 @@
 
             <Label
             Margin="16,0,0,0"
-            FontFamily="Montserrat-SemiBold"
+            FontFamily="Montserrat-Regular"
             FontSize="12"
             HeightRequest="50"
             HorizontalOptions="FillAndExpand"
@@ -237,7 +237,7 @@
 
             <Label
             Margin="16,0,0,0"
-            FontFamily="Montserrat-SemiBold"
+            FontFamily="Montserrat-Regular"
             FontSize="12"
             HeightRequest="50"
             HorizontalOptions="FillAndExpand"

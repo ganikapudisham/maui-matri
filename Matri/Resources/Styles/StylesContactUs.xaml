@@ -16,7 +16,7 @@
     <!--  Common style for buttons  -->
     <Style x:Key="SfGradientButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="TextColor" Value="{DynamicResource GrayWhite}" />
-        <Setter Property="FontFamily" Value="Montserrat-SemiBold" />
+        <Setter Property="FontFamily" Value="Montserrat-Regular" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="HeightRequest" Value="40" />
         <Setter Property="CornerRadius" Value="24" />
@@ -35,7 +35,7 @@
 
     <!--  Common label style  -->
     <Style x:Key="labelStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="{DynamicResource Montserrat-Regular}" />
+        <Setter Property="FontFamily" Value="Montserrat-Regular" />
         <Setter Property="TextColor" Value="{DynamicResource Gray700}" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="LineHeight" Value="{OnPlatform Android=1.25,Default=-1}"/>

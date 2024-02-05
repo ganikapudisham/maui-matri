@@ -19,7 +19,7 @@
 
                 <Label
                     Margin="0,16,0,16"
-                    FontFamily="Montserrat-SemiBold"
+                    FontFamily="Montserrat-Regular"
                     FontSize="20"
                     HorizontalOptions="FillAndExpand"
                     HorizontalTextAlignment="Center"

@@ -1,89 +1,82 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Matri.Business;
+using Matri.CustomExceptions;
 using Matri.Helper;
 using Matri.Model;
 using Newtonsoft.Json;
+using System;
 
 namespace Matri.ViewModel
 {
-    public class EditPhotoViewModel : ObservableObject
+    public partial class EditPhotoViewModel : ObservableObject
     {
         IServiceManager _serviceManager;
-        //public INC<string> ImageSource = new NC<string>();
+        [ObservableProperty]
+        public string imageSource;
+
+        [ObservableProperty]
+        public bool isBusy;
         public EditPhotoViewModel()
         {
             _serviceManager = ServiceHelper.GetService<IServiceManager>();
         }
 
-        //public override void Prepare(Profile parameter)
-        //{
-        //}
-
-        public void BrowsePhoto()
+        [RelayCommand]
+        public async Task BrowsePhoto()
         {
-            Task.Run(async () => { await BrowsePhotoAsync(); });
-        }
+            var requestStorageRead = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
 
-        private async Task BrowsePhotoAsync()
-        {
-            //await CrossMedia.Current.Initialize();
+            if (requestStorageRead == PermissionStatus.Granted)
+            {
+                var file = await FilePicker.PickAsync(new PickOptions { FileTypes = FilePickerFileType.Images });
 
-            //Plugin.Media.Abstractions.MediaFile file = null;
-
-            //var requestStorageRead = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
-
-            //if (requestStorageRead == PermissionStatus.Granted)
-            //{
-            //    file = await CrossMedia.Current.PickPhotoAsync();
-
-            //    if (file == null)
-            //        return;
-            //    ImageSource.Value = file.Path;
-            //}
-            //else if (requestStorageRead == PermissionStatus.Denied)
-            //{
-            //    await _userDialogs.AlertAsync("Please allow app to access Storage");
-            //    AppInfo.ShowSettingsUI();
-            //}
+                if (file == null)
+                    return;
+                ImageSource = file.FullPath;
+            }
+            else if (requestStorageRead == PermissionStatus.Denied)
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please allow app to access Storage", "OK");
+                AppInfo.ShowSettingsUI();
+            }
         }
 
 
-        public void UploadPhoto()
+        [RelayCommand]
+        public async Task UploadPhoto()
         {
-            Task.Run(async () => { await UploadPhotoAsync(); });
-        }
+            var sessionToken = await SecureStorage.GetAsync("Token");
+            var filePath = ImageSource;
+            byte[] imageBytes = File.ReadAllBytes(ImageSource);
 
-        private async Task UploadPhotoAsync()
-        {
-            //var sessionToken = await SecureStorage.GetAsync("Token");
-            //var filePath = ImageSource.Value;
-            //byte[] imageBytes = File.ReadAllBytes(ImageSource.Value);
+            byte[] image = File.ReadAllBytes(filePath);
+            var fileName = filePath.Split('/')[filePath.Split('/').Length - 1];
 
-            //byte[] image = File.ReadAllBytes(filePath);
-            //var fileName = filePath.Split('/')[filePath.Split('/').Length - 1];
+            var formData = new MultipartFormDataContent();
 
-            //var formData = new MultipartFormDataContent();
-
-            //formData.Add(new StringContent(sessionToken), "sessiontoken");
-            //formData.Add(new ByteArrayContent(image, 0, image.Length), "file", fileName);
-            //try
-            //{
-            //    var status = await _serviceManager.UploadProfilePhoto(formData);
-            //    if (status)
-            //    {
-            //        await _userDialogs.AlertAsync("Photo Was Uploaded, Thank you");
-            //    }
-            //}
-            //catch (MatriInternetException exception)
-            //{
-            //    await _userDialogs.AlertAsync(exception.Message);
-            //}
-            //catch (Exception exception)
-            //{
-            //    var jsonResponse = exception.Message;
-            //    var errorMessage = JsonConvert.DeserializeObject<JioMatriException>(jsonResponse);
-            //    await _userDialogs.AlertAsync(errorMessage.Message);
-            //}
+            formData.Add(new StringContent(sessionToken), "sessiontoken");
+            formData.Add(new ByteArrayContent(image, 0, image.Length), "file", fileName);
+            try
+            {
+                IsBusy = true;
+                var status = await _serviceManager.UploadProfilePhoto(formData);
+                if (status)
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", "Photo Was Uploaded, Thank you", "OK");
+                }
+                IsBusy = false;
+            }
+            catch (MatriInternetException exception)
+            {
+                IsBusy = false;
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
+            }
+            catch (Exception exception)
+            {
+                IsBusy = false;
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
+            }
         }
     }
 }
