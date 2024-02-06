@@ -70,7 +70,7 @@ namespace Matri.ViewModel
                 _sharedService.Add<MDD>("MasterData", masterData);
                 _sharedService.AddBool("ShowHinduFields", appDetails.ShowHinduFields);
                 _sharedService.AddBool("SubScriptionType", session.SubscriptionActive);
-
+                IsBusy = false;
                 await Shell.Current.GoToAsync("//AllProfilesPage");
             }
             catch (MatriInternetException exception)
@@ -83,8 +83,6 @@ namespace Matri.ViewModel
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", exception?.Message, "OK");
                 IsBusy = false;
             }
-
-            IsBusy = false;
         }
 
         [RelayCommand]
