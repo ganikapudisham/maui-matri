@@ -58,7 +58,7 @@ namespace Matri.ViewModel
             TabItems.Add(tabItemPhysical3);
             TabItems.Add(tabItemEducation4);
             TabItems.Add(tabItemContact5);
-            //TabItems.Add(tabItemFamily6);
+            TabItems.Add(tabItemFamily6);
             //TabItems.Add(tabItemLife7);
             TabItems.Add(tabItemPhoto8);
             //TabItems.Add(tabItemExpec9);

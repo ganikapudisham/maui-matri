@@ -70,7 +70,7 @@ namespace Matri.ViewModel
              Init();
         }
 
-        private void Init()
+        public void Init()
         {
             IsBusy = true;
             try

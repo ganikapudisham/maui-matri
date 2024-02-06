@@ -80,7 +80,7 @@ namespace Matri.ViewModel
             Init();
         }
 
-        private void Init()
+        public void Init()
         {
             Profile =  _sharedService.GetValue<Profile>("LoggedInUser");
             var md = _sharedService.GetValue<MDD>("MasterData");

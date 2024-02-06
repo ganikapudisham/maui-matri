@@ -78,6 +78,7 @@ namespace Matri.ViewModel
         public EditFamilyViewModel()
         {
             _serviceManager = ServiceHelper.GetService<IServiceManager>();
+            _sharedService = ServiceHelper.GetService<ISharedService>();
 
             MDFamilyStatuses = new ObservableRangeCollection<Master>();
             MDFamilyTypes = new ObservableRangeCollection<Master>();
@@ -94,7 +95,7 @@ namespace Matri.ViewModel
             Init();
         }
 
-        private void Init()
+        public void Init()
         {
             Profile = _sharedService.GetValue<Profile>("LoggedInUser");
 

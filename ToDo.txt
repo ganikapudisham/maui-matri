@@ -56,3 +56,7 @@ expectations page is pending
 Photo, ID & paid or unpaid to be added on Flyout Menu
 
 https://medium.com/@banerjee.s.sayans/skipped-611-frames-the-application-maybe-doing-too-much-work-on-its-main-thread-69d86c171a56
+
+https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/appmodel/main-thread?view=net-maui-8.0
+
+https://stackoverflow.com/questions/73403608/net-maui-c-sharp-background-task-continuewith-and-notification-event

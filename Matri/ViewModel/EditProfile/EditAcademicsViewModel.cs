@@ -68,7 +68,7 @@ namespace Matri.ViewModel
             Init();
         }
 
-        private void Init()
+        public void Init()
         {
             IsBusy = true;
             Profile = _sharedService.GetValue<Profile>("LoggedInUser");

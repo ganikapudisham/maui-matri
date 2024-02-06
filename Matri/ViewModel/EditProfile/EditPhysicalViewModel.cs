@@ -100,7 +100,7 @@ namespace Matri.ViewModel
             Init();
         }
 
-        private void Init()
+        public void Init()
         {
             var weightList = new List<Master>();
             for (var i = 40; i <= 120; i++)
