@@ -1,208 +1,163 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Matri.Abstract;
 using Matri.Business;
+using Matri.CustomExceptions;
 using Matri.Helper;
 using Matri.Model;
+using MvvmHelpers;
 using Newtonsoft.Json;
 
 namespace Matri.ViewModel
 {
-    public class EditFamilyViewModel : ObservableObject
+    public partial class EditFamilyViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
-        IServiceManager _serviceManager;
-        //private readonly IUserDialogs _userDialogs;
+        private readonly IServiceManager _serviceManager;
+        private readonly ISharedService _sharedService;
 
-        //public INC<Profile> LoggedInUser = new NC<Profile>();
-        //public INC<string> AboutFather = new NC<string>();
-        //public INC<string> AboutMother = new NC<string>();
+        [ObservableProperty]
+        public Profile profile;
+        [ObservableProperty]
+        public string aboutFather;
+        [ObservableProperty]
+        public string aboutMother;
 
-        //public INC<int> NumberOfBrothers = new NC<int>();
-        //public INC<string> AboutBrothers = new NC<string>();
-        //public INC<int> NumberOfBrothersMarried = new NC<int>();
+        [ObservableProperty]
+        public int numberOfBrothers;
+        [ObservableProperty]
+        public string aboutBrothers;
+        [ObservableProperty]
+        public int numberOfBrothersMarried;
+        [ObservableProperty]
+        public int numberOfSisters;
+        [ObservableProperty]
+        public string aboutSisters;
+        [ObservableProperty]
+        public int numberOfSistersMarried;
+        [ObservableProperty]
+        public string familyDetails;
 
-        //public INC<int> NumberOfSisters = new NC<int>();
-        //public INC<string> AboutSisters = new NC<string>();
-        //public INC<int> NumberOfSistersMarried = new NC<int>();
+        [ObservableProperty]
+        public Master selectedFamilyType;
+        [ObservableProperty]
+        public Master selectedFamilyStatus;
+        [ObservableProperty]
+        public Master selectedFamilyValue;
 
-        //public INC<string> FamilyDetails = new NC<string>();
+        private ObservableRangeCollection<Master> mDFamilyTypes;
+        public ObservableRangeCollection<Master> MDFamilyTypes
+        {
+            get { return mDFamilyTypes; }
+            set
+            {
+                mDFamilyTypes = value;
+            }
+        }
+
+        private ObservableRangeCollection<Master> mDFamilyStatuses;
+        public ObservableRangeCollection<Master> MDFamilyStatuses
+        {
+            get { return mDFamilyStatuses; }
+            set
+            {
+                mDFamilyStatuses = value;
+            }
+        }
+
+        private ObservableRangeCollection<Master> mDFamilyValues;
+        public ObservableRangeCollection<Master> MDFamilyValues
+        {
+            get { return mDFamilyValues; }
+            set
+            {
+                mDFamilyValues = value;
+            }
+        }
+
+
         public EditFamilyViewModel()
         {
             _serviceManager = ServiceHelper.GetService<IServiceManager>();
-            //_userDialogs = userDialog;
 
-            //MDFamilyStatuses = new SmartObservableCollection<Master>();
-            //MDFamilyTypes = new SmartObservableCollection<Master>();
-            //MDFamilyValues = new SmartObservableCollection<Master>();
+            MDFamilyStatuses = new ObservableRangeCollection<Master>();
+            MDFamilyTypes = new ObservableRangeCollection<Master>();
+            MDFamilyValues = new ObservableRangeCollection<Master>();
 
-            //var defaultMaster = new Master();
-            //defaultMaster.Id = "SELECT";
-            //defaultMaster.Name = "SELECT";
+            var defaultMaster = new Master();
+            defaultMaster.Id = "SELECT";
+            defaultMaster.Name = "SELECT";
 
-            //SelectedFamilyStatus = defaultMaster;
-            //SelectedFamilyValue = defaultMaster;
-            //SelectedFamilyType = defaultMaster;
+            SelectedFamilyStatus = defaultMaster;
+            SelectedFamilyValue = defaultMaster;
+            SelectedFamilyType = defaultMaster;
 
+            Init();
         }
 
-        //public override void Prepare(Profile profile)
-        //{
-            //LoggedInUser.Value = profile;
-
-            //AboutFather.Value = profile.FathersOccupation;
-            //AboutMother.Value = profile.MothersOccupation;
-            //FamilyDetails.Value = profile.FamilyDetails;
-
-            //NumberOfBrothers.Value = profile.Brothers;
-            //AboutBrothers.Value = profile.AboutBrothers;
-            //NumberOfBrothersMarried.Value = profile.BrothersMarried;
-
-            //NumberOfSisters.Value = profile.Sisters;
-            //AboutSisters.Value = profile.AboutSisters;
-            //NumberOfSistersMarried.Value = profile.SistersMarried;
-        //}
-
-        public void CommandUpdate()
+        private void Init()
         {
-            Task.Run(async () => { await UpdateAsync(); });
+            Profile = _sharedService.GetValue<Profile>("LoggedInUser");
+
+            AboutFather = Profile.FathersOccupation;
+            AboutMother = Profile.MothersOccupation;
+            FamilyDetails = Profile.FamilyDetails;
+
+            NumberOfBrothers = Profile.Brothers;
+            AboutBrothers = Profile.AboutBrothers;
+            NumberOfBrothersMarried = Profile.BrothersMarried;
+
+            NumberOfSisters = Profile.Sisters;
+            AboutSisters = Profile.AboutSisters;
+            NumberOfSistersMarried = Profile.SistersMarried;
+
+            var md = _sharedService.GetValue<MDD>("MasterData");
+
+            MDFamilyValues.AddRange(md.FamilyValues);
+            SelectedFamilyValue = md.FamilyValues.Where(mt => mt.Id.ToLower() == Profile.FamilyValue.ToLower()).FirstOrDefault();
+
+            MDFamilyStatuses.AddRange(md.FamilyStatuses);
+            SelectedFamilyStatus = md.FamilyStatuses.Where(mt => mt.Id.ToLower() == Profile.FamilyStatus.ToLower()).FirstOrDefault();
+
+            MDFamilyTypes.AddRange(md.FamilyTypes);
+            SelectedFamilyType = md.FamilyTypes.Where(mt => mt.Id.ToLower() == Profile.FamilyType.ToLower()).FirstOrDefault();
         }
 
-        private async Task UpdateAsync()
+
+        [RelayCommand]
+        private async Task Update()
         {
-            //var familyDetails = new Profile
-            //{
-            //    FamilyDetails = FamilyDetails.Value,
-            //    FathersOccupation = AboutFather.Value,
-            //    MothersOccupation = AboutMother.Value,
-            //    Brothers = NumberOfBrothers.Value,
-            //    AboutBrothers = AboutBrothers.Value,
-            //    BrothersMarried = NumberOfBrothersMarried.Value,
-            //    Sisters = NumberOfSisters.Value,
-            //    AboutSisters = AboutSisters.Value,
-            //    SistersMarried=NumberOfSistersMarried.Value,
-            //    FamilyStatus=SelectedFamilyStatus.Id,
-            //    FamilyType=SelectedFamilyType.Id,
-            //    FamilyValue=SelectedFamilyValue.Id
-            //};
-            //try
-            //{
-            //    var sessionToken = await SecureStorage.GetAsync("Token");
-            //    var status = await _serviceManager.UpdateFamilyDetails(new Guid(sessionToken), familyDetails);
+            Profile.FamilyDetails = FamilyDetails;
+            Profile.FathersOccupation = AboutFather;
+            Profile.MothersOccupation = AboutMother;
+            Profile.Brothers = NumberOfBrothers;
+            Profile.AboutBrothers = AboutBrothers;
+            Profile.BrothersMarried = NumberOfBrothersMarried;
+            Profile.Sisters = NumberOfSisters;
+            Profile.AboutSisters = AboutSisters;
+            Profile.SistersMarried = NumberOfSistersMarried;
+            Profile.FamilyStatus = SelectedFamilyStatus.Id;
+            Profile.FamilyType = SelectedFamilyType.Id;
+            Profile.FamilyValue = SelectedFamilyValue.Id;
 
-            //    if (status)
-            //    {
-            //        await _userDialogs.AlertAsync("Family Details Have Been Updated");
-            //    }
-            //}
-            //catch (MatriInternetException exception)
-            //{
-            //    await _userDialogs.AlertAsync(exception.Message);
-            //}
-            //catch (Exception exception)
-            //{
-            //    var jsonResponse = exception.Message;
-            //    var errorMessage = JsonConvert.DeserializeObject<JioMatriException>(jsonResponse);
-            //    await _userDialogs.AlertAsync(errorMessage.Message);
-            //}
+            try
+            {
+                var sessionToken = await SecureStorage.GetAsync("Token");
+                var status = await _serviceManager.UpdateFamilyDetails(new Guid(sessionToken), Profile);
 
+                if (status)
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", "Family Details Have Been Updated", "OK");
+                }
+            }
+            catch (MatriInternetException exception)
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
+            }
+            catch (Exception exception)
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
+            }
         }
-
-        //private SmartObservableCollection<Master> _MDFamilyTypes;
-        //public SmartObservableCollection<Master> MDFamilyTypes
-        //{
-        //    get { return _MDFamilyTypes; }
-        //    set
-        //    {
-        //        _MDFamilyTypes = value;
-        //    }
-        //}
-
-        //private Master _selectedFamilyType;
-        //public Master SelectedFamilyType
-        //{
-        //    get
-        //    {
-        //        return _selectedFamilyType;
-        //    }
-        //    set
-        //    {
-        //        _selectedFamilyType = value;
-        //        RaisePropertyChanged("SelectedFamilyType");
-        //    }
-        //}
-
-        //private SmartObservableCollection<Master> _MDFamilyStatuses;
-        //public SmartObservableCollection<Master> MDFamilyStatuses
-        //{
-        //    get { return _MDFamilyStatuses; }
-        //    set
-        //    {
-        //        _MDFamilyStatuses = value;
-        //    }
-        //}
-
-        //private Master _selectedFamilyStatus;
-        //public Master SelectedFamilyStatus
-        //{
-        //    get
-        //    {
-        //        return _selectedFamilyStatus;
-        //    }
-        //    set
-        //    {
-        //        _selectedFamilyStatus = value;
-        //        RaisePropertyChanged("SelectedFamilyStatus");
-        //    }
-        //}
-
-        //private SmartObservableCollection<Master> _MDFamilyValues;
-        //public SmartObservableCollection<Master> MDFamilyValues
-        //{
-        //    get { return _MDFamilyValues; }
-        //    set
-        //    {
-        //        _MDFamilyValues = value;
-        //    }
-        //}
-
-        //private Master _selectedFamilyValue;
-        //public Master SelectedFamilyValue
-        //{
-        //    get
-        //    {
-        //        return _selectedFamilyValue;
-        //    }
-        //    set
-        //    {
-        //        _selectedFamilyValue = value;
-        //        RaisePropertyChanged("SelectedFamilyValue");
-        //    }
-        //}
-
-        //public override async Task Initialize()
-        //{
-        //    await base.Initialize();
-        //    var sessionToken = await SecureStorage.GetAsync("Token");
-        //    try
-        //    {
-        //        var mdFamilyValues = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=familyvalue");
-        //        MDFamilyValues.AddRange(mdFamilyValues);
-        //        var userFamilyValue = mdFamilyValues.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.FamilyValue.ToLower()).FirstOrDefault();
-        //        SelectedFamilyValue = userFamilyValue;
-
-        //        var mdFamilyStatuses = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=familystatus");
-        //        MDFamilyStatuses.AddRange(mdFamilyStatuses);
-        //        var userFamilyStatus = mdFamilyStatuses.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.FamilyStatus.ToLower()).FirstOrDefault();
-        //        SelectedFamilyStatus = userFamilyStatus;
-
-        //        var mdFamilyTypes = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=familytype");
-        //        MDFamilyTypes.AddRange(mdFamilyTypes);
-        //        var userFamilyType = mdFamilyTypes.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.FamilyType.ToLower()).FirstOrDefault();
-        //        SelectedFamilyType = userFamilyType;
-        //    }
-        //    catch (Exception e)
-        //    {
-
-        //    }
-        //}
     }
 }
 

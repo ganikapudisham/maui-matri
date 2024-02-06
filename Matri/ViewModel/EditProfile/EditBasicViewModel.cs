@@ -77,13 +77,11 @@ namespace Matri.ViewModel
             BDYears = new ObservableRangeCollection<Master>();
             BDMonths = new ObservableRangeCollection<Master>();
 
-            Task.Run(async () => { await Init(); });
+            Init();
         }
 
-        public async Task Init()
+        private void Init()
         {
-
-            //var sessionToken = await SecureStorage.GetAsync("Token");
             Profile =  _sharedService.GetValue<Profile>("LoggedInUser");
             var md = _sharedService.GetValue<MDD>("MasterData");
             FirstName = Profile.FirstName;
@@ -133,7 +131,7 @@ namespace Matri.ViewModel
             SelectedBirthYear = BDYears.Where(bys => bys.Name == birthDate[0]).FirstOrDefault();
 
 
-            var showHinduFields = await SecureStorage.GetAsync("ShowHinduFields");
+            var showHinduFields = _sharedService.GetBool("ShowHinduFields");
 
             ShowHinduFields = Convert.ToBoolean(showHinduFields);
 

@@ -47,3 +47,12 @@ https://blog.ewers-peters.de/are-you-using-dependency-injection-in-your-net-maui
    at Microsoft.Maui.FontManager.LoadTypefaceFromAsset(String fontfamily, Boolean warning) in D:\a\_work\1\s\src\Core\src\Fonts\FontManager.Android.cs:line 123
   --- End of managed Java.Lang.RuntimeException stack trace ---
 java.lang.RuntimeException: Font asset not found Montserrat-SemiBold
+
+Contact page is confusing
+Residing country Citizenship
+
+expectations page is pending
+
+Photo, ID & paid or unpaid to be added on Flyout Menu
+
+https://medium.com/@banerjee.s.sayans/skipped-611-frames-the-application-maybe-doing-too-much-work-on-its-main-thread-69d86c171a56

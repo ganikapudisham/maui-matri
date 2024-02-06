@@ -97,10 +97,10 @@ namespace Matri.ViewModel
             SelectedBodyType = defaultMaster;
             SelectedCreatedBy = defaultMaster;
 
-            Task.Run(async () => { await Init(); });
+            Init();
         }
 
-        public async Task Init()
+        private void Init()
         {
             var weightList = new List<Master>();
             for (var i = 40; i <= 120; i++)
@@ -109,8 +109,6 @@ namespace Matri.ViewModel
             }
 
             MDWeights.AddRange(weightList);
-
-            var sessionToken = await SecureStorage.GetAsync("Token");
 
             Profile = _sharedService.GetValue<Profile>("LoggedInUser");
             var md = _sharedService.GetValue<MDD>("MasterData");

@@ -50,10 +50,10 @@ namespace Matri.ViewModel
             SelectedStateResidence = defaultMaster;
             SelectedStateNative = defaultMaster;
 
-            Task.Run(async () => { await Init(); });
+            Init();
         }
 
-        public async Task Init()
+        private void Init()
         {
             IsBusy = true;
             Profile = _sharedService.GetValue<Profile>("LoggedInUser");

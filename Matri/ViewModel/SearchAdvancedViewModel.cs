@@ -5,12 +5,15 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Maui.Controls;
 using Syncfusion.Maui.Inputs;
+using Matri.Helper;
+using Matri.Abstract;
 
 namespace Matri.ViewModel
 {
     public partial class SearchAdvancedViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
         IServiceManager _serviceManager;
+        ISharedService _sharedService;
 
         private Command<SfComboBox> onReligionChangedCommand;
 
@@ -23,6 +26,7 @@ namespace Matri.ViewModel
         public SearchAdvancedViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
+            _sharedService = ServiceHelper.GetService<ISharedService>();
             MDMaritalStatus = new ObservableRangeCollection<Master>();
             MDHeightsFrom = new ObservableRangeCollection<Master>();
             MDHeightsTo = new ObservableRangeCollection<Master>();
@@ -37,7 +41,7 @@ namespace Matri.ViewModel
             MDDenominations = new ObservableRangeCollection<Master>();
             MDCastes = new ObservableRangeCollection<Master>();
 
-            Task.Run(async () => { await InitialiseMasterData(); });
+            Init();
         }
 
         [ObservableProperty]
@@ -198,12 +202,10 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public bool showDenominations = false;
 
-        private async Task InitialiseMasterData()
+        private void Init()
         {
-            var token = await SecureStorage.GetAsync("Token");
+            var masterData = _sharedService.GetValue<MDD>("MasterData");
 
-            var masterData = await _serviceManager.GetMasterData(new Guid(token));
-            
             MDMaritalStatus.AddRange(masterData.MaritalStatuses);
             SelectedMaritalStatus = masterData.MaritalStatuses[0];
 

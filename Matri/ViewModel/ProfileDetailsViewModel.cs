@@ -8,18 +8,21 @@ using MvvmHelpers;
 using Newtonsoft.Json;
 using Syncfusion.Maui.Carousel;
 using System.Collections.ObjectModel;
+using Matri.Abstract;
+using Matri.Helper;
 
 namespace Matri.ViewModel
 {
     public partial class ProfileDetailsViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject, IQueryAttributable
     {
         IServiceManager _serviceManager;
+        ISharedService _sharedService;
 
         private List<CarouselModel> _profilePhotos = new List<CarouselModel>();
         public ProfileDetailsViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
-            
+            _sharedService = ServiceHelper.GetService<ISharedService>();
         }
 
         [ObservableProperty]
@@ -175,8 +178,8 @@ namespace Matri.ViewModel
 
         public async Task GetProfileDetails(Guid userToken, Guid profileToken)
         {
-            var sessionToken = await SecureStorage.GetAsync("Token");
-            var showHinduFields = await SecureStorage.GetAsync("ShowHinduFields");
+            
+            var showHinduFields = _sharedService.GetBool("ShowHinduFields");
 
             ShowHinduFields = Convert.ToBoolean(showHinduFields);
 

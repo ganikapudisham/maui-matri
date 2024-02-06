@@ -61,15 +61,15 @@ namespace Matri.ViewModel
                 //Save app Base wether If Hindu Users
 
                 var appDetails = await _serviceManager.GetAppDetails(session.SessionToken);
-                await SecureStorage.SetAsync("ShowHinduFields", appDetails.ShowHinduFields.ToString());
-
-                await SecureStorage.SetAsync("SubScriptionType", session.SubscriptionActive.ToString());
 
                 var sessionToken = await SecureStorage.GetAsync("Token");
                 var user = await _serviceManager.GetUserData(new Guid(sessionToken));
                 var masterData = await _serviceManager.GetMasterData(new Guid(sessionToken));
+
                 _sharedService.Add<Profile>("LoggedInUser", user);
                 _sharedService.Add<MDD>("MasterData", masterData);
+                _sharedService.AddBool("ShowHinduFields", appDetails.ShowHinduFields);
+                _sharedService.AddBool("SubScriptionType", session.SubscriptionActive);
 
                 await Shell.Current.GoToAsync("//AllProfilesPage");
             }

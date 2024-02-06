@@ -65,13 +65,12 @@ namespace Matri.ViewModel
             SelectedSector = defaultMaster;
             SelectedIndustry = defaultMaster;
 
-            Task.Run(async () => { await Init(); });
+            Init();
         }
 
-        public async Task Init()
+        private void Init()
         {
             IsBusy = true;
-            var sessionToken = await SecureStorage.GetAsync("Token");
             Profile = _sharedService.GetValue<Profile>("LoggedInUser");
             var md = _sharedService.GetValue<MDD>("MasterData");
 

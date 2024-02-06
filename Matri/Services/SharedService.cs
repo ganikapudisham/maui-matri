@@ -29,5 +29,26 @@ namespace Matri.Services
             }
             return null;
         }
+
+        public void AddBool(string key, bool value) 
+        {
+            if (DTODict.ContainsKey(key))
+            {
+                DTODict[key] = value;
+            }
+            else
+            {
+                DTODict.Add(key, value);
+            }
+        }
+
+        public bool? GetBool(string key)
+        {
+            if (DTODict.ContainsKey(key))
+            {
+                return DTODict[key] as bool?;
+            }
+            return null;
+        }
     }
 }

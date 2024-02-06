@@ -10,12 +10,8 @@ namespace Matri.ViewModel
 {
     public partial class EditProfileViewModel : ObservableObject
     {
-        IServiceManager _serviceManager;
         public EditProfileViewModel()
         {
-
-            _serviceManager = ServiceHelper.GetService<IServiceManager>();
-
             TabItems = new TabItemCollection();
 
             var basicPage1 = new EditBasicPage();
@@ -24,7 +20,7 @@ namespace Matri.ViewModel
 
             var educationPage4 = new EditAcademicsPage();
             var contactsPage5 = new EditContactsPage();
-            //var familyPage6 = new EditFamilyPage();
+            var familyPage6 = new EditFamilyPage();
 
             //var lifeStylePage7 = new EditLifeStylePage();
             var photoPage8 = new EditPhotoPage();
@@ -45,8 +41,8 @@ namespace Matri.ViewModel
             var tabItemContact5 = new SfTabItem { Content = contactsPage5.Content, Header = "Contact" };
             tabItemContact5.Content.BindingContext = contactsPage5.BindingContext;
 
-            //var tabItemFamily6 = new SfTabItem { Content = familyPage6.Content, Header = "Family" };
-            //tabItemFamily6.Content.BindingContext = familyPage6.BindingContext;
+            var tabItemFamily6 = new SfTabItem { Content = familyPage6.Content, Header = "Family" };
+            tabItemFamily6.Content.BindingContext = familyPage6.BindingContext;
 
             //var tabItemLife7 = new SfTabItem { Content = lifeStylePage7.Content, Header = "Life Style" };
             //tabItemLife7.Content.BindingContext = lifeStylePage7.BindingContext;
@@ -62,7 +58,7 @@ namespace Matri.ViewModel
             TabItems.Add(tabItemPhysical3);
             TabItems.Add(tabItemEducation4);
             TabItems.Add(tabItemContact5);
-            ////TabItems.Add(tabItemFamily6);
+            //TabItems.Add(tabItemFamily6);
             //TabItems.Add(tabItemLife7);
             TabItems.Add(tabItemPhoto8);
             //TabItems.Add(tabItemExpec9);

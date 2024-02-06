@@ -57,15 +57,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\bak.Montserrat-SemiBold.ttf" />
 	  <None Remove="Resources\Fonts\fa-brands-400.ttf" />
 	  <None Remove="Resources\Fonts\FontAwesome5Brands.otf" />
 	  <None Remove="Resources\Fonts\FontAwesome5Regular.otf" />
 	  <None Remove="Resources\Fonts\FontAwesome5Solid.otf" />
 	  <None Remove="Resources\Fonts\ListViewFontIcons.ttf" />
+	  <None Remove="Resources\Fonts\Montserrat SemiBold.ttf" />
 	  <None Remove="Resources\Fonts\Montserrat-Bold.ttf" />
 	  <None Remove="Resources\Fonts\Montserrat-Medium.ttf" />
 	  <None Remove="Resources\Fonts\Montserrat-Regular.ttf" />
-	  <None Remove="Resources\Fonts\Montserrat-SemiBold.ttf" />
 	  <None Remove="Resources\Fonts\Roboto-Medium.ttf" />
 	  <None Remove="Resources\Fonts\Roboto-Regular.ttf" />
 	  <None Remove="Resources\Fonts\UIFontIcons.ttf" />

@@ -67,18 +67,14 @@ namespace Matri.ViewModel
             SelectedCommunity = defaultMaster;
             SelectedSubCaste = defaultMaster;
 
-            Task.Run(async () =>
-            {
-                await Init();
-            });
+             Init();
         }
 
-        public async Task Init()
+        private void Init()
         {
             IsBusy = true;
             try
             {
-                var sessionToken = await SecureStorage.GetAsync("Token");
                 Profile = _sharedService.GetValue<Profile>("LoggedInUser");
                 var md = _sharedService.GetValue<MDD>("MasterData");
 
@@ -90,8 +86,7 @@ namespace Matri.ViewModel
                 CasteIsImportant = Profile.CasteCriteria;
                 DenominationIsImportant = Profile.DenominationCriteria;
 
-                var token = await SecureStorage.GetAsync("Token");
-                var showHinduFields = await SecureStorage.GetAsync("ShowHinduFields");
+                var showHinduFields = _sharedService.GetBool("ShowHinduFields");
 
                 ShowHinduFields = Convert.ToBoolean(showHinduFields);
 

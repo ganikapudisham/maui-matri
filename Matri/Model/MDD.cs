@@ -28,6 +28,10 @@ namespace Matri.Model
             JobTypes = new List<Master>();
             Incomes = new List<Master>();
             ProfileCreatedBy = new List<Master>();
+
+            FamilyValues = new List<Master>();
+            FamilyStatuses = new List<Master>();
+            FamilyTypes = new List<Master>();
         }
 
         [DataMember]
@@ -77,5 +81,14 @@ namespace Matri.Model
 
         [DataMember]
         public IList<Master> ProfileCreatedBy { get; set; }
+
+        [DataMember]
+        public IList<Master> FamilyStatuses { get; set; }
+
+        [DataMember]
+        public IList<Master> FamilyTypes { get; set; }
+
+        [DataMember]
+        public IList<Master> FamilyValues { get; set; }
     }
 }
