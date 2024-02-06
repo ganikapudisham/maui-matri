@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Matri.Views.EditPhotoPage"
              xmlns:vm="clr-namespace:Matri.ViewModel"
-             Title="EditPhotoPage">
+             Title="Edit Photo">
     <ContentPage.BindingContext>
         <vm:EditPhotoViewModel/>
     </ContentPage.BindingContext>

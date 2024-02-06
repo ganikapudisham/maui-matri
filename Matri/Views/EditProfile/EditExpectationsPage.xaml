@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Matri.Views.EditExpectationsPage"
              xmlns:vm="clr-namespace:Matri.ViewModel"
-             Title="EditExpectationsPage">
+             Title="Edit Expectations">
     <ContentPage.BindingContext>
         <vm:EditExpectationsViewModel/>
     </ContentPage.BindingContext>
