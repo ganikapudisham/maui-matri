@@ -27,12 +27,15 @@
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition>
                     </ColumnDefinition>
                 </Grid.ColumnDefinitions>
-
+                <StackLayout Grid.Row="0" Grid.ColumnSpan="2">
+                    <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}"></ActivityIndicator>
+                </StackLayout>
                 <carousel:SfCarousel
                             x:Name="carousel"
                             ItemTemplate="{StaticResource itemTemplate}"
@@ -41,10 +44,10 @@
                             ItemWidth="200"
                             ItemsSource="{Binding ProfilePhotos}"
                             ViewMode="Default"
-                            WidthRequest="800" />
+                            WidthRequest="800" Grid.Row="1" Grid.ColumnSpan="2" />
 
 
-                <ContentView Grid.Row="1" Grid.ColumnSpan ="2">
+                <ContentView Grid.Row="2" Grid.ColumnSpan ="2">
                     <syncfusion:SfAccordion x:Name="accordion" ExpandMode="SingleOrNone"
                         VerticalOptions="{OnPlatform Default=Fill}" 
                         IsClippedToBounds="True"

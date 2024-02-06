@@ -34,6 +34,9 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public string latestAppVersionIcon = FontAwesomeIcons.AppStore;
 
+        [ObservableProperty]
+        public bool isBusy = true;
+
         [RelayCommand]
         public async Task UpdateApp()
         {
@@ -47,6 +50,7 @@ namespace Matri.ViewModel
 
         public async Task LoadTasks()
         {
+            IsBusy = true;
             var sessionToken = await SecureStorage.GetAsync("Token");
             var appDetails = await _serviceManager.GetAppDetails(new Guid(sessionToken));
 
@@ -58,6 +62,7 @@ namespace Matri.ViewModel
             {
                 UpdateAvailable = true;
             }
+            IsBusy = false;
         }
     }
 }

@@ -170,6 +170,9 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public bool blocked = false;
 
+        [ObservableProperty]
+        public bool isBusy = true;
+
         public List<CarouselModel> ProfilePhotos
         {
             get { return _profilePhotos; }
@@ -178,7 +181,7 @@ namespace Matri.ViewModel
 
         public async Task GetProfileDetails(Guid userToken, Guid profileToken)
         {
-            
+            IsBusy = true;
             var showHinduFields = _sharedService.GetBool("ShowHinduFields");
 
             ShowHinduFields = Convert.ToBoolean(showHinduFields);
@@ -199,6 +202,7 @@ namespace Matri.ViewModel
             InitialisePartnerDetails(profileDetails);
             InitialisePhysical(profileDetails);
             InitialiseReligion(profileDetails);
+            IsBusy = false;
         }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
@@ -206,7 +210,7 @@ namespace Matri.ViewModel
             var queryParam = query[nameof(ProfileDetailsInput)] as ProfileDetailsInput;
             var targetId = queryParam.TargetProfileId;
             var sourceId = queryParam.LoggedInId;
-            Task.Run(() => this.GetProfileDetails(sourceId, targetId)).Wait();
+            Task.Run(() => this.GetProfileDetails(sourceId, targetId));
         }
 
         public void InitialisePartnerDetails(Model.Profile profileDetails)
@@ -301,12 +305,7 @@ namespace Matri.ViewModel
         }
 
         [RelayCommand]
-        public void Like()
-        {
-            Task.Run(async () => { await LikeCommandAsync(); });
-        }
-
-        private async Task LikeCommandAsync()
+        public async Task Like()
         {
             Liked = !Liked;
 
@@ -319,13 +318,9 @@ namespace Matri.ViewModel
             await Mark(sessionToken, request);
         }
 
-        [RelayCommand]
-        public void Block()
-        {
-            Task.Run(async () => { await BlockCommandAsync(); });
-        }
 
-        private async Task BlockCommandAsync()
+        [RelayCommand]
+        public async Task Block()
         {
             Blocked = !Blocked;
 
@@ -338,18 +333,23 @@ namespace Matri.ViewModel
             await Mark(sessionToken, request);
         }
 
+
         private async Task Mark(string sessionToken, Request request)
         {
+            IsBusy = true;
             try
             {
                 await _serviceManager.MarkProfile(new Guid(sessionToken), request);
+                IsBusy = false;
             }
             catch (MatriInternetException exception)
             {
+                IsBusy = false;
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
             }
             catch (Exception exception)
             {
+                IsBusy = false;
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
             }
         }

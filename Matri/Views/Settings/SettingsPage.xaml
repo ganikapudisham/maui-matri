@@ -10,7 +10,7 @@
     </ContentPage.Resources>
     <ScrollView>
         <StackLayout BackgroundColor="{DynamicResource Gray100}" Spacing="0">
-
+            <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}"/>
             <Label
             Margin="16,0,0,0"
             FontFamily="Montserrat-Regular"
