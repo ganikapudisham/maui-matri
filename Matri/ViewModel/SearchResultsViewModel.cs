@@ -21,7 +21,6 @@ namespace Matri.ViewModel
             PageSizeList.Add(new PageSize { Text = "20", Value = 20 });
             PageSizeList.Add(new PageSize { Text = "50", Value = 50 });
             pPageSize = PageSizeList[0];
-            //Task.Run(() => this.GetProfiles(1, pPageSize.Value)).Wait();
         }
 
         public ObservableRangeCollection<PageSize> PageSizeList { get; private set; } = new ObservableRangeCollection<PageSize>();
@@ -45,8 +44,9 @@ namespace Matri.ViewModel
         public bool showRecordsSection;
         [ObservableProperty]
         public bool showRecordsNotFoundSection;
+
         [ObservableProperty]
-        public bool showPagingSection;
+        public bool isBusy = true;
 
         public ObservableRangeCollection<MiniProfile> Profiles { get; private set; } = new ObservableRangeCollection<MiniProfile>();
 
@@ -147,11 +147,12 @@ namespace Matri.ViewModel
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
             SearchParametersF = query[nameof(SearchParameters)] as SearchParameters;
-            Task.Run(() => this.GetProfiles(1,10)).Wait();
+            Task.Run(() => this.GetProfiles(1,10));
         }
 
         public async Task GetProfiles(int pageNumber, int pageSize)
         {
+            IsBusy = true;
             var token = await SecureStorage.GetAsync("Token");
             SearchParametersF.StartPage = pageNumber;
             SearchParametersF.PageSize = pageSize;
@@ -177,22 +178,21 @@ namespace Matri.ViewModel
                 {
                     ShowRecordsNotFoundSection = true;
                     ShowRecordsSection = false;
-                    ShowPagingSection = false;
                 }
                 else
                 {
                     ShowRecordsNotFoundSection = false;
                     ShowRecordsSection = true;
-                    ShowPagingSection = true;
                 }
+                IsBusy = false;
             }
             catch (MatriInternetException exception)
             {
-               // await _userDialogs.AlertAsync(exception.Message);
+                IsBusy = true;
             }
             catch (Exception ex)
             {
-
+                IsBusy = true;
             }
         }
     }

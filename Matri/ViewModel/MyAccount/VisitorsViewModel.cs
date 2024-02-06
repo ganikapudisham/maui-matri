@@ -22,7 +22,7 @@ namespace Matri.ViewModel
             PageSizeList.Add(new PageSize { Text = "20", Value = 20 });
             PageSizeList.Add(new PageSize { Text = "50", Value = 50 });
             pPageSize = PageSizeList[0];
-            Task.Run(() => this.GetProfiles(1, pPageSize.Value)).Wait();
+            Task.Run(() => this.GetProfiles(1, pPageSize.Value));
         }
         public ObservableRangeCollection<PageSize> PageSizeList { get; private set; } = new ObservableRangeCollection<PageSize>();
 
@@ -42,8 +42,9 @@ namespace Matri.ViewModel
         public bool showRecordsSection;
         [ObservableProperty]
         public bool showRecordsNotFoundSection;
+
         [ObservableProperty]
-        public bool showPagingSection;
+        public bool isBusy = true;
 
         public ObservableRangeCollection<Visitor> Profiles { get; private set; } = new ObservableRangeCollection<Visitor>();
 
@@ -55,6 +56,7 @@ namespace Matri.ViewModel
 
         public async Task<bool> GetProfiles(int pageNumber, int pageSize)
         {
+            IsBusy = true;
             var token = await SecureStorage.GetAsync("Token");
             try
             {
@@ -78,22 +80,21 @@ namespace Matri.ViewModel
                 {
                     ShowRecordsNotFoundSection = true;
                     ShowRecordsSection = false;
-                    ShowPagingSection = false;
                 }
                 else
                 {
                     ShowRecordsNotFoundSection = false;
                     ShowRecordsSection = true;
-                    ShowPagingSection = true;
                 }
+                IsBusy = false;
             }
             catch (MatriInternetException exception)
             {
-                //await _userDialogs.AlertAsync(exception.Message);
+                IsBusy = false;
             }
             catch (Exception ex)
             {
-
+                IsBusy = false;
             }
             return true;
         }
