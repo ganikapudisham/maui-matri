@@ -106,7 +106,7 @@
         <ShellContent ContentTemplate="{DataTemplate local:ContactUsPage}" Route="ContactUsPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="About us" 
+    <FlyoutItem Title="About ChristianJodi" 
                 FlyoutIcon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaInfoCircle}, Size=50,Color=Grey}" 
                 Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaInfoCircle}, Size=50,Color=Grey}" >
         <ShellContent ContentTemplate="{DataTemplate local:AboutUsPage}" Route="AboutUsPage" />

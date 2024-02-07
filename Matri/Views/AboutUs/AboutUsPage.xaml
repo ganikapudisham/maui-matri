@@ -4,7 +4,7 @@
              x:Class="Matri.Views.AboutUsPage"
              xmlns:listView="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
              xmlns:control="clr-namespace:Matri.Controls"
-             Title="About Us">
+             Title="About www.ChristianJodi.com">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary Source="/Resources/Styles/StylesAboutUs.xaml" />
@@ -73,7 +73,7 @@
                     FontFamily="Montserrat-Bold"
                     FontSize="20"
                     Style="{StaticResource HeaderLabelStyle}"
-                    Text="About Us" />
+                    Text="About www.ChristianJodi.com" />
 
                     <!--  Description  -->
                     <Label

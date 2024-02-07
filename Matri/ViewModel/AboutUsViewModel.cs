@@ -27,9 +27,9 @@ namespace Matri.ViewModel
         public AboutUsViewModel()
         {
             this.productDescription =
-                "We are the most successful matchmaking service provider in India. We have been trusted by people " +
-                "all over the world to help them find their soulmates. Today, hundreds of people across the globe " +
-                "have met their life partners through our matchmaking service and countless others " +
+                "www.ChristianJodi.com is the most successful matchmaking service provider in India. We have been trusted by people " +
+                "across the world to help find their soulmates. Hundreds of people across the globe " +
+                "have met their life partners through our matchmaking services, countless others " +
                 "have made some very special friends. ";
             this.productIcon = App.BaseImageUrl + "Icon.png";
             this.productVersion = "1.0";
