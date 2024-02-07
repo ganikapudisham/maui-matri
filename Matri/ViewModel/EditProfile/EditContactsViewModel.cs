@@ -32,7 +32,7 @@ namespace Matri.ViewModel
         public string emailId;
 
         [ObservableProperty]
-        public bool isBusy;
+        public bool isBusy = true;
         public EditContactsViewModel()
         {
             _serviceManager = ServiceHelper.GetService<IServiceManager>();
@@ -75,6 +75,7 @@ namespace Matri.ViewModel
             SelectedStateNative = md.IndianStates.Where(mt => mt.Id.ToLower() == Profile.State.ToLower()).FirstOrDefault();
 
             SelectedStateResidence = md.IndianStates.Where(mt => mt.Id.ToLower() == Profile.StateOfResidence.ToLower()).FirstOrDefault();
+            IsBusy = false;
         }
 
 

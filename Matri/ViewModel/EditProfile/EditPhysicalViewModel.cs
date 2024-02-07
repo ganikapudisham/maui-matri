@@ -102,6 +102,7 @@ namespace Matri.ViewModel
 
         public void Init()
         {
+            IsBusy = true;
             var weightList = new List<Master>();
             for (var i = 40; i <= 120; i++)
             {
@@ -116,7 +117,6 @@ namespace Matri.ViewModel
             SelectedWeight = MDWeights.Where(mdw => mdw.Name == Profile.Weight.ToString()).FirstOrDefault();
             try
             {
-                //var md = await _serviceManager.GetMasterData(new Guid(sessionToken));
                 MDHeights.AddRange(md.Heights);
                 SelectedHeight = md.Heights.Where(mt => mt.Id.ToLower() == Profile.Height.ToLower()).FirstOrDefault();
 
@@ -131,11 +131,11 @@ namespace Matri.ViewModel
 
                 MDProfileCreators.AddRange(md.ProfileCreatedBy);
                 SelectedCreatedBy = md.ProfileCreatedBy.Where(mt => mt.Id.ToLower() == Profile.ProfileCreatedBy.ToLower()).FirstOrDefault();
-                isBusy = false;
+                IsBusy = false;
             }
             catch (Exception ex)
             {
-
+                IsBusy = false;
             }
         }
 

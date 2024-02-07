@@ -43,6 +43,8 @@ namespace Matri.ViewModel
         public Master selectedFamilyStatus;
         [ObservableProperty]
         public Master selectedFamilyValue;
+        [ObservableProperty]
+        public bool isBusy = true;
 
         private ObservableRangeCollection<Master> mDFamilyTypes;
         public ObservableRangeCollection<Master> MDFamilyTypes
@@ -97,6 +99,7 @@ namespace Matri.ViewModel
 
         public void Init()
         {
+            IsBusy = true;
             Profile = _sharedService.GetValue<Profile>("LoggedInUser");
 
             AboutFather = Profile.FathersOccupation;
@@ -121,6 +124,7 @@ namespace Matri.ViewModel
 
             MDFamilyTypes.AddRange(md.FamilyTypes);
             SelectedFamilyType = md.FamilyTypes.Where(mt => mt.Id.ToLower() == Profile.FamilyType.ToLower()).FirstOrDefault();
+            IsBusy = false;
         }
 
 

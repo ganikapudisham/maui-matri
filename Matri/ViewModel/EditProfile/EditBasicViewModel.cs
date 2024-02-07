@@ -82,6 +82,7 @@ namespace Matri.ViewModel
 
         public void Init()
         {
+            IsBusy = true;
             Profile =  _sharedService.GetValue<Profile>("LoggedInUser");
             var md = _sharedService.GetValue<MDD>("MasterData");
             FirstName = Profile.FirstName;
