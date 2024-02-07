@@ -13,7 +13,6 @@ namespace Matri.ViewModel
         public MyAccountViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
-            CurrentUser = new Mini();
         }
 
         [ObservableProperty]
@@ -43,9 +42,6 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public string editMyProfile = FontAwesomeIcons.Edit;
 
-        [ObservableProperty]
-        public Mini currentUser;
-
         [RelayCommand]
         public async Task EditProfile()
         {
@@ -59,7 +55,7 @@ namespace Matri.ViewModel
         }
 
         [RelayCommand]
-        public async Task ViewMyProfileCommand()
+        public async Task SeeMyProfile()
         {
             var sessionToken = await SecureStorage.GetAsync("Token");
 
@@ -69,7 +65,7 @@ namespace Matri.ViewModel
 
             var profileDetailsInput = new ProfileDetailsInput();
             profileDetailsInput.TargetProfileId = guidIdentifier;
-            profileDetailsInput.LoggedInId = CurrentUser.ID;
+            profileDetailsInput.LoggedInId = new Guid(sessionToken);
 
             var profileDetailsParams = new Dictionary<string, object> { { "ProfileDetailsInput", profileDetailsInput } };
 

@@ -8,7 +8,7 @@ namespace Matri.Business
     {
         internal const string API_URL_Authentication = "sessiontoken";
         internal const string API_URL_Register = "mini/signup";
-        internal const string API_URL_GetMiniDetailsOfLoggedInUser = "mini/signup";
+        internal const string API_URL_GetMiniDetailsOfLoggedInUser = "mini";
         internal const string API_URL_ChangePassword = "password/change";
         internal const string API_URL_GetAppDetails = "app";
         internal const string API_URL_GetUserProfile = "profiles/mine";

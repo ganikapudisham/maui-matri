@@ -100,7 +100,7 @@
             <controls:TapAnimationGrid
             BackgroundColor="{DynamicResource GrayWhite}"
             ColumnSpacing="0"
-                Command="{Binding ViewMyProfileCommand}"
+                Command="{Binding SeeMyProfileCommand}"
             RowSpacing="0"
             Tapped="False">
                 <Grid.ColumnDefinitions>
