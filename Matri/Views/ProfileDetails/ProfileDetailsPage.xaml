@@ -351,47 +351,6 @@ Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                         <syncfusion:AccordionItem IsExpanded="True">
                             <syncfusion:AccordionItem.Header>
                                 <Grid  HeightRequest="48">
-                                    <Label Text="Diet" Margin="16,14,0,14" CharacterSpacing="0.25" 
-                   FontFamily="Roboto-Regular"  FontSize="14" />
-                                </Grid>
-                            </syncfusion:AccordionItem.Header>
-                            <syncfusion:AccordionItem.Content>
-                                <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="White"  >
-                                    <Grid Margin="16,6,0,0">
-                                        <Grid.Resources>
-                                            <Style TargetType="Label">
-                                                <Setter Property="FontFamily" Value="Roboto-Regular"/>
-                                            </Style>
-                                        </Grid.Resources>
-                                        <Grid.RowDefinitions >
-                                            <RowDefinition Height="25"/>
-                                            <RowDefinition Height="25"/>
-                                            <RowDefinition Height="25"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Text="Diet" Grid.Row="0" Grid.Column="0"  
-                       Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
-                                        <Label Text="Smoke" Grid.Row="1" Grid.Column="0" 
-                       Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
-                                        <Label Text="Alcohol" Grid.Row="2" Grid.Column="0" 
-                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
-                                        <Label Text="{Binding Diet}" Grid.Row="0" Grid.Column="1" 
-                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
-                                        <Label Text="{Binding Smoke}" Grid.Row="1" Grid.Column="1" 
-                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
-                                        <Label Text="{Binding Drink}" Grid.Row="2" Grid.Column="1" 
-                        Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
-                                    </Grid>
-
-                                </Grid>
-                            </syncfusion:AccordionItem.Content>
-                        </syncfusion:AccordionItem>
-                        <syncfusion:AccordionItem IsExpanded="True">
-                            <syncfusion:AccordionItem.Header>
-                                <Grid  HeightRequest="48">
                                     <Label Text="Looking For" Margin="16,14,0,14" CharacterSpacing="0.25" 
                                 FontFamily="Roboto-Regular"  FontSize="14" />
                                 </Grid>

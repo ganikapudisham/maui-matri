@@ -89,13 +89,6 @@ namespace Matri.ViewModel
         public string educationDetails;
 
         [ObservableProperty]
-        public string diet;
-        [ObservableProperty]
-        public string smoke;
-        [ObservableProperty]
-        public string drink;
-
-        [ObservableProperty]
         public string familyType;
         [ObservableProperty]
         public string familyValue;
@@ -197,7 +190,6 @@ namespace Matri.ViewModel
             InitialiseAddress(profileDetails);
             InitialiseBasicDetails(profileDetails);
             InitialiseBreadAndButter(profileDetails);
-            InitialiseDiet(profileDetails);
             InitialiseFamilyDetails(profileDetails);
             InitialisePartnerDetails(profileDetails);
             InitialisePhysical(profileDetails);
@@ -284,13 +276,6 @@ namespace Matri.ViewModel
             SistersMarried = profileDetails.SistersMarried.ToString();
             MothersOccupation = profileDetails.MothersOccupation;
             FathersOccupation = profileDetails.FathersOccupation;
-        }
-
-        public void InitialiseDiet(Model.Profile profileDetails)
-        {
-            Diet = profileDetails.Diet;
-            Smoke = profileDetails.Smoke;
-            Drink = profileDetails.Drink;
         }
 
         public void InitialiseAddress(Model.Profile profileDetails)
