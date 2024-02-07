@@ -112,7 +112,7 @@
         <ShellContent ContentTemplate="{DataTemplate local:AboutUsPage}" Route="AboutUsPage" />
     </FlyoutItem>
 
-    <MenuItem Command="{Binding ShareCommand}" CommandParameter="{Binding Source={RelativeSource Self}}"
+    <MenuItem Command="{Binding ShareToAppsCommand}" CommandParameter="{Binding Source={RelativeSource Self}}"
     Text="Share" IconImageSource="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaShareAltSquare}, Size=50,Color=Grey}">
     </MenuItem>
 

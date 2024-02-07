@@ -2,14 +2,8 @@
 using Matri.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Maui.Layouts;
 using Matri.Views.MyAccount;
-using Microsoft.Maui.ApplicationModel.DataTransfer;
-using Microsoft.Maui.Controls;
-using static System.Net.Mime.MediaTypeNames;
-using System.Windows.Input;
 using PlatformIntegrationDemo.Helpers;
-using Matri.Model;
 
 namespace Matri.ViewModel
 {
@@ -20,7 +14,7 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public bool flyoutIsPresented;
 
-        public ICommand ShareCommand { get; }
+        //public ICommand ShareCommand { get; }
 
         public AppShellViewModel(IServiceManager serviceManager)
         {
@@ -42,7 +36,7 @@ namespace Matri.ViewModel
             Routing.RegisterRoute("aboutus", typeof(AboutUsPage));
             Routing.RegisterRoute("contactus", typeof(ContactUsPage));
 
-            ShareCommand = new Command<Microsoft.Maui.Controls.View>(OnRequest);
+            //ShareCommand = new Command<Microsoft.Maui.Controls.View>(OnRequest);
         }
 
         public async void OnRequest(Microsoft.Maui.Controls.View element)
@@ -64,7 +58,22 @@ namespace Matri.ViewModel
             {
 
             }
-            
+        }
+
+        [RelayCommand]
+
+        public async Task ShareToApps()
+        {
+            var token = await SecureStorage.GetAsync("Token");
+            var appDetails = await _serviceManager.GetAppDetails(new Guid(token));
+
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Subject = "ChristianJodi",
+                Text = "Click To Download ChristianJodi App",
+                Uri = $"http://play.google.com/store/apps/details?id={AppInfo.PackageName}",
+                Title = "Link To Download ChristianJodi App",
+            });
         }
 
         [RelayCommand]
