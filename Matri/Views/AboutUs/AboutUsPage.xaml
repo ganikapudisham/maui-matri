@@ -4,7 +4,7 @@
              x:Class="Matri.Views.AboutUsPage"
              xmlns:listView="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
              xmlns:control="clr-namespace:Matri.Controls"
-             Title="About www.ChristianJodi.com">
+             Title="About ChristianJodi">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary Source="/Resources/Styles/StylesAboutUs.xaml" />
