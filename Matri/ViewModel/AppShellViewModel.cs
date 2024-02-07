@@ -14,8 +14,6 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public bool flyoutIsPresented;
 
-        //public ICommand ShareCommand { get; }
-
         public AppShellViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
@@ -35,33 +33,9 @@ namespace Matri.ViewModel
             Routing.RegisterRoute("settings", typeof(SettingsPage));
             Routing.RegisterRoute("aboutus", typeof(AboutUsPage));
             Routing.RegisterRoute("contactus", typeof(ContactUsPage));
-
-            //ShareCommand = new Command<Microsoft.Maui.Controls.View>(OnRequest);
-        }
-
-        public async void OnRequest(Microsoft.Maui.Controls.View element)
-        {
-            try
-            {
-                var token = await SecureStorage.GetAsync("Token");
-                var appDetails = await _serviceManager.GetAppDetails(new Guid(token));
-                await Share.RequestAsync(new ShareTextRequest
-                {
-                    Subject = "ChristianJodi",
-                    Text = "Click To Download ChristianJodi App",
-                    Uri = appDetails.GooglePlayStoreLink,
-                    Title = "Link To Download ChristianJodi App",
-                    PresentationSourceBounds = element.GetAbsoluteBounds()
-                });
-            }
-            catch(Exception ex)
-            {
-
-            }
         }
 
         [RelayCommand]
-
         public async Task ShareToApps()
         {
             var token = await SecureStorage.GetAsync("Token");
