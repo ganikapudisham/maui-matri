@@ -12,13 +12,16 @@ namespace Matri.ViewModel
         IServiceManager _serviceManager;
 
         [ObservableProperty]
-        public string currentPassword ;
+        public string currentPassword;
 
         [ObservableProperty]
         public string newPassword ;
 
         [ObservableProperty]
         public string confirmPassword;
+
+        [ObservableProperty]
+        public bool isBusy;
         public ChangePasswordViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
@@ -53,20 +56,27 @@ namespace Matri.ViewModel
 
             try
             {
+                IsBusy = true;
                 var result = await _serviceManager.ChangePasswordAsync(new Guid(token), password);
-
+                IsBusy = false;
                 if (result)
                 {
                     await Shell.Current.CurrentPage.DisplayAlert("Alert", "Password Changed", "OK");
+                }
+                else
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please try again", "OK");
                 }
 
             }
             catch (MatriInternetException exception)
             {
+                IsBusy = false;
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
             }
             catch (Exception exception)
             {
+                IsBusy = false;
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
             }
         }

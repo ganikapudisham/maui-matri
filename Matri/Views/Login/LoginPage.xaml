@@ -4,6 +4,7 @@
              x:Class="Matri.Views.LoginPage"
              xmlns:FoA="clr-namespace:Matri.FontsAwesome;assembly=Matri"
              Title="">
+
     <VerticalStackLayout 
             Spacing="5" 
             Padding="30,0" 
@@ -66,8 +67,7 @@
         </StackLayout>
 
         <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center">
-            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="True"
-           Color="Orange"  />
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="True"/>
         </StackLayout>
     </VerticalStackLayout>
 </ContentPage>

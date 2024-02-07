@@ -6,6 +6,8 @@
 
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
+        <Setter Property="WidthRequest" Value="{AppThemeBinding Light=25, Dark=25}" />
+        <Setter Property="HeightRequest" Value="{AppThemeBinding Light=25, Dark=25}" />
     </Style>
 
     <Style TargetType="IndicatorView">

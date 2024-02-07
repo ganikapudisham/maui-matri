@@ -39,6 +39,6 @@
                     Command="{Binding FindCommand}"
                     Text="SEARCH" />
 
-        <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="True" Color="Orange"  />
+        <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="True"/>
     </StackLayout>
 </ContentPage>
