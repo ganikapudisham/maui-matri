@@ -60,3 +60,5 @@ https://medium.com/@banerjee.s.sayans/skipped-611-frames-the-application-maybe-d
 https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/appmodel/main-thread?view=net-maui-8.0
 
 https://stackoverflow.com/questions/73403608/net-maui-c-sharp-background-task-continuewith-and-notification-event
+
+share not working from menu command -> issue

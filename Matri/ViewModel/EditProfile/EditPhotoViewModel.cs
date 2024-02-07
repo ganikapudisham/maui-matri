@@ -65,6 +65,10 @@ namespace Matri.ViewModel
                 {
                     await Shell.Current.CurrentPage.DisplayAlert("Alert", "Photo Was Uploaded, Thank you", "OK");
                 }
+                else
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please try again", "OK");
+                }
                 IsBusy = false;
             }
             catch (MatriInternetException exception)

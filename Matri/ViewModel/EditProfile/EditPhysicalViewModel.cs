@@ -270,6 +270,10 @@ namespace Matri.ViewModel
                 {
                     await Shell.Current.CurrentPage.DisplayAlert("Alert", "Physical Details Have Been Updated", "OK");
                 }
+                else
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please try again", "OK");
+                }
             }
             catch (MatriInternetException exception)
             {

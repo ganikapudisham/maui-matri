@@ -39,7 +39,15 @@ namespace Matri.ViewModel
             try
             {
                 var result = await _serviceManager.ForgetPasswordAsync(EmailId);
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Password sent to your EmailId, please check email", "OK");
+                if (result)
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", "Password sent to your EmailId, please check email", "OK");
+                }
+                else
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please try again", "OK");
+                }
+
                 await Shell.Current.GoToAsync("//loginPage");
             }
             catch (MatriInternetException exception)

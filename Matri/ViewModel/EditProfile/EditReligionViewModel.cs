@@ -199,6 +199,10 @@ namespace Matri.ViewModel
                 {
                     await Shell.Current.CurrentPage.DisplayAlert("Alert", "Religious Details Updated", "OK");
                 }
+                else
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please try again", "OK");
+                }
                 IsBusy = false;
             }
             catch (MatriInternetException exception)

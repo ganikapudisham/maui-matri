@@ -253,6 +253,10 @@ namespace Matri.ViewModel
                 {
                     await Shell.Current.CurrentPage.DisplayAlert("Alert", "Basic Details Updated", "OK");
                 }
+                else
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please try again", "OK");
+                }
             }
             catch (MatriInternetException exception)
             {
