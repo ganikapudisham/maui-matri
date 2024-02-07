@@ -33,50 +33,50 @@
                 <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" Grid.Row="0" />
             </StackLayout>
 
-                <StackLayout BackgroundColor="{DynamicResource White}" Spacing="0">
+            <StackLayout BackgroundColor="{DynamicResource White}" Spacing="0">
 
-                    <Grid
+                <Grid
                     Margin="0,12,0,16"
                     Padding="0"
                     ColumnSpacing="16"
                     RowSpacing="4">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
                         Grid.Row="0"
                         Grid.Column="0" Grid.ColumnSpan="3"
                         FontFamily="Montserrat-Medium"
                         FontSize="16"
-                        Text="Country Of Residence"
+                        Text="Country Of Birth"
                         TextColor="{DynamicResource Gray800}" />
-                        <Border
+                    <Border
                         Grid.Row="1"
                         Margin="0"
                         Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
@@ -85,19 +85,38 @@
                     SelectedItem="{Binding SelectedCountryResidence}"
                     Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
                       IsEditable="True">
-                            </combobox:SfComboBox>
+                        </combobox:SfComboBox>
 
-                        </Border>
+                    </Border>
 
-                        <Label
-                        Grid.Row="2"
+                    <Label
+                            Grid.Row="2"
+                            Grid.Column="0" Grid.ColumnSpan="3"
+                            FontFamily="Montserrat-Medium"
+                            FontSize="16"
+                            Text="Country of Citizenship"
+                            TextColor="{DynamicResource Gray800}" />
+                    <Border
+                            Grid.Row="3"
+                            Margin="0"
+                            Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
+
+                        <combobox:SfComboBox ItemsSource="{Binding MDCountries}"
+                            SelectedItem="{Binding SelectedCountryNative}"
+                            Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
+                            IsEditable="true">
+                        </combobox:SfComboBox>
+                    </Border>
+
+                    <Label
+                        Grid.Row="4"
                         Grid.Column="0" Grid.ColumnSpan="3"
                         FontFamily="Montserrat-Medium"
                         FontSize="16"
                         Text="State Of Residence"
                         TextColor="{DynamicResource Gray800}" />
-                        <Border
-                        Grid.Row="3"
+                    <Border
+                        Grid.Row="5"
                         Margin="0"
                         Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
 
@@ -105,37 +124,20 @@
                     SelectedItem="{Binding SelectedStateResidence}"
                     Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
                       IsEditable="true">
-                                
-                            </combobox:SfComboBox>
-                        </Border>
 
-                        <Label
-                        Grid.Row="4"
-                        Grid.Column="0" Grid.ColumnSpan="3"
-                        FontFamily="Montserrat-Medium"
-                        FontSize="16"
-                        Text="Citizenship"
-                        TextColor="{DynamicResource Gray800}" />
-                        <Border
-                        Grid.Row="5"
-                        Margin="0"
-                        Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
+                        </combobox:SfComboBox>
+                    </Border>
 
-                        <combobox:SfComboBox ItemsSource="{Binding MDCountries}"
-                    SelectedItem="{Binding SelectedCountryNative}"
-                    Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
-                      IsEditable="true">
-                            </combobox:SfComboBox>
-                        </Border>
 
-                        <Label
+
+                    <Label
                         Grid.Row="6"
                         Grid.Column="0" Grid.ColumnSpan="3"
                         FontFamily="Montserrat-Medium"
                         FontSize="16"
-                        Text="State of Nativity"
+                        Text="State of Birth"
                         TextColor="{DynamicResource Gray800}" />
-                        <Border
+                    <Border
                         Grid.Row="7"
                         Margin="0"
                         Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
@@ -144,19 +146,19 @@
                     x:Name="DDLBodyType" SelectedItem="{Binding SelectedStateNative}"
                     Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
                       IsEditable="true">
-                            </combobox:SfComboBox>
-                        </Border>
+                        </combobox:SfComboBox>
+                    </Border>
 
-                        <Label
+                    <Label
                         Grid.Row="8"
                         Grid.Column="0" Grid.ColumnSpan="3"
                         FontFamily="Montserrat-Medium"
                         FontSize="16"
                         Text="District of residence"
                         TextColor="{DynamicResource Gray800}" />
-                        <Border Grid.Row="9" Grid.ColumnSpan="3"
+                    <Border Grid.Row="9" Grid.ColumnSpan="3"
                         Margin="0" Style="{StaticResource FormBorderStyle}">
-                            <Editor
+                        <Editor
                             Margin="12,0"
                             FontSize="16"
                             HeightRequest="100"
@@ -164,21 +166,21 @@
                             PlaceholderColor="{DynamicResource Gray700}"
                             Text="{Binding District}"
                             TextColor="{DynamicResource Gray900}"  />
-                        </Border>
+                    </Border>
 
-                        <Label
+                    <Label
                         Grid.Row="10"
                         Grid.Column="0" Grid.ColumnSpan="3"
                         FontFamily="Montserrat-Medium"
                         FontSize="16"
                         Text="Town of residence"
                         TextColor="{DynamicResource Gray800}" />
-                        <Border
+                    <Border
                         Grid.Row="11"
                         Margin="0"
                         Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
 
-                            <Editor
+                        <Editor
                             Margin="12,0"
                             FontSize="16"
                             HeightRequest="100"
@@ -186,20 +188,20 @@
                             PlaceholderColor="{DynamicResource Gray700}"
                             Text="{Binding Town}"
                             TextColor="{DynamicResource Gray900}"  />
-                        </Border>
+                    </Border>
 
-                        <Label
+                    <Label
                         Grid.Row="12"
                         Grid.Column="0" Grid.ColumnSpan="3"
                         FontFamily="Montserrat-Medium"
                         FontSize="16"
                         Text="Native"
                         TextColor="{DynamicResource Gray800}" />
-                        <Border
+                    <Border
                         Grid.Row="13"
                         Margin="0"
                         Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
-                            <Editor
+                        <Editor
                             Margin="12,0"
                             FontSize="16"
                             HeightRequest="100"
@@ -208,20 +210,20 @@
                             Text="{Binding Nativity}"
                             TextColor="{DynamicResource Gray900}"  />
 
-                        </Border>
+                    </Border>
 
-                        <Label
+                    <Label
                         Grid.Row="14"
                         Grid.Column="0" Grid.ColumnSpan="3"
                         FontFamily="Montserrat-Medium"
                         FontSize="16"
                         Text="Mobile Number"
                         TextColor="{DynamicResource Gray800}" />
-                        <Border
+                    <Border
                         Grid.Row="15"
                         Margin="0"
                         Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
-                            <custom:CustomEntry
+                        <custom:CustomEntry
                             Margin="12,0"
                             FontSize="16"
                             Placeholder="Mobile Number"
@@ -229,20 +231,20 @@
                             Text="{Binding MobileNumber}"
                             TextColor="{DynamicResource Gray900}" Keyboard="Numeric"  />
 
-                        </Border>
+                    </Border>
 
-                        <Label
+                    <Label
                         Grid.Row="16"
                         Grid.Column="0" Grid.ColumnSpan="3"
                         FontFamily="Montserrat-Medium"
                         FontSize="16"
                         Text="Email Id"
                         TextColor="{DynamicResource Gray800}" />
-                        <Border
+                    <Border
                         Grid.Row="17"
                         Margin="0"
                         Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
-                            <custom:CustomEntry
+                        <custom:CustomEntry
                             Margin="12,0"
                             FontSize="16"
                             Placeholder="Email Id"
@@ -250,20 +252,20 @@
                             Text="{Binding EmailId}"
                             TextColor="{DynamicResource Gray900}"/>
 
-                        </Border>
+                    </Border>
 
-                        <Label
+                    <Label
                         Grid.Row="18"
                         Grid.Column="0" Grid.ColumnSpan="3"
                         FontFamily="Montserrat-Medium"
                         FontSize="16"
                         Text="Postal Address"
                         TextColor="{DynamicResource Gray800}" />
-                        <Border
+                    <Border
                         Grid.Row="19"
                         Margin="0"
                         Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
-                            <Editor
+                        <Editor
                             Margin="12,0"
                             FontSize="16"
                             HeightRequest="100"
@@ -272,17 +274,17 @@
                             Text="{Binding PostalAddress}"
                             TextColor="{DynamicResource Gray900}"  />
 
-                        </Border>
+                    </Border>
 
-                        <button:SfButton
+                    <button:SfButton
             Grid.Row="20"
             Command="{Binding UpdateCommand}"
             HorizontalOptions="Center"
             Style="{StaticResource SfButtonStyle}"
             Text="SAVE"
             WidthRequest="245" Grid.ColumnSpan="3"  />
-                    </Grid>
-                </StackLayout>
+                </Grid>
+            </StackLayout>
 
         </Grid>
     </ScrollView>
