@@ -175,7 +175,6 @@
                                             <RowDefinition Height="25"/>
                                             <RowDefinition Height="25"/>
                                             <RowDefinition Height="25"/>
-                                            <RowDefinition Height="25"/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
@@ -204,7 +203,6 @@
                                      Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                             <Label Text="{Binding AboutMe}" Grid.Row="5" Grid.ColumnSpan="2"  FontAttributes="Italic"
 Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}' LineBreakMode="WordWrap" />
-                                        <Label Grid.Row="6" Grid.Column="1" Text="sdfd" Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'></Label>
                                     </Grid>
 
                                 </Grid>
