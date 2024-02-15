@@ -90,6 +90,8 @@ namespace Matri.ViewModel
         public string contactUsMessage;
         [ObservableProperty]
         public Model.App appDetails;
+        [ObservableProperty]
+        public bool isBusy;
 
         [RelayCommand]
         public async Task SendEmail()
@@ -106,16 +108,20 @@ namespace Matri.ViewModel
 
             try
             {
+                IsBusy = true;
                 var sessionToken = await SecureStorage.GetAsync("Token");
                 await _serviceManager.ContactUs(new Guid(sessionToken), contactUs);
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", "Thank You, We will revert at the earliest.", "OK");
+                IsBusy = false;
             }
             catch (MatriInternetException exception)
             {
+                IsBusy = false;
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
             }
             catch (Exception exception)
             {
+                IsBusy = false;
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", "Failed To Send Message, Please Try Again", "OK");
             }
         }

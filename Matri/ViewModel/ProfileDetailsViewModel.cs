@@ -169,7 +169,7 @@ namespace Matri.ViewModel
         public List<CarouselModel> ProfilePhotos
         {
             get { return _profilePhotos; }
-            set { _profilePhotos = value; }
+            set { _profilePhotos = value; OnPropertyChanged(nameof(ProfilePhotos)); }
         }
 
         public async Task GetProfileDetails(Guid userToken, Guid profileToken)
@@ -180,7 +180,8 @@ namespace Matri.ViewModel
             ShowHinduFields = Convert.ToBoolean(showHinduFields);
 
             var profileDetails = await _serviceManager.GetProfileById(userToken, profileToken);
-            ProfilePhotos.Clear();
+
+            ProfilePhotos = new List<CarouselModel>();
 
             foreach (var pt in profileDetails.Photos)
             {

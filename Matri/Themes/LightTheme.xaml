@@ -39,13 +39,13 @@
         </OnPlatform.Platforms>
     </OnPlatform>
 
-    <OnPlatform x:Key="Montserrat-SemiBold" x:TypeArguments="x:String">
+    <!--<OnPlatform x:Key="Montserrat-SemiBold" x:TypeArguments="x:String">
         <OnPlatform.Platforms>
             <On Platform="Android" Value="Montserrat-SemiBold.ttf#Montserrat-SemiBold" />
             <On Platform="iOS" Value="Montserrat-SemiBold" />
             <On Platform="UWP" Value="Assets/Montserrat-SemiBold.ttf#Montserrat-SemiBold" />
         </OnPlatform.Platforms>
-    </OnPlatform>
+    </OnPlatform>-->
 
     <OnPlatform x:Key="Montserrat-Regular" x:TypeArguments="x:String">
         <OnPlatform.Platforms>

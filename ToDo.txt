@@ -37,7 +37,7 @@ https://blog.ewers-peters.de/are-you-using-dependency-injection-in-your-net-maui
 
  remove api calls from constructors 
 
- order incomes into order
+ order salary / incomes into order
 
 
  Java.Lang.RuntimeException: Font asset not found Montserrat-SemiBold
@@ -62,3 +62,8 @@ https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/appmodel/main
 https://stackoverflow.com/questions/73403608/net-maui-c-sharp-background-task-continuewith-and-notification-event
 
 share not working from menu command -> issue
+
+There is no application host available for the specified RuntimeIdentifier 'android-arm'.
+There is no application host available for the specified RuntimeIdentifier 'android-arm64'.
+There is no application host available for the specified RuntimeIdentifier 'android-x86'.
+There is no application host available for the specified RuntimeIdentifier 'android-x64'.

@@ -28,6 +28,7 @@
 
             <Style Class="FlyoutItemLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontFamily" Value="Montserrat-Regular" />
             </Style>
             <Style
             ApplyToDerivedTypes="True"
