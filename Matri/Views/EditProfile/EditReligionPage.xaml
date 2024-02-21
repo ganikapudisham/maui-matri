@@ -265,25 +265,6 @@
                             Text="{Binding CasteDetails}"
                             TextColor="{DynamicResource Gray900}"/>
                         </Border>
-
-                      <button:SfCheckBox Grid.Row="7" Grid.ColumnSpan="2"
-                    Margin="4,16,0,4"
-                    CornerRadius="2"
-                    FontFamily="Montserrat-Medium"
-                    FontSize="16" IsChecked="{Binding CasteIsImportant}"
-                    Text="Caste Is Important"
-                    TextColor="{DynamicResource Gray900}"
-                    VerticalOptions="Center" />
-
-                        <button:SfCheckBox Grid.Row="8" Grid.ColumnSpan="2"
-                    Margin="4,16,0,4"
-                    CornerRadius="2"
-                    FontFamily="Montserrat-Medium"
-                    FontSize="16" IsChecked="{Binding DenominationIsImportant}"
-                    Text="Denomination Is Important"
-                    TextColor="{DynamicResource Gray900}"
-                    VerticalOptions="Center" /> 
-
                     </Grid>
 
                 <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" Grid.Row="0" />

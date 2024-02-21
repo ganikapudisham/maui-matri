@@ -58,5 +58,7 @@ namespace Matri.Business
         Task<bool> UpdateReligionDetails(Guid sessiontoken, Profile profile);
 
         Task<bool> UploadProfilePhoto(MultipartFormDataContent formData);
+
+        Task<bool> UpdateExpectations(Guid sessiontoken, Partner partner);
     }
 } 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Matri.Model
@@ -161,13 +162,7 @@ namespace Matri.Model
 
         public string CreatedOn { get; set; }
 
-        public string AboutPartner { get; set; }
-
         public string ResidingTown { get; set; }
-
-        public bool CasteCriteria { get; set; }
-
-        public bool DenominationCriteria { get; set; }
 
         public IList<FileMetadata> ThumbNails { get; set; }
 
@@ -180,5 +175,8 @@ namespace Matri.Model
         public bool Blocked { get; set; }
 
         public string EmailId { get; set; }
+
+        [DataMember]
+        public Partner Expectations { get; set; }
     }
 }

@@ -382,5 +382,11 @@ namespace Matri.Business.Impl
             var url = Constants.API_URL_UpdateUserReligion;
             return await UpdateProfileDetails(sessiontoken, profile, url);
         }
+
+        public async Task<bool> UpdateExpectations(Guid sessiontoken, Partner partner)
+        {
+            var url = Constants.API_URL_UpdateUserExpectation;
+            return await _serviceRepository.PutAsync<Partner, bool>(sessiontoken.ToString(), url, partner);
+        }
     }
 }

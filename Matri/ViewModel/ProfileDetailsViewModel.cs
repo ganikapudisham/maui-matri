@@ -208,9 +208,6 @@ namespace Matri.ViewModel
 
         public void InitialisePartnerDetails(Model.Profile profileDetails)
         {
-            AboutPartner = profileDetails.AboutPartner;
-            CasteCriteria = profileDetails.CasteCriteria == true ? "Mandatory" : "Not Mandatory";
-            DenominationCriteria = profileDetails.DenominationCriteria == true ? "Mandatory" : "Not Mandatory";
         }
 
         public void InitialiseBasicDetails(Model.Profile profileDetails)

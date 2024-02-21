@@ -31,10 +31,6 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public string casteDetails;
         [ObservableProperty]
-        public bool casteIsImportant;
-        [ObservableProperty]
-        public bool denominationIsImportant;
-        [ObservableProperty]
         public bool showHinduFields = false;
         [ObservableProperty]
         public bool isBusy = true;
@@ -83,8 +79,6 @@ namespace Matri.ViewModel
                 Gothram = Profile.Gothram;
                 ChevvaiDosham = Profile.ChevvaiDosham;
                 CasteDetails = Profile.CasteInformation;
-                CasteIsImportant = Profile.CasteCriteria;
-                DenominationIsImportant = Profile.DenominationCriteria;
 
                 var showHinduFields = _sharedService.GetBool("ShowHinduFields");
 
@@ -174,8 +168,6 @@ namespace Matri.ViewModel
 
             var sessionToken = await SecureStorage.GetAsync("Token");
 
-            //var regligionDetails = new Profile
-            //{
             Profile.Religion = SelectedReligion.Id;
             Profile.Denomination = SelectedDenomination.Id;
             Profile.Caste = SelectedCaste.Id;
@@ -184,11 +176,6 @@ namespace Matri.ViewModel
             Profile.Gothram = Gothram;
             Profile.ChevvaiDosham = ChevvaiDosham;
             Profile.CasteInformation = CasteDetails;
-            Profile.CasteCriteria = CasteIsImportant;
-            Profile.DenominationCriteria = DenominationIsImportant;
-            //};
-
-
 
             try
             {

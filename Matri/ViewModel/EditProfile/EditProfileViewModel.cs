@@ -22,7 +22,6 @@ namespace Matri.ViewModel
             var contactsPage5 = new EditContactsPage();
             var familyPage6 = new EditFamilyPage();
 
-            //var lifeStylePage7 = new EditLifeStylePage();
             var photoPage8 = new EditPhotoPage();
             //var expectationsPage9 = new EditExpectationsPage();
 
@@ -44,9 +43,6 @@ namespace Matri.ViewModel
             var tabItemFamily6 = new SfTabItem { Content = familyPage6.Content, Header = "Family" };
             tabItemFamily6.Content.BindingContext = familyPage6.BindingContext;
 
-            //var tabItemLife7 = new SfTabItem { Content = lifeStylePage7.Content, Header = "Life Style" };
-            //tabItemLife7.Content.BindingContext = lifeStylePage7.BindingContext;
-
             var tabItemPhoto8 = new SfTabItem { Content = photoPage8.Content, Header = "Photo" };
             tabItemPhoto8.Content.BindingContext = photoPage8.BindingContext;
 
@@ -59,7 +55,6 @@ namespace Matri.ViewModel
             TabItems.Add(tabItemEducation4);
             TabItems.Add(tabItemContact5);
             TabItems.Add(tabItemFamily6);
-            //TabItems.Add(tabItemLife7);
             TabItems.Add(tabItemPhoto8);
             //TabItems.Add(tabItemExpec9);
         }

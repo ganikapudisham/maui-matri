@@ -23,55 +23,6 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public bool isBusy = true;
 
-        //private Command<SfComboBox> onHeightChangedCommand;
-
-        //public Command<SfComboBox> OnHeightChangedCommand
-        //{
-        //    get { return onHeightChangedCommand; }
-        //    set { onHeightChangedCommand = value; OnPropertyChanged(nameof(OnHeightChanged)); }
-        //}
-
-        //private Command<SfComboBox> onWeightChangedCommand;
-
-        //public Command<SfComboBox> OnWeightChangedCommand
-        //{
-        //    get { return onWeightChangedCommand; }
-        //    set { onWeightChangedCommand = value; OnPropertyChanged(nameof(OnWeightChanged)); }
-        //}
-
-        //private Command<SfComboBox> onPhysicalChangedCommand;
-
-        //public Command<SfComboBox> OnPhysicalChangedCommand
-        //{
-        //    get { return onPhysicalChangedCommand; }
-        //    set { onPhysicalChangedCommand = value; OnPropertyChanged(nameof(OnPhysicalChanged)); }
-        //}
-
-        //private Command<SfComboBox> onComplexionChangedCommand;
-
-        //public Command<SfComboBox> OnComplexionChangedCommand
-        //{
-        //    get { return onComplexionChangedCommand; }
-        //    set { onComplexionChangedCommand = value; OnPropertyChanged(nameof(OnComplexionChanged)); }
-        //}
-
-        //private Command<SfComboBox> onBodyTypeChangedCommand;
-
-        //public Command<SfComboBox> OnBodyTypeChangedCommand
-        //{
-        //    get { return onBodyTypeChangedCommand; }
-        //    set { onBodyTypeChangedCommand = value; OnPropertyChanged(nameof(OnBodyTypeChanged)); }
-        //}
-
-        //private Command<SfComboBox> onCreatedByChangedCommand;
-
-        //public Command<SfComboBox> OnCreatedByChangedCommand
-        //{
-        //    get { return onCreatedByChangedCommand; }
-        //    set { onCreatedByChangedCommand = value; OnPropertyChanged(nameof(OnCreatedByChanged)); }
-        //}
-
-
         public EditPhysicalViewModel()
         {
             _serviceManager = ServiceHelper.GetService<IServiceManager>();

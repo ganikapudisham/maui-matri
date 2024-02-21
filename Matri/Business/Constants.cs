@@ -20,6 +20,7 @@ namespace Matri.Business
         internal const string API_URL_UpdateUserFamily = "profiles?step=family";
         internal const string API_URL_UpdateUserPhysical = "profiles?step=physical";
         internal const string API_URL_UpdateUserReligion = "profiles?step=religion";
+        internal const string API_URL_UpdateUserExpectation = "profiles?step=expectation";
 
         internal const string API_URL_ImagesRepo = "https://api.christianjodi.com/";
         internal const string API_URL_ContactUs = "email/contactus";
