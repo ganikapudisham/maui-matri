@@ -97,7 +97,9 @@ namespace Matri.ViewModel
                 MDAcademics.AddRange(md.Academics);
                 foreach (var i in Profile.Expectations.Educations)
                 {
-                    SelectedAcademic.Add(new Master { Id = i.Code, Name = i.Name });
+                    //SelectedAcademic.Add(new Master { Id = i.Code, Name = i.Name });
+                    //SelectedAcademic.Add(new Master { Id = i.Code, Name = i.Name });
+                    SelectedAcademic.Add(MDAcademics.ToList().Find(x => x.Id == i.Code));
                 }
 
                 //MDMaritalStatus.AddRange(md.MaritalStatuses);
