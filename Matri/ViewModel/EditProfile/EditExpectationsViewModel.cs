@@ -72,68 +72,63 @@ namespace Matri.ViewModel
 
             try
             {
-                MDHeights.AddRange(md.Heights);
+                //MDHeights.AddRange(md.Heights);
 
-                if (Profile.Expectations.HeightFrom != null)
-                {
-                    SelectedHeightFrom = md.Heights.Where(mt => mt.Id.ToLower() == Profile.Expectations.HeightFrom.ToLower()).FirstOrDefault();
-                }
+                //if (Profile.Expectations.HeightFrom != null)
+                //{
+                //    SelectedHeightFrom = md.Heights.Where(mt => mt.Id.ToLower() == Profile.Expectations.HeightFrom.ToLower()).FirstOrDefault();
+                //}
 
-                if (Profile.Expectations.HeightTo != null)
-                {
-                    SelectedHeightTo = md.Heights.Where(mt => mt.Id.ToLower() == Profile.Expectations.HeightTo.ToLower()).FirstOrDefault();
-                }
+                //if (Profile.Expectations.HeightTo != null)
+                //{
+                //    SelectedHeightTo = md.Heights.Where(mt => mt.Id.ToLower() == Profile.Expectations.HeightTo.ToLower()).FirstOrDefault();
+                //}
 
-                if (Profile.Expectations.AgeFrom != null)
-                {
-                    SelectedAgeFrom = MDAges.Where(mt => mt.Id.ToLower() == Profile.Expectations.AgeFrom.ToLower()).FirstOrDefault();
-                }
+                //if (Profile.Expectations.AgeFrom != null)
+                //{
+                //    SelectedAgeFrom = MDAges.Where(mt => mt.Id.ToLower() == Profile.Expectations.AgeFrom.ToLower()).FirstOrDefault();
+                //}
 
-                if (Profile.Expectations.AgeTo != null)
-                {
-                    SelectedAgeTo = MDAges.Where(mt => mt.Id.ToLower() == Profile.Expectations.AgeTo.ToLower()).FirstOrDefault();
-                }
-
-                MDMaritalStatus.AddRange(md.MaritalStatuses);
-
-                if (Profile.Expectations.MaritalStatus != null)
-                {
-                    //SelectedMaritalStatus = md.MaritalStatuses.Where(mt => mt.Id.ToLower() == Profile.ExpectedMaritalStatus.ToLower()).FirstOrDefault();
-                }
-
-                MDPhysicalStatus.AddRange(md.PhysicalStatuses);
-
-                if (Profile.Expectations.PhysicalStatuses != null)
-                {
-                    //SelectedPhysicalStatus = md.PhysicalStatuses.Where(mt => mt.Id.ToLower() == Profile.ExpectedPhysicalStatus.ToLower()).FirstOrDefault();
-                }
-
-                MDComplexions.AddRange(md.Complexions);
-
-                if (Profile.Expectations.Complexions != null)
-                {
-                    //SelectedComplexion = md.Complexions.Where(mt => mt.Id.ToLower() == Profile.ExpectedComplexion.ToLower()).FirstOrDefault();
-                }
-
-                MDLanguages.AddRange(md.Languages);
-
-                if (Profile.Expectations.Languages != null)
-                {
-                    //SelectedLanguage = md.Languages.Where(mt => mt.Id.ToLower() == Profile.ExpectedLanguage.ToLower()).FirstOrDefault();
-                }
+                //if (Profile.Expectations.AgeTo != null)
+                //{
+                //    SelectedAgeTo = MDAges.Where(mt => mt.Id.ToLower() == Profile.Expectations.AgeTo.ToLower()).FirstOrDefault();
+                //}
 
                 MDAcademics.AddRange(md.Academics);
-                if (Profile.Expectations.Educations != null)
+                foreach (var i in Profile.Expectations.Educations)
                 {
-                    //SelectedAcademic = md.Academics.Where(mt => mt.Id.ToLower() == Profile.ExpectedEducation.ToLower()).FirstOrDefault();
+                    SelectedAcademic.Add(new Master { Id = i.Code, Name = i.Name });
                 }
-               
-                MDSectors.AddRange(md.JobTypes);
-                if (Profile.Expectations.JobTypes != null)
-                {
-                    //SelectedSector = md.JobTypes.Where(mt => mt.Id.ToLower() == Profile.ExpectedJobType.ToLower()).FirstOrDefault();
-                }
-                
+
+                //MDMaritalStatus.AddRange(md.MaritalStatuses);
+                //foreach (var i in Profile.Expectations.MaritalStatus)
+                //{
+                //    SelectedMaritalStatus.Add(new Master { Id = i.Code, Name = i.Name });
+                //}
+
+                //MDSectors.AddRange(md.JobTypes);
+                //foreach (var i in Profile.Expectations.JobTypes)
+                //{
+                //    SelectedSector.Add(new Master { Id = i.Code, Name = i.Name });
+                //}
+
+                //MDPhysicalStatus.AddRange(md.PhysicalStatuses);
+                //foreach (var i in Profile.Expectations.PhysicalStatuses)
+                //{
+                //    SelectedPhysicalStatus.Add(new Master { Id = i.Code, Name = i.Name });
+                //}
+
+                //MDLanguages.AddRange(md.Languages);
+                //foreach (var i in Profile.Expectations.Languages)
+                //{
+                //    SelectedLanguage.Add(new Master { Id = i.Code, Name = i.Name });
+                //}
+
+                //MDComplexions.AddRange(md.Complexions);
+                //foreach (var i in Profile.Expectations.Complexions)
+                //{
+                //    SelectedComplexion.Add(new Master { Id = i.Code, Name = i.Name });
+                //}
 
                 IsBusy = false;
             }
@@ -211,17 +206,6 @@ namespace Matri.ViewModel
             set
             {
                 mDPhysicalStatus = value;
-            }
-        }
-
-        private ObservableRangeCollection<Master> mDBodyTypes;
-
-        public ObservableRangeCollection<Master> MDBodyTypes
-        {
-            get { return mDBodyTypes; }
-            set
-            {
-                mDBodyTypes = value;
             }
         }
 
