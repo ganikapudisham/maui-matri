@@ -32,12 +32,7 @@ namespace Matri.ViewModel
 
         [ObservableProperty]
         public string aboutMe;
-        [ObservableProperty]
-        public string aboutPartner;
-        [ObservableProperty]
-        public string casteCriteria;
-        [ObservableProperty]
-        public string denominationCriteria;
+        
 
         [ObservableProperty]
         public string firstName;
@@ -62,8 +57,6 @@ namespace Matri.ViewModel
         public string height;
         [ObservableProperty]
         public int weight;
-        [ObservableProperty]
-        public string bloodGroup;
         [ObservableProperty]
         public string physicalStatus;
         [ObservableProperty]
@@ -166,6 +159,43 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public bool isBusy = true;
 
+        /* Expectations */
+
+        [ObservableProperty]
+        public string expectedMaritalStatuses;
+
+        [ObservableProperty]
+        public string expectedAge;
+
+        [ObservableProperty]
+        public string expectedHeight;
+
+        [ObservableProperty]
+        public string expectedEducations;
+
+        [ObservableProperty]
+        public string expectedJobTypes;
+
+        [ObservableProperty]
+        public string expectedPhysicalStatuses;
+
+        [ObservableProperty]
+        public string expectedLanguages;
+
+        [ObservableProperty]
+        public string sameReligion;
+
+        [ObservableProperty]
+        public string sameCaste;
+
+        [ObservableProperty]
+        public string sameDenomination;
+
+        [ObservableProperty]
+        public string aboutPartner;
+
+        /* */
+
         public List<CarouselModel> ProfilePhotos
         {
             get { return _profilePhotos; }
@@ -192,7 +222,7 @@ namespace Matri.ViewModel
             InitialiseBasicDetails(profileDetails);
             InitialiseBreadAndButter(profileDetails);
             InitialiseFamilyDetails(profileDetails);
-            InitialisePartnerDetails(profileDetails);
+            InitialiseExpectationDetails(profileDetails);
             InitialisePhysical(profileDetails);
             InitialiseReligion(profileDetails);
             IsBusy = false;
@@ -206,8 +236,69 @@ namespace Matri.ViewModel
             Task.Run(() => this.GetProfileDetails(sourceId, targetId));
         }
 
-        public void InitialisePartnerDetails(Model.Profile profileDetails)
+        public void InitialiseExpectationDetails(Model.Profile profileDetails)
         {
+            var md = _sharedService.GetValue<MDD>("MasterData");
+
+            SameReligion = profileDetails.Expectations.SameReligion == true ? "Yes" : "No";
+            SameCaste = profileDetails.Expectations.SameCaste == true ? "Yes" : "No";
+            SameDenomination = profileDetails.Expectations.SameDenomination == true ? "Yes" : "No";
+            AboutPartner = profileDetails.Expectations.Expectations;
+
+            ExpectedAge = $"{profileDetails.Expectations.AgeFrom} - {profileDetails.Expectations.AgeTo}";
+
+            var htFrom = md.Heights.ToList().Find(x => x.Id == profileDetails.Expectations.HeightFrom);
+            var htTo = md.Heights.ToList().Find(x => x.Id == profileDetails.Expectations.HeightTo);
+
+            var bLimit = "";
+            var tLimit = "";
+
+            if (htFrom != null)
+            {
+                bLimit = htFrom.Name.Split('-')[0];
+            }
+
+            if (htTo != null)
+            {
+                tLimit = htTo.Name.Split('-')[0];
+            }
+
+            ExpectedHeight = $"{bLimit} - {tLimit}";
+
+            string edus = "";
+            foreach(var i in profileDetails.Expectations.Educations)
+            {
+                edus += i.Name + ", ";
+            }
+            ExpectedEducations = edus.TrimEnd(' ').TrimEnd(',');
+
+            string jobTs = "";
+            foreach (var i in profileDetails.Expectations.JobTypes)
+            {
+                jobTs += i.Name + ", ";
+            }
+            ExpectedJobTypes = jobTs.TrimEnd(' ').TrimEnd(',');
+
+            string langs = "";
+            foreach (var i in profileDetails.Expectations.Languages)
+            {
+                langs += i.Name + ", ";
+            }
+            ExpectedLanguages = langs.TrimEnd(' ').TrimEnd(',');
+
+            string ps = "";
+            foreach (var i in profileDetails.Expectations.PhysicalStatuses)
+            {
+                ps += i.Name + ", ";
+            }
+            ExpectedPhysicalStatuses = ps.TrimEnd(' ').TrimEnd(',');
+
+            string ms = "";
+            foreach (var i in profileDetails.Expectations.MaritalStatus)
+            {
+                ms += i.Name + ", ";
+            }
+            ExpectedMaritalStatuses = ms.TrimEnd(' ').TrimEnd(',');
         }
 
         public void InitialiseBasicDetails(Model.Profile profileDetails)
@@ -242,7 +333,6 @@ namespace Matri.ViewModel
             AboutMe = profileDetails.AboutMe;
             Height = profileDetails.Height;
             Weight = profileDetails.Weight;
-            BloodGroup = profileDetails.BloodGroup;
             PhysicalStatus = profileDetails.PhysicalStatus;
             BodyType = profileDetails.BodyType;
             Complexion = profileDetails.Complexion;
