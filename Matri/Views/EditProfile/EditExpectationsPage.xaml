@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:button="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons" xmlns:combobox="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs" xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit" xmlns:vm="clr-namespace:Matri.ViewModel" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Matri.Views.EditExpectationsPage" Title="Edit Expectations">
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Matri.Views.EditExpectationsPage"
+             xmlns:button="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons" 
+             xmlns:combobox="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs" 
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit" 
+             xmlns:vm="clr-namespace:Matri.ViewModel" 
+             Title="Edit Expectations">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary Source="/Resources/Styles/StylesEditBasic.xaml" />
@@ -9,7 +16,7 @@
         <vm:EditExpectationsViewModel />
     </ContentPage.BindingContext>
     <ScrollView>
-        <Grid>
+        <!--<Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -19,8 +26,8 @@
             <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="White">
                 <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" Grid.Row="0" />
             </StackLayout>
-            <StackLayout BackgroundColor="{DynamicResource GrayWhite}" Spacing="0">
-                <Grid Margin="0,12,0,16" Padding="0" ColumnSpacing="16" RowSpacing="4">
+            <StackLayout BackgroundColor="{DynamicResource GrayWhite}" Spacing="0">-->
+                <!--<Grid Margin="0,12,0,16" Padding="0" ColumnSpacing="16" RowSpacing="4">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -47,15 +54,12 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                    </Grid.ColumnDefinitions>-->
 
-                    <Label Grid.Row="0" Grid.Column="0"  FontFamily="Montserrat-Medium" FontSize="16" Text="Education" 
+                    <!--<Label Grid.Row="0" Grid.Column="0"  FontFamily="Montserrat-Medium" FontSize="16" Text="Education" 
                            TextColor="{DynamicResource Gray800}" />
-                    <Label Grid.Row="1" Grid.ColumnSpan="2"  FontFamily="Montserrat-Medium" FontSize="16" Text="" 
-       TextColor="{DynamicResource Gray800}" />
-                    <combobox:SfComboBox Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
-                     DisplayMemberPath="Name" ItemsSource="{Binding MDAcademics}" SelectedItems="{Binding SelectedAcademic}" 
-                     IsEditable="true" SelectionMode="Multiple" />
+                    <combobox:SfComboBox x:Name="cmbAcademics" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
+                     DisplayMemberPath="Name" ItemsSource="{Binding MDAcademics}" IsEditable="true" SelectionMode="Multiple" />-->
 
                     <!--<Label Grid.Row="1" Grid.Column="0"  FontFamily="Montserrat-Medium" FontSize="16" Text="Employeed In" 
                            TextColor="{DynamicResource Gray800}" />
@@ -130,10 +134,10 @@
                     <Editor Grid.Row="14" Grid.ColumnSpan="2" Margin="12,0" HeightRequest="200" FontSize="16" Placeholder="Expectation Details" 
                             PlaceholderColor="{DynamicResource Gray700}" Text="{Binding Expectations}" TextColor="{DynamicResource Gray900}" />-->
                     
-                    <button:SfButton Grid.Row="14" Grid.ColumnSpan="2" Command="{Binding UpdateCommand}" HorizontalOptions="Center" 
-                                     Style="{StaticResource SfButtonStyle}" Text="SAVE" WidthRequest="245"  />
-                </Grid>
-            </StackLayout>
-        </Grid>
+                    <!--<button:SfButton Grid.Row="14" Grid.ColumnSpan="2" Command="{Binding UpdateCommand}" HorizontalOptions="Center" 
+                                     Style="{StaticResource SfButtonStyle}" Text="SAVE" WidthRequest="245"  />-->
+                <!--</Grid>-->
+            <!--</StackLayout>
+        </Grid>-->
     </ScrollView>
 </ContentPage>

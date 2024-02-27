@@ -115,7 +115,7 @@
         <Setter Property="FontFamily" Value="Montserrat-Regular"/>
         <Setter Property="TextColor" Value="{DynamicResource Gray700}"/>
         <Setter Property="Margin" Value="8,3,0,-3"/>
-        <Setter Property="HeightRequest" Value="40"/>
+        <!--<Setter Property="HeightRequest" Value="40"/>-->
     </Style>
 
     <Style x:Key="EntryTextBoxStyle" TargetType="control:BorderlessEntry">
