@@ -63,7 +63,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <Label
+                        <!--<Label
                     Grid.Row="0"
                     Grid.Column="0"
                     FontFamily="Montserrat-Medium"
@@ -84,7 +84,7 @@
                                 
                             </combobox:SfComboBox>
 
-                        </Border>
+                        </Border>-->
 
 
                         <Label

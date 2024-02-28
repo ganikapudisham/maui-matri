@@ -18,8 +18,8 @@ namespace Matri.ViewModel
             var contactsPage5 = new EditContactsPage();
             var familyPage6 = new EditFamilyPage();
 
-            var photoPage8 = new EditPhotoPage();
-            var expectationsPage9 = new EditExpectationsPage();
+            var photoPage7 = new EditPhotoPage();
+            var expectationsPage8 = new EditExpectationsPage();
 
             var tabItemBasic1 = new SfTabItem { Content = basicPage1.Content, Header = "Basic" };
             tabItemBasic1.Content.BindingContext = basicPage1.BindingContext;
@@ -39,11 +39,11 @@ namespace Matri.ViewModel
             var tabItemFamily6 = new SfTabItem { Content = familyPage6.Content, Header = "Family" };
             tabItemFamily6.Content.BindingContext = familyPage6.BindingContext;
 
-            var tabItemPhoto8 = new SfTabItem { Content = photoPage8.Content, Header = "Photo" };
-            tabItemPhoto8.Content.BindingContext = photoPage8.BindingContext;
+            var tabItemPhoto7 = new SfTabItem { Content = photoPage7.Content, Header = "Photo" };
+            tabItemPhoto7.Content.BindingContext = photoPage7.BindingContext;
 
-            var tabItemExpec9 = new SfTabItem { Content = expectationsPage9.Content, Header = "Expectations" };
-            tabItemExpec9.Content.BindingContext = expectationsPage9.BindingContext;
+            var tabItemExpec8 = new SfTabItem { Content = expectationsPage8.Content, Header = "Expectations" };
+            tabItemExpec8.Content.BindingContext = expectationsPage8.BindingContext;
 
             TabItems.Add(tabItemBasic1);
             TabItems.Add(tabItemReligion2);
@@ -51,8 +51,8 @@ namespace Matri.ViewModel
             TabItems.Add(tabItemEducation4);
             TabItems.Add(tabItemContact5);
             TabItems.Add(tabItemFamily6);
-            TabItems.Add(tabItemPhoto8);
-            TabItems.Add(tabItemExpec9);
+            TabItems.Add(tabItemPhoto7);
+            TabItems.Add(tabItemExpec8);
         }
 
         [ObservableProperty]

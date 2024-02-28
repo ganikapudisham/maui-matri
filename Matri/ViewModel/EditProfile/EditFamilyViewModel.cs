@@ -37,8 +37,8 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public string familyDetails;
 
-        [ObservableProperty]
-        public Master selectedFamilyType;
+        //[ObservableProperty]
+        //public Master selectedFamilyType;
         [ObservableProperty]
         public Master selectedFamilyStatus;
         [ObservableProperty]
@@ -46,15 +46,15 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public bool isBusy = true;
 
-        private ObservableRangeCollection<Master> mDFamilyTypes;
-        public ObservableRangeCollection<Master> MDFamilyTypes
-        {
-            get { return mDFamilyTypes; }
-            set
-            {
-                mDFamilyTypes = value;
-            }
-        }
+        //private ObservableRangeCollection<Master> mDFamilyTypes;
+        //public ObservableRangeCollection<Master> MDFamilyTypes
+        //{
+        //    get { return mDFamilyTypes; }
+        //    set
+        //    {
+        //        mDFamilyTypes = value;
+        //    }
+        //}
 
         private ObservableRangeCollection<Master> mDFamilyStatuses;
         public ObservableRangeCollection<Master> MDFamilyStatuses
@@ -83,7 +83,7 @@ namespace Matri.ViewModel
             _sharedService = ServiceHelper.GetService<ISharedService>();
 
             MDFamilyStatuses = new ObservableRangeCollection<Master>();
-            MDFamilyTypes = new ObservableRangeCollection<Master>();
+           // MDFamilyTypes = new ObservableRangeCollection<Master>();
             MDFamilyValues = new ObservableRangeCollection<Master>();
 
             var defaultMaster = new Master();
@@ -92,7 +92,7 @@ namespace Matri.ViewModel
 
             SelectedFamilyStatus = defaultMaster;
             SelectedFamilyValue = defaultMaster;
-            SelectedFamilyType = defaultMaster;
+            //SelectedFamilyType = defaultMaster;
 
             Init();
         }
@@ -122,8 +122,8 @@ namespace Matri.ViewModel
             MDFamilyStatuses.AddRange(md.FamilyStatuses);
             SelectedFamilyStatus = md.FamilyStatuses.Where(mt => mt.Id.ToLower() == Profile.FamilyStatus.ToLower()).FirstOrDefault();
 
-            MDFamilyTypes.AddRange(md.FamilyTypes);
-            SelectedFamilyType = md.FamilyTypes.Where(mt => mt.Id.ToLower() == Profile.FamilyType.ToLower()).FirstOrDefault();
+            //MDFamilyTypes.AddRange(md.FamilyTypes);
+            //SelectedFamilyType = md.FamilyTypes.Where(mt => mt.Id.ToLower() == Profile.FamilyType.ToLower()).FirstOrDefault();
             IsBusy = false;
         }
 
@@ -141,7 +141,7 @@ namespace Matri.ViewModel
             Profile.AboutSisters = AboutSisters;
             Profile.SistersMarried = NumberOfSistersMarried;
             Profile.FamilyStatus = SelectedFamilyStatus.Id;
-            Profile.FamilyType = SelectedFamilyType.Id;
+            //Profile.FamilyType = SelectedFamilyType.Id;
             Profile.FamilyValue = SelectedFamilyValue.Id;
 
             try
