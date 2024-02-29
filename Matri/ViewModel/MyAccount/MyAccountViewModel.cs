@@ -42,21 +42,29 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public string editMyProfile = FontAwesomeIcons.Edit;
 
+        [ObservableProperty]
+        public bool isBusy = false;
+
         [RelayCommand]
         public async Task EditProfile()
         {
+            IsBusy = true;
             await Shell.Current.GoToAsync("editprofile");
+            IsBusy = false;
         }
 
         [RelayCommand]
         public async Task ChangePwd()
         {
+            IsBusy = true;
             await Shell.Current.GoToAsync("changepassword");
+            IsBusy = false;
         }
 
         [RelayCommand]
         public async Task SeeMyProfile()
         {
+            IsBusy = true;
             var sessionToken = await SecureStorage.GetAsync("Token");
 
             var miniDetails = await _serviceManager.GetShortDetailsOfLoggedInUser(new Guid(sessionToken));
@@ -70,46 +78,59 @@ namespace Matri.ViewModel
             var profileDetailsParams = new Dictionary<string, object> { { "ProfileDetailsInput", profileDetailsInput } };
 
             await Shell.Current.GoToAsync("profiledetails", profileDetailsParams);
+            IsBusy = false;
         }
 
         [RelayCommand]
         public async Task ViewRequestsSent()
         {
+            IsBusy = true;
             await Shell.Current.GoToAsync("requestssent");
+            IsBusy = false;
         }
 
 
         [RelayCommand]
         public async Task ViewRequestsReceived()
         {
+            IsBusy = true;
             await Shell.Current.GoToAsync("requestsreceived");
+            IsBusy = false;
         }
 
 
         [RelayCommand]
         public async Task ViewLikedProfiles()
         {
+            IsBusy = true;
             await Shell.Current.GoToAsync("likedprofiles");
+            IsBusy = false;
         }
 
 
         [RelayCommand]
         public async Task ViewBlockedProfiles()
         {
+            IsBusy = true;
             await Shell.Current.GoToAsync("blockedprofiles");
+            IsBusy = false;
         }
 
 
         [RelayCommand]
         public async Task ViewVisitors()
         {
+            IsBusy = true;
             await Shell.Current.GoToAsync("visitors");
+            IsBusy = false;
         }
 
         [RelayCommand]
         public async Task ViewNewProfiles()
         {
+            IsBusy = true;
             await Shell.Current.GoToAsync("newprofiles");
+            IsBusy = false;
         }
     }
 }

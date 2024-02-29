@@ -14,6 +14,7 @@
     <ScrollView>
         <StackLayout BackgroundColor="{DynamicResource Gray100}" Spacing="0">
 
+            <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}"></ActivityIndicator>
             <!--  Header label for account setting  -->
             <Label
             Margin="16,0,0,0"
