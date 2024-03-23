@@ -67,23 +67,24 @@
                     <Label Grid.Row="0" Grid.ColumnSpan="2"  FontFamily="Montserrat-Medium" FontSize="16" Text="Education" 
                            TextColor="{DynamicResource Gray800}" />
                     <combobox:SfComboBox x:Name="cmbAcademics" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
-                     DisplayMemberPath="Name" ItemsSource="{Binding MDAcademics}" IsEditable="true" SelectionMode="Multiple" />
+                     DisplayMemberPath="Name" ItemsSource="{Binding MDAcademics}" IsEditable="true" SelectionMode="Multiple" 
+                                         SelectedItems="{Binding SelectedAcademics}"/>
 
                     <Label Grid.Row="2" Grid.ColumnSpan="2" FontFamily="Montserrat-Medium" FontSize="16" Text="Employeed In" 
                            TextColor="{DynamicResource Gray800}" />
                     <combobox:SfComboBox x:Name="cmbJobTypes" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
                                          DisplayMemberPath="Name" ItemsSource="{Binding MDSectors}" 
-                                         IsEditable="true" SelectionMode="Multiple" />
+                                         IsEditable="true" SelectionMode="Multiple" SelectedItems="{Binding SelectedSectors}"/>
 
                     <Label Grid.Row="4" Grid.ColumnSpan="2"  FontFamily="Montserrat-Medium" FontSize="16" Text="Age From" 
                            TextColor="{DynamicResource Gray800}" />
                     <combobox:SfComboBox Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name" 
-                                         ItemsSource="{Binding MDAges}" SelectedItem="{Binding SelectedAgeFrom}" IsEditable="true" />
+                                         ItemsSource="{Binding MDAges}" SelectedItem="{Binding SelectedAgeFrom}" IsEditable="true"/>
 
                     <Label Grid.Row="6" Grid.ColumnSpan="2" FontFamily="Montserrat-Medium" FontSize="16" Text="Age To" 
                            TextColor="{DynamicResource Gray800}" />
                     <combobox:SfComboBox Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name" 
-                                         ItemsSource="{Binding MDAges}" SelectedItem="{Binding SelectedAgeTo}" IsEditable="true" />
+                                         ItemsSource="{Binding MDAges}" SelectedItem="{Binding SelectedAgeTo}" IsEditable="true"/>
 
                     <Label Grid.Row="8" Grid.ColumnSpan="2" FontFamily="Montserrat-Medium" FontSize="16" Text="Height From" 
                            TextColor="{DynamicResource Gray800}" />
@@ -93,31 +94,38 @@
                     <Label Grid.Row="10" Grid.ColumnSpan="2" FontFamily="Montserrat-Medium" FontSize="16" Text="Height To" 
                            TextColor="{DynamicResource Gray800}" />
                     <combobox:SfComboBox Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name" 
-                                         ItemsSource="{Binding MDHeights}" SelectedItem="{Binding SelectedHeightTo}" IsEditable="true" />
+                                         ItemsSource="{Binding MDHeights}" SelectedItem="{Binding SelectedHeightTo}" IsEditable="true"/>
 
                     <Label Grid.Row="12" Grid.ColumnSpan="2" FontFamily="Montserrat-Medium" FontSize="16" Text="Marital Status" 
                            TextColor="{DynamicResource Gray800}" />
-                    <combobox:SfComboBox x:Name="cmbMaritalStatuses" Grid.Row="13" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name" 
+                    <combobox:SfComboBox x:Name="cmbMaritalStatuses" Grid.Row="13" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
+                                         DisplayMemberPath="Name" 
                                          ItemsSource="{Binding MDMaritalStatus}"
-                                         IsEditable="true" SelectionMode="Multiple" />
+                                         IsEditable="true" SelectionMode="Multiple" 
+                                         SelectedItems="{Binding SelectedMaritalStatuses}"/>
 
                     <Label Grid.Row="14" Grid.ColumnSpan="2" FontFamily="Montserrat-Medium" FontSize="16" Text="Physical Status" 
                            TextColor="{DynamicResource Gray800}" />
-                    <combobox:SfComboBox x:Name="cmbPhysicalStatuses" Grid.Row="15" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name" 
+                    <combobox:SfComboBox x:Name="cmbPhysicalStatuses" Grid.Row="15" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
+                                         DisplayMemberPath="Name" 
                                          ItemsSource="{Binding MDPhysicalStatus}" 
-                                         IsEditable="true" SelectionMode="Multiple" />
+                                         IsEditable="true" SelectionMode="Multiple" 
+                                         SelectedItems="{Binding SelectedPhysicalStatuses}"/>
 
                     <Label Grid.Row="16" Grid.ColumnSpan="2" FontFamily="Montserrat-Medium" FontSize="16" Text="Complexion" 
                            TextColor="{DynamicResource Gray800}" />
-                    <combobox:SfComboBox x:Name="cmbComplexions" Grid.Row="17" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name" 
+                    <combobox:SfComboBox x:Name="cmbComplexions" Grid.Row="17" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
+                                         DisplayMemberPath="Name" 
                                          ItemsSource="{Binding MDComplexions}"
-                                         IsEditable="true" SelectionMode="Multiple" />
+                                         IsEditable="true" SelectionMode="Multiple" 
+                                         SelectedItems="{Binding SelectedComplexions}"/>
 
                     <Label Grid.Row="18" Grid.ColumnSpan="2" FontFamily="Montserrat-Medium" FontSize="16" Text="Language" 
                            TextColor="{DynamicResource Gray800}" />
-                    <combobox:SfComboBox x:Name="cmbLanguages" Grid.Row="19" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name" 
+                    <combobox:SfComboBox x:Name="cmbLanguages" Grid.Row="19" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
+                                         DisplayMemberPath="Name" 
                                          ItemsSource="{Binding MDLanguages}" IsEditable="true" 
-                                         SelectionMode="Multiple" />
+                                         SelectionMode="Multiple" SelectedItems="{Binding SelectedLanguages}"/>
                     
                     <Label Grid.Row="20" Grid.Column="0" FontFamily="Montserrat-Medium" FontSize="16" Text="Same Religion" 
                            TextColor="{DynamicResource Gray800}" />
@@ -139,8 +147,10 @@
                     
                     <Label Grid.Row="23" Grid.Column="0" FontFamily="Montserrat-Medium" FontSize="16" Text="Expectation Details" 
                            TextColor="{DynamicResource Gray800}" />
-                    <Editor Grid.Row="24" Grid.ColumnSpan="2" Margin="12,0" HeightRequest="200" FontSize="16" Placeholder="Expectation Details" 
-                            PlaceholderColor="{DynamicResource Gray700}" Text="{Binding ExpectationDetails}" TextColor="{DynamicResource Gray900}" />
+                    <Editor Grid.Row="24" Grid.ColumnSpan="2" Margin="12,0" HeightRequest="200" FontSize="16" 
+                            Placeholder="Expectation Details" 
+                            PlaceholderColor="{DynamicResource Gray700}" Text="{Binding ExpectationDetails}" 
+                            TextColor="{DynamicResource Gray900}" />
                     
                     <button:SfButton Grid.Row="25" Grid.ColumnSpan="2" Command="{Binding UpdateCommand}" HorizontalOptions="Center" 
                                      Style="{StaticResource SfButtonStyle}" Text="SAVE" WidthRequest="245"  />

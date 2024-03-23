@@ -36,20 +36,17 @@ namespace Matri.ViewModel
             defaultMaster.Id = "SELECT";
             defaultMaster.Name = "SELECT";
 
-            SelectedHeightFrom = defaultMaster;
-            SelectedHeightTo = defaultMaster;
-            SelectedAgeFrom = defaultMaster;
-            SelectedAgeTo = defaultMaster;
+            SelectedHeightFrom = new Master {Id= "SELECT", Name= "SELECT" };
+            SelectedHeightTo = new Master { Id = "SELECT", Name = "SELECT" };
+            SelectedAgeFrom = new Master { Id = "SELECT", Name = "SELECT" };
+            SelectedAgeTo = new Master { Id = "SELECT", Name = "SELECT" };
 
-            //var defaultMaster1 = new List<Master>();
-            //defaultMaster1.Add(new Master { Id = "SELECT", Name = "SELECT" });
-
-            //SelectedMaritalStatus = defaultMaster1;
-            //SelectedPhysicalStatus = defaultMaster1;
-            //SelectedComplexion = defaultMaster1;
-            //SelectedLanguage = defaultMaster1;
-            //SelectedAcademic = defaultMaster1;
-            //SelectedSector = defaultMaster1;
+            SelectedMaritalStatuses = new List<Master>();
+            SelectedPhysicalStatuses = new List<Master>();
+            SelectedComplexions = new List<Master>();
+            SelectedLanguages = new List<Master>();
+            SelectedAcademics = new List<Master>();
+            SelectedSectors = new List<Master>();
 
             Init();
         }
@@ -96,15 +93,59 @@ namespace Matri.ViewModel
 
                 MDAcademics.AddRange(md.Academics);
 
+                var expectations = Profile.Expectations;
+
+                foreach (var e in expectations.Educations)
+                {
+                    var index = MDAcademics.ToList().FindIndex(i => i.Id == e.Code);
+                    var selectedEducation = MDAcademics[index];
+                    SelectedAcademics.Add(selectedEducation);
+                }
+
                 MDMaritalStatus.AddRange(md.MaritalStatuses);
+
+                foreach (var e in expectations.MaritalStatus)
+                {
+                    var index = MDMaritalStatus.ToList().FindIndex(i => i.Id == e.Code);
+                    var selectedMaritalStatus = MDMaritalStatus[index];
+                    SelectedMaritalStatuses.Add(selectedMaritalStatus);
+                }
 
                 MDSectors.AddRange(md.JobTypes);
 
+                foreach (var e in expectations.JobTypes)
+                {
+                    var index = MDSectors.ToList().FindIndex(i => i.Id == e.Code);
+                    var selectedSector = MDSectors[index];
+                    SelectedSectors.Add(selectedSector);
+                }
+
                 MDPhysicalStatus.AddRange(md.PhysicalStatuses);
+
+                foreach (var e in expectations.PhysicalStatuses)
+                {
+                    var index = MDPhysicalStatus.ToList().FindIndex(i => i.Id == e.Code);
+                    var selectedPhysicalStatus = MDPhysicalStatus[index];
+                    SelectedPhysicalStatuses.Add(selectedPhysicalStatus);
+                }
 
                 MDLanguages.AddRange(md.Languages);
 
+                foreach (var e in expectations.Languages)
+                {
+                    var index = MDLanguages.ToList().FindIndex(i => i.Id == e.Code);
+                    var selectedEducation = MDLanguages[index];
+                    SelectedLanguages.Add(selectedEducation);
+                }
+
                 MDComplexions.AddRange(md.Complexions);
+
+                foreach (var e in expectations.Complexions)
+                {
+                    var index = MDComplexions.ToList().FindIndex(i => i.Id == e.Code);
+                    var selectedComplexion = MDComplexions[index];
+                    SelectedComplexions.Add(selectedComplexion);
+                }
 
                 ExpectationDetails = Profile.Expectations.Expectations;
 
@@ -147,22 +188,22 @@ namespace Matri.ViewModel
         public string expectationDetails;
 
         [ObservableProperty]
-        public List<Master> selectedMaritalStatus;
+        public List<Master> selectedMaritalStatuses;
 
         [ObservableProperty]
-        public List<Master> selectedLanguage;
+        public List<Master> selectedLanguages;
 
         [ObservableProperty]
-        public List<Master> selectedPhysicalStatus;
+        public List<Master> selectedPhysicalStatuses;
 
         [ObservableProperty]
-        public List<Master> selectedComplexion;
+        public List<Master> selectedComplexions;
 
         [ObservableProperty]
-        public List<Master> selectedAcademic;
+        public List<Master> selectedAcademics;
 
         [ObservableProperty]
-        public List<Master> selectedSector;
+        public List<Master> selectedSectors;
 
 
         private ObservableRangeCollection<Master> mDHeights;
