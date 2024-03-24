@@ -10,7 +10,7 @@ if profie is blocked remove from all profiles
 6)Activity Indicator on click of profile - profiles list page
 
 
-Increase validity of KeyStack
+Increase validity of KeyStack strong key
 
 Get Master Data after login, save to local & populated when clicked advanced search.
 Too many API calls on Advanced search.
@@ -67,3 +67,15 @@ There is no application host available for the specified RuntimeIdentifier 'andr
 There is no application host available for the specified RuntimeIdentifier 'android-arm64'.
 There is no application host available for the specified RuntimeIdentifier 'android-x86'.
 There is no application host available for the specified RuntimeIdentifier 'android-x64'.
+
+delete profile photos not implemented
+
+
+add any to expected drop down lists
+
+Looking for has been modified needs a reelook
+Expectations tb is pending
+checkboxes in UI (web) are not initialised (Expectations)
+
+Add FamilyStatus & Family Values -> Expectations
+Remove FamilyType from  Family tab.

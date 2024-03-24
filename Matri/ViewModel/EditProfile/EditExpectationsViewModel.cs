@@ -5,6 +5,7 @@ using Matri.Business;
 using Matri.CustomExceptions;
 using Matri.Helper;
 using Matri.Model;
+using Microsoft.VisualBasic;
 using MvvmHelpers;
 
 namespace Matri.ViewModel
@@ -36,7 +37,7 @@ namespace Matri.ViewModel
             defaultMaster.Id = "SELECT";
             defaultMaster.Name = "SELECT";
 
-            SelectedHeightFrom = new Master {Id= "SELECT", Name= "SELECT" };
+            SelectedHeightFrom = new Master { Id = "SELECT", Name = "SELECT" };
             SelectedHeightTo = new Master { Id = "SELECT", Name = "SELECT" };
             SelectedAgeFrom = new Master { Id = "SELECT", Name = "SELECT" };
             SelectedAgeTo = new Master { Id = "SELECT", Name = "SELECT" };
@@ -298,12 +299,35 @@ namespace Matri.ViewModel
             var sessionToken = await SecureStorage.GetAsync("Token");
             var partner = new Partner();
 
-            //partner.Educations = SelectedAcademic.Id;
-            //partner.JobTypes = SelectedSector.Id;
-            //partner.MaritalStatus = SelectedMaritalStatus.Id;
-            //partner.PhysicalStatuses = SelectedPhysicalStatus.Id;
-            //partner.Complexions = SelectedComplexion.Id;
-            //partner.Languages = SelectedLanguage.Id;
+            foreach (var selected in SelectedAcademics)
+            {
+                partner.Educations.Add(new Interest { Code = selected.Id, Name = selected.Name });
+            }
+
+            foreach (var selected in SelectedSectors)
+            {
+                partner.JobTypes.Add(new Interest { Code = selected.Id, Name = selected.Name });
+            }
+
+            foreach (var selected in SelectedMaritalStatuses)
+            {
+                partner.MaritalStatus.Add(new Interest { Code = selected.Id, Name = selected.Name });
+            }
+
+            foreach (var selected in SelectedPhysicalStatuses)
+            {
+                partner.PhysicalStatuses.Add(new Interest { Code = selected.Id, Name = selected.Name });
+            }
+
+            foreach (var selected in SelectedComplexions)
+            {
+                partner.Complexions.Add(new Interest { Code = selected.Id, Name = selected.Name });
+            }
+
+            foreach (var selected in SelectedLanguages)
+            {
+                partner.Languages.Add(new Interest { Code = selected.Id, Name = selected.Name });
+            }
 
             partner.HeightFrom = SelectedHeightFrom.Id;
             partner.HeightTo = SelectedHeightTo.Id;
