@@ -79,3 +79,4 @@ checkboxes in UI (web) are not initialised (Expectations)
 
 Add FamilyStatus & Family Values -> Expectations
 Remove FamilyType from  Family tab.
+close icon, to clear text of input controls
