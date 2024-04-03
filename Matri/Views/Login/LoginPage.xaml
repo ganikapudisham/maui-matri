@@ -50,7 +50,7 @@
 
         <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center">
             <Label Text="Don't have account?" TextColor="Gray" />
-            <Label Text="Sign Up here" TextColor="#50b3f2" >
+            <Label Text="Register here" TextColor="#50b3f2" >
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding RegisterCommand}" />
                 </Label.GestureRecognizers>

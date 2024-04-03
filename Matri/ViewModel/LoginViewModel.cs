@@ -18,10 +18,10 @@ namespace Matri.ViewModel
         }
 #if DEBUG
         [ObservableProperty]
-        public string eMobile = "icm";
+        public string eMobile = "lucky";
 
         [ObservableProperty]
-        public string ePassword = "icm";
+        public string ePassword = "lucky";
 #else
         [ObservableProperty]
         public string eMobile;
