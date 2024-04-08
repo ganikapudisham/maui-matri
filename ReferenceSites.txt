@@ -30,3 +30,7 @@ InitializeContext issue occurs due to Namespace Changes. Avoid it
 
 
             https://console.cloud.google.com/apis/api/androidpublisher.googleapis.com/credentials?project=api-7576571767403031423-876040
+            https://github.com/xamarin/GooglePlayServicesComponents/issues/642
+
+            https://dev.to/vhugogarcia/firebase-analytics-in-net-maui-4p6d
+            https://dev.to/vhugogarcia/firebase-crashlytics-in-net-maui-57jp

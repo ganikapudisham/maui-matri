@@ -4,6 +4,11 @@ using Matri.CustomExceptions;
 using Matri.Business;
 using Matri.Abstract;
 using Matri.Model;
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
+using Matri.Models;
+using CommunityToolkit.Mvvm.Messaging;
+using Matri.Helper;
 
 namespace Matri.ViewModel
 {
@@ -11,10 +16,23 @@ namespace Matri.ViewModel
     {
         IServiceManager _serviceManager;
         ISharedService _sharedService;
+        IFirebaseAnalyticsService _firebaseAnalyticsService;
+        private string _deviceToken;
         public LoginViewModel(IServiceManager serviceManager, ISharedService sharedService)
         {
             _serviceManager = serviceManager;
             _sharedService = sharedService;
+            _firebaseAnalyticsService = ServiceHelper.GetService<IFirebaseAnalyticsService>();
+
+            WeakReferenceMessenger.Default.Register<PushNotificationReceived>(this, (r, m) =>
+            {
+                string msg = m.Value;
+            });
+
+            if (Preferences.ContainsKey("DeviceToken"))
+            {
+                _deviceToken = Preferences.Get("DeviceToken", "");
+            }
         }
 #if DEBUG
         [ObservableProperty]
@@ -35,8 +53,7 @@ namespace Matri.ViewModel
         [RelayCommand]
         public async Task Login()
         {
-            //var fireBase = DependencyService.Get<IFirebaseAnalytics>();
-            //fireBase?.LogEvent("visited");
+            _firebaseAnalyticsService?.Log("visited");
 
             if (string.IsNullOrWhiteSpace(EMobile))
             {

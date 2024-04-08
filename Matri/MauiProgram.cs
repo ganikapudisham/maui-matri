@@ -11,6 +11,7 @@ using Syncfusion.Maui.Core.Hosting;
 using Matri.Services;
 using Matri.Helper;
 using Matri.Abstract;
+using Microsoft.Maui.LifecycleEvents;
 
 namespace Matri
 {
@@ -23,6 +24,7 @@ namespace Matri
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
                 .ConfigureSyncfusionCore()
+                .RegisterFirebase()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("fa-brands-400.ttf", "FontBrands");
@@ -138,19 +140,33 @@ namespace Matri
             builder.Services.AddSingleton<ContactUsViewModel>();
             builder.Services.AddSingleton<ContactUsPage>();
 
-            builder.Services.AddSingleton<IFirebaseAnalytics, FirebaseAnalytics>();
+            builder.Services.AddSingleton<IFirebaseAnalyticsService, FirebaseAnalyticsService>();
             builder.Services.AddSingleton<ISharedService, SharedService>();
 
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
 
-            var app= builder.Build();
+            var app = builder.Build();
 
             ServiceHelper.Initialize(app.Services);
 
             return app;
 
+        }
+
+        private static MauiAppBuilder RegisterFirebase(this MauiAppBuilder builder)
+        {
+            builder.ConfigureLifecycleEvents(events =>
+            {
+#if ANDROID
+                events.AddAndroid(android => android.OnCreate((activity, bundle) => {
+                    Firebase.FirebaseApp.InitializeApp(activity);
+                }));
+#endif
+            });
+
+            return builder;
         }
     }
 }
