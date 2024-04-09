@@ -70,6 +70,7 @@
 	  <None Remove="Resources\Fonts\Roboto-Regular.ttf" />
 	  <None Remove="Resources\Fonts\UIFontIcons.ttf" />
 	  <None Remove="Resources\Images\logo.png" />
+	  <None Remove="Resources\Raw\admin_sdk.json" />
 	  <None Remove="Resources\Splash\splash.svg" />
 	</ItemGroup>
 

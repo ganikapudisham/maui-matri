@@ -34,3 +34,10 @@ InitializeContext issue occurs due to Namespace Changes. Avoid it
 
             https://dev.to/vhugogarcia/firebase-analytics-in-net-maui-4p6d
             https://dev.to/vhugogarcia/firebase-crashlytics-in-net-maui-57jp
+            https://www.youtube.com/watch?v=gBbbctEvbOk
+            https://clemfournier.medium.com/how-to-get-my-firebase-service-account-key-file-f0ec97a21620
+            https://gist.github.com/jfversluis/dd760594099066c7450d50cce6499368
+            https://gist.github.com/svedmark/e71d319590340a75374c3b9b62c564d9
+            https://gist.github.com/jfversluis/dd760594099066c7450d50cce6499368
+            https://stackoverflow.com/questions/73962418/maui-how-to-use-partial-classes-for-platform-specific-implementations-together
+            https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/configure-multi-targeting?view=net-maui-8.0#configure-filename-based-multi-targeting

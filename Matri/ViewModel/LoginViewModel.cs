@@ -9,6 +9,7 @@ using Google.Apis.Auth.OAuth2;
 using Matri.Models;
 using CommunityToolkit.Mvvm.Messaging;
 using Matri.Helper;
+using FirebaseAdmin.Messaging;
 
 namespace Matri.ViewModel
 {
@@ -46,6 +47,7 @@ namespace Matri.ViewModel
             {
                 _deviceToken = Preferences.Get("DeviceToken", "");
             }
+            ReadFireBaseAdminSdk();
         }
 #if DEBUG
         [ObservableProperty]
@@ -125,6 +127,25 @@ namespace Matri.ViewModel
         public async Task Register()
         {
             await Shell.Current.GoToAsync("//RegisterPage");
+        }
+
+        private async void ReadFireBaseAdminSdk()
+        {
+#if ANDROID
+            var stream = await FileSystem.OpenAppPackageFileAsync("admin_sdk.json");
+            var reader = new StreamReader(stream);
+
+            var jsonContent = reader.ReadToEnd();
+
+
+            if (FirebaseMessaging.DefaultInstance == null)
+            {
+                FirebaseApp.Create(new AppOptions()
+                {
+                    Credential = GoogleCredential.FromJson(jsonContent)
+                });
+            }
+#endif
         }
     }
 }
