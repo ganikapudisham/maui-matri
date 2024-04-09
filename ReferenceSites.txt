@@ -41,3 +41,7 @@ InitializeContext issue occurs due to Namespace Changes. Avoid it
             https://gist.github.com/jfversluis/dd760594099066c7450d50cce6499368
             https://stackoverflow.com/questions/73962418/maui-how-to-use-partial-classes-for-platform-specific-implementations-together
             https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/configure-multi-targeting?view=net-maui-8.0#configure-filename-based-multi-targeting
+
+            https://www.reddit.com/r/dotnetMAUI/comments/1923p6f/maui_firebase_notifications_in_net_8/
+            https://www.youtube.com/watch?v=rhGM0jxraA8
+            https://github.com/mistrypragnesh40/PushNotificationDemoMAUI

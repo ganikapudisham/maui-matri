@@ -3,7 +3,7 @@ using Android.Content;
 using AndroidX.Core.App;
 using Firebase.Messaging;
 
-namespace Matri.Platforms.Android.Services
+namespace Matri.Platforms.Services
 {
     [Service(Exported = true)]
     [IntentFilter(new[] { "com.google.firebase.MESSAGING_EVENT" })]
@@ -13,7 +13,6 @@ namespace Matri.Platforms.Android.Services
         {
 
         }
-
         public override void OnNewToken(string token)
         {
             base.OnNewToken(token);
@@ -36,7 +35,7 @@ namespace Matri.Platforms.Android.Services
         private void SendNotification(string messageBody, string title, IDictionary<string, string> data)
         {
 
-            var intent = new Intent(this, typeof(MainActivity));
+            var intent = new Intent(this, typeof(Matri.MainActivity));
             intent.AddFlags(ActivityFlags.ClearTop);
             intent.AddFlags(ActivityFlags.SingleTop);
 
@@ -52,7 +51,6 @@ namespace Matri.Platforms.Android.Services
 
             var notificationBuilder = new NotificationCompat.Builder(this, MainActivity.Channel_ID)
                 .SetContentTitle(title)
-                .SetSmallIcon(Resource.Mipmap.appicon)
                 .SetContentText(messageBody)
                 .SetChannelId(MainActivity.Channel_ID)
                 .SetContentIntent(pendingIntent)

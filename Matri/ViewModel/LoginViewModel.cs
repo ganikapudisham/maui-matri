@@ -48,6 +48,7 @@ namespace Matri.ViewModel
                 _deviceToken = Preferences.Get("DeviceToken", "");
             }
             ReadFireBaseAdminSdk();
+            sendNotification();
         }
 #if DEBUG
         [ObservableProperty]
@@ -146,6 +147,47 @@ namespace Matri.ViewModel
                 });
             }
 #endif
+        }
+
+        private async Task sendNotification()
+        {
+            var androidNotificationObject = new Dictionary<string, string>();
+            androidNotificationObject.Add("NavigationID", "2");
+
+            var iosNotificationObject = new Dictionary<string, object>();
+            iosNotificationObject.Add("NavigationID", "2");
+
+            var pushNotificationRequest = new PushNotificationRequest
+            {
+                notification = new NotificationMessageBody
+                {
+                    title = "Notification Title",
+                    body = "Notification body"
+                },
+                data = androidNotificationObject,
+                registration_ids = new List<string> { _deviceToken }
+            };
+
+            var obj = new Message
+            {
+                Token = _deviceToken,
+                Notification = new Notification
+                {
+                    Title = "Tilte",
+                    Body = "message body"
+                },
+                Data = androidNotificationObject,
+                Apns = new ApnsConfig()
+                {
+                    Aps = new Aps
+                    {
+                        Badge = 15,
+                        CustomData = iosNotificationObject,
+                    }
+                }
+            };
+
+            var response = await FirebaseMessaging.DefaultInstance.SendAsync(obj);
         }
     }
 }
