@@ -142,6 +142,7 @@ namespace Matri
 
             builder.Services.AddSingleton<IFirebaseAnalyticsService, FirebaseAnalyticsService>();
             builder.Services.AddSingleton<ISharedService, SharedService>();
+            builder.Services.AddSingleton<IFirebaseCrashlyticsService, FirebaseCrashlyticsService>();
 
 #if DEBUG
             builder.Logging.AddDebug();
