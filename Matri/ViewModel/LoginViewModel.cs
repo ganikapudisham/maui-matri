@@ -27,17 +27,6 @@ namespace Matri.ViewModel
             _firebaseAnalyticsService = ServiceHelper.GetService<IFirebaseAnalyticsService>();
             _firebaseCrashlyticsService = ServiceHelper.GetService<IFirebaseCrashlyticsService>();
 
-            //int number1 = 3000;
-            //int number2 = 0;
-            //try
-            //{
-            //    Console.WriteLine(number1 / number2);
-            //}
-            //catch (DivideByZeroException dbze)
-            //{
-            //    _firebaseCrashlyticsService.Log(dbze);
-            //}
-
             WeakReferenceMessenger.Default.Register<PushNotificationReceived>(this, (r, m) =>
             {
                 string msg = m.Value;
