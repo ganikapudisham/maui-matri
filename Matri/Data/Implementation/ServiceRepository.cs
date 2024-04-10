@@ -78,6 +78,7 @@ namespace Matri.Data.Impl
 
         public async Task<TOut> PostAsync<TIn, TOut>(string sessionToken, string uri, TIn content)
         {
+
             try
             {
                 var httpClient = CreateHttpClient(new Guid(sessionToken));
