@@ -80,3 +80,10 @@ checkboxes in UI (web) are not initialised (Expectations)
 Add FamilyStatus & Family Values -> Expectations
 Remove FamilyType from  Family tab.
 close icon, to clear text of input controls
+
+
+* Sending notifications between 2 devices.
+
+1) When user logs in - add device ids to his account.
+2) If a user different from the above interacts with the above account- 
+get the above accounts device ids and send notification.

@@ -2,6 +2,7 @@
 using Android.Content;
 using AndroidX.Core.App;
 using Firebase.Messaging;
+using Google.Cloud.Firestore;
 
 namespace Matri.Platforms.Services
 {
@@ -21,6 +22,7 @@ namespace Matri.Platforms.Services
                 Preferences.Remove("DeviceToken");
             }
             Preferences.Set("DeviceToken", token);
+            //SendTokenToServer(token);
         }
 
         public override void OnMessageReceived(RemoteMessage message)
@@ -51,6 +53,7 @@ namespace Matri.Platforms.Services
 
             var notificationBuilder = new NotificationCompat.Builder(this, MainActivity.Channel_ID)
                 .SetContentTitle(title)
+                .SetSmallIcon(Resource.Mipmap.appicon1)
                 .SetContentText(messageBody)
                 .SetChannelId(MainActivity.Channel_ID)
                 .SetContentIntent(pendingIntent)
@@ -60,5 +63,22 @@ namespace Matri.Platforms.Services
             var notificationManager = NotificationManagerCompat.From(this);
             notificationManager.Notify(MainActivity.NotificationID, notificationBuilder.Build());
         }
+        //private void SendTokenToServer(string token)
+        //{
+        //    string path = AppDomain.CurrentDomain.BaseDirectory + @"admin_sdk.json";
+        //    Environment.SetEnvironmentVariable("", path);
+        //    var dbChristianJodi = FirestoreDb.Create("cloudfire-christianjodi");
+        //    // If you're running your own server, call API to send token and today's date for the user
+
+        //    var deviceTokensCollection = dbChristianJodi.Collection("DeviceTokens");
+        //    var deviceToken = new Dictionary<string, string>()
+        //    {
+        //        { "deviceToken",token },
+        //         { "timeStamp",DateTime.UtcNow.ToString() }
+        //    };
+
+        //    deviceTokensCollection.AddAsync(deviceToken);
+
+        //}
     }
 }

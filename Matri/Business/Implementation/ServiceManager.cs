@@ -388,5 +388,11 @@ namespace Matri.Business.Impl
             var url = Constants.API_URL_UpdateUserExpectation;
             return await _serviceRepository.PutAsync<Partner, bool>(sessiontoken.ToString(), url, partner);
         }
+
+        public Task<bool> CreateUpdateDeviceToken(Guid sessiontoken, FCMToken fcmToken)
+        {
+            var url = Constants.API_URL_FCM;
+            return _serviceRepository.PostAsync<FCMToken, bool>(sessiontoken.ToString(), url, fcmToken);
+        }
     }
 }

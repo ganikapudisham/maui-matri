@@ -90,7 +90,10 @@ namespace Matri.Data.Impl
                         }
                         else if (response.StatusCode == HttpStatusCode.InternalServerError)
                         {
-                            throw new Exception("Something went wrong, please try again");
+                            //throw new Exception("Something went wrong, please try again");
+                            string responseBody = await response.Content.ReadAsStringAsync();
+                            var t = JsonConvert.DeserializeObject<MatriException>(responseBody);
+                            throw new Exception(t?.Message);
                         }
                     }
                     else

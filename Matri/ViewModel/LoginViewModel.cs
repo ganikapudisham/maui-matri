@@ -48,7 +48,7 @@ namespace Matri.ViewModel
                 _deviceToken = Preferences.Get("DeviceToken", "");
             }
             ReadFireBaseAdminSdk();
-            sendNotification();
+            //sendNotification();
         }
 #if DEBUG
         [ObservableProperty]
@@ -104,6 +104,9 @@ namespace Matri.ViewModel
                 _sharedService.AddBool("ShowHinduFields", appDetails.ShowHinduFields);
                 _sharedService.AddBool("SubScriptionType", session.SubscriptionActive);
                 IsBusy = false;
+                var fcmToken = new FCMToken();
+                fcmToken.Token = _deviceToken;
+                var deviceTokenSaved = await _serviceManager.CreateUpdateDeviceToken(new Guid(sessionToken),fcmToken);
                 await Shell.Current.GoToAsync("//AllProfilesPage");
             }
             catch (MatriInternetException exception)

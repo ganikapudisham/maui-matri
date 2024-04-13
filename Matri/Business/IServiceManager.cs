@@ -60,5 +60,6 @@ namespace Matri.Business
         Task<bool> UploadProfilePhoto(MultipartFormDataContent formData);
 
         Task<bool> UpdateExpectations(Guid sessiontoken, Partner partner);
+        Task<bool> CreateUpdateDeviceToken(Guid sessiontoken, FCMToken fcmToken);
     }
 } 
