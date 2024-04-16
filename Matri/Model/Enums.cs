@@ -6,11 +6,11 @@ namespace Matri.Model
 {
     public enum RequestAction
     {
-        Favourite,
+        Favourite = 0,
         Block,
         SendInterest,
-        Requestphoto,
-        Requesthoroscope,
+        RequestPhoto,
+        RequestHoroscope,
         RequestContact
     }
 }

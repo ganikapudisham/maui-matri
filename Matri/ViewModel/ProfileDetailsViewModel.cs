@@ -17,12 +17,18 @@ namespace Matri.ViewModel
     {
         IServiceManager _serviceManager;
         ISharedService _sharedService;
+        private string _deviceToken;
 
         private List<CarouselModel> _profilePhotos = new List<CarouselModel>();
         public ProfileDetailsViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
             _sharedService = ServiceHelper.GetService<ISharedService>();
+
+            if (Preferences.ContainsKey("DeviceToken"))
+            {
+                _deviceToken = Preferences.Get("DeviceToken", "");
+            }
         }
 
         [ObservableProperty]
@@ -32,7 +38,7 @@ namespace Matri.ViewModel
 
         [ObservableProperty]
         public string aboutMe;
-        
+
 
         [ObservableProperty]
         public string firstName;
@@ -215,9 +221,9 @@ namespace Matri.ViewModel
 
             foreach (var pt in profileDetails.Photos)
             {
-                ProfilePhotos.Add(new CarouselModel( pt.Name ));
+                ProfilePhotos.Add(new CarouselModel(pt.Name));
             }
-            
+
             InitialiseAddress(profileDetails);
             InitialiseBasicDetails(profileDetails);
             InitialiseBreadAndButter(profileDetails);
@@ -266,7 +272,7 @@ namespace Matri.ViewModel
             ExpectedHeight = $"{bLimit} - {tLimit}";
 
             string edus = "";
-            foreach(var i in profileDetails.Expectations.Educations)
+            foreach (var i in profileDetails.Expectations.Educations)
             {
                 edus += i.Name + ", ";
             }
@@ -389,6 +395,8 @@ namespace Matri.ViewModel
             var sessionToken = await SecureStorage.GetAsync("Token");
             var request = new Request { To = ProfileIdentifier, Type = RequestAction.Favourite.ToString() };
             await Mark(sessionToken, request);
+
+
         }
 
 
@@ -412,7 +420,57 @@ namespace Matri.ViewModel
             IsBusy = true;
             try
             {
-                await _serviceManager.MarkProfile(new Guid(sessionToken), request);
+                var isSent = await _serviceManager.MarkProfile(new Guid(sessionToken), request);
+
+                var message = string.Empty;
+                if (!isSent)
+                {
+                    IsBusy = false;
+
+                    if (request.Type == RequestAction.Favourite.ToString())
+                    {
+                        message = "Profile already added to favourites list";
+                    }
+                    else if (request.Type == RequestAction.Block.ToString())
+                    {
+                        message = "Profile already blocked";
+                    }
+                    if (request.Type == RequestAction.SendInterest.ToString())
+                    {
+                        message = "Interest already sent";
+                    }
+                    else if (request.Type == RequestAction.RequestPhoto.ToString())
+                    {
+                        message = "Photo already requested";
+                    }
+
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", message, "OK");
+                }
+                else
+                {
+
+                    var recipientDeviceTokens = await _serviceManager.GetUserDeviceTokens(new Guid(sessionToken), request.To);
+
+                    var notificationTitle = "";
+                    var notificationBody = "";
+
+                    if (request.Type == RequestAction.RequestPhoto.ToString())
+                    {
+                        message = $"Photo request has been sent"; //TODO
+                        notificationTitle = "Received Photo Request";
+                        notificationBody = $"test has requested you to add photo";
+                    }
+                    else if (request.Type == RequestAction.SendInterest.ToString())
+                    {
+                        message = $"Profile interest has been sent"; //TODO
+                        notificationTitle = "Received Interest";
+                        notificationBody = $"is interested in your profile";
+                    }
+
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", message, "OK");
+                    await ServiceNotificationHelper.SendNotification(recipientDeviceTokens, notificationTitle, notificationBody);
+                }
+
                 IsBusy = false;
             }
             catch (MatriInternetException exception)
@@ -425,6 +483,22 @@ namespace Matri.ViewModel
                 IsBusy = false;
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
             }
+        }
+
+        [RelayCommand]
+        public async Task RequestPhoto()
+        {
+            var sessionToken = await SecureStorage.GetAsync("Token");
+            var request = new Request { To = ProfileIdentifier, Type = RequestAction.RequestPhoto.ToString() };
+            await Mark(sessionToken, request);
+        }
+
+        [RelayCommand]
+        public async Task SendInterest()
+        {
+            var sessionToken = await SecureStorage.GetAsync("Token");
+            var request = new Request { To = ProfileIdentifier, Type = RequestAction.SendInterest.ToString() };
+            await Mark(sessionToken, request);
         }
     }
 }

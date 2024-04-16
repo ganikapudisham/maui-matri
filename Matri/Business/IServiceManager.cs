@@ -61,5 +61,7 @@ namespace Matri.Business
 
         Task<bool> UpdateExpectations(Guid sessiontoken, Partner partner);
         Task<bool> CreateUpdateDeviceToken(Guid sessiontoken, FCMToken fcmToken);
+
+        Task<List<FCMToken>> GetUserDeviceTokens(Guid sessiontoken, Guid notificationRecepient);
     }
 } 

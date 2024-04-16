@@ -28,6 +28,7 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition>
@@ -46,8 +47,41 @@
                             ViewMode="Default"
                             WidthRequest="800" Grid.Row="1" Grid.ColumnSpan="2" />
 
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <ImageButton Grid.Row="0" Grid.Column="0" Command="{Binding BlockCommand}" Margin="10,10,10,10" 
+                                 WidthRequest="25" HeightRequest="25" HorizontalOptions="End">
+                        <ImageButton.Source>
+                            <FontImageSource FontFamily="FontAwesomeSolid"
+Glyph="{x:Static FoA:FontAwesomeIcons.Ban}" Color="{Binding Blocked, Converter={StaticResource BoolToObjectConverter-Blocked}}" />
+                        </ImageButton.Source>
+                    </ImageButton>
+                    
+                    <ImageButton Grid.Row="0" Grid.Column="1" Command="{Binding LikeCommand}" Margin="10,10,10,10"
+                                 WidthRequest="25" HeightRequest="25" HorizontalOptions="Start">
+                        <ImageButton.Source>
+                            <FontImageSource FontFamily="FontAwesomeSolid"
+Glyph="{x:Static FoA:FontAwesomeIcons.ThumbsUp}" Color="{Binding Liked, Converter={StaticResource BoolToObjectConverter-Liked}}" />
+                        </ImageButton.Source>
+                    </ImageButton>
 
-                <ContentView Grid.Row="2" Grid.ColumnSpan ="2">
+                    <Button Text="Request Photo" CornerRadius="20" HorizontalOptions="End" FontSize="Small"
+Command="{Binding RequestPhotoCommand}" BackgroundColor="#93c393" Grid.Row="1" Grid.Column="0" Margin="10,10,10,10"/>
+
+                    <Button Text="Send Interest" CornerRadius="20" HorizontalOptions="Start" FontSize="Small"
+        Command="{Binding SendInterestCommand}" BackgroundColor="#93c393" Grid.Row="1" Grid.Column="1" Margin="10,10,10,10"/>
+
+                </Grid>
+
+                <ContentView Grid.Row="3" Grid.ColumnSpan ="2">
                     <syncfusion:SfAccordion x:Name="accordion" ExpandMode="SingleOrNone"
                         VerticalOptions="{OnPlatform Default=Fill}" 
                         IsClippedToBounds="True"
