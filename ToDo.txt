@@ -87,3 +87,7 @@ close icon, to clear text of input controls
 1) When user logs in - add device ids to his account.
 2) If a user different from the above interacts with the above account- 
 get the above accounts device ids and send notification.
+
+
+Birthday wishes notificaiton
+Notification click should open sender profile

@@ -13,7 +13,8 @@ namespace Matri.Data.Services
     public class ServiceBase
     {
         const int MAX_RETRY = 3;
-        //private readonly Uri _apiEndpoint = new Uri("https://api.Matri.com/");
+        //private readonly Uri _apiEndpoint = new Uri(""http://10.0.2.2:90/"); //android emulator
+        //private readonly Uri _apiEndpoint = new Uri(""http://192.168.0.185:90/"); //real device connected via usb
         private readonly Uri _apiEndpoint = new Uri("https://api.christianjodi.com/");
 
         //private readonly Uri _apiEndpoint = DeviceInfo.Platform == DevicePlatform.Android ? new Uri("http://lapi.Matri.com/") : new Uri("http://lapi.Matri.com/");

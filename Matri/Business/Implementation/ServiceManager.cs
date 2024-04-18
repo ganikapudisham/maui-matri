@@ -395,9 +395,9 @@ namespace Matri.Business.Impl
             return _serviceRepository.PostAsync<FCMToken, bool>(sessiontoken.ToString(), url, fcmToken);
         }
 
-        public Task<List<FCMToken>> GetUserDeviceTokens(Guid sessiontoken, Guid notificationRecepient)
+        public Task<List<FCMToken>> GetUserDeviceTokens(Guid sessiontoken, string notificationRecipient)
         {
-            var url = Constants.API_URL_FCM + $"?notificationrecepient={notificationRecepient}";
+            var url = $"{Constants.API_URL_FCM}?notificationRecipient={notificationRecipient}";
             return _serviceRepository.GetAsync<List<FCMToken>>(sessiontoken.ToString(), url);
         }
     }

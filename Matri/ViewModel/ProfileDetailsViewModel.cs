@@ -239,6 +239,7 @@ namespace Matri.ViewModel
             var queryParam = query[nameof(ProfileDetailsInput)] as ProfileDetailsInput;
             var targetId = queryParam.TargetProfileId;
             var sourceId = queryParam.LoggedInId;
+            ProfileIdentifier = targetId;
             Task.Run(() => this.GetProfileDetails(sourceId, targetId));
         }
 
@@ -420,10 +421,10 @@ namespace Matri.ViewModel
             IsBusy = true;
             try
             {
-                var isSent = await _serviceManager.MarkProfile(new Guid(sessionToken), request);
+                var marked = await _serviceManager.MarkProfile(new Guid(sessionToken), request);
 
                 var message = string.Empty;
-                if (!isSent)
+                if (!marked)
                 {
                     IsBusy = false;
 
@@ -449,28 +450,42 @@ namespace Matri.ViewModel
                 else
                 {
 
-                    var recipientDeviceTokens = await _serviceManager.GetUserDeviceTokens(new Guid(sessionToken), request.To);
+                    var recipientDeviceTokens = await _serviceManager.GetUserDeviceTokens(new Guid(sessionToken), request.To.ToString());
 
                     var notificationTitle = "";
                     var notificationBody = "";
+                    var showNotification = false;
 
                     if (request.Type == RequestAction.RequestPhoto.ToString())
                     {
                         message = $"Photo request has been sent"; //TODO
                         notificationTitle = "Received Photo Request";
                         notificationBody = $"test has requested you to add photo";
+                        showNotification = true;
                     }
                     else if (request.Type == RequestAction.SendInterest.ToString())
                     {
                         message = $"Profile interest has been sent"; //TODO
                         notificationTitle = "Received Interest";
                         notificationBody = $"is interested in your profile";
+                        showNotification = true;
+                    }
+                    else if (request.Type == RequestAction.Block.ToString())
+                    {
+                        message = $"Profile has been added to blocked list";
+                    }
+                    else if (request.Type == RequestAction.Favourite.ToString())
+                    {
+                        message = $"Profile has been added to favourites list";
                     }
 
                     await Shell.Current.CurrentPage.DisplayAlert("Alert", message, "OK");
-                    await ServiceNotificationHelper.SendNotification(recipientDeviceTokens, notificationTitle, notificationBody);
+                    if (showNotification && recipientDeviceTokens != null && recipientDeviceTokens.Count > 0 )
+                    {
+                        await ServiceNotificationHelper.SendNotification(recipientDeviceTokens, notificationTitle, notificationBody);
+                    }
                 }
-
+         
                 IsBusy = false;
             }
             catch (MatriInternetException exception)
@@ -489,7 +504,9 @@ namespace Matri.ViewModel
         public async Task RequestPhoto()
         {
             var sessionToken = await SecureStorage.GetAsync("Token");
-            var request = new Request { To = ProfileIdentifier, Type = RequestAction.RequestPhoto.ToString() };
+            var request = new Request();
+            request.To = ProfileIdentifier;
+            request.Type = RequestAction.RequestPhoto.ToString();
             await Mark(sessionToken, request);
         }
 
@@ -497,7 +514,9 @@ namespace Matri.ViewModel
         public async Task SendInterest()
         {
             var sessionToken = await SecureStorage.GetAsync("Token");
-            var request = new Request { To = ProfileIdentifier, Type = RequestAction.SendInterest.ToString() };
+            var request = new Request();
+            request.To = ProfileIdentifier;
+            request.Type = RequestAction.SendInterest.ToString();
             await Mark(sessionToken, request);
         }
     }
