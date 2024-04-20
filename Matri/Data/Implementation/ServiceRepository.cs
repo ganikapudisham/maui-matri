@@ -1,5 +1,7 @@
-﻿using Matri.CustomExceptions;
+﻿using Matri.Abstract;
+using Matri.CustomExceptions;
 using Matri.Data.Services;
+using Matri.Helper;
 using Matri.Model;
 using Matri.Model.Email;
 using Newtonsoft.Json;
@@ -18,7 +20,11 @@ namespace Matri.Data.Impl
     public class ServiceRepository : ServiceBase, IServiceRepository
     {
         HttpClient client = new HttpClient();
-
+        IFirebaseCrashlyticsService _firebaseCrashlyticsService;
+        public ServiceRepository()
+        {
+            _firebaseCrashlyticsService = ServiceHelper.GetService<IFirebaseCrashlyticsService>();
+        }
         public async Task<bool> LogOut(Guid sessiontoken)
         {
             var client = CreateHttpClient(sessiontoken);
@@ -72,6 +78,7 @@ namespace Matri.Data.Impl
 
         public async Task<TOut> PostAsync<TIn, TOut>(string sessionToken, string uri, TIn content)
         {
+
             try
             {
                 var httpClient = CreateHttpClient(new Guid(sessionToken));
@@ -107,6 +114,7 @@ namespace Matri.Data.Impl
             }
             catch (Exception ex)
             {
+                _firebaseCrashlyticsService.Log(ex);
                 throw ex;
             }
         }
@@ -125,6 +133,7 @@ namespace Matri.Data.Impl
             }
             catch (Exception ex)
             {
+                _firebaseCrashlyticsService.Log(ex);
                 return false;
             }
         }
@@ -167,11 +176,11 @@ namespace Matri.Data.Impl
             }
             catch (HttpRequestException ex)
             {
-                //HandleHttpRequestException(response, ex, url);
+                _firebaseCrashlyticsService.Log(ex);
             }
             catch (Exception ex)
             {
-                //logWriter.WriteError(error);
+                _firebaseCrashlyticsService.Log(ex);
                 throw ex;
             }
             return objectToReturn;
@@ -186,6 +195,7 @@ namespace Matri.Data.Impl
             }
             catch (JsonReaderException ex)
             {
+                _firebaseCrashlyticsService.Log(ex);
                 return false;
             }
         }
@@ -231,6 +241,7 @@ namespace Matri.Data.Impl
             }
             catch (Exception ex)
             {
+                _firebaseCrashlyticsService.Log(ex);
                 throw ex;
             }
             return objectToReturn;

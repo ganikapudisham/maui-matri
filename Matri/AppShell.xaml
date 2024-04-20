@@ -73,15 +73,15 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-    <ShellItem Route="LoginPage" FlyoutItemIsVisible="False">
+    <ShellItem Route="LoginPage" FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled">
         <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"/>
     </ShellItem>
 
-    <ShellItem Route="RegisterPage" FlyoutItemIsVisible="False">
+    <ShellItem Route="RegisterPage" FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled">
         <ShellContent ContentTemplate="{DataTemplate local:RegisterPage}"/>
     </ShellItem>
 
-    <ShellItem Route="ForgotPasswordPage" FlyoutItemIsVisible="False">
+    <ShellItem Route="ForgotPasswordPage" FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled">
         <ShellContent ContentTemplate="{DataTemplate local:ForgotPasswordPage}"/>
     </ShellItem>
 
