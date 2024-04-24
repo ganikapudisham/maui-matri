@@ -33,6 +33,7 @@ namespace Matri.ViewModel
             Routing.RegisterRoute("settings", typeof(SettingsPage));
             Routing.RegisterRoute("aboutus", typeof(AboutUsPage));
             Routing.RegisterRoute("contactus", typeof(ContactUsPage));
+            Routing.RegisterRoute("notificationfrom", typeof(NotificationFromPage));
         }
 
         [RelayCommand]

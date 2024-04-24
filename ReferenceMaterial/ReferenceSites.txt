@@ -56,3 +56,7 @@ This worked for me
 https://github.com/dotnet/maui/issues/5458
 https://github.com/dotnet/maui/issues/5458
 https://github.com/dotnet/maui/issues/3389
+
+https://www.youtube.com/watch?v=rhGM0jxraA8&t=462s
+
+https://cedricgabrang.medium.com/handle-firebase-push-notifications-tap-in-net-maui-9bdb7f3c1de1

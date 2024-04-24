@@ -34,13 +34,13 @@ namespace Matri
             {
                 foreach (var key in intent.Extras.KeySet())
                 {
-                    if (key == "NavigationID")
+                    if (key == "NotificationFrom")
                     {
-                        string idValue = intent.Extras.GetString(key);
-                        if (Preferences.ContainsKey("NavigationID"))
-                            Preferences.Remove("NavigationID");
+                        string notificationFromId = intent.Extras.GetString(key);
+                        if (Preferences.ContainsKey("NotificationFrom"))
+                            Preferences.Remove("NotificationFrom");
 
-                        Preferences.Set("NavigationID", idValue);
+                        Preferences.Set("NotificationFrom", notificationFromId);
 
                         WeakReferenceMessenger.Default.Send(new PushNotificationReceived("test"));
                     }

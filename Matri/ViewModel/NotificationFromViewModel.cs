@@ -13,22 +13,22 @@ using Matri.Helper;
 
 namespace Matri.ViewModel
 {
-    public partial class ProfileDetailsViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject, IQueryAttributable
+    public partial class NotificationFromViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject, IQueryAttributable
     {
         IServiceManager _serviceManager;
         ISharedService _sharedService;
-        private string _deviceToken;
+        //private string _deviceToken;
 
         private List<CarouselModel> _profilePhotos = new List<CarouselModel>();
-        public ProfileDetailsViewModel(IServiceManager serviceManager)
+        public NotificationFromViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
             _sharedService = ServiceHelper.GetService<ISharedService>();
 
-            if (Preferences.ContainsKey("DeviceToken"))
-            {
-                _deviceToken = Preferences.Get("DeviceToken", "");
-            }
+            //if (Preferences.ContainsKey("DeviceToken"))
+            //{
+            //    _deviceToken = Preferences.Get("DeviceToken", "");
+            //}
         }
 
         [ObservableProperty]
@@ -218,7 +218,7 @@ namespace Matri.ViewModel
 
             ShowHinduFields = Convert.ToBoolean(showHinduFields);
 
-            var profileDetails = await _serviceManager.GetProfileById(userToken, profileToken);
+            var profileDetails = await _serviceManager.GetProfileByIdWithoutAuth(profileToken);
 
             ProfilePhotos = new List<CarouselModel>();
 
@@ -231,7 +231,7 @@ namespace Matri.ViewModel
             InitialiseBasicDetails(profileDetails);
             InitialiseBreadAndButter(profileDetails);
             InitialiseFamilyDetails(profileDetails);
-            InitialiseExpectationDetails(profileDetails);
+            //InitialiseExpectationDetails(profileDetails);
             InitialisePhysical(profileDetails);
             InitialiseReligion(profileDetails);
             IsBusy = false;
@@ -239,77 +239,74 @@ namespace Matri.ViewModel
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            var queryParam = query[nameof(ProfileDetailsInput)] as ProfileDetailsInput;
-            var targetId = queryParam.TargetProfileId;
-            var sourceId = queryParam.LoggedInId;
-            ProfileIdentifier = targetId;
-            Task.Run(() => this.GetProfileDetails(sourceId, targetId));
+            var queryParam = query["NotificationReceivedFromInput"] as string;
+            Task.Run(() => this.GetProfileDetails(Guid.Empty, new Guid(queryParam)));
         }
 
-        public void InitialiseExpectationDetails(Model.Profile profileDetails)
-        {
-            var md = _sharedService.GetValue<MDD>("MasterData");
+        //public void InitialiseExpectationDetails(Model.Profile profileDetails)
+        //{
+        //    var md = _sharedService.GetValue<MDD>("MasterData");
 
-            SameReligion = profileDetails.Expectations.SameReligion == true ? "Yes" : "No";
-            SameCaste = profileDetails.Expectations.SameCaste == true ? "Yes" : "No";
-            SameDenomination = profileDetails.Expectations.SameDenomination == true ? "Yes" : "No";
-            AboutPartner = profileDetails.Expectations.Expectations;
+        //    SameReligion = profileDetails.Expectations.SameReligion == true ? "Yes" : "No";
+        //    SameCaste = profileDetails.Expectations.SameCaste == true ? "Yes" : "No";
+        //    SameDenomination = profileDetails.Expectations.SameDenomination == true ? "Yes" : "No";
+        //    AboutPartner = profileDetails.Expectations.Expectations;
 
-            ExpectedAge = $"{profileDetails.Expectations.AgeFrom} - {profileDetails.Expectations.AgeTo}";
+        //    ExpectedAge = $"{profileDetails.Expectations.AgeFrom} - {profileDetails.Expectations.AgeTo}";
 
-            var htFrom = md.Heights.ToList().Find(x => x.Id == profileDetails.Expectations.HeightFrom);
-            var htTo = md.Heights.ToList().Find(x => x.Id == profileDetails.Expectations.HeightTo);
+        //    var htFrom = md.Heights.ToList().Find(x => x.Id == profileDetails.Expectations.HeightFrom);
+        //    var htTo = md.Heights.ToList().Find(x => x.Id == profileDetails.Expectations.HeightTo);
 
-            var bLimit = "";
-            var tLimit = "";
+        //    var bLimit = "";
+        //    var tLimit = "";
 
-            if (htFrom != null)
-            {
-                bLimit = htFrom.Name.Split('-')[0];
-            }
+        //    if (htFrom != null)
+        //    {
+        //        bLimit = htFrom.Name.Split('-')[0];
+        //    }
 
-            if (htTo != null)
-            {
-                tLimit = htTo.Name.Split('-')[0];
-            }
+        //    if (htTo != null)
+        //    {
+        //        tLimit = htTo.Name.Split('-')[0];
+        //    }
 
-            ExpectedHeight = $"{bLimit} - {tLimit}";
+        //    ExpectedHeight = $"{bLimit} - {tLimit}";
 
-            string edus = "";
-            foreach (var i in profileDetails.Expectations.Educations)
-            {
-                edus += i.Name + ", ";
-            }
-            ExpectedEducations = edus.TrimEnd(' ').TrimEnd(',');
+        //    string edus = "";
+        //    foreach (var i in profileDetails.Expectations.Educations)
+        //    {
+        //        edus += i.Name + ", ";
+        //    }
+        //    ExpectedEducations = edus.TrimEnd(' ').TrimEnd(',');
 
-            string jobTs = "";
-            foreach (var i in profileDetails.Expectations.JobTypes)
-            {
-                jobTs += i.Name + ", ";
-            }
-            ExpectedJobTypes = jobTs.TrimEnd(' ').TrimEnd(',');
+        //    string jobTs = "";
+        //    foreach (var i in profileDetails.Expectations.JobTypes)
+        //    {
+        //        jobTs += i.Name + ", ";
+        //    }
+        //    ExpectedJobTypes = jobTs.TrimEnd(' ').TrimEnd(',');
 
-            string langs = "";
-            foreach (var i in profileDetails.Expectations.Languages)
-            {
-                langs += i.Name + ", ";
-            }
-            ExpectedLanguages = langs.TrimEnd(' ').TrimEnd(',');
+        //    string langs = "";
+        //    foreach (var i in profileDetails.Expectations.Languages)
+        //    {
+        //        langs += i.Name + ", ";
+        //    }
+        //    ExpectedLanguages = langs.TrimEnd(' ').TrimEnd(',');
 
-            string ps = "";
-            foreach (var i in profileDetails.Expectations.PhysicalStatuses)
-            {
-                ps += i.Name + ", ";
-            }
-            ExpectedPhysicalStatuses = ps.TrimEnd(' ').TrimEnd(',');
+        //    string ps = "";
+        //    foreach (var i in profileDetails.Expectations.PhysicalStatuses)
+        //    {
+        //        ps += i.Name + ", ";
+        //    }
+        //    ExpectedPhysicalStatuses = ps.TrimEnd(' ').TrimEnd(',');
 
-            string ms = "";
-            foreach (var i in profileDetails.Expectations.MaritalStatus)
-            {
-                ms += i.Name + ", ";
-            }
-            ExpectedMaritalStatuses = ms.TrimEnd(' ').TrimEnd(',');
-        }
+        //    string ms = "";
+        //    foreach (var i in profileDetails.Expectations.MaritalStatus)
+        //    {
+        //        ms += i.Name + ", ";
+        //    }
+        //    ExpectedMaritalStatuses = ms.TrimEnd(' ').TrimEnd(',');
+        //}
 
         public void InitialiseBasicDetails(Model.Profile profileDetails)
         {
@@ -387,142 +384,142 @@ namespace Matri.ViewModel
             ResidingTown = profileDetails.ResidingTown;
         }
 
-        [RelayCommand]
-        public async Task Like()
-        {
-            Liked = !Liked;
+        //[RelayCommand]
+        //public async Task Like()
+        //{
+        //    Liked = !Liked;
 
-            if (Liked)
-            {
-                Blocked = false;
-            }
-            var sessionToken = await SecureStorage.GetAsync("Token");
-            var request = new Request { To = ProfileIdentifier, Type = RequestAction.Favourite.ToString() };
-            await Mark(sessionToken, request);
-
-
-        }
+        //    if (Liked)
+        //    {
+        //        Blocked = false;
+        //    }
+        //    var sessionToken = await SecureStorage.GetAsync("Token");
+        //    var request = new Request { To = ProfileIdentifier, Type = RequestAction.Favourite.ToString() };
+        //    await Mark(sessionToken, request);
 
 
-        [RelayCommand]
-        public async Task Block()
-        {
-            Blocked = !Blocked;
-
-            if (Blocked)
-            {
-                Liked = false;
-            }
-            var sessionToken = await SecureStorage.GetAsync("Token");
-            var request = new Request { To = ProfileIdentifier, Type = RequestAction.Block.ToString() };
-            await Mark(sessionToken, request);
-        }
+        //}
 
 
-        private async Task Mark(string sessionToken, Request request)
-        {
-            IsBusy = true;
-            try
-            {
-                var marked = await _serviceManager.MarkProfile(new Guid(sessionToken), request);
+        //[RelayCommand]
+        //public async Task Block()
+        //{
+        //    Blocked = !Blocked;
 
-                var message = string.Empty;
-                if (!marked)
-                {
-                    IsBusy = false;
+        //    if (Blocked)
+        //    {
+        //        Liked = false;
+        //    }
+        //    var sessionToken = await SecureStorage.GetAsync("Token");
+        //    var request = new Request { To = ProfileIdentifier, Type = RequestAction.Block.ToString() };
+        //    await Mark(sessionToken, request);
+        //}
 
-                    if (request.Type == RequestAction.Favourite.ToString())
-                    {
-                        message = "Profile already added to favourites list";
-                    }
-                    else if (request.Type == RequestAction.Block.ToString())
-                    {
-                        message = "Profile already blocked";
-                    }
-                    if (request.Type == RequestAction.SendInterest.ToString())
-                    {
-                        message = "Interest already sent";
-                    }
-                    else if (request.Type == RequestAction.RequestPhoto.ToString())
-                    {
-                        message = "Photo already requested";
-                    }
 
-                    await Shell.Current.CurrentPage.DisplayAlert("Alert", message, "OK");
-                }
-                else
-                {
-                    Profile = _sharedService.GetValue<Profile>("LoggedInUser");
-                    var recipientDeviceTokens = await _serviceManager.GetUserDeviceTokens(new Guid(sessionToken), request.To.ToString());
+        //private async Task Mark(string sessionToken, Request request)
+        //{
+        //    IsBusy = true;
+        //    try
+        //    {
+        //        var marked = await _serviceManager.MarkProfile(new Guid(sessionToken), request);
 
-                    var notificationTitle = "";
-                    var notificationBody = "";
-                    var showNotification = false;
+        //        var message = string.Empty;
+        //        if (!marked)
+        //        {
+        //            IsBusy = false;
 
-                    if (request.Type == RequestAction.RequestPhoto.ToString())
-                    {
-                        message = $"Photo request has been sent"; //TODO
-                        notificationTitle = "Received Photo Request";
-                        notificationBody = $"{Profile.WebsiteIdentifier}{Profile.Number} has requested you to add photo";
-                        showNotification = true;
-                    }
-                    else if (request.Type == RequestAction.SendInterest.ToString())
-                    {
-                        message = $"Profile interest has been sent"; //TODO
-                        notificationTitle = "Received Interest";
-                        notificationBody = $"{Profile.WebsiteIdentifier}{Profile.Number} is interested in your profile";
-                        showNotification = true;
-                    }
-                    else if (request.Type == RequestAction.Block.ToString())
-                    {
-                        message = $"Profile has been added to blocked list";
-                    }
-                    else if (request.Type == RequestAction.Favourite.ToString())
-                    {
-                        message = $"Profile has been added to favourites list";
-                    }
+        //            if (request.Type == RequestAction.Favourite.ToString())
+        //            {
+        //                message = "Profile already added to favourites list";
+        //            }
+        //            else if (request.Type == RequestAction.Block.ToString())
+        //            {
+        //                message = "Profile already blocked";
+        //            }
+        //            if (request.Type == RequestAction.SendInterest.ToString())
+        //            {
+        //                message = "Interest already sent";
+        //            }
+        //            else if (request.Type == RequestAction.RequestPhoto.ToString())
+        //            {
+        //                message = "Photo already requested";
+        //            }
 
-                    await Shell.Current.CurrentPage.DisplayAlert("Alert", message, "OK");
-                    if (showNotification && recipientDeviceTokens != null && recipientDeviceTokens.Count > 0 )
-                    {
-                        await ServiceNotificationHelper.SendNotification(recipientDeviceTokens, notificationTitle, 
-                            notificationBody, Profile.ID.ToString());
-                    }
-                }
+        //            await Shell.Current.CurrentPage.DisplayAlert("Alert", message, "OK");
+        //        }
+        //        else
+        //        {
+        //            Profile = _sharedService.GetValue<Profile>("LoggedInUser");
+        //            var recipientDeviceTokens = await _serviceManager.GetUserDeviceTokens(new Guid(sessionToken), request.To.ToString());
+
+        //            var notificationTitle = "";
+        //            var notificationBody = "";
+        //            var showNotification = false;
+
+        //            if (request.Type == RequestAction.RequestPhoto.ToString())
+        //            {
+        //                message = $"Photo request has been sent"; //TODO
+        //                notificationTitle = "Received Photo Request";
+        //                notificationBody = $"{Profile.WebsiteIdentifier}{Profile.Number} has requested you to add photo";
+        //                showNotification = true;
+        //            }
+        //            else if (request.Type == RequestAction.SendInterest.ToString())
+        //            {
+        //                message = $"Profile interest has been sent"; //TODO
+        //                notificationTitle = "Received Interest";
+        //                notificationBody = $"{Profile.WebsiteIdentifier}{Profile.Number} is interested in your profile";
+        //                showNotification = true;
+        //            }
+        //            else if (request.Type == RequestAction.Block.ToString())
+        //            {
+        //                message = $"Profile has been added to blocked list";
+        //            }
+        //            else if (request.Type == RequestAction.Favourite.ToString())
+        //            {
+        //                message = $"Profile has been added to favourites list";
+        //            }
+
+        //            await Shell.Current.CurrentPage.DisplayAlert("Alert", message, "OK");
+        //            if (showNotification && recipientDeviceTokens != null && recipientDeviceTokens.Count > 0 )
+        //            {
+        //                await ServiceNotificationHelper.SendNotification(recipientDeviceTokens, notificationTitle, 
+        //                    notificationBody, Profile.ID.ToString());
+        //            }
+        //        }
          
-                IsBusy = false;
-            }
-            catch (MatriInternetException exception)
-            {
-                IsBusy = false;
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
-            }
-            catch (Exception exception)
-            {
-                IsBusy = false;
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
-            }
-        }
+        //        IsBusy = false;
+        //    }
+        //    catch (MatriInternetException exception)
+        //    {
+        //        IsBusy = false;
+        //        await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        IsBusy = false;
+        //        await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
+        //    }
+        //}
 
-        [RelayCommand]
-        public async Task RequestPhoto()
-        {
-            var sessionToken = await SecureStorage.GetAsync("Token");
-            var request = new Request();
-            request.To = ProfileIdentifier;
-            request.Type = RequestAction.RequestPhoto.ToString();
-            await Mark(sessionToken, request);
-        }
+        //[RelayCommand]
+        //public async Task RequestPhoto()
+        //{
+        //    var sessionToken = await SecureStorage.GetAsync("Token");
+        //    var request = new Request();
+        //    request.To = ProfileIdentifier;
+        //    request.Type = RequestAction.RequestPhoto.ToString();
+        //    await Mark(sessionToken, request);
+        //}
 
-        [RelayCommand]
-        public async Task SendInterest()
-        {
-            var sessionToken = await SecureStorage.GetAsync("Token");
-            var request = new Request();
-            request.To = ProfileIdentifier;
-            request.Type = RequestAction.SendInterest.ToString();
-            await Mark(sessionToken, request);
-        }
+        //[RelayCommand]
+        //public async Task SendInterest()
+        //{
+        //    var sessionToken = await SecureStorage.GetAsync("Token");
+        //    var request = new Request();
+        //    request.To = ProfileIdentifier;
+        //    request.Type = RequestAction.SendInterest.ToString();
+        //    await Mark(sessionToken, request);
+        //}
     }
 }
 

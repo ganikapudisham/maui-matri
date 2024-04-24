@@ -140,6 +140,9 @@ namespace Matri
             builder.Services.AddSingleton<ContactUsViewModel>();
             builder.Services.AddSingleton<ContactUsPage>();
 
+            builder.Services.AddSingleton<NotificationFromViewModel>();
+            builder.Services.AddSingleton<NotificationFromPage>();
+
             builder.Services.AddSingleton<IFirebaseAnalyticsService, FirebaseAnalyticsService>();
             builder.Services.AddSingleton<ISharedService, SharedService>();
             builder.Services.AddSingleton<IFirebaseCrashlyticsService, FirebaseCrashlyticsService>();

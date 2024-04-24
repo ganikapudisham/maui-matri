@@ -5,7 +5,7 @@
 		android:supportsRtl="true" 
 		android:label="ChristianJodi" 
 		android:networkSecurityConfig="@xml/network_security_config" 
-		android:icon="@mipmap/appicon1"
+		android:icon="@mipmap/appicon" 
 		android:usesCleartextTraffic="true">
 	</application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

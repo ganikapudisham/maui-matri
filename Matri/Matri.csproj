@@ -41,7 +41,7 @@
 	<ItemGroup>
 		<!-- App Icon -->
 
-		<MauiIcon Include="Resources\AppIcon\appicon1.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
 
@@ -197,6 +197,9 @@
 	  <MauiXaml Update="Views\MyAccount\VisitorsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\NotificationFrom\NotificationFromPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ProfileDetails\ProfileDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -270,5 +273,11 @@
 	  <PackageReference Include="Xamarin.GooglePlayServices.Basement">
 	    <Version>118.2.0.6</Version>
 	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\NotificationFrom\NotificationFromPage.xaml.cs">
+	    <DependentUpon>NotificationFromPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 </Project>

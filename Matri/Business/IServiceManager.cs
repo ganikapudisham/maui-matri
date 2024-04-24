@@ -63,5 +63,7 @@ namespace Matri.Business
         Task<bool> CreateUpdateDeviceToken(Guid sessiontoken, FCMToken fcmToken);
 
         Task<List<FCMToken>> GetUserDeviceTokens(Guid sessiontoken, string notificationRecipient);
+
+        Task<Profile> GetProfileByIdWithoutAuth(Guid profileId);
     }
 } 

@@ -400,5 +400,11 @@ namespace Matri.Business.Impl
             var url = $"{Constants.API_URL_FCM}?notificationRecipient={notificationRecipient}";
             return _serviceRepository.GetAsync<List<FCMToken>>(sessiontoken.ToString(), url);
         }
+
+        public Task<Profile> GetProfileByIdWithoutAuth(Guid profileId)
+        {
+            var url = $"{Constants.API_URL_NotificationFrom}/{profileId}";
+            return _serviceRepository.GetAsync<Profile>(Guid.Empty.ToString(), url);
+        }
     }
 }

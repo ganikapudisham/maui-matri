@@ -11,11 +11,16 @@ namespace Matri.Helper
 {
     public static class ServiceNotificationHelper
     {
-        public static async Task SendNotification(List<FCMToken> recipientDeviceTokens, string notificationTitle, string notificationBody)
+        public static async Task SendNotification(List<FCMToken> recipientDeviceTokens, string notificationTitle, 
+            string notificationBody, string notificationFrom)
         {
             var messages = new List<Message>();
 
-            foreach(var recipientDT in recipientDeviceTokens)
+            var NotificationFrom = new Dictionary<string, string>();
+            NotificationFrom.Add("NotificationFrom", notificationFrom);
+
+
+            foreach (var recipientDT in recipientDeviceTokens)
             {
                 var message = new Message
                 {
@@ -25,6 +30,7 @@ namespace Matri.Helper
                         Title = notificationTitle,
                         Body = notificationBody
                     },
+                    Data = NotificationFrom
                 };
                 messages.Add(message);
             }

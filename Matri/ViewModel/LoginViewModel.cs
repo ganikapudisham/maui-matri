@@ -30,6 +30,7 @@ namespace Matri.ViewModel
             WeakReferenceMessenger.Default.Register<PushNotificationReceived>(this, (r, m) =>
             {
                 string msg = m.Value;
+                NavigateToPage();
             });
 
             if (Preferences.ContainsKey("DeviceToken"))
@@ -37,7 +38,7 @@ namespace Matri.ViewModel
                 _deviceToken = Preferences.Get("DeviceToken", "");
             }
             ReadFireBaseAdminSdk();
-            //sendNotification();
+            //NavigateToPage();
         }
 #if DEBUG
         [ObservableProperty]
@@ -141,45 +142,26 @@ namespace Matri.ViewModel
 #endif
         }
 
-        private async Task sendNotification()
+        private async Task NavigateToPage()
         {
-            var androidNotificationObject = new Dictionary<string, string>();
-            androidNotificationObject.Add("NavigationID", "2");
-
-            var iosNotificationObject = new Dictionary<string, object>();
-            iosNotificationObject.Add("NavigationID", "2");
-
-            var pushNotificationRequest = new PushNotificationRequest
+            if (Preferences.ContainsKey("NotificationFrom"))
             {
-                notification = new NotificationMessageBody
+                string userIdentifier = Preferences.Get("NotificationFrom", "");
+                if (!string.IsNullOrEmpty(userIdentifier))
                 {
-                    title = "Notification Title",
-                    body = "Notification body"
-                },
-                data = androidNotificationObject,
-                registration_ids = new List<string> { _deviceToken }
-            };
-
-            var obj = new Message
-            {
-                Token = _deviceToken,
-                Notification = new Notification
-                {
-                    Title = "Tilte",
-                    Body = "message body"
-                },
-                Data = androidNotificationObject,
-                Apns = new ApnsConfig()
-                {
-                    Aps = new Aps
+                    var notificationFromParams = new Dictionary<string, object> { { "NotificationReceivedFromInput", userIdentifier } };
+                    try
                     {
-                        Badge = 15,
-                        CustomData = iosNotificationObject,
+                        await Shell.Current.GoToAsync("notificationfrom", notificationFromParams);
                     }
-                }
-            };
+                    catch(Exception ex)
+                    {
 
-            var response = await FirebaseMessaging.DefaultInstance.SendAsync(obj);
+                    }
+                    
+                }
+                Preferences.Remove("NotificationFrom");
+            }
         }
     }
 }

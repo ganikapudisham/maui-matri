@@ -68,7 +68,11 @@ $"{p.Name}={(p.PropertyType == typeof(DateTime) ? WebUtility.UrlEncode(((DateTim
             var client = new HttpClient() { BaseAddress = _apiEndpoint };
             client.DefaultRequestHeaders.Clear();
 
-            client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", $"Token {token}");
+            if (token != Guid.Empty)
+            {
+                client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", $"Token {token}");
+            }
+
             client.DefaultRequestHeaders.TryAddWithoutValidation("Accept", "application/json");
 
             client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
