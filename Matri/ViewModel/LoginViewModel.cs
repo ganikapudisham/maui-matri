@@ -96,7 +96,7 @@ namespace Matri.ViewModel
                 IsBusy = false;
                 var fcmToken = new FCMToken();
                 fcmToken.Token = _deviceToken;
-                var deviceTokenSaved = await _serviceManager.CreateUpdateDeviceToken(new Guid(sessionToken),fcmToken);
+                var deviceTokenSaved = await _serviceManager.CreateUpdateDeviceToken(new Guid(sessionToken), fcmToken);
                 await Shell.Current.GoToAsync("//AllProfilesPage");
             }
             catch (MatriInternetException exception)
@@ -150,15 +150,7 @@ namespace Matri.ViewModel
                 if (!string.IsNullOrEmpty(userIdentifier))
                 {
                     var notificationFromParams = new Dictionary<string, object> { { "NotificationReceivedFromInput", userIdentifier } };
-                    try
-                    {
-                        await Shell.Current.GoToAsync("notificationfrom", notificationFromParams);
-                    }
-                    catch(Exception ex)
-                    {
-
-                    }
-                    
+                    await Shell.Current.GoToAsync("notificationfrom", notificationFromParams);
                 }
                 Preferences.Remove("NotificationFrom");
             }
