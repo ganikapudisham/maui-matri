@@ -33,10 +33,7 @@ namespace Matri.ViewModel
                 NavigateToPage();
             });
 
-            if (Preferences.ContainsKey("DeviceToken"))
-            {
-                _deviceToken = Preferences.Get("DeviceToken", "");
-            }
+            
             ReadFireBaseAdminSdk();
             //NavigateToPage();
         }
@@ -94,8 +91,16 @@ namespace Matri.ViewModel
                 _sharedService.AddBool("ShowHinduFields", appDetails.ShowHinduFields);
                 _sharedService.AddBool("SubScriptionType", session.SubscriptionActive);
                 IsBusy = false;
+
                 var fcmToken = new FCMToken();
-                fcmToken.Token = _deviceToken;
+                fcmToken.Token = "";
+
+                if (Preferences.ContainsKey("DeviceToken"))
+                {
+                    _deviceToken = Preferences.Get("DeviceToken", "");
+                    fcmToken.Token = _deviceToken;
+                }
+                
                 var deviceTokenSaved = await _serviceManager.CreateUpdateDeviceToken(new Guid(sessionToken), fcmToken);
                 await Shell.Current.GoToAsync("//AllProfilesPage");
             }

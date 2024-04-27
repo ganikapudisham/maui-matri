@@ -53,7 +53,7 @@ namespace Matri.Platforms.Services
 
             var notificationBuilder = new NotificationCompat.Builder(this, MainActivity.Channel_ID)
                 .SetContentTitle(title)
-                .SetSmallIcon(Resource.Mipmap.appicon)
+                .SetSmallIcon(Resource.Mipmap.appicon1)
                 .SetContentText(messageBody)
                 .SetChannelId(MainActivity.Channel_ID)
                 .SetContentIntent(pendingIntent)
