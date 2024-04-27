@@ -93,8 +93,8 @@
                             Placeholder="From"
                             PlaceholderColor="{DynamicResource Gray700}"
                             Text="{Binding AgeFrom}"
-                            TextColor="{DynamicResource Gray900}">
-
+                            TextColor="{DynamicResource Gray900}"
+                                    ClearButtonVisibility="WhileEditing">
                                 </Entry>
 
                             </Border>
@@ -114,7 +114,8 @@
                             Placeholder="To"
                             PlaceholderColor="{DynamicResource Gray700}"
                             Text="{Binding AgeTo}"
-                            TextColor="{DynamicResource Gray900}">
+                            TextColor="{DynamicResource Gray900}" 
+                                    ClearButtonVisibility="WhileEditing">
 
                                 </Entry>
                             </Border>
@@ -314,7 +315,8 @@
                             Placeholder="District/Region"
                             PlaceholderColor="{DynamicResource Gray700}"
                             Text="{Binding District}"
-                            TextColor="{DynamicResource Gray900}">
+                            TextColor="{DynamicResource Gray900}"
+                                    ClearButtonVisibility="WhileEditing">
 
                                 </Entry>
 

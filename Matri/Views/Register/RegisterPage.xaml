@@ -16,6 +16,7 @@
                          HeightRequest="40"
                          Placeholder="First Name"
                          Text="{Binding FirstName}"
+                        ClearButtonVisibility="WhileEditing"
                     >
 
                 </Entry>
@@ -28,6 +29,7 @@
                          HeightRequest="40"
                          Placeholder="Last Name"
                          Text="{Binding LastName}"
+                    ClearButtonVisibility="WhileEditing"
                     >
                 </Entry>
             </Frame>
@@ -40,6 +42,7 @@
                          Placeholder="Mobile"
                          Keyboard="Numeric"
                          Text="{Binding UserName}"
+                    ClearButtonVisibility="WhileEditing"
                     >
                 </Entry>
             </Frame>
@@ -51,6 +54,7 @@
                          HeightRequest="40"
                          Placeholder="Password" IsPassword="True"
                          Text="{Binding Password}"
+                    ClearButtonVisibility="WhileEditing"
                     >
                 </Entry>
             </Frame>

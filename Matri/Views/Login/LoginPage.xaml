@@ -27,7 +27,8 @@
                 </Image>
             </Frame>
             <Frame HeightRequest="45" Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
-                <Entry Text="{Binding EMobile}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="User Name" Keyboard="Email" />
+                <Entry Text="{Binding EMobile}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="User Name" Keyboard="Email" 
+                       ClearButtonVisibility="WhileEditing" />
             </Frame>
         </StackLayout>
 
@@ -41,7 +42,8 @@
                 </Image>
             </Frame>
             <Frame HeightRequest="45" Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
-                <Entry Text="{Binding EPassword}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Password" IsPassword="True" />
+                <Entry Text="{Binding EPassword}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Password" IsPassword="True" 
+                       ClearButtonVisibility="WhileEditing" />
             </Frame>
         </StackLayout>
 
