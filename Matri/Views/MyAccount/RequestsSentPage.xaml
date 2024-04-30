@@ -58,29 +58,18 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="60"/>
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Row="0" Grid.Column="0"  Text="{Binding FirstName}" LineBreakMode="WordWrap" 
-                                TextColor="#DE000000" FontFamily="Roboto-Medium" 
-                                FontSize="{OnPlatform Android={OnIdiom Phone=15, Tablet=22}, iOS=16, WinUI=14,MacCatalyst=16}" 
-                                CharacterSpacing="0.1" Margin="0,10,0,0"/>
-                                <!--<Label Grid.Row="0" Grid.Column="1" Text="1w ago" TextColor="#666666" 
-                                FontSize="{OnPlatform Default=10,WinUI=12,MacCatalyst=12}" FontFamily="Roboto-Regular" 
-                                HorizontalOptions="End" CharacterSpacing="0.15" Margin="0,10,11,0"/>-->
                                 <Label Grid.Row="1" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
                                 LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
-                                Text="{Binding Height}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
+                                Text="{Binding ReceiverFirstName}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
                                 Margin="0,4,0,0" />
                                 <Label Grid.Row="2" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
                                 LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
-                                Text="{Binding Age}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
+                                Text="{Binding Type}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
                                 Margin="0,4,0,0" />
                                 <Label Grid.Row="3" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
                                 LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
-                                Text="{Binding Education}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
+                                Text="{Binding SentDate}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
                                 Margin="0,4,0,0" />
-                                <Label Grid.Row="4" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
-                                LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
-                                Text="{Binding Job}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
-                                Margin="0,4,0,10" />
                             </Grid>
                             <BoxView Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" BackgroundColor="Black" HeightRequest="1" 
                               VerticalOptions="End" />
