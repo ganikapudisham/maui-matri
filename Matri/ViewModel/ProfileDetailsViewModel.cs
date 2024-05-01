@@ -399,11 +399,10 @@ namespace Matri.ViewModel
             {
                 Blocked = false;
             }
+
             var sessionToken = await SecureStorage.GetAsync("Token");
-            var request = new Request { To = ProfileIdentifier, Type = RequestAction.Favourite.ToString() };
+            var request = new Request { To = ProfileIdentifier, Type = RequestAction.Favourite.ToString(), Value = Liked };
             await Mark(sessionToken, request);
-
-
         }
 
 
@@ -416,8 +415,9 @@ namespace Matri.ViewModel
             {
                 Liked = false;
             }
+
             var sessionToken = await SecureStorage.GetAsync("Token");
-            var request = new Request { To = ProfileIdentifier, Type = RequestAction.Block.ToString() };
+            var request = new Request { To = ProfileIdentifier, Type = RequestAction.Block.ToString(), Value = Blocked };
             await Mark(sessionToken, request);
         }
 
@@ -434,14 +434,14 @@ namespace Matri.ViewModel
                 {
                     IsBusy = false;
 
-                    if (request.Type == RequestAction.Favourite.ToString())
-                    {
-                        message = "Profile already added to favourites list";
-                    }
-                    else if (request.Type == RequestAction.Block.ToString())
-                    {
-                        message = "Profile already blocked";
-                    }
+                    //if (request.Type == RequestAction.Favourite.ToString())
+                    //{
+                    //    message = "Profile already added to favourites list";
+                    //}
+                    //else if (request.Type == RequestAction.Block.ToString())
+                    //{
+                    //    message = "Profile already blocked";
+                    //}
                     if (request.Type == RequestAction.SendInterest.ToString())
                     {
                         message = "Interest already sent";
@@ -468,6 +468,7 @@ namespace Matri.ViewModel
                         notificationTitle = "Received Photo Request";
                         notificationBody = $"{Profile.WebsiteIdentifier}{Profile.Number} has requested you to add photo";
                         showNotification = true;
+                        await Shell.Current.CurrentPage.DisplayAlert("Alert", message, "OK");
                     }
                     else if (request.Type == RequestAction.SendInterest.ToString())
                     {
@@ -475,17 +476,19 @@ namespace Matri.ViewModel
                         notificationTitle = "Received Interest";
                         notificationBody = $"{Profile.WebsiteIdentifier}{Profile.Number} is interested in your profile";
                         showNotification = true;
+                        await Shell.Current.CurrentPage.DisplayAlert("Alert", message, "OK");
                     }
-                    else if (request.Type == RequestAction.Block.ToString())
+                    else if (request.Type == RequestAction.Block.ToString() && request.Value)
                     {
                         message = $"Profile has been added to blocked list";
+                        await Shell.Current.CurrentPage.DisplayAlert("Alert", message, "OK");
                     }
-                    else if (request.Type == RequestAction.Favourite.ToString())
+                    else if (request.Type == RequestAction.Favourite.ToString() && request.Value)
                     {
                         message = $"Profile has been added to favourites list";
+                        await Shell.Current.CurrentPage.DisplayAlert("Alert", message, "OK");
                     }
 
-                    await Shell.Current.CurrentPage.DisplayAlert("Alert", message, "OK");
                     if (showNotification && recipientDeviceTokens != null && recipientDeviceTokens.Count > 0)
                     {
                         await ServiceNotificationHelper.SendNotification(recipientDeviceTokens, notificationTitle,

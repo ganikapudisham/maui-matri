@@ -11,5 +11,8 @@ namespace Matri.Model
 
         [DataMember]
         public string Type { get; set; }
+
+        [DataMember]
+        public bool Value { get; set; }
     }
 }
