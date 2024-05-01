@@ -4,6 +4,7 @@ using Matri.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MvvmHelpers;
+using Matri.Helper;
 
 namespace Matri.ViewModel
 {
@@ -46,7 +47,7 @@ namespace Matri.ViewModel
         public bool isBusy = true;
 
         public ObservableRangeCollection<MiniProfile> Profiles { get; private set; } = new ObservableRangeCollection<MiniProfile>();
-        
+
         [RelayCommand]
         public async Task Cancel()
         {
@@ -104,7 +105,7 @@ namespace Matri.ViewModel
             int ePN = Convert.ToInt32(EPageNumber);
             if (ePN >= 2 && ePN <= totalPages)
             {
-                ePN= ePN - 1;
+                ePN = ePN - 1;
                 await GetProfiles(ePN, Convert.ToInt16(PPageSize.Value));
                 EPageNumber = ePN.ToString();
             }
@@ -165,6 +166,7 @@ namespace Matri.ViewModel
         [RelayCommand]
         public async Task ViewProfile(Object obj)
         {
+
             IsBusy = true;
             if (obj != null && obj is MiniProfile)
             {
@@ -176,11 +178,15 @@ namespace Matri.ViewModel
                 //log the current user as visitor for the tapped profile
                 await _serviceManager.CreateProfileVisitor(new Guid(sessionToken), targetProfileId);
 
-                var profileDetailsInput = new ProfileDetailsInput();
+                var allRequests = await _serviceManager.GetAllRequests(new Guid(sessionToken));
+                var requestsSentToSelectedUser = allRequests.Where(ar => ar.ReceiverId == targetProfileId).ToList();
+
+                var profileDetailsInput = ServiceHelper.InitialiseRequestsSent(requestsSentToSelectedUser);
+
                 profileDetailsInput.LoggedInId = new Guid(sessionToken);
                 profileDetailsInput.TargetProfileId = targetProfileId;
 
-                var profileDetailsParams = new Dictionary<string, object> {  { "ProfileDetailsInput", profileDetailsInput } };
+                var profileDetailsParams = new Dictionary<string, object> { { "ProfileDetailsInput", profileDetailsInput } };
                 IsBusy = false;
                 await Shell.Current.GoToAsync("profiledetails", profileDetailsParams);
             }

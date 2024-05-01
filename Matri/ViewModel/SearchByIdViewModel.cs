@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Matri.Model;
 using Matri.CustomExceptions;
+using Matri.Helper;
 
 namespace Matri.ViewModel
 {
@@ -32,7 +33,11 @@ namespace Matri.ViewModel
                 //log the current user as visitor for the tapped profile
                 await _serviceManager.CreateProfileVisitor(new Guid(sessionToken), targetProfileId);
 
-                var profileDetailsInput = new ProfileDetailsInput();
+                var allRequests = await _serviceManager.GetAllRequests(new Guid(sessionToken));
+                var requestsSentToSelectedUser = allRequests.Where(ar => ar.ReceiverId == targetProfileId).ToList();
+
+                var profileDetailsInput = ServiceHelper.InitialiseRequestsSent(requestsSentToSelectedUser);
+
                 profileDetailsInput.LoggedInId = new Guid(sessionToken);
                 profileDetailsInput.TargetProfileId = targetProfileId;
 

@@ -243,6 +243,9 @@ namespace Matri.ViewModel
             var targetId = queryParam.TargetProfileId;
             var sourceId = queryParam.LoggedInId;
             ProfileIdentifier = targetId;
+            Blocked = queryParam.Blocked;
+            Liked = queryParam.Favourite;
+
             Task.Run(() => this.GetProfileDetails(sourceId, targetId));
         }
 
@@ -483,13 +486,13 @@ namespace Matri.ViewModel
                     }
 
                     await Shell.Current.CurrentPage.DisplayAlert("Alert", message, "OK");
-                    if (showNotification && recipientDeviceTokens != null && recipientDeviceTokens.Count > 0 )
+                    if (showNotification && recipientDeviceTokens != null && recipientDeviceTokens.Count > 0)
                     {
-                        await ServiceNotificationHelper.SendNotification(recipientDeviceTokens, notificationTitle, 
+                        await ServiceNotificationHelper.SendNotification(recipientDeviceTokens, notificationTitle,
                             notificationBody, Profile.ID.ToString());
                     }
                 }
-         
+
                 IsBusy = false;
             }
             catch (MatriInternetException exception)

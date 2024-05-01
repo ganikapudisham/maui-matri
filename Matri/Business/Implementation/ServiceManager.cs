@@ -1,6 +1,7 @@
 using Matri.Data;
 using Matri.Model;
 using Matri.Model.Email;
+using System;
 
 namespace Matri.Business.Impl
 {
@@ -405,6 +406,11 @@ namespace Matri.Business.Impl
         {
             var url = $"{Constants.API_URL_NotificationFrom}/{profileId}";
             return _serviceRepository.GetAsync<Profile>(Guid.Empty.ToString(), url);
+        }
+
+        public Task<List<RequestSent>>GetAllRequests(Guid sessiontoken)
+        {
+            return _serviceRepository.GetAsync<List<RequestSent>>(sessiontoken.ToString(), Constants.API_URL_AllRequests);
         }
     }
 }

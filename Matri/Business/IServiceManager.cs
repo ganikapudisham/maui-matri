@@ -65,5 +65,7 @@ namespace Matri.Business
         Task<List<FCMToken>> GetUserDeviceTokens(Guid sessiontoken, string notificationRecipient);
 
         Task<Profile> GetProfileByIdWithoutAuth(Guid profileId);
+
+        Task<List<RequestSent>>GetAllRequests(Guid sessiontoken);
     }
 } 

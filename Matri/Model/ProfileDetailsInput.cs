@@ -11,5 +11,13 @@ namespace Matri.Model
         public Guid LoggedInId { get; set; }
 
         public Guid TargetProfileId { get; set; }
+
+        public bool Blocked { get; set; }
+
+        public bool Favourite { get; set; }
+
+        public bool ReceivedPhotoRequest { get; set; }
+
+        public bool ReceivedInterest { get; set; }
     }
 }

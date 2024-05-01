@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Matri.Business;
 using Matri.CustomExceptions;
+using Matri.Helper;
 using Matri.Model;
 using MvvmHelpers;
 
@@ -176,7 +177,11 @@ namespace Matri.ViewModel
                 //log the current user as visitor for the tapped profile
                 await _serviceManager.CreateProfileVisitor(new Guid(sessionToken), targetProfileId);
 
-                var profileDetailsInput = new ProfileDetailsInput();
+                var allRequests = await _serviceManager.GetAllRequests(new Guid(sessionToken));
+                var requestsSentToSelectedUser = allRequests.Where(ar => ar.ReceiverId == targetProfileId).ToList();
+
+                var profileDetailsInput = ServiceHelper.InitialiseRequestsSent(requestsSentToSelectedUser);
+
                 profileDetailsInput.LoggedInId = new Guid(sessionToken);
                 profileDetailsInput.TargetProfileId = targetProfileId;
 
