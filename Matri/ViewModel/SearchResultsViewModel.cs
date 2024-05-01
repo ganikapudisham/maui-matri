@@ -124,7 +124,7 @@ namespace Matri.ViewModel
         [RelayCommand]
         public async Task ViewProfile(Object obj)
         {
-
+            IsBusy = true;
             if (obj != null && obj is MiniProfile)
             {
                 var item = (MiniProfile)obj;
@@ -144,7 +144,7 @@ namespace Matri.ViewModel
                 profileDetailsInput.TargetProfileId = targetProfileId;
 
                 var profileDetailsParams = new Dictionary<string, object> { { "ProfileDetailsInput", profileDetailsInput } };
-
+                IsBusy = false;
                 await Shell.Current.GoToAsync("profiledetails", profileDetailsParams);
             }
         }
