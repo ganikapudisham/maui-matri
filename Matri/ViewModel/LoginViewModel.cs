@@ -102,7 +102,8 @@ namespace Matri.ViewModel
                 }
                 
                 var deviceTokenSaved = await _serviceManager.CreateUpdateDeviceToken(new Guid(sessionToken), fcmToken);
-                await Shell.Current.GoToAsync("//AllProfilesPage");
+                var allProfilesInputParams = new Dictionary<string, object> { { "allProfiles", "" } };
+                await Shell.Current.GoToAsync("//AllProfilesPage", allProfilesInputParams);
             }
             catch (MatriInternetException exception)
             {

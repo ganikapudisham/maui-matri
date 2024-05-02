@@ -9,7 +9,7 @@ using MvvmHelpers;
 
 namespace Matri.ViewModel
 {
-    public partial class RequestsSentViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
+    public partial class RequestsSentViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject, IQueryAttributable
     {
         IServiceManager _serviceManager;
 
@@ -19,11 +19,6 @@ namespace Matri.ViewModel
         public RequestsSentViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
-            PageSizeList.Add(new PageSize { Text = "10", Value = 10 });
-            PageSizeList.Add(new PageSize { Text = "20", Value = 20 });
-            PageSizeList.Add(new PageSize { Text = "50", Value = 50 });
-            pPageSize = PageSizeList[0];
-            Task.Run(() => this.GetProfiles(1, pPageSize.Value));
         }
         public ObservableRangeCollection<PageSize> PageSizeList { get; private set; } = new ObservableRangeCollection<PageSize>();
 
@@ -53,6 +48,15 @@ namespace Matri.ViewModel
         public async Task Cancel()
         {
             await Shell.Current.GoToAsync("///LandingPage");
+        }
+
+        public void ApplyQueryAttributes(IDictionary<string, object> query)
+        {
+            PageSizeList.Add(new PageSize { Text = "10", Value = 10 });
+            PageSizeList.Add(new PageSize { Text = "20", Value = 20 });
+            PageSizeList.Add(new PageSize { Text = "50", Value = 50 });
+            pPageSize = PageSizeList[0];
+            Task.Run(() => this.GetProfiles(1, pPageSize.Value));
         }
 
         public async Task<bool> GetProfiles(int pageNumber, int pageSize)
