@@ -3,9 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using Matri.Business;
 using Matri.CustomExceptions;
 using Matri.Helper;
-using Matri.Model;
-using Newtonsoft.Json;
-using System;
 
 namespace Matri.ViewModel
 {
@@ -25,7 +22,7 @@ namespace Matri.ViewModel
         [RelayCommand]
         public async Task BrowsePhoto()
         {
-            var requestStorageRead = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
+            var requestStorageRead = await Permissions.CheckStatusAsync<Permissions.Media>();
 
             if (requestStorageRead == PermissionStatus.Granted)
             {
