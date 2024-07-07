@@ -63,7 +63,7 @@
                 <Label
                 Grid.Column="2"
                 Style="{StaticResource IconLabelStyle}"
-                Text="{StaticResource Next}" />
+                Text="{Binding Next}" />
             </controls:TapAnimationGrid>
             <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -94,7 +94,7 @@
                 <Label
                 Grid.Column="2"
                 Style="{StaticResource IconLabelStyle}"
-                Text="{StaticResource Next}" />
+                Text="{Binding Next}" />
             </controls:TapAnimationGrid>
             <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -124,7 +124,7 @@
                 <Label
                 Grid.Column="2"
                 Style="{StaticResource IconLabelStyle}"
-                Text="{StaticResource Next}" />
+                Text="{Binding Next}" />
             </controls:TapAnimationGrid>
             <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -168,7 +168,7 @@
                 <Label
                 Grid.Column="2"
                 Style="{StaticResource IconLabelStyle}"
-                Text="{StaticResource Next}" />
+                Text="{Binding Next}" />
             </controls:TapAnimationGrid>
             <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -199,7 +199,7 @@
                 <Label
                 Grid.Column="2"
                 Style="{StaticResource IconLabelStyle}"
-                Text="{StaticResource Next}" />
+                Text="{Binding Next}" />
             </controls:TapAnimationGrid>
             <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -230,7 +230,7 @@
                 <Label
                 Grid.Column="2"
                 Style="{StaticResource IconLabelStyle}"
-                Text="{StaticResource Next}" />
+                Text="{Binding Next}" />
             </controls:TapAnimationGrid>
             <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -276,7 +276,7 @@
                 <Label
                 Grid.Column="2"
                 Style="{StaticResource IconLabelStyle}"
-                Text="{StaticResource Next}" />
+                Text="{Binding Next}" />
             </controls:TapAnimationGrid>
             <BoxView Style="{StaticResource SeparatorStyle}" />
 
@@ -307,7 +307,7 @@
                 <Label
                 Grid.Column="2"
                 Style="{StaticResource IconLabelStyle}"
-                Text="{StaticResource Next}" />
+                Text="{Binding Next}" />
             </controls:TapAnimationGrid>
             <BoxView Style="{StaticResource SeparatorStyle}" />
 

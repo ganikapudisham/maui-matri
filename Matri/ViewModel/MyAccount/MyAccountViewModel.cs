@@ -43,6 +43,9 @@ namespace Matri.ViewModel
         public string editMyProfile = FontAwesomeIcons.Edit;
 
         [ObservableProperty]
+        public string next = FontAwesomeIcons.AngleRight;
+
+        [ObservableProperty]
         public bool isBusy = false;
 
         [RelayCommand]
