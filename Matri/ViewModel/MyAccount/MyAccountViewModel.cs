@@ -88,8 +88,7 @@ namespace Matri.ViewModel
         public async Task ViewRequestsSent()
         {
             IsBusy = true;
-            var requestsSentInputParams = new Dictionary<string, object> { { "requestsSent", "" } };
-            await Shell.Current.GoToAsync("requestssent", requestsSentInputParams);
+            await Shell.Current.GoToAsync("requestssent");
             IsBusy = false;
         }
 
@@ -98,8 +97,7 @@ namespace Matri.ViewModel
         public async Task ViewRequestsReceived()
         {
             IsBusy = true;
-            var requestsReceivedInputParams = new Dictionary<string, object> { { "requestsReceived", "" } };
-            await Shell.Current.GoToAsync("requestsreceived", requestsReceivedInputParams);
+            await Shell.Current.GoToAsync("requestsreceived");
             IsBusy = false;
         }
 
@@ -108,8 +106,7 @@ namespace Matri.ViewModel
         public async Task ViewLikedProfiles()
         {
             IsBusy = true;
-            var likedInputParams = new Dictionary<string, object> { { "liked", "" } };
-            await Shell.Current.GoToAsync("likedprofiles", likedInputParams);
+            await Shell.Current.GoToAsync("likedprofiles");
             IsBusy = false;
         }
 
@@ -118,8 +115,7 @@ namespace Matri.ViewModel
         public async Task ViewBlockedProfiles()
         {
             IsBusy = true;
-            var blockedInputParams = new Dictionary<string, object> { { "blocked", "" } };
-            await Shell.Current.GoToAsync("blockedprofiles", blockedInputParams);
+            await Shell.Current.GoToAsync("blockedprofiles");
             IsBusy = false;
         }
 
@@ -128,8 +124,7 @@ namespace Matri.ViewModel
         public async Task ViewVisitors()
         {
             IsBusy = true;
-            var visitorsInputParams = new Dictionary<string, object> { { "visitors", "" } };
-            await Shell.Current.GoToAsync("visitors", visitorsInputParams);
+            await Shell.Current.GoToAsync("visitors");
             IsBusy = false;
         }
 
@@ -137,8 +132,7 @@ namespace Matri.ViewModel
         public async Task ViewNewProfiles()
         {
             IsBusy = true;
-            var newProfilesInputParams = new Dictionary<string, object> { { "newProfiles", "" } };
-            await Shell.Current.GoToAsync("newprofiles", newProfilesInputParams);
+            await Shell.Current.GoToAsync("newprofiles");
             IsBusy = false;
         }
     }
