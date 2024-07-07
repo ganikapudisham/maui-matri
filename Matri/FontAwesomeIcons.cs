@@ -60,6 +60,8 @@
 
         public const string AppStore = "\uf36f";
         public const string Person = "";
+
+        public const string EyeSlash = "\uf070";
         #endregion
     }
 

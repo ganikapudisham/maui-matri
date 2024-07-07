@@ -10,6 +10,7 @@ using Matri.Models;
 using CommunityToolkit.Mvvm.Messaging;
 using Matri.Helper;
 using FirebaseAdmin.Messaging;
+using Matri.FontsAwesome;
 
 namespace Matri.ViewModel
 {
@@ -33,7 +34,7 @@ namespace Matri.ViewModel
                 NavigateToPage();
             });
 
-            
+
             ReadFireBaseAdminSdk();
             //NavigateToPage();
         }
@@ -52,6 +53,12 @@ namespace Matri.ViewModel
 #endif
         [ObservableProperty]
         public bool isBusy;
+
+        [ObservableProperty]
+        public bool isHiddenPassword;
+
+        [ObservableProperty]
+        public string passwordVisibilityIcon = FontAwesomeIcons.EyeSlash;
 
         [RelayCommand]
         public async Task Login()
@@ -100,7 +107,7 @@ namespace Matri.ViewModel
                     _deviceToken = Preferences.Get("DeviceToken", "");
                     fcmToken.Token = _deviceToken;
                 }
-                
+
                 var deviceTokenSaved = await _serviceManager.CreateUpdateDeviceToken(new Guid(sessionToken), fcmToken);
 
                 await Shell.Current.GoToAsync("//AllProfilesPage");
@@ -159,6 +166,21 @@ namespace Matri.ViewModel
                     await Shell.Current.GoToAsync("notificationfrom", notificationFromParams);
                 }
                 Preferences.Remove("NotificationFrom");
+            }
+        }
+
+        [RelayCommand]
+        public void TogglePassword()
+        {
+            IsHiddenPassword = !IsHiddenPassword;
+
+            if (IsHiddenPassword)
+            {
+                PasswordVisibilityIcon = FontAwesomeIcons.EyeSlash;
+            }
+            else
+            {
+                PasswordVisibilityIcon = FontAwesomeIcons.Eye;
             }
         }
     }

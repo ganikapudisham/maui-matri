@@ -4,7 +4,7 @@
              x:Class="Matri.Views.LoginPage"
              xmlns:FoA="clr-namespace:Matri.FontsAwesome;assembly=Matri"
              Title="">
-
+    
     <VerticalStackLayout 
             Spacing="5" 
             Padding="30,0" 
@@ -41,10 +41,16 @@
                     </Image.Source>
                 </Image>
             </Frame>
-            <Frame HeightRequest="45" Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
-                <Entry Text="{Binding EPassword}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Password" IsPassword="True" 
+            <Frame HeightRequest="45" Margin="-20,0,5,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                <Entry Text="{Binding EPassword}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Password" IsPassword="{Binding IsHiddenPassword}" 
                        ClearButtonVisibility="WhileEditing" />
             </Frame>
+            <ImageButton Command="{Binding TogglePasswordCommand}" HeightRequest="25" WidthRequest="25">
+                    <ImageButton.Source>
+                    <FontImageSource FontFamily="FontAwesomeSolid" 
+                                     Glyph="{Binding PasswordVisibilityIcon}" Color="Grey" Size="15" />
+                    </ImageButton.Source>
+                </ImageButton>
         </StackLayout>
 
         <Button Text="Sign In" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" 

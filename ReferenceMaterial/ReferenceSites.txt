@@ -60,3 +60,13 @@ https://github.com/dotnet/maui/issues/3389
 https://www.youtube.com/watch?v=rhGM0jxraA8&t=462s
 
 https://cedricgabrang.medium.com/handle-firebase-push-notifications-tap-in-net-maui-9bdb7f3c1de1
+
+
+https://appium.io/docs/en/2.2/quickstart/install/
+https://googlechromelabs.github.io/chrome-for-testing/#stable
+
+https://putridparrot.com/blog/category/appium/
+
+https://www.headspin.io/blog/appium-2-migration-playbook#:~:text=Use%20the%20%22appium%20driver%22%20command,s)%20you%20want%20to%20use.
+
+https://www.syncfusion.com/account/claim-license-key
