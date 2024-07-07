@@ -55,7 +55,7 @@ namespace Matri.ViewModel
         public bool isBusy;
 
         [ObservableProperty]
-        public bool isHiddenPassword;
+        public bool isHiddenPassword = true;
 
         [ObservableProperty]
         public string passwordVisibilityIcon = FontAwesomeIcons.EyeSlash;
@@ -172,16 +172,17 @@ namespace Matri.ViewModel
         [RelayCommand]
         public void TogglePassword()
         {
-            IsHiddenPassword = !IsHiddenPassword;
+            IsHiddenPassword = false;
+            PasswordVisibilityIcon = FontAwesomeIcons.Eye;
 
-            if (IsHiddenPassword)
+            var cancellationTokenSource = new CancellationTokenSource();
+            var cancellationToken = cancellationTokenSource.Token;
+
+            Task.Delay(500).ContinueWith(async (t) =>
             {
+                IsHiddenPassword = true;
                 PasswordVisibilityIcon = FontAwesomeIcons.EyeSlash;
-            }
-            else
-            {
-                PasswordVisibilityIcon = FontAwesomeIcons.Eye;
-            }
+            }, cancellationToken);
         }
     }
 }

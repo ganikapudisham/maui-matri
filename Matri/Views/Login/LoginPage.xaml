@@ -45,7 +45,7 @@
                 <Entry Text="{Binding EPassword}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Password" IsPassword="{Binding IsHiddenPassword}" 
                        ClearButtonVisibility="WhileEditing" />
             </Frame>
-            <ImageButton Command="{Binding TogglePasswordCommand}" HeightRequest="25" WidthRequest="25">
+            <ImageButton Command="{Binding TogglePasswordCommand}" HeightRequest="20" WidthRequest="20">
                     <ImageButton.Source>
                     <FontImageSource FontFamily="FontAwesomeSolid" 
                                      Glyph="{Binding PasswordVisibilityIcon}" Color="Grey" Size="15" />
