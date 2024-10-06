@@ -41,8 +41,8 @@
                             x:Name="carousel"
                             ItemTemplate="{StaticResource itemTemplate}"
                             HeightRequest="400"
-                            ItemHeight="300"
-                            ItemWidth="200"
+                            ItemHeight="500"
+                            ItemWidth="300"
                             ItemsSource="{Binding ProfilePhotos}"
                             ViewMode="Default"
                             WidthRequest="800" Grid.Row="1" Grid.ColumnSpan="2" />
