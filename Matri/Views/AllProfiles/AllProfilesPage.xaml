@@ -130,8 +130,8 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <ImageButton HorizontalOptions="CenterAndExpand" Aspect="AspectFill" Grid.Row="0" Grid.Column="0"
-HeightRequest="30" VerticalOptions="CenterAndExpand" Command="{Binding FirstCommand}" >
+                            <ImageButton Aspect="AspectFill" Grid.Row="0" Grid.Column="0"
+HeightRequest="30" VerticalOptions="CenterAndExpand" Command="{Binding FirstCommand}" HorizontalOptions="Start" >
                         <ImageButton.Source>
                             <FontImageSource FontFamily="FontAwesomeSolid"
      Glyph="{x:Static FoA:FontAwesomeIcons.AngleDoubleLeft}" Color="Gray" />
@@ -139,7 +139,7 @@ HeightRequest="30" VerticalOptions="CenterAndExpand" Command="{Binding FirstComm
                     </ImageButton>
 
                     <ImageButton HorizontalOptions="CenterAndExpand" Aspect="AspectFill"
-HeightRequest="30" VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="1"
+HeightRequest="30" VerticalOptions="Center" Grid.Row="0" Grid.Column="1"
                           Command="{Binding PreviousCommand}">
                         <ImageButton.Source>
                             <FontImageSource FontFamily="FontAwesomeSolid"
@@ -148,7 +148,7 @@ HeightRequest="30" VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="1
                     </ImageButton>
 
                     <ImageButton HorizontalOptions="End" Aspect="AspectFill" Grid.Row="0" Grid.Column="2"
-HeightRequest="30" VerticalOptions="CenterAndExpand" Command="{Binding NextCommand}">
+HeightRequest="30" VerticalOptions="Center" Command="{Binding NextCommand}">
                         <ImageButton.Source>
                             <FontImageSource
                      FontFamily="FontAwesomeSolid"
@@ -157,7 +157,7 @@ HeightRequest="30" VerticalOptions="CenterAndExpand" Command="{Binding NextComma
                         </ImageButton.Source>
                     </ImageButton>
 
-                    <ImageButton HorizontalOptions="EndAndExpand" Aspect="AspectFill" Grid.Row="0" Grid.Column="3"
+                    <ImageButton HorizontalOptions="End" Aspect="AspectFill" Grid.Row="0" Grid.Column="3"
 HeightRequest="30" VerticalOptions="CenterAndExpand" Command="{Binding LastCommand}">
                         <ImageButton.Source>
                             <FontImageSource
