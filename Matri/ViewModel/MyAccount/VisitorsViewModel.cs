@@ -19,9 +19,9 @@ namespace Matri.ViewModel
         public VisitorsViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
+            PageSizeList.Add(new PageSize { Text = "5", Value = 5 });
             PageSizeList.Add(new PageSize { Text = "10", Value = 10 });
             PageSizeList.Add(new PageSize { Text = "20", Value = 20 });
-            PageSizeList.Add(new PageSize { Text = "50", Value = 50 });
             pPageSize = PageSizeList[0];
             Task.Run(() => this.GetProfiles(1, pPageSize.Value));
         }

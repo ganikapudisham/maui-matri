@@ -88,11 +88,10 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-                <Frame Padding="5">
+                <Frame Padding="5" BackgroundColor="AliceBlue">
                     <Grid x:Name="ParentGrid">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
-                            <RowDefinition Height="35"/>
                             <RowDefinition Height="35"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -144,27 +143,36 @@
                                 </ImageButton.Source>
                             </ImageButton>
                         </Grid>
-
-                        <Label Grid.Row="1" FontSize="Small" Grid.Column="0" Text="Profiles Per Page" 
+                        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" FontSize="Small" Grid.Column="0" Text="Show" 
                                VerticalOptions="Center"  HorizontalOptions="Start"></Label>
-                        <Picker x:Name="PickerPageSize" Grid.Row="1" Grid.Column="2" 
-                    VerticalOptions="Center" ItemsSource="{Binding PageSizeList}"  HorizontalOptions="Start"
-                     ItemDisplayBinding="{Binding Text}" SelectedItem="{Binding PPageSize}" >
-                            <Picker.Behaviors>
-                                <toolkit:EventToCommandBehavior
-                                     EventName="SelectedIndexChanged"
-                                     Command="{Binding SelectedPageSizeCommand}"
-                                     CommandParameter="{ Binding .}" />
-                            </Picker.Behaviors>
-                        </Picker>
-
-                        <Label Grid.Row="2" FontSize="Small" Grid.Column="0" Text="Current Page"
-                                VerticalOptions="Center"/>
-                        <Entry Keyboard="Numeric" Text="{Binding EPageNumber}" HorizontalOptions="Start" Grid.Row="2" 
-                               Grid.Column="2" FontSize="Small" VerticalOptions="End" Margin="0,0,0,0"/>
-                        <Label Grid.Row="2" Grid.Column="3" FontSize="Small" VerticalOptions="Center" HorizontalOptions="End" 
-                               Text="{Binding LNumberOfPages}" />
-
+                            <Picker x:Name="PickerPageSize" Grid.Row="0" Grid.Column="1" 
+VerticalOptions="Center" ItemsSource="{Binding PageSizeList}"  HorizontalOptions="Start"
+ ItemDisplayBinding="{Binding Text}" SelectedItem="{Binding PPageSize}" >
+                                <Picker.Behaviors>
+                                    <toolkit:EventToCommandBehavior
+                 EventName="SelectedIndexChanged"
+                 Command="{Binding SelectedPageSizeCommand}"
+                 CommandParameter="{ Binding .}" />
+                                </Picker.Behaviors>
+                            </Picker>
+                            <Label Grid.Row="0" FontSize="Small" Grid.Column="2" Text="Current Page"
+        HorizontalOptions="End" VerticalOptions="Center"/>
+                            <Entry Keyboard="Numeric" Text="{Binding EPageNumber}" HorizontalOptions="End" Grid.Row="0" 
+       Grid.Column="3" FontSize="Small" VerticalOptions="End" Margin="0,0,0,0"/>
+                            <Label Grid.Row="0" Grid.Column="4" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start" 
+       Text="{Binding LNumberOfPages}" />
+                        </Grid>
                     </Grid>
                 </Frame>
             </StackLayout>
