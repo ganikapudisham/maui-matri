@@ -82,18 +82,18 @@
                                        Text="{Binding Job}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
                                        Margin="0,4,0,10" />
                                 </Grid>
-                                <BoxView Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" BackgroundColor="Black" HeightRequest="1" 
+                                <BoxView Grid.Row="1" Grid.Column="1" BackgroundColor="Black" HeightRequest="1" 
                                      VerticalOptions="End" />
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-                <Frame Margin="0,5,0,5" BackgroundColor="AliceBlue">
-                    <Grid>
+                <Frame Padding="5">
+                    <Grid x:Name="ParentGrid">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>
@@ -101,9 +101,53 @@
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" FontSize="Medium" Grid.Column="0" Text="Profiles Per Page" 
+                        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <ImageButton Aspect="AspectFill" Grid.Row="0" Grid.Column="0" HeightRequest="25" 
+                                         VerticalOptions="CenterAndExpand" HorizontalOptions="Start" WidthRequest="25"
+                                        Command="{Binding BindingContext.FirstCommand, Source={x:Reference ParentGrid}}">
+                                <ImageButton.Source>
+                                    <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleDoubleLeft}" 
+                                                     Color="Gray" />
+                                </ImageButton.Source>
+                            </ImageButton>
+
+                            <ImageButton HorizontalOptions="Start" Aspect="AspectFill" HeightRequest="25" WidthRequest="25" 
+                                         VerticalOptions="Center" Grid.Row="0" Grid.Column="1" Command="{Binding PreviousCommand}">
+                                <ImageButton.Source>
+                                    <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleLeft}" 
+                                                     Color="Gray" />
+                                </ImageButton.Source>
+                            </ImageButton>
+
+                        <ImageButton HorizontalOptions="End" Aspect="AspectFill" Grid.Row="0" Grid.Column="2" 
+                                        HeightRequest="25" WidthRequest="25" VerticalOptions="Center" Command="{Binding NextCommand}">
+                                <ImageButton.Source>
+                                    <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleRight}" 
+                                                     Color="Gray" />
+                                </ImageButton.Source>
+                            </ImageButton>
+
+                            <ImageButton HorizontalOptions="End" Aspect="AspectFill" Grid.Row="0" Grid.Column="3" HeightRequest="25" 
+                                        WidthRequest="25" VerticalOptions="CenterAndExpand" Command="{Binding LastCommand}">
+                                <ImageButton.Source>
+                                    <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleDoubleRight}" 
+                                                     Color="gray" />
+                                </ImageButton.Source>
+                            </ImageButton>
+                        </Grid>
+
+                        <Label Grid.Row="1" FontSize="Small" Grid.Column="0" Text="Profiles Per Page" 
                                VerticalOptions="Center"  HorizontalOptions="Start"></Label>
-                        <Picker x:Name="PickerPageSize" Grid.Row="0" Grid.Column="2" 
+                        <Picker x:Name="PickerPageSize" Grid.Row="1" Grid.Column="2" 
                     VerticalOptions="Center" ItemsSource="{Binding PageSizeList}"  HorizontalOptions="Start"
                      ItemDisplayBinding="{Binding Text}" SelectedItem="{Binding PPageSize}" >
                             <Picker.Behaviors>
@@ -114,59 +158,13 @@
                             </Picker.Behaviors>
                         </Picker>
 
-                        <Label Grid.Row="1" FontSize="Medium" Grid.Column="0" Text="Current Page"
+                        <Label Grid.Row="2" FontSize="Small" Grid.Column="0" Text="Current Page"
                                 VerticalOptions="Center"/>
-                        <Entry Keyboard="Numeric" Text="{Binding EPageNumber}" HorizontalOptions="Start" Grid.Row="1" 
-                               Grid.Column="2" FontSize="Medium" VerticalOptions="End" Margin="0,0,0,10"/>
-                        <Label Grid.Row="1" Grid.Column="3" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="End" 
+                        <Entry Keyboard="Numeric" Text="{Binding EPageNumber}" HorizontalOptions="Start" Grid.Row="2" 
+                               Grid.Column="2" FontSize="Small" VerticalOptions="End" Margin="0,0,0,0"/>
+                        <Label Grid.Row="2" Grid.Column="3" FontSize="Small" VerticalOptions="Center" HorizontalOptions="End" 
                                Text="{Binding LNumberOfPages}" />
-                        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <ImageButton Aspect="AspectFill" Grid.Row="0" Grid.Column="0"
-HeightRequest="30" VerticalOptions="CenterAndExpand" Command="{Binding FirstCommand}" HorizontalOptions="Start" >
-                        <ImageButton.Source>
-                            <FontImageSource FontFamily="FontAwesomeSolid"
-     Glyph="{x:Static FoA:FontAwesomeIcons.AngleDoubleLeft}" Color="Gray" />
-                        </ImageButton.Source>
-                    </ImageButton>
 
-                    <ImageButton HorizontalOptions="CenterAndExpand" Aspect="AspectFill"
-HeightRequest="30" VerticalOptions="Center" Grid.Row="0" Grid.Column="1"
-                          Command="{Binding PreviousCommand}">
-                        <ImageButton.Source>
-                            <FontImageSource FontFamily="FontAwesomeSolid"
-                             Glyph="{x:Static FoA:FontAwesomeIcons.AngleLeft}" Color="Gray" />
-                        </ImageButton.Source>
-                    </ImageButton>
-
-                    <ImageButton HorizontalOptions="End" Aspect="AspectFill" Grid.Row="0" Grid.Column="2"
-HeightRequest="30" VerticalOptions="Center" Command="{Binding NextCommand}">
-                        <ImageButton.Source>
-                            <FontImageSource
-                     FontFamily="FontAwesomeSolid"
-                     Glyph="{x:Static FoA:FontAwesomeIcons.AngleRight}"
-                     Color="Gray" />
-                        </ImageButton.Source>
-                    </ImageButton>
-
-                    <ImageButton HorizontalOptions="End" Aspect="AspectFill" Grid.Row="0" Grid.Column="3"
-HeightRequest="30" VerticalOptions="CenterAndExpand" Command="{Binding LastCommand}">
-                        <ImageButton.Source>
-                            <FontImageSource
-                     FontFamily="FontAwesomeSolid"
-                     Glyph="{x:Static FoA:FontAwesomeIcons.AngleDoubleRight}"
-                     Color="gray" />
-                        </ImageButton.Source>
-                    </ImageButton>
-                        </Grid>
                     </Grid>
                 </Frame>
             </StackLayout>
