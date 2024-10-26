@@ -108,7 +108,7 @@ xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                                 </ImageButton.Source>
                             </ImageButton>
 
-                            <ImageButton HorizontalOptions="Start" Aspect="AspectFill" HeightRequest="25" WidthRequest="25" 
+                            <ImageButton HorizontalOptions="Start" Aspect="AspectFill" HeightRequest="20" WidthRequest="20" 
                                          VerticalOptions="Center" Grid.Row="0" Grid.Column="1" Command="{Binding PreviousCommand}">
                                 <ImageButton.Source>
                                     <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleLeft}" 
@@ -117,7 +117,7 @@ xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                             </ImageButton>
 
                             <ImageButton HorizontalOptions="End" Aspect="AspectFill" Grid.Row="0" Grid.Column="2" 
-                                        HeightRequest="25" WidthRequest="25" VerticalOptions="Center" Command="{Binding NextCommand}">
+                                        HeightRequest="20" WidthRequest="20" VerticalOptions="Center" Command="{Binding NextCommand}">
                                 <ImageButton.Source>
                                     <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleRight}" 
                                                      Color="Gray" />
