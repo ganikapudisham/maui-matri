@@ -46,7 +46,7 @@
                                         </Image.Source>
                                     </Image>
                                 </Frame>
-                                <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="Center">
+                                <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="Center" Margin="0,0,5,0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
@@ -55,29 +55,30 @@
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="3*"/>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="60"/>
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Row="0" Grid.Column="0"  Text="{Binding FirstName}" LineBreakMode="WordWrap" 
-                                       TextColor="#DE000000" FontFamily="Roboto-Medium" 
+                                       TextColor="#DE000000" FontFamily="Roboto-Medium" Margin="0,10,0,0"
                                        FontSize="{OnPlatform Android={OnIdiom Phone=15, Tablet=22}, iOS=16, WinUI=14,MacCatalyst=16}" 
-                                       CharacterSpacing="0.1" Margin="0,10,0,0"/>
-                                    <!--<Label Grid.Row="0" Grid.Column="1" Text="1w ago" TextColor="#666666" 
+                                       VerticalOptions="Center"/>
+                                    <Label Grid.Row="0" Grid.Column="1" LineBreakMode="WordWrap" TextColor="#666666" 
+                                        LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
+                                        Text="{Binding Age}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
+                                        HorizontalOptions="End" VerticalOptions="Center" />
+                                    <Label Grid.Row="0" Grid.Column="2" Text="" TextColor="#666666" HorizontalOptions="End"
                                        FontSize="{OnPlatform Default=10,WinUI=12,MacCatalyst=12}" FontFamily="Roboto-Regular" 
-                                       HorizontalOptions="End" CharacterSpacing="0.15" Margin="0,10,11,0"/>-->
-                                    <Label Grid.Row="1" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
+                                       VerticalOptions="Center" />
+                                    <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" LineBreakMode="WordWrap" TextColor="#666666" 
                                        LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
                                        Text="{Binding Height}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
                                        Margin="0,4,0,0" />
-                                    <Label Grid.Row="2" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
-                                       LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
-                                       Text="{Binding Age}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
-                                       Margin="0,4,0,0" />
-                                    <Label Grid.Row="3" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
+                                    <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" LineBreakMode="WordWrap" TextColor="#666666" 
                                        LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
                                        Text="{Binding Education}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
                                        Margin="0,4,0,0" />
-                                    <Label Grid.Row="4" Grid.Column="0" LineBreakMode="WordWrap" TextColor="#666666" 
+                                    <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" LineBreakMode="WordWrap" TextColor="#666666" 
                                        LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
                                        Text="{Binding Job}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
                                        Margin="0,4,0,10" />

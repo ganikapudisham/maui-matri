@@ -12,7 +12,7 @@
 
         <Image Source="logo.png"/>
 
-        <VerticalStackLayout Spacing="5">
+        <VerticalStackLayout Spacing="5" Margin="0,0,0,10">
             <Label Text="Welcome!" FontSize="28" TextColor="Gray" HorizontalTextAlignment="Center" />
             <Label Text="Login to your account" FontSize="18" TextColor="Gray" HorizontalTextAlignment="Center" />
         </VerticalStackLayout>
@@ -54,10 +54,10 @@
         </StackLayout>
 
         <Button Text="Sign In" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" 
-                Command="{Binding LoginCommand}" BackgroundColor="#93c393" />
+                Command="{Binding LoginCommand}" BackgroundColor="#93c393" Margin="0,5,0,0"/>
 
-        <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center">
-            <Label Text="Don't have account?" TextColor="Gray" />
+        <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center" Margin="0,50,0,0">
+            <Label Text="Don't have an account?" TextColor="Gray" />
             <Label Text="Register here" TextColor="#50b3f2" >
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding RegisterCommand}" />
