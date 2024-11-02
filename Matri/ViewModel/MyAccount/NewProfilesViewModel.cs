@@ -62,7 +62,7 @@ namespace Matri.ViewModel
             {
                 Profiles.Clear();
 
-                var dbProfilesWithPaging = await _serviceManager.GetProfiles(new Guid(token),
+                var dbProfilesWithPaging = await _serviceManager.GetProfiles(token,
                     pageNumber, pageSize, newProfiles: true);
                 var dbProfiles = dbProfilesWithPaging.Data;
                 var modValue = dbProfilesWithPaging.MetaData.TotalRecords % pageSize;
@@ -176,14 +176,14 @@ namespace Matri.ViewModel
                 var targetProfileId = item.Id;
 
                 //log the current user as visitor for the tapped profile
-                await _serviceManager.CreateProfileVisitor(new Guid(sessionToken), targetProfileId);
+                await _serviceManager.CreateProfileVisitor(sessionToken, targetProfileId);
 
-                var allRequests = await _serviceManager.GetAllRequests(new Guid(sessionToken));
+                var allRequests = await _serviceManager.GetAllRequests(sessionToken);
                 var requestsSentToSelectedUser = allRequests.Where(ar => ar.ReceiverId == targetProfileId).ToList();
 
                 var profileDetailsInput = ServiceHelper.InitialiseRequestsSent(requestsSentToSelectedUser);
 
-                profileDetailsInput.LoggedInId = new Guid(sessionToken);
+                profileDetailsInput.LoggedInId = sessionToken;
                 profileDetailsInput.TargetProfileId = targetProfileId;
 
                 var profileDetailsParams = new Dictionary<string, object> { { "ProfileDetailsInput", profileDetailsInput } };

@@ -84,7 +84,7 @@ namespace Matri.ViewModel
 
                 ShowHinduFields = Convert.ToBoolean(showHinduFields);
 
-                //var md = await _serviceManager.GetMasterData(new Guid(token));
+                //var md = await _serviceManager.GetMasterData(token);
                 MDReligions.AddRange(md.Religions);
 
                 SelectedReligion = md.Religions.Where(mt => mt.Id.ToLower() == Profile.Religion.ToLower()).FirstOrDefault();
@@ -180,7 +180,7 @@ namespace Matri.ViewModel
             try
             {
                 IsBusy = true;
-                var status = await _serviceManager.UpdateReligionDetails(new Guid(sessionToken), Profile);
+                var status = await _serviceManager.UpdateReligionDetails(sessionToken, Profile);
 
                 if (status)
                 {
@@ -210,7 +210,7 @@ namespace Matri.ViewModel
             var religion = (selectedItem as Master).Id;
 
             var token = await SecureStorage.GetAsync("Token");
-            var md = await _serviceManager.GetMasterData(new Guid(token));
+            var md = await _serviceManager.GetMasterData(token);
 
             if (religion.ToLower() == "hindu")
             {

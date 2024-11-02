@@ -28,17 +28,17 @@ namespace Matri.ViewModel
             {
                 IsBusy = true;
                 var sessionToken = await SecureStorage.GetAsync("Token");
-                var targetProfileId = await _serviceManager.ConvertNumberToGuid(new Guid(sessionToken), ProfileId); ;
+                var targetProfileId = await _serviceManager.ConvertNumberToGuid(sessionToken, ProfileId); ;
 
                 //log the current user as visitor for the tapped profile
-                await _serviceManager.CreateProfileVisitor(new Guid(sessionToken), targetProfileId);
+                await _serviceManager.CreateProfileVisitor(sessionToken, targetProfileId);
 
-                var allRequests = await _serviceManager.GetAllRequests(new Guid(sessionToken));
+                var allRequests = await _serviceManager.GetAllRequests(sessionToken);
                 var requestsSentToSelectedUser = allRequests.Where(ar => ar.ReceiverId == targetProfileId).ToList();
 
                 var profileDetailsInput = ServiceHelper.InitialiseRequestsSent(requestsSentToSelectedUser);
 
-                profileDetailsInput.LoggedInId = new Guid(sessionToken);
+                profileDetailsInput.LoggedInId = sessionToken;
                 profileDetailsInput.TargetProfileId = targetProfileId;
 
                 var profileDetailsParams = new Dictionary<string, object> { { "ProfileDetailsInput", profileDetailsInput } };

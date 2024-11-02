@@ -40,17 +40,17 @@ namespace Matri.ViewModel
         //    var sessionToken = await SecureStorage.GetAsync("Token");
         //    try
         //    {
-        //        var mdDiets = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=diet");
+        //        var mdDiets = await _serviceManager.GetMasterData(sessionToken, "masterdata?type=diet");
         //        MDDiets.AddRange(mdDiets);
         //        var userDiet = mdDiets.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.Diet.ToLower()).FirstOrDefault();
         //        SelectedDiet = userDiet;
 
-        //        var mdSmokeTypes = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=smoke");
+        //        var mdSmokeTypes = await _serviceManager.GetMasterData(sessionToken, "masterdata?type=smoke");
         //        MDSmokes.AddRange(mdSmokeTypes);
         //        var userSmoke = mdSmokeTypes.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.Smoke.ToLower()).FirstOrDefault();
         //        SelectedSmoke = userSmoke;
 
-        //        var mdDrinks = await _serviceManager.GetMasterData(new Guid(sessionToken), "masterdata?type=drink");
+        //        var mdDrinks = await _serviceManager.GetMasterData(sessionToken, "masterdata?type=drink");
         //        MDDrinks.AddRange(mdDrinks);
         //        var userDrink = mdDrinks.Where(mt => mt.Id.ToLower() == LoggedInUser.Value.Drink.ToLower()).FirstOrDefault();
         //        SelectedDrink = userDrink;
@@ -77,7 +77,7 @@ namespace Matri.ViewModel
             //try
             //{
             //    var sessionToken = await SecureStorage.GetAsync("Token");
-            //    var status = await _serviceManager.UpdateLifeStyleDetails(new Guid(sessionToken), lifeStyleDetails);
+            //    var status = await _serviceManager.UpdateLifeStyleDetails(sessionToken, lifeStyleDetails);
 
             //    if (status)
             //    {

@@ -341,7 +341,7 @@ namespace Matri.ViewModel
 
             try
             {
-                var status = await _serviceManager.UpdateExpectations(new Guid(sessionToken), partner);
+                var status = await _serviceManager.UpdateExpectations(sessionToken, partner);
 
                 if (status)
                 {

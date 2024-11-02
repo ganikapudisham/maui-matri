@@ -10,9 +10,9 @@ namespace Matri.Data
 {
     public interface IServiceRepository
     {
-        Task<bool> LogOut(Guid sessiontoken);
+        Task<bool> LogOut(string sessiontoken);
 
-        Task<bool> CreateProfileVisitor(Guid sessiontoken, Guid targetProfile);
+        Task<bool> CreateProfileVisitor(string sessiontoken, Guid targetProfile);
 
         Task<bool> UploadProfilePhoto(MultipartFormDataContent formData);
 

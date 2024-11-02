@@ -57,7 +57,7 @@ namespace Matri.ViewModel
             try
             {
                 IsBusy = true;
-                var result = await _serviceManager.ChangePasswordAsync(new Guid(token), password);
+                var result = await _serviceManager.ChangePasswordAsync(token, password);
                 IsBusy = false;
                 if (result)
                 {

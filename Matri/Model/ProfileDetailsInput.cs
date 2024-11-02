@@ -8,7 +8,7 @@ namespace Matri.Model
     {
         public ProfileDetailsInput() { }
 
-        public Guid LoggedInId { get; set; }
+        public string LoggedInId { get; set; }
 
         public Guid TargetProfileId { get; set; }
 

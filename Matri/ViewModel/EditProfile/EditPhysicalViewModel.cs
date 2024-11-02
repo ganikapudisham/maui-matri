@@ -215,7 +215,7 @@ namespace Matri.ViewModel
 
             try
             {
-                var status = await _serviceManager.UpdatePhysicalDetails(new Guid(sessionToken), Profile);
+                var status = await _serviceManager.UpdatePhysicalDetails(sessionToken, Profile);
 
                 if (status)
                 {

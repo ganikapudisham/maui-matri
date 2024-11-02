@@ -25,7 +25,7 @@ namespace Matri.Data.Impl
         {
             _firebaseCrashlyticsService = ServiceHelper.GetService<IFirebaseCrashlyticsService>();
         }
-        public async Task<bool> LogOut(Guid sessiontoken)
+        public async Task<bool> LogOut(string sessiontoken)
         {
             var client = CreateHttpClient(sessiontoken);
 
@@ -39,7 +39,7 @@ namespace Matri.Data.Impl
             return false;
         }
 
-        public async Task<bool> CreateProfileVisitor(Guid sessiontoken, Guid targetProfile)
+        public async Task<bool> CreateProfileVisitor(string sessiontoken, Guid targetProfile)
         {
             var client = CreateHttpClient(sessiontoken);
 
@@ -81,7 +81,7 @@ namespace Matri.Data.Impl
 
             try
             {
-                var httpClient = CreateHttpClient(new Guid(sessionToken));
+                var httpClient = CreateHttpClient(sessionToken);
 
                 var serialized = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
 
@@ -145,7 +145,7 @@ namespace Matri.Data.Impl
 
             try
             {
-                var httpClient = CreateHttpClient(new Guid(sessionToken));
+                var httpClient = CreateHttpClient(sessionToken);
                 response = await httpClient.GetAsync(url);
                 if (!response.IsSuccessStatusCode)
                 {
@@ -205,7 +205,7 @@ namespace Matri.Data.Impl
             TOut objectToReturn = default(TOut);
             try
             {
-                var httpClient = CreateHttpClient(new Guid(sessionToken));
+                var httpClient = CreateHttpClient(sessionToken);
 
                 var serialized = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
 

@@ -14,7 +14,7 @@ namespace Matri.Model
         
         public string Password { get; set; }
         
-        public Guid SessionToken { get; set; }
+        public string SessionToken { get; set; }
         
         public DateTime PermanentTokenTimeStamp { get; set; }
         

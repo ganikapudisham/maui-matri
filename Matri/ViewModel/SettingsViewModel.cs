@@ -52,7 +52,7 @@ namespace Matri.ViewModel
         {
             IsBusy = true;
             var sessionToken = await SecureStorage.GetAsync("Token");
-            var appDetails = await _serviceManager.GetAppDetails(new Guid(sessionToken));
+            var appDetails = await _serviceManager.GetAppDetails(sessionToken);
 
             UserAppVersion = AppInfo.Current.VersionString;
             AppVersionLatest = appDetails.LatestVersion;

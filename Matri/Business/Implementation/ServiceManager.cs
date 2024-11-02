@@ -70,7 +70,7 @@ namespace Matri.Business.Impl
             return response;
         }
 
-        public async Task<Paging<MiniProfile>> GetProfiles(Guid sessiontoken, int page = 1, int perpage = 5,
+        public async Task<Paging<MiniProfile>> GetProfiles(string sessiontoken, int page = 1, int perpage = 5,
             string sortby = "Id", string order = "Desc", string filterby = "All", bool newProfiles = false)
         {
             var modifiedPofiles = new Paging<MiniProfile>();
@@ -103,12 +103,12 @@ namespace Matri.Business.Impl
             return modifiedPofiles;
         }
 
-        public async Task<bool> LogoutAsync(Guid sessiontoken)
+        public async Task<bool> LogoutAsync(string sessiontoken)
         {
             return await _serviceRepository.LogOut(sessiontoken);
         }
 
-        public async Task<Profile> GetProfileById(Guid sessiontoken, Guid profileId)
+        public async Task<Profile> GetProfileById(string sessiontoken, Guid profileId)
         {
             var url = $"profiles/{profileId}";
             var profileDetails = await _serviceRepository.GetAsync<Profile>(sessiontoken.ToString(), url);
@@ -119,13 +119,13 @@ namespace Matri.Business.Impl
             return profileDetails;
         }
 
-        public async Task<Guid> ConvertNumberToGuid(Guid sessionToken, string profileId)
+        public async Task<Guid> ConvertNumberToGuid(string sessionToken, string profileId)
         {
             var url = $"profiles/user?id={profileId}";
             var profileGuid = await _serviceRepository.GetAsync<Guid>(sessionToken.ToString(), url);
             return profileGuid;
         }
-        public async Task<Mini> GetShortDetailsOfLoggedInUser(Guid sessiontoken)
+        public async Task<Mini> GetShortDetailsOfLoggedInUser(string sessiontoken)
         {
             string url = Constants.API_URL_GetMiniDetailsOfLoggedInUser;// "mini";
             var miniDetailsOfLoggedInUser = await _serviceRepository.GetAsync<Mini>(sessiontoken.ToString(), url);
@@ -140,19 +140,19 @@ namespace Matri.Business.Impl
             return affiliateContactDetails;
         }
 
-        public Task<bool> ChangePasswordAsync(Guid guid, Password password)
+        public Task<bool> ChangePasswordAsync(string guid, Password password)
         {
             var url = Constants.API_URL_ChangePassword; //"password/change";
             return _serviceRepository.PutAsync<Password, bool>(guid.ToString(), url, password);
         }
 
-        public async Task<bool> CreateProfileVisitor(Guid sessiontoken, Guid targetProfile)
+        public async Task<bool> CreateProfileVisitor(string sessiontoken, Guid targetProfile)
         {
             var url = "";
             return await _serviceRepository.CreateProfileVisitor(sessiontoken, targetProfile);
         }
 
-        public async Task<Paging<MiniProfile>> GetMarkedProfiles(Guid sessiontoken, string markedAs, int page = 1,
+        public async Task<Paging<MiniProfile>> GetMarkedProfiles(string sessiontoken, string markedAs, int page = 1,
             int perpage = 5)
         {
             var modifiedPofiles = new Paging<MiniProfile>();
@@ -183,7 +183,7 @@ namespace Matri.Business.Impl
             return modifiedPofiles;
         }
 
-        public async Task<Paging<Visitor>> GetProfileVisitors(Guid sessiontoken, int startPage = 1,
+        public async Task<Paging<Visitor>> GetProfileVisitors(string sessiontoken, int startPage = 1,
             int pageSize = 5)
         {
             var visitors = new Paging<Visitor>();
@@ -205,13 +205,13 @@ namespace Matri.Business.Impl
             return tempVisitors;
         }
 
-        public async Task<bool> MarkProfile(Guid sessionToken, Request request)
+        public async Task<bool> MarkProfile(string sessionToken, Request request)
         {
             string url = "requests";
             return await _serviceRepository.PostAsync<Request, bool>(sessionToken.ToString(), url, request);
         }
 
-        public async Task<Paging<RequestSent>> GetRequestSent(Guid sessiontoken, int page = 1, int perpage = 5)
+        public async Task<Paging<RequestSent>> GetRequestSent(string sessiontoken, int page = 1, int perpage = 5)
         {
             var modifiedSentRequests = new Paging<RequestSent>();
             var requestSentLocal = new List<RequestSent>();
@@ -239,7 +239,7 @@ namespace Matri.Business.Impl
 
         }
 
-        public async Task<Paging<RequestReceived>> GetRequestReceived(Guid sessiontoken, int page = 1, int perpage = 5)
+        public async Task<Paging<RequestReceived>> GetRequestReceived(string sessiontoken, int page = 1, int perpage = 5)
         {
             var modifiedReceivedRequests = new Paging<RequestReceived>();
             var requestReceivedLocal = new List<RequestReceived>();
@@ -267,17 +267,17 @@ namespace Matri.Business.Impl
 
         }
 
-        public async Task<bool> ContactUs(Guid sessiontoken, ContactUs contactUs)
+        public async Task<bool> ContactUs(string sessiontoken, ContactUs contactUs)
         {
             return await _serviceRepository.PostAsync<ContactUs, bool>(sessiontoken.ToString(), Constants.API_URL_ContactUs, contactUs);
         }
 
-        public async Task<MDD> GetMasterData(Guid sessiontoken)
+        public async Task<MDD> GetMasterData(string sessiontoken)
         {
             return await _serviceRepository.GetAsync<MDD>(sessiontoken.ToString(), Constants.API_URL_MasterData);
         }
 
-        public async Task<Paging<MiniProfile>> Search(Guid sessiontoken, SearchParameters searchParameters)
+        public async Task<Paging<MiniProfile>> Search(string sessiontoken, SearchParameters searchParameters)
         {
             var modifiedPofiles = new Paging<MiniProfile>();
             var userL = new List<MiniProfile>();
@@ -320,25 +320,25 @@ namespace Matri.Business.Impl
             return modifiedPofiles;
         }
 
-        public async Task<Model.App> GetAppDetails(Guid sessiontoken)
+        public async Task<Model.App> GetAppDetails(string sessiontoken)
         {
             var url = Constants.API_URL_GetAppDetails; //"app";
             return await _serviceRepository.GetAsync<Model.App>(sessiontoken.ToString(), url);
         }
 
-        public async Task<Profile> GetUserData(Guid sessiontoken)
+        public async Task<Profile> GetUserData(string sessiontoken)
         {
             var url = Constants.API_URL_GetUserProfile;// "profiles/mine";
             return await _serviceRepository.GetAsync<Profile>(sessiontoken.ToString(), url);
         }
 
-        public async Task<bool> UpdateBasicDetails(Guid sessiontoken, Profile profile)
+        public async Task<bool> UpdateBasicDetails(string sessiontoken, Profile profile)
         {
             var url = Constants.API_URL_UpdateUserBasics;
             return await UpdateProfileDetails(sessiontoken, profile, url);
         }
 
-        private async Task<bool> UpdateProfileDetails(Guid sessiontoken, Profile profile, string url)
+        private async Task<bool> UpdateProfileDetails(string sessiontoken, Profile profile, string url)
         {
             return await _serviceRepository.PutAsync<Profile, bool>(sessiontoken.ToString(), url, profile);
         }
@@ -348,55 +348,55 @@ namespace Matri.Business.Impl
             return await _serviceRepository.UploadProfilePhoto(formData);
         }
 
-        public async Task<bool> UpdateEducationDetails(Guid sessiontoken, Profile profile)
+        public async Task<bool> UpdateEducationDetails(string sessiontoken, Profile profile)
         {
             var url = Constants.API_URL_UpdateUserEducation;
             return await UpdateProfileDetails(sessiontoken, profile, url);
         }
 
-        public async Task<bool> UpdateContactDetails(Guid sessiontoken, Profile profile)
+        public async Task<bool> UpdateContactDetails(string sessiontoken, Profile profile)
         {
             var url = Constants.API_URL_UpdateUserContact;
             return await UpdateProfileDetails(sessiontoken, profile, url);
         }
 
-        public async Task<bool> UpdateFamilyDetails(Guid sessiontoken, Profile profile)
+        public async Task<bool> UpdateFamilyDetails(string sessiontoken, Profile profile)
         {
             var url = Constants.API_URL_UpdateUserFamily;
             return await UpdateProfileDetails(sessiontoken, profile, url);
         }
 
-        public async Task<bool> UpdateLifeStyleDetails(Guid sessiontoken, Profile profile)
+        public async Task<bool> UpdateLifeStyleDetails(string sessiontoken, Profile profile)
         {
             var url = Constants.API_URL_UpdateUserLifeStyle;
             return await UpdateProfileDetails(sessiontoken, profile, url);
         }
 
-        public async Task<bool> UpdatePhysicalDetails(Guid sessiontoken, Profile profile)
+        public async Task<bool> UpdatePhysicalDetails(string sessiontoken, Profile profile)
         {
             var url = Constants.API_URL_UpdateUserPhysical;
             return await UpdateProfileDetails(sessiontoken, profile, url);
         }
 
-        public async Task<bool> UpdateReligionDetails(Guid sessiontoken, Profile profile)
+        public async Task<bool> UpdateReligionDetails(string sessiontoken, Profile profile)
         {
             var url = Constants.API_URL_UpdateUserReligion;
             return await UpdateProfileDetails(sessiontoken, profile, url);
         }
 
-        public async Task<bool> UpdateExpectations(Guid sessiontoken, Partner partner)
+        public async Task<bool> UpdateExpectations(string sessiontoken, Partner partner)
         {
             var url = Constants.API_URL_UpdateUserExpectation;
             return await _serviceRepository.PutAsync<Partner, bool>(sessiontoken.ToString(), url, partner);
         }
 
-        public Task<bool> CreateUpdateDeviceToken(Guid sessiontoken, FCMToken fcmToken)
+        public Task<bool> CreateUpdateDeviceToken(string sessiontoken, FCMToken fcmToken)
         {
             var url = Constants.API_URL_FCM;
             return _serviceRepository.PostAsync<FCMToken, bool>(sessiontoken.ToString(), url, fcmToken);
         }
 
-        public Task<List<FCMToken>> GetUserDeviceTokens(Guid sessiontoken, string notificationRecipient)
+        public Task<List<FCMToken>> GetUserDeviceTokens(string sessiontoken, string notificationRecipient)
         {
             var url = $"{Constants.API_URL_FCM}?notificationRecipient={notificationRecipient}";
             return _serviceRepository.GetAsync<List<FCMToken>>(sessiontoken.ToString(), url);
@@ -408,7 +408,7 @@ namespace Matri.Business.Impl
             return _serviceRepository.GetAsync<Profile>(Guid.Empty.ToString(), url);
         }
 
-        public Task<List<RequestSent>>GetAllRequests(Guid sessiontoken)
+        public Task<List<RequestSent>>GetAllRequests(string sessiontoken)
         {
             return _serviceRepository.GetAsync<List<RequestSent>>(sessiontoken.ToString(), Constants.API_URL_AllRequests);
         }

@@ -147,7 +147,7 @@ namespace Matri.ViewModel
             try
             {
                 var sessionToken = await SecureStorage.GetAsync("Token");
-                var status = await _serviceManager.UpdateFamilyDetails(new Guid(sessionToken), Profile);
+                var status = await _serviceManager.UpdateFamilyDetails(sessionToken, Profile);
 
                 if (status)
                 {

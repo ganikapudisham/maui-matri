@@ -211,7 +211,7 @@ namespace Matri.ViewModel
             set { _profilePhotos = value; OnPropertyChanged(nameof(ProfilePhotos)); }
         }
 
-        public async Task GetProfileDetails(Guid userToken, Guid profileToken)
+        public async Task GetProfileDetails(string userToken, Guid profileToken)
         {
             IsBusy = true;
             var showHinduFields = _sharedService.GetBool("ShowHinduFields");
@@ -427,7 +427,7 @@ namespace Matri.ViewModel
             IsBusy = true;
             try
             {
-                var marked = await _serviceManager.MarkProfile(new Guid(sessionToken), request);
+                var marked = await _serviceManager.MarkProfile(sessionToken, request);
 
                 var message = string.Empty;
                 if (!marked)
@@ -456,7 +456,7 @@ namespace Matri.ViewModel
                 else
                 {
                     Profile = _sharedService.GetValue<Profile>("LoggedInUser");
-                    var recipientDeviceTokens = await _serviceManager.GetUserDeviceTokens(new Guid(sessionToken), request.To.ToString());
+                    var recipientDeviceTokens = await _serviceManager.GetUserDeviceTokens(sessionToken, request.To.ToString());
 
                     var notificationTitle = "";
                     var notificationBody = "";

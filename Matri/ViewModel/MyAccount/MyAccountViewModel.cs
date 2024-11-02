@@ -70,13 +70,13 @@ namespace Matri.ViewModel
             IsBusy = true;
             var sessionToken = await SecureStorage.GetAsync("Token");
 
-            var miniDetails = await _serviceManager.GetShortDetailsOfLoggedInUser(new Guid(sessionToken));
+            var miniDetails = await _serviceManager.GetShortDetailsOfLoggedInUser(sessionToken);
 
-            var guidIdentifier = await _serviceManager.ConvertNumberToGuid(new Guid(sessionToken), miniDetails.WebsiteIdentifier);
+            var guidIdentifier = await _serviceManager.ConvertNumberToGuid(sessionToken, miniDetails.WebsiteIdentifier);
 
             var profileDetailsInput = new ProfileDetailsInput();
             profileDetailsInput.TargetProfileId = guidIdentifier;
-            profileDetailsInput.LoggedInId = new Guid(sessionToken);
+            profileDetailsInput.LoggedInId = sessionToken;
 
             var profileDetailsParams = new Dictionary<string, object> { { "ProfileDetailsInput", profileDetailsInput } };
 

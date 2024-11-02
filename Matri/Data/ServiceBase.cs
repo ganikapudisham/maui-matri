@@ -47,7 +47,7 @@ $"{p.Name}={(p.PropertyType == typeof(DateTime) ? WebUtility.UrlEncode(((DateTim
             return string.Join("&", result.ToArray());
         }
 
-        protected HttpClient CreateHttpClient(Guid token)
+        protected HttpClient CreateHttpClient(string token)
         {
             //if (!CrossConnectivity.Current.IsConnected)
             //{
@@ -68,7 +68,7 @@ $"{p.Name}={(p.PropertyType == typeof(DateTime) ? WebUtility.UrlEncode(((DateTim
             var client = new HttpClient() { BaseAddress = _apiEndpoint };
             client.DefaultRequestHeaders.Clear();
 
-            if (token != Guid.Empty)
+            if (!string.IsNullOrEmpty(token))
             {
                 client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", $"Token {token}");
             }

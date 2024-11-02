@@ -87,15 +87,15 @@ namespace Matri.ViewModel
 
                 //Save app Base wether If Hindu Users
 
-                var appDetails = await _serviceManager.GetAppDetails(session.SessionToken);
+                //var appDetails = await _serviceManager.GetAppDetails(session.SessionToken);
 
                 var sessionToken = await SecureStorage.GetAsync("Token");
-                var user = await _serviceManager.GetUserData(new Guid(sessionToken));
-                var masterData = await _serviceManager.GetMasterData(new Guid(sessionToken));
+                var user = await _serviceManager.GetUserData(sessionToken);
+                var masterData = await _serviceManager.GetMasterData(sessionToken);
 
                 _sharedService.Add<Profile>("LoggedInUser", user);
                 _sharedService.Add<MDD>("MasterData", masterData);
-                _sharedService.AddBool("ShowHinduFields", appDetails.ShowHinduFields);
+                _sharedService.AddBool("ShowHinduFields", false);
                 _sharedService.AddBool("SubScriptionType", session.SubscriptionActive);
                 IsBusy = false;
 
@@ -108,7 +108,7 @@ namespace Matri.ViewModel
                     fcmToken.Token = _deviceToken;
                 }
 
-                var deviceTokenSaved = await _serviceManager.CreateUpdateDeviceToken(new Guid(sessionToken), fcmToken);
+                var deviceTokenSaved = await _serviceManager.CreateUpdateDeviceToken(sessionToken, fcmToken);
 
                 await Shell.Current.GoToAsync("//AllProfilesPage");
             }

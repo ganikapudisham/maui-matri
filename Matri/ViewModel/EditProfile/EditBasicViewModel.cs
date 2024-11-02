@@ -248,7 +248,7 @@ namespace Matri.ViewModel
             try
             {
                 IsBusy = true;
-                var status = await _serviceManager.UpdateBasicDetails(new Guid(sessionToken), basicDetails);
+                var status = await _serviceManager.UpdateBasicDetails(sessionToken, basicDetails);
                 IsBusy = false;
                 if (status)
                 {

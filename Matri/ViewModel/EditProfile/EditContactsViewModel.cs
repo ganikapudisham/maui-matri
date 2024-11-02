@@ -129,7 +129,7 @@ namespace Matri.ViewModel
             try
             {
                 var sessionToken = await SecureStorage.GetAsync("Token");
-                var status = await _serviceManager.UpdateContactDetails(new Guid(sessionToken), Profile);
+                var status = await _serviceManager.UpdateContactDetails(sessionToken, Profile);
 
                 if (status)
                 {

@@ -43,7 +43,7 @@ namespace Matri.ViewModel
             var lat = affiliateContactDetails.Latitude;
 
             var sessionToken = await SecureStorage.GetAsync("Token");
-            AppDetails = await _serviceManager.GetAppDetails(new Guid(sessionToken));
+            AppDetails = await _serviceManager.GetAppDetails(sessionToken);
         }
 
         public Point GeoCoordinate
@@ -110,7 +110,7 @@ namespace Matri.ViewModel
             {
                 IsBusy = true;
                 var sessionToken = await SecureStorage.GetAsync("Token");
-                await _serviceManager.ContactUs(new Guid(sessionToken), contactUs);
+                await _serviceManager.ContactUs(sessionToken, contactUs);
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", "Thank You, We will revert at the earliest.", "OK");
                 IsBusy = false;
             }

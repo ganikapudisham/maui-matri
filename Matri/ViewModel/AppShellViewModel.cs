@@ -40,7 +40,7 @@ namespace Matri.ViewModel
         public async Task ShareToApps()
         {
             var token = await SecureStorage.GetAsync("Token");
-            var appDetails = await _serviceManager.GetAppDetails(new Guid(token));
+            var appDetails = await _serviceManager.GetAppDetails(token);
 
             await Share.RequestAsync(new ShareTextRequest
             {
@@ -56,7 +56,7 @@ namespace Matri.ViewModel
         {
             var token = await SecureStorage.GetAsync("Token");
             FlyoutIsPresented = false;
-            await _serviceManager.LogoutAsync(new Guid(token));
+            await _serviceManager.LogoutAsync(token);
             await Shell.Current.GoToAsync("///LoginPage");
         }
     }

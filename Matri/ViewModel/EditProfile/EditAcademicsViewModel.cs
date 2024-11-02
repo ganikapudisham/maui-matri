@@ -129,7 +129,7 @@ namespace Matri.ViewModel
             try
             {
                 IsBusy = true;
-                var status = await _serviceManager.UpdateEducationDetails(new Guid(sessionToken), Profile);
+                var status = await _serviceManager.UpdateEducationDetails(sessionToken, Profile);
                 IsBusy = false;
                 if (status)
                 {
