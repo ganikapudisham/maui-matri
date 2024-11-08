@@ -4,11 +4,22 @@
              x:Class="Matri.Views.LoginPage"
              xmlns:FoA="clr-namespace:Matri.FontsAwesome;assembly=Matri"
              Title="">
-    
+
     <VerticalStackLayout 
             Spacing="5" 
             Padding="30,0" 
             VerticalOptions="Center">
+
+        <Grid ColumnDefinitions="Auto, *" Padding="5" BackgroundColor="White" IsVisible="{Binding NewVersionPromptVisibility}">
+            <Frame ZIndex="1" HasShadow="True" BackgroundColor="Brown" BorderColor="Brown" HeightRequest="56" WidthRequest="300" CornerRadius="28">
+            <Label Grid.Column="1" BackgroundColor="Brown" HeightRequest="40" Text="{Binding NewVersionAvailableMessage}" VerticalOptions="Center" HorizontalTextAlignment="Center" 
+                   TextColor="White" FontSize="15">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding UpdateAppCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+                </Frame>
+        </Grid>
 
         <Image Source="logo.png"/>
 
@@ -46,11 +57,11 @@
                        ClearButtonVisibility="WhileEditing" />
             </Frame>
             <ImageButton Command="{Binding TogglePasswordCommand}" HeightRequest="20" WidthRequest="20">
-                    <ImageButton.Source>
+                <ImageButton.Source>
                     <FontImageSource FontFamily="FontAwesomeSolid" 
                                      Glyph="{Binding PasswordVisibilityIcon}" Color="Grey" Size="15" />
-                    </ImageButton.Source>
-                </ImageButton>
+                </ImageButton.Source>
+            </ImageButton>
         </StackLayout>
 
         <Button Text="Sign In" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" 

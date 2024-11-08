@@ -140,10 +140,10 @@ namespace Matri.Business.Impl
             return affiliateContactDetails;
         }
 
-        public Task<bool> ChangePasswordAsync(string guid, Password password)
+        public async Task<bool> ChangePasswordAsync(string guid, Password password)
         {
             var url = Constants.API_URL_ChangePassword; //"password/change";
-            return _serviceRepository.PutAsync<Password, bool>(guid.ToString(), url, password);
+            return await _serviceRepository.PutAsync<Password, bool>(guid.ToString(), url, password);
         }
 
         public async Task<bool> CreateProfileVisitor(string sessiontoken, Guid targetProfile)
@@ -390,27 +390,27 @@ namespace Matri.Business.Impl
             return await _serviceRepository.PutAsync<Partner, bool>(sessiontoken.ToString(), url, partner);
         }
 
-        public Task<bool> CreateUpdateDeviceToken(string sessiontoken, FCMToken fcmToken)
+        public async Task<bool> CreateUpdateDeviceToken(string sessiontoken, FCMToken fcmToken)
         {
             var url = Constants.API_URL_FCM;
-            return _serviceRepository.PostAsync<FCMToken, bool>(sessiontoken.ToString(), url, fcmToken);
+            return await _serviceRepository.PostAsync<FCMToken, bool>(sessiontoken.ToString(), url, fcmToken);
         }
 
-        public Task<List<FCMToken>> GetUserDeviceTokens(string sessiontoken, string notificationRecipient)
+        public async Task<List<FCMToken>> GetUserDeviceTokens(string sessiontoken, string notificationRecipient)
         {
             var url = $"{Constants.API_URL_FCM}?notificationRecipient={notificationRecipient}";
-            return _serviceRepository.GetAsync<List<FCMToken>>(sessiontoken.ToString(), url);
+            return await _serviceRepository.GetAsync<List<FCMToken>>(sessiontoken.ToString(), url);
         }
 
-        public Task<Profile> GetProfileByIdWithoutAuth(Guid profileId)
+        public async Task<Profile> GetProfileByIdWithoutAuth(Guid profileId)
         {
             var url = $"{Constants.API_URL_NotificationFrom}/{profileId}";
-            return _serviceRepository.GetAsync<Profile>(Guid.Empty.ToString(), url);
+            return await _serviceRepository.GetAsync<Profile>(Guid.Empty.ToString(), url);
         }
 
-        public Task<List<RequestSent>>GetAllRequests(string sessiontoken)
+        public async Task<List<RequestSent>> GetAllRequests(string sessiontoken)
         {
-            return _serviceRepository.GetAsync<List<RequestSent>>(sessiontoken.ToString(), Constants.API_URL_AllRequests);
+            return await _serviceRepository.GetAsync<List<RequestSent>>(sessiontoken.ToString(), Constants.API_URL_AllRequests);
         }
     }
 }

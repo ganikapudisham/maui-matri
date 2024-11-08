@@ -41,6 +41,10 @@ namespace Matri
                     fonts.AddFont("Montserrat-Medium.ttf", "Montserrat-Medium");
                     fonts.AddFont("Montserrat-Regular.ttf", "Montserrat-Regular");
                     //fonts.AddFont("Montserrat-Semibold.ttf", "Montserrat-Semibold");
+                })
+                .ConfigureEssentials(essentials => 
+                { 
+                    essentials.UseVersionTracking(); 
                 });
 
             builder.Services.AddSingleton<LoginViewModel>();

@@ -36,6 +36,9 @@ namespace Matri.ViewModel
 
 
             ReadFireBaseAdminSdk();
+
+            Task.Run(async () => { await ShowNewVersionAvailableMessage(); });
+
             //NavigateToPage();
         }
 #if DEBUG
@@ -59,6 +62,12 @@ namespace Matri.ViewModel
 
         [ObservableProperty]
         public string passwordVisibilityIcon = FontAwesomeIcons.EyeSlash;
+
+        [ObservableProperty]
+        public bool newVersionPromptVisibility = false;
+
+        [ObservableProperty]
+        public string newVersionAvailableMessage;
 
         [RelayCommand]
         public async Task Login()
@@ -184,5 +193,35 @@ namespace Matri.ViewModel
                 PasswordVisibilityIcon = FontAwesomeIcons.EyeSlash;
             }, cancellationToken);
         }
+
+        public async Task ShowNewVersionAvailableMessage()
+        {
+            IsBusy = true;
+            var appDetails = await _serviceManager.GetAppDetails(Guid.Empty.ToString());
+
+            var UserAppVersion = AppInfo.Current.VersionString;
+            var localV = AppInfo.Current.Version.ToString();
+            var AppVersionLatest = appDetails.LatestVersion;
+            var GooglePlayStoreAppId = appDetails.GooglePlayStoreLink;
+
+            if (appDetails.LatestVersion.Trim() != AppInfo.Current.VersionString.Trim())
+            {
+                NewVersionPromptVisibility = true;
+                NewVersionAvailableMessage = $"Click here to install latest version ({AppVersionLatest})";
+            }
+            IsBusy = false;
+        }
+
+        [RelayCommand]
+        public async Task UpdateApp()
+        {
+            var launcherOpened = await Launcher.Default.OpenAsync(new Uri($"{Constants.PlayStoreAppUrl}{AppInfo.PackageName}"));
+
+            if (launcherOpened)
+            {
+
+            }
+        }
+
     }
 }
