@@ -90,7 +90,7 @@
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" Margin="0,5,0,0" HorizontalOptions="Center" HeightRequest="20">
-                    <ActivityIndicator IsVisible="True" IsRunning="True"/>
+                    <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="True"/>
             </StackLayout>
         </VerticalStackLayout>
         <Grid Margin="0,20,0,0">
