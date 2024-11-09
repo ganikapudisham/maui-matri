@@ -69,6 +69,12 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public string newVersionAvailableMessage;
 
+        [ObservableProperty]
+        public string currentAppVersion;
+
+        [ObservableProperty]
+        public string bgColor = "White";
+
         [RelayCommand]
         public async Task Login()
         {
@@ -204,10 +210,13 @@ namespace Matri.ViewModel
             var AppVersionLatest = appDetails.LatestVersion;
             var GooglePlayStoreAppId = appDetails.GooglePlayStoreLink;
 
+            CurrentAppVersion = $"Version {AppInfo.Current.VersionString.Trim()}";
+
             if (appDetails.LatestVersion.Trim() != AppInfo.Current.VersionString.Trim())
             {
                 NewVersionPromptVisibility = true;
-                NewVersionAvailableMessage = $"Click here to install latest version ({AppVersionLatest})";
+                BgColor = "Brown";
+                NewVersionAvailableMessage = $"Click here to install latest version {AppVersionLatest}";
             }
             IsBusy = false;
         }
