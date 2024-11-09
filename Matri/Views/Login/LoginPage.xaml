@@ -71,7 +71,7 @@
             <Button Text="Sign In" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" 
                 Command="{Binding LoginCommand}" BackgroundColor="#93c393" Margin="0,5,0,0"/>
 
-            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center" Margin="0,35,0,0">
+            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center" Margin="0,30,0,0">
                 <Label Text="Don't have an account?" TextColor="Gray" />
                 <Label Text="Register here" TextColor="#50b3f2" >
                     <Label.GestureRecognizers>
@@ -89,14 +89,15 @@
                 </Label>
             </StackLayout>
 
-            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center">
-                <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="True"/>
+            <StackLayout Orientation="Horizontal" Margin="0,5,0,0" HorizontalOptions="Center" HeightRequest="20">
+                    <ActivityIndicator IsVisible="True" IsRunning="True"/>
             </StackLayout>
         </VerticalStackLayout>
-        <Grid Margin="0,40,0,0">
+        <Grid Margin="0,20,0,0">
             <Grid.RowDefinitions>
             </Grid.RowDefinitions>
-            <Label TextColor="Gray" FontSize="Micro" Grid.Row="0" Text="{Binding CurrentAppVersion}" HorizontalOptions="End" Padding="0,0,10,0"></Label>
+            <Label TextColor="Gray" FontSize="Micro" Grid.Row="0" Grid.Column="0" Text="{Binding CurrentAppVersion}" 
+                   HorizontalOptions="End" Padding="0,0,10,0"/>
         </Grid>
     </VerticalStackLayout>
 </ContentPage>
