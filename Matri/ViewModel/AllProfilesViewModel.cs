@@ -15,6 +15,18 @@ namespace Matri.ViewModel
         public static int totalPages;
         public Guid LoggedInId = new Guid();
 
+        [ObservableProperty]
+        public string bgColor = "White";
+
+        [ObservableProperty]
+        public bool newVersionPromptVisibility = false;
+
+        [ObservableProperty]
+        public string newVersionAvailableMessage;
+
+        [ObservableProperty]
+        public string currentAppVersion;
+
         public AllProfilesViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
@@ -22,7 +34,9 @@ namespace Matri.ViewModel
             PageSizeList.Add(new PageSize { Text = "10", Value = 10 });
             PageSizeList.Add(new PageSize { Text = "20", Value = 20 });
             pPageSize = PageSizeList[0];
-            Task.Run(() => this.GetProfiles(1, pPageSize.Value));
+
+            Task.Run(async () => { await ShowNewVersionAvailableMessage(); });
+            Task.Run( () => { this.GetProfiles(1, pPageSize.Value); });
         }
         public ObservableRangeCollection<PageSize> PageSizeList { get; private set; } = new ObservableRangeCollection<PageSize>();
 
@@ -189,6 +203,38 @@ namespace Matri.ViewModel
                 var profileDetailsParams = new Dictionary<string, object> { { "ProfileDetailsInput", profileDetailsInput } };
                 IsBusy = false;
                 await Shell.Current.GoToAsync("profiledetails", profileDetailsParams);
+            }
+        }
+
+        public async Task ShowNewVersionAvailableMessage()
+        {
+            IsBusy = true;
+            var appDetails = await _serviceManager.GetAppDetails(Guid.Empty.ToString());
+
+            var UserAppVersion = AppInfo.Current.VersionString;
+            var localV = AppInfo.Current.Version.ToString();
+            var AppVersionLatest = appDetails.LatestVersion;
+            var GooglePlayStoreAppId = appDetails.GooglePlayStoreLink;
+
+            CurrentAppVersion = $"Version {AppInfo.Current.VersionString.Trim()}";
+
+            if (appDetails.LatestVersion.Trim() != AppInfo.Current.VersionString.Trim())
+            {
+                NewVersionPromptVisibility = true;
+                BgColor = "Brown";
+                NewVersionAvailableMessage = $"Click here to install latest version {AppVersionLatest}";
+            }
+            IsBusy = false;
+        }
+
+        [RelayCommand]
+        public async Task UpdateApp()
+        {
+            var launcherOpened = await Launcher.Default.OpenAsync(new Uri($"{Constants.PlayStoreAppUrl}{AppInfo.PackageName}"));
+
+            if (launcherOpened)
+            {
+
             }
         }
     }
