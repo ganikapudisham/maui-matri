@@ -47,18 +47,32 @@
                 </Entry>
             </Frame>
 
-            <Frame CornerRadius="10" HeightRequest="45" Margin="10,10,10,10" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+            <Grid Margin="10,10,10,10">
+                <Grid.RowDefinitions/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
+            <Frame CornerRadius="10" HeightRequest="45" HorizontalOptions="Start" WidthRequest="300"
+                   HasShadow="True" BorderColor="White" Grid.Row="0" Grid.Column="0">
                 <Entry
-                         Margin="12,0"
                          FontSize="16"
                          HeightRequest="40"
-                         Placeholder="Password" IsPassword="True"
-                         Text="{Binding Password}"
+                         Placeholder="Password"
+                         Text="{Binding Password}" IsPassword="{Binding IsHiddenPassword}"
                     ClearButtonVisibility="WhileEditing"
                     >
                 </Entry>
             </Frame>
-
+            <ImageButton Command="{Binding TogglePasswordCommand}" HeightRequest="20" Grid.Row="0" Margin="10,0,0,0"
+                         Grid.Column="1" WidthRequest="20" HorizontalOptions="Start">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="FontAwesomeSolid" 
+                     Glyph="{Binding PasswordVisibilityIcon}" Color="Grey" Size="15" />
+                </ImageButton.Source>
+            </ImageButton>
+            </Grid>
+            
             <Frame CornerRadius="10" HeightRequest="45" Margin="10,10,10,10" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
                 <editors:SfComboBox SelectedItem="{Binding SelectedGender, Mode=TwoWay}" 
                      DisplayMemberPath="Name" ItemsSource="{Binding Genders}"  

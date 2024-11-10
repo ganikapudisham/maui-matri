@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Matri.FontsAwesome;
 
 namespace Matri.ViewModel
 {
@@ -213,5 +214,26 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public Master selectedGender;
 
+        [ObservableProperty]
+        public bool isHiddenPassword = true;
+
+        [ObservableProperty]
+        public string passwordVisibilityIcon = FontAwesomeIcons.EyeSlash;
+
+        [RelayCommand]
+        public void TogglePassword()
+        {
+            IsHiddenPassword = false;
+            PasswordVisibilityIcon = FontAwesomeIcons.Eye;
+
+            var cancellationTokenSource = new CancellationTokenSource();
+            var cancellationToken = cancellationTokenSource.Token;
+
+            Task.Delay(500).ContinueWith(async (t) =>
+            {
+                IsHiddenPassword = true;
+                PasswordVisibilityIcon = FontAwesomeIcons.EyeSlash;
+            }, cancellationToken);
+        }
     }
 }
