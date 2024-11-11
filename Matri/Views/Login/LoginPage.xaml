@@ -5,10 +5,9 @@
              xmlns:FoA="clr-namespace:Matri.FontsAwesome;assembly=Matri"
              Title="">
     <VerticalStackLayout>
-        <Grid Margin="0,0,0,50" BackgroundColor="{Binding BgColor}">
+        <Grid Margin="0,0,0,5" BackgroundColor="{Binding BgColor}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="45" />
-                <RowDefinition Height="30" />
+                <RowDefinition Height="40" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -20,10 +19,10 @@
                     <TapGestureRecognizer Command="{Binding UpdateAppCommand}" />
                 </Label.GestureRecognizers>
             </Label>
-            <Grid Grid.Row="1" BackgroundColor="White">
-                <ActivityIndicator Grid.Row="1" Grid.Column="0" IsVisible="{Binding IsBusy}" IsRunning="True"/>
-            </Grid>
         </Grid>
+        <StackLayout HeightRequest="30">
+            <ActivityIndicator Margin="0,5,0,0" Grid.Row="1" IsVisible="{Binding IsBusy}" IsRunning="True"/>
+        </StackLayout>
         <VerticalStackLayout 
             Spacing="5" 
             Padding="30,0" 
@@ -75,7 +74,7 @@
             <Button Text="Sign In" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" 
                 Command="{Binding LoginCommand}" BackgroundColor="#93c393" Margin="0,5,0,0"/>
 
-            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center" Margin="0,30,0,0">
+            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center" Margin="0,15,0,0">
                 <Label Text="Don't have an account?" TextColor="Gray" />
                 <Label Text="Register here" TextColor="#50b3f2" >
                     <Label.GestureRecognizers>
@@ -94,7 +93,65 @@
             </StackLayout>
         </VerticalStackLayout>
 
-        <Grid Margin="0,20,0,0">
+        <Grid Margin="0,45,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            
+                <Label Grid.Row="0" FontSize="Micro" Grid.ColumnSpan="3" Text="Customer Care" Margin="22,0,0,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CallCustomerCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                
+                <ImageButton HeightRequest="20" WidthRequest="20" Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" 
+                             Margin="10,0,0,0" Command="{Binding CallCustomerCommand}">
+                    <ImageButton.Source>
+                        <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons2.Phone}"
+        Color="Green" Size="30" />
+                    </ImageButton.Source>
+                </ImageButton>
+                
+                <Label TextColor="Black" FontSize="Micro" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding CustomerCareNumber}" 
+HorizontalOptions="Start" VerticalTextAlignment="Center" VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CallCustomerCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+            <Label Grid.Row="0" FontSize="Micro" Grid.Column="3" Grid.ColumnSpan="3" Text="Whatsapp" Margin="30,0,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding WhatsappCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <ImageButton HeightRequest="20" WidthRequest="20" Grid.Row="1" Grid.Column="3" HorizontalOptions="Start" 
+                     Margin="10,0,0,0" Command="{Binding WhatsappCommand}" Source="whatsappp.png">
+            </ImageButton>
+
+            <Label Grid.Row="1" FontSize="Micro" Grid.Column="4" Grid.ColumnSpan="3" Text="{Binding CustomerCareNumber}"
+                   VerticalTextAlignment="Center" VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding WhatsappCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+        </Grid>
+
+        <Grid Margin="0,5,0,0">
             <Grid.RowDefinitions>
             </Grid.RowDefinitions>
             <Label TextColor="Gray" FontSize="Micro" Grid.Row="0" Grid.Column="0" Text="{Binding CurrentAppVersion}" 

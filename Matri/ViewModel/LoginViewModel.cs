@@ -75,6 +75,9 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public string bgColor = "White";
 
+        [ObservableProperty]
+        public string customerCareNumber = "";
+
         [RelayCommand]
         public async Task Login()
         {
@@ -212,6 +215,8 @@ namespace Matri.ViewModel
 
             CurrentAppVersion = $"Version {AppInfo.Current.VersionString.Trim()}";
 
+            CustomerCareNumber = appDetails.WAAdminNumber;
+
             if (appDetails.LatestVersion.Trim() != AppInfo.Current.VersionString.Trim())
             {
                 NewVersionPromptVisibility = true;
@@ -232,5 +237,35 @@ namespace Matri.ViewModel
             }
         }
 
+        [RelayCommand]
+        public void CallCustomer()
+        {
+            if (PhoneDialer.Default.IsSupported)
+            {
+                PhoneDialer.Default.Open(CustomerCareNumber);
+            }
+        }
+
+        [RelayCommand]
+        public async Task Whatsapp()
+        {
+            try
+            {
+                bool supportsUri = await Launcher.Default.CanOpenAsync($"whatsapp://send?phone=+91{CustomerCareNumber}");
+
+                if (supportsUri)
+                {
+                    var message = "";
+                    await Launcher.Default.OpenAsync($"whatsapp://send?phone=+91{CustomerCareNumber}&text={message}");
+                }
+
+                else
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", "Failed to open WhatsApp.", "OK");
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", ex.Message, "OK");
+            }
+        }
     }
 }
