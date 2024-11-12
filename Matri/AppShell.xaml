@@ -101,11 +101,11 @@
         <ShellContent ContentTemplate="{DataTemplate local:MyAccountPage}" Route="MyAccountPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Contact us" 
+    <!--<FlyoutItem Title="Contact us" 
                 FlyoutIcon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaComment}, Size=50,Color=Grey}" 
                 Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaComment}, Size=50,Color=Grey}" >
         <ShellContent ContentTemplate="{DataTemplate local:ContactUsPage}" Route="ContactUsPage" />
-    </FlyoutItem>
+    </FlyoutItem>-->
 
     <FlyoutItem Title="About ChristianJodi" 
                 FlyoutIcon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaInfoCircle}, Size=50,Color=Grey}" 
@@ -113,14 +113,14 @@
         <ShellContent ContentTemplate="{DataTemplate local:AboutUsPage}" Route="AboutUsPage" />
     </FlyoutItem>
 
-    <MenuItem Command="{Binding ShareToAppsCommand}" CommandParameter="{Binding Source={RelativeSource Self}}"
+    <!--<MenuItem Command="{Binding ShareToAppsCommand}" CommandParameter="{Binding Source={RelativeSource Self}}"
     Text="Share" IconImageSource="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaShareAltSquare}, Size=50,Color=Grey}">
-    </MenuItem>
+    </MenuItem>-->
 
-    <FlyoutItem Title="Settings" Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaCog}, Size=50,Color=Grey}" 
+    <!--<FlyoutItem Title="Settings" Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaCog}, Size=50,Color=Grey}" 
             FlyoutIcon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaCog}, Size=50,Color=Grey}">
         <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" Route="SettingsPage" />
-    </FlyoutItem>
+    </FlyoutItem>-->
 
     <MenuItem Command="{Binding LogOutCommand}"
     Text="LogOut" IconImageSource="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaTimes}, Size=50,Color=Grey}">

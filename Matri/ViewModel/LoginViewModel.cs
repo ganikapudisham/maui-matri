@@ -267,5 +267,17 @@ namespace Matri.ViewModel
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", ex.Message, "OK");
             }
         }
+
+        [RelayCommand]
+        public async Task ShareToApps()
+        {
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Subject = "ChristianJodi",
+                Text = "Click To Download ChristianJodi App",
+                Uri = $"http://play.google.com/store/apps/details?id={AppInfo.PackageName}",
+                Title = "Link To Download ChristianJodi App",
+            });
+        }
     }
 }
