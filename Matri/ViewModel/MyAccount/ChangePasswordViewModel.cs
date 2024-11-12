@@ -4,6 +4,7 @@ using Matri.Business;
 using Matri.CustomExceptions;
 using Matri.Model;
 using Newtonsoft.Json;
+using Matri.FontsAwesome;
 
 namespace Matri.ViewModel
 {
@@ -22,6 +23,25 @@ namespace Matri.ViewModel
 
         [ObservableProperty]
         public bool isBusy;
+
+        [ObservableProperty]
+        public string currentPasswordVisibilityIcon = FontAwesomeIcons.EyeSlash;
+
+        [ObservableProperty]
+        public string newPasswordVisibilityIcon = FontAwesomeIcons.EyeSlash;
+
+        [ObservableProperty]
+        public string confirmPasswordVisibilityIcon = FontAwesomeIcons.EyeSlash;
+
+        [ObservableProperty]
+        public bool currentPasswordHidden = true;
+
+        [ObservableProperty]
+        public bool newPasswordHidden = true;
+
+        [ObservableProperty]
+        public bool confirmPasswordHidden = true;
+
         public ChangePasswordViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
@@ -78,6 +98,54 @@ namespace Matri.ViewModel
                 IsBusy = false;
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "OK");
             }
+        }
+
+        [RelayCommand]
+        public void ToggleCurrentPassword()
+        {
+            CurrentPasswordHidden = false;
+            CurrentPasswordVisibilityIcon = FontAwesomeIcons.Eye;
+
+            var cancellationTokenSource = new CancellationTokenSource();
+            var cancellationToken = cancellationTokenSource.Token;
+
+            Task.Delay(500).ContinueWith(async (t) =>
+            {
+                CurrentPasswordHidden = true;
+                CurrentPasswordVisibilityIcon = FontAwesomeIcons.EyeSlash;
+            }, cancellationToken);
+        }
+
+        [RelayCommand]
+        public void ToggleNewPassword()
+        {
+            NewPasswordHidden = false;
+            NewPasswordVisibilityIcon = FontAwesomeIcons.Eye;
+
+            var cancellationTokenSource = new CancellationTokenSource();
+            var cancellationToken = cancellationTokenSource.Token;
+
+            Task.Delay(500).ContinueWith(async (t) =>
+            {
+                NewPasswordHidden = true;
+                NewPasswordVisibilityIcon = FontAwesomeIcons.EyeSlash;
+            }, cancellationToken);
+        }
+
+        [RelayCommand]
+        public void ToggleConfirmPassword()
+        {
+            ConfirmPasswordHidden = false;
+            ConfirmPasswordVisibilityIcon = FontAwesomeIcons.Eye;
+
+            var cancellationTokenSource = new CancellationTokenSource();
+            var cancellationToken = cancellationTokenSource.Token;
+
+            Task.Delay(500).ContinueWith(async (t) =>
+            {
+                ConfirmPasswordHidden = true;
+                ConfirmPasswordVisibilityIcon = FontAwesomeIcons.EyeSlash;
+            }, cancellationToken);
         }
     }
 }
