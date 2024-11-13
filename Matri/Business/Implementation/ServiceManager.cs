@@ -96,6 +96,18 @@ namespace Matri.Business.Impl
                     int age = DateTime.Now.Year - year;
                     profileToFormat.Age = $"{age}yrs";
                 }
+                var heightInFeet_And_Inches = profile.Height.Split("-")[0];
+                var heightHasNoInches = heightInFeet_And_Inches.Split(" ").Length == 2;
+
+                if (heightHasNoInches)
+                {
+                    profileToFormat.Height = heightInFeet_And_Inches.Replace("ft", "\"").Trim();
+                }
+                else
+                {
+                    profileToFormat.Height = heightInFeet_And_Inches.Replace("ft", "\'").Replace("in","\"").Replace(" ","").Trim();
+                }
+
                 userL.Add(profileToFormat);
             }
             modifiedPofiles.Data = userL;
