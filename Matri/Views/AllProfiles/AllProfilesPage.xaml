@@ -5,28 +5,31 @@
              xmlns:FoA="clr-namespace:Matri.FontsAwesome;assembly=Matri"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="All Profiles" BackgroundColor="White">
-    <StackLayout>
-        <Grid BackgroundColor="{Binding BgColor}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" HeightRequest="45" Text="{Binding NewVersionAvailableMessage}" 
-                   TextColor="White" FontSize="15" Padding="0" IsVisible="{Binding NewVersionPromptVisibility}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding UpdateAppCommand}" />
-                </Label.GestureRecognizers>
-            </Label>
-        </Grid>
-        <StackLayout>
-            <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}"></ActivityIndicator>
-        </StackLayout>
-        <StackLayout IsVisible="{Binding ShowRecordsNotFoundSection}">
-            <Label FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Records not found."/>
-        </StackLayout>
-        <ScrollView VerticalOptions="EndAndExpand">
+    <Grid RowDefinitions="Auto,*">
+        <VerticalStackLayout Grid.Row="0">
+            <Grid BackgroundColor="{Binding BgColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" HeightRequest="45" Text="{Binding NewVersionAvailableMessage}" 
+           TextColor="White" FontSize="15" Padding="0" IsVisible="{Binding NewVersionPromptVisibility}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UpdateAppCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+            <StackLayout>
+                <ActivityIndicator Margin="0,5,0,0" IsRunning="True" IsVisible="{Binding IsBusy}"></ActivityIndicator>
+            </StackLayout>
+            <StackLayout IsVisible="{Binding ShowRecordsNotFoundSection}">
+                <Label FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Records not found."/>
+            </StackLayout>
+        </VerticalStackLayout>
+
+        <ScrollView Grid.Row="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -90,7 +93,7 @@
                                                    TextColor="#666666" LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
                                                    HorizontalTextAlignment="End" Text="{Binding Height}" FontFamily="Roboto-Regular" FontSize="10" 
                                                    CharacterSpacing="0.1" VerticalOptions="Center" />
-                                            
+
                                             <Label Grid.Row="0" Grid.Column="2" LineBreakMode="WordWrap" TextColor="#666666" 
                                                     LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
                                                     Text="{Binding Age}" FontFamily="Roboto-Regular" FontSize="10" CharacterSpacing="0.1" 
@@ -116,7 +119,7 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                    <Frame Margin="10,5,10,5" BackgroundColor="AliceBlue" Padding="5">
+                    <Frame Margin="10,5,10,5" BackgroundColor="White" Padding="5">
                         <Grid x:Name="ParentGrid">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
@@ -140,34 +143,37 @@
                                 </Grid.RowDefinitions>
                                 <ImageButton Aspect="AspectFill" Grid.Row="0" Grid.Column="0" HeightRequest="25" 
                                          VerticalOptions="CenterAndExpand" HorizontalOptions="Start" WidthRequest="25"
-                                        Command="{Binding BindingContext.FirstCommand, Source={x:Reference ParentGrid}}">
+                                        Command="{Binding BindingContext.FirstCommand, Source={x:Reference ParentGrid}}" BackgroundColor="#78B3CE">
                                     <ImageButton.Source>
                                         <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleDoubleLeft}" 
-                                                     Color="Gray" />
+                                                       />
                                     </ImageButton.Source>
                                 </ImageButton>
 
-                                <ImageButton HorizontalOptions="Start" Aspect="AspectFill" HeightRequest="20" WidthRequest="20" 
-                                         VerticalOptions="Center" Grid.Row="0" Grid.Column="1" Command="{Binding PreviousCommand}">
+                                <ImageButton HorizontalOptions="Start" Aspect="AspectFill" HeightRequest="25" WidthRequest="25" 
+                                         VerticalOptions="Center" Grid.Row="0" Grid.Column="1" Command="{Binding PreviousCommand}"
+                                             BackgroundColor="#78B3CE" Padding="5">
                                     <ImageButton.Source>
                                         <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleLeft}" 
-                                                     Color="Gray" />
+                                                     Color="White"/>
                                     </ImageButton.Source>
                                 </ImageButton>
 
                                 <ImageButton HorizontalOptions="End" Aspect="AspectFill" Grid.Row="0" Grid.Column="2" 
-                                        HeightRequest="20" WidthRequest="20" VerticalOptions="Center" Command="{Binding NextCommand}">
+                                        HeightRequest="25" WidthRequest="25" VerticalOptions="Center" Command="{Binding NextCommand}"
+                                             BackgroundColor="#78B3CE" Padding="5">
                                     <ImageButton.Source>
                                         <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleRight}" 
-                                                     Color="Gray" />
+                                                     Color="White"/>
                                     </ImageButton.Source>
                                 </ImageButton>
 
                                 <ImageButton HorizontalOptions="End" Aspect="AspectFill" Grid.Row="0" Grid.Column="3" HeightRequest="25" 
-                                        WidthRequest="25" VerticalOptions="CenterAndExpand" Command="{Binding LastCommand}">
+                                        WidthRequest="25" VerticalOptions="CenterAndExpand" Command="{Binding LastCommand}"
+                                             BackgroundColor="#78B3CE">
                                     <ImageButton.Source>
                                         <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleDoubleRight}" 
-                                                     Color="gray" />
+                                                     Color="White" />
                                     </ImageButton.Source>
                                 </ImageButton>
                             </Grid>
@@ -206,5 +212,5 @@ VerticalOptions="Center" ItemsSource="{Binding PageSizeList}"  HorizontalOptions
                 </StackLayout>
             </Grid>
         </ScrollView>
-    </StackLayout>
+    </Grid>
 </ContentPage>
