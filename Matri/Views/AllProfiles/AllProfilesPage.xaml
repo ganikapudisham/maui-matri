@@ -5,7 +5,7 @@
              xmlns:FoA="clr-namespace:Matri.FontsAwesome;assembly=Matri"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="All Profiles" BackgroundColor="White">
-    <VerticalStackLayout>
+    <StackLayout>
         <Grid BackgroundColor="{Binding BgColor}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -26,7 +26,7 @@
         <StackLayout IsVisible="{Binding ShowRecordsNotFoundSection}">
             <Label FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Records not found."/>
         </StackLayout>
-        <ScrollView>
+        <ScrollView VerticalOptions="EndAndExpand">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -206,5 +206,5 @@ VerticalOptions="Center" ItemsSource="{Binding PageSizeList}"  HorizontalOptions
                 </StackLayout>
             </Grid>
         </ScrollView>
-    </VerticalStackLayout>
+    </StackLayout>
 </ContentPage>
