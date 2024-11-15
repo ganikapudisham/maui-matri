@@ -5,6 +5,43 @@
              xmlns:FoA="clr-namespace:Matri.FontsAwesome;assembly=Matri"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="All Profiles" BackgroundColor="White">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Shadow Brush="Black"
+        x:Key="Shadow"
+        Offset="5,5"
+        Radius="10"
+        Opacity="0.8" />
+            <!-- Unified Button Style -->
+            <Style x:Key="UnifiedButtonStyle" TargetType="ImageButton">
+                <Setter Property="BackgroundColor" Value="#4169E1"/>
+                <!--<Setter Property="TextColor" Value="White"/>-->
+                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="Margin" Value="10"/>
+                <!--<Setter Property="FontFamily" Value="Poppins-Medium"/>-->
+                <Setter Property="Shadow" Value="{StaticResource Shadow}"/>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="TranslationY" Value="0"/>
+                                    <Setter Property="Opacity" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.98" />
+                                    <Setter Property="TranslationY" Value="2"/>
+                                    <Setter Property="Opacity" Value="0.9"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <Grid RowDefinitions="Auto,*">
         <VerticalStackLayout Grid.Row="0">
             <Grid BackgroundColor="{Binding BgColor}">
@@ -143,7 +180,8 @@
                                 </Grid.RowDefinitions>
                                 <ImageButton Aspect="AspectFill" Grid.Row="0" Grid.Column="0" HeightRequest="25" 
                                          VerticalOptions="CenterAndExpand" HorizontalOptions="Start" WidthRequest="25"
-                                        Command="{Binding BindingContext.FirstCommand, Source={x:Reference ParentGrid}}" BackgroundColor="#78B3CE">
+                                        Command="{Binding BindingContext.FirstCommand, Source={x:Reference ParentGrid}}" 
+                                             Style="{StaticResource UnifiedButtonStyle}">
                                     <ImageButton.Source>
                                         <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleDoubleLeft}" 
                                                        />
@@ -152,7 +190,7 @@
 
                                 <ImageButton HorizontalOptions="Start" Aspect="AspectFill" HeightRequest="25" WidthRequest="25" 
                                          VerticalOptions="Center" Grid.Row="0" Grid.Column="1" Command="{Binding PreviousCommand}"
-                                             BackgroundColor="#78B3CE" Padding="5">
+                                             Style="{StaticResource UnifiedButtonStyle}" Padding="5" >
                                     <ImageButton.Source>
                                         <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleLeft}" 
                                                      Color="White"/>
@@ -161,7 +199,7 @@
 
                                 <ImageButton HorizontalOptions="End" Aspect="AspectFill" Grid.Row="0" Grid.Column="2" 
                                         HeightRequest="25" WidthRequest="25" VerticalOptions="Center" Command="{Binding NextCommand}"
-                                             BackgroundColor="#78B3CE" Padding="5">
+                                             Style="{StaticResource UnifiedButtonStyle}" Padding="5">
                                     <ImageButton.Source>
                                         <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleRight}" 
                                                      Color="White"/>
@@ -170,7 +208,7 @@
 
                                 <ImageButton HorizontalOptions="End" Aspect="AspectFill" Grid.Row="0" Grid.Column="3" HeightRequest="25" 
                                         WidthRequest="25" VerticalOptions="CenterAndExpand" Command="{Binding LastCommand}"
-                                             BackgroundColor="#78B3CE">
+                                             Style="{StaticResource UnifiedButtonStyle}">
                                     <ImageButton.Source>
                                         <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleDoubleRight}" 
                                                      Color="White" />

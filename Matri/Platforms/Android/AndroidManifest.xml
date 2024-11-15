@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.christianjodi.app" android:versionCode="58" android:versionName="1.0.8">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.christianjodi.app" android:versionCode="59" android:versionName="1.0.9">
 	<application android:allowBackup="false" android:supportsRtl="true" android:label="ChristianJodi" android:networkSecurityConfig="@xml/network_security_config" android:icon="@mipmap/appicon" android:usesCleartextTraffic="true"></application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
