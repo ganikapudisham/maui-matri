@@ -188,9 +188,9 @@
                                     </ImageButton.Source>
                                 </ImageButton>
 
-                                <ImageButton HorizontalOptions="Start" Aspect="AspectFill" HeightRequest="25" WidthRequest="25" 
+                                <ImageButton HorizontalOptions="Start" Aspect="AspectFill" HeightRequest="35" WidthRequest="35" 
                                          VerticalOptions="Center" Grid.Row="0" Grid.Column="1" Command="{Binding PreviousCommand}"
-                                             Style="{StaticResource UnifiedButtonStyle}" Padding="5" >
+                                             Style="{StaticResource UnifiedButtonStyle}" Padding="5">
                                     <ImageButton.Source>
                                         <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleLeft}" 
                                                      Color="White"/>
@@ -198,7 +198,7 @@
                                 </ImageButton>
 
                                 <ImageButton HorizontalOptions="End" Aspect="AspectFill" Grid.Row="0" Grid.Column="2" 
-                                        HeightRequest="25" WidthRequest="25" VerticalOptions="Center" Command="{Binding NextCommand}"
+                                        HeightRequest="35" WidthRequest="35" VerticalOptions="Center" Command="{Binding NextCommand}"
                                              Style="{StaticResource UnifiedButtonStyle}" Padding="5">
                                     <ImageButton.Source>
                                         <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleRight}" 
