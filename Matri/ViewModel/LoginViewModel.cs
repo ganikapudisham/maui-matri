@@ -217,7 +217,7 @@ namespace Matri.ViewModel
 
             CustomerCareNumber = appDetails.WAAdminNumber;
 
-            if (appDetails.LatestVersion.Trim() != AppInfo.Current.VersionString.Trim())
+            if (Convert.ToInt16(appDetails.LatestVersion.Trim()) > Convert.ToInt16(AppInfo.Current.VersionString.Trim()))
             {
                 NewVersionPromptVisibility = true;
                 BgColor = "Brown";
