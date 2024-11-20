@@ -13,7 +13,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Matri", "Matri\Matri.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Matri.UnitTests", "Matri.UnitTests\Matri.UnitTests.csproj", "{68289FC1-F549-40E9-AB91-57514149A804}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminMatri", "AdminMatri\AdminMatri.csproj", "{23EFAA5E-D5B3-4BB0-8140-009C43FA076C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminMatri", "AdminMatri\AdminMatri.csproj", "{23EFAA5E-D5B3-4BB0-8140-009C43FA076C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChristianJodi.Data", "ChristianJodi.Data\ChristianJodi.Data.csproj", "{FFA516C6-1E12-4E00-84F4-DB7741715E50}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChristianJodi.Business", "ChristianJodi.Business\ChristianJodi.Business.csproj", "{27F6B8C1-6DF9-4454-BF4B-55209AF1FFCD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChristianJodi.Model", "ChristianJodi.Model\ChristianJodi.Model.csproj", "{77EF1290-492E-4126-B5A3-2875366A2F66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChrisitanJodi.Helper", "ChrisitanJodi.Helper\ChrisitanJodi.Helper.csproj", "{320C2325-836E-40E2-897A-F308C791752D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +45,22 @@ Global
 		{23EFAA5E-D5B3-4BB0-8140-009C43FA076C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23EFAA5E-D5B3-4BB0-8140-009C43FA076C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{23EFAA5E-D5B3-4BB0-8140-009C43FA076C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{FFA516C6-1E12-4E00-84F4-DB7741715E50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFA516C6-1E12-4E00-84F4-DB7741715E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFA516C6-1E12-4E00-84F4-DB7741715E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFA516C6-1E12-4E00-84F4-DB7741715E50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27F6B8C1-6DF9-4454-BF4B-55209AF1FFCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27F6B8C1-6DF9-4454-BF4B-55209AF1FFCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27F6B8C1-6DF9-4454-BF4B-55209AF1FFCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27F6B8C1-6DF9-4454-BF4B-55209AF1FFCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77EF1290-492E-4126-B5A3-2875366A2F66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77EF1290-492E-4126-B5A3-2875366A2F66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77EF1290-492E-4126-B5A3-2875366A2F66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77EF1290-492E-4126-B5A3-2875366A2F66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{320C2325-836E-40E2-897A-F308C791752D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{320C2325-836E-40E2-897A-F308C791752D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{320C2325-836E-40E2-897A-F308C791752D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{320C2325-836E-40E2-897A-F308C791752D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

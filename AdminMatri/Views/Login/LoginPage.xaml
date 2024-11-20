@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AdminMatri.Views.LoginPage"
+             xmlns:FoA="clr-namespace:AdminMatri.FontsAwesome;assembly=AdminMatri">
+    <VerticalStackLayout>
+        <Grid Margin="0,0,0,5" BackgroundColor="{Binding BgColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" HorizontalOptions="Center"
+                   Text="{Binding NewVersionAvailableMessage}" TextColor="White" FontSize="15" Padding="0"
+                   IsVisible="{Binding NewVersionPromptVisibility}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding UpdateAppCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+        <StackLayout HeightRequest="30">
+            <ActivityIndicator Margin="0,5,0,0" Grid.Row="1" IsVisible="{Binding IsBusy}" IsRunning="True"/>
+        </StackLayout>
+        <VerticalStackLayout 
+            Spacing="5" 
+            Padding="30,0" 
+            VerticalOptions="Center">
+
+            <Image Source="logo.png"/>
+
+            <VerticalStackLayout Spacing="5" Margin="0,0,0,10">
+                <Label Text="Welcome!" FontSize="28" TextColor="Gray" HorizontalTextAlignment="Center" />
+                <Label Text="Login to your account" FontSize="18" TextColor="Gray" HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Frame ZIndex="1" HasShadow="True" BorderColor="White" HeightRequest="56" WidthRequest="56" CornerRadius="28">
+                    <Image HeightRequest="20" WidthRequest="20" >
+                        <Image.Source>
+                            <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.FaMobile}"
+                            Color="Grey" Size="30" />
+                        </Image.Source>
+                    </Image>
+                </Frame>
+                <Frame HeightRequest="45" Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                    <Entry Text="{Binding EMobile}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="User Name" Keyboard="Email" 
+                       ClearButtonVisibility="WhileEditing" />
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Frame ZIndex="1" HasShadow="True" BorderColor="White" HeightRequest="56" WidthRequest="56" CornerRadius="28">
+                    <Image HeightRequest="20" WidthRequest="20" >
+                        <Image.Source>
+                            <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.Lock}"
+            Color="Grey" Size="30" />
+                        </Image.Source>
+                    </Image>
+                </Frame>
+                <Frame HeightRequest="45" Margin="-20,0,5,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                    <Entry Text="{Binding EPassword}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Password" IsPassword="{Binding IsHiddenPassword}" 
+                       ClearButtonVisibility="WhileEditing" />
+                </Frame>
+                <ImageButton Command="{Binding TogglePasswordCommand}" HeightRequest="20" WidthRequest="20">
+                    <ImageButton.Source>
+                        <FontImageSource FontFamily="FontAwesomeSolid" 
+                                     Glyph="{Binding PasswordVisibilityIcon}" Color="Grey" Size="15" />
+                    </ImageButton.Source>
+                </ImageButton>
+            </StackLayout>
+
+            <Button Text="Sign In" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" 
+                Command="{Binding LoginCommand}" BackgroundColor="#93c393" Margin="0,5,0,0"/>
+
+        </VerticalStackLayout>
+
+        <Grid Margin="0,5,0,0">
+            <Grid.RowDefinitions>
+            </Grid.RowDefinitions>
+            <Label TextColor="Gray" FontSize="Micro" Grid.Row="0" Grid.Column="0" Text="{Binding CurrentAppVersion}" 
+                   HorizontalOptions="End" Padding="0,0,10,0"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
