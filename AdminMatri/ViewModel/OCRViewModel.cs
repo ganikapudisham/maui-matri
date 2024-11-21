@@ -1,6 +1,8 @@
 ﻿using Matri.Business;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Matri.Model;
+using System.Collections.ObjectModel;
 
 namespace AdminMatri.ViewModel
 {
@@ -20,6 +22,13 @@ namespace AdminMatri.ViewModel
         [ObservableProperty]
         public bool showUpload = false;
 
+        private ObservableCollection<CarouselModel> imageCollection = new();
+        public ObservableCollection<CarouselModel> ImageCollection
+        {
+            get => imageCollection;
+            set => SetProperty(ref imageCollection, value);
+        }
+
         public OCRViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
@@ -28,6 +37,7 @@ namespace AdminMatri.ViewModel
         [RelayCommand]
         public async Task BrowsePhoto()
         {
+            ImageCollection.Clear();
             var requestStorageRead = await Permissions.CheckStatusAsync<Permissions.Media>();
 
             if (requestStorageRead == PermissionStatus.Granted)
@@ -41,6 +51,7 @@ namespace AdminMatri.ViewModel
                 foreach (var file in files)
                 {
                     imageSources.Add(file.FullPath);
+                    ImageCollection.Add(new CarouselModel(file.FullPath));
                 }
 
                 if(imageSources.Count > 0)
@@ -106,6 +117,7 @@ namespace AdminMatri.ViewModel
             }
 
             await Shell.Current.CurrentPage.DisplayAlert("Alert", $"{successCount} Uploaded {failureCount} failed , Thank you", "Ok");
+            ImageCollection.Clear();
         }
     }
 }

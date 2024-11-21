@@ -2,13 +2,32 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AdminMatri.Views.OCRPage"
+             xmlns:carousel="clr-namespace:Syncfusion.Maui.Carousel;assembly=Syncfusion.Maui.Carousel"
              Title="Numbers">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="itemTemplate">
+                <Image Source="{Binding Image}" 
+Aspect="AspectFit"/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ScrollView>
         <StackLayout>
             <Button x:Name="pickPhoto" Text="Browse Photo" Command="{Binding BrowsePhotoCommand}"/>
             <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" Grid.Row="0" />
             <ProgressBar x:Name="progress" Progress="0.0" IsVisible="False" />
-            <Image x:Name="image" Source="{Binding ImageSource}"/>
+
+            <carousel:SfCarousel
+x:Name="carousel"
+ItemTemplate="{StaticResource itemTemplate}"
+HeightRequest="400"
+ItemHeight="420"
+ItemWidth="300"
+ItemsSource="{Binding ImageCollection}"
+ViewMode="Default"
+WidthRequest="800" />
+
             <Button Text="Upload Photo" Command="{Binding UploadPhotoCommand}" IsVisible="{Binding ShowUpload}"/>
         </StackLayout>
     </ScrollView>

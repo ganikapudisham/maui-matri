@@ -8,6 +8,7 @@ using Matri.Data;
 using Matri.Data.Impl;
 using Matri.Services;
 using Matri.Abstract;
+using Syncfusion.Maui.Core.Hosting;
 
 namespace AdminMatri;
 
@@ -19,6 +20,7 @@ public static class MauiProgram
         builder
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
+            .ConfigureSyncfusionCore()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
