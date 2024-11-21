@@ -1,0 +1,17 @@
+bin
+obj
+.vs
+
+christianjodi/obj
+christianjodi/bin
+
+matri/obj
+matri/bin
+<<<<<<< HEAD
+matri/resources/raw/admin_sdk.json
+=======
+
+matri/resources/raw/admin_sdk.json
+Keystore/*
+ReferenceMaterial/*
+>>>>>>> main
