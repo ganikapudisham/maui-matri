@@ -32,7 +32,8 @@ namespace Matri.Business
         internal const string PlayStoreAppUrl = "https://play.google.com/store/apps/details?id=";
 
         internal const string API_URL_AdminAuthentication = "asessiontoken";
-        internal const string API_URL_AdminLeads = "files/ocr";
-        internal const string API_URL_UploadFile = "files/photo";
+        internal const string API_URL_AdminLeads = "leads";
+        internal const string API_URL_AdminUploadOCRFile = "ocr";
+        internal const string API_URL_AdminWhatsappGroupNames = "leads/groupnames";
     }
 }

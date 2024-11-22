@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AdminMatri.Views.OCRPage"
              xmlns:carousel="clr-namespace:Syncfusion.Maui.Carousel;assembly=Syncfusion.Maui.Carousel"
+             xmlns:combobox="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
              Title="Numbers">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -14,9 +15,31 @@ Aspect="AspectFit"/>
     </ContentPage.Resources>
     <ScrollView>
         <StackLayout>
+
+            <Label
+    Grid.Row="4"
+    Grid.Column="0" Grid.ColumnSpan="3"
+    FontFamily="Montserrat-Medium"
+    FontSize="16"
+    Text="Group Name"
+    TextColor="{DynamicResource Gray800}" />
+            <Border
+    Grid.Row="5"
+    Margin="0"
+    Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
+
+                <combobox:SfComboBox ItemsSource="{Binding GroupNames}"
+x:Name="DDLLanguage" SelectedItem="{Binding SelectedGroupName}"
+Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name"
+ IsEditable="true">
+                </combobox:SfComboBox>
+            </Border>
+
             <Button x:Name="pickPhoto" Text="Browse Photo" Command="{Binding BrowsePhotoCommand}"/>
             <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" Grid.Row="0" />
             <ProgressBar x:Name="progress" Progress="0.0" IsVisible="False" />
+
+            
 
             <carousel:SfCarousel
 x:Name="carousel"

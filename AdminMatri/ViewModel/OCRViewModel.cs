@@ -3,10 +3,11 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Matri.Model;
 using System.Collections.ObjectModel;
+using MvvmHelpers;
 
 namespace AdminMatri.ViewModel
 {
-    public partial class OCRViewModel : ObservableObject
+    public partial class OCRViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
         IServiceManager _serviceManager;
 
@@ -22,16 +23,41 @@ namespace AdminMatri.ViewModel
         [ObservableProperty]
         public bool showUpload = false;
 
-        private ObservableCollection<CarouselModel> imageCollection = new();
-        public ObservableCollection<CarouselModel> ImageCollection
+        private ObservableRangeCollection<CarouselModel> imageCollection = new();
+
+        public ObservableRangeCollection<CarouselModel> ImageCollection
         {
             get => imageCollection;
             set => SetProperty(ref imageCollection, value);
         }
 
+        public ObservableRangeCollection<Master> groupNames = new();
+
+        public ObservableRangeCollection<Master> GroupNames
+        {
+            get { return groupNames; }
+            set
+            {
+                groupNames = value;
+            }
+        }
+
+        [ObservableProperty]
+        public Master selectedGroupName;
+
         public OCRViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
+            Task.Run(async () => {
+                var dbGroupNames = await _serviceManager.GetWhatsappGroups("");
+                GroupNames.AddRange(dbGroupNames);
+            });
+        }
+
+        public async Task LoadWhatsappGroupNames()
+        {
+            var dbGroupNames = await _serviceManager.GetWhatsappGroups("");
+            GroupNames.AddRange(dbGroupNames);
         }
 
         [RelayCommand]
@@ -86,7 +112,7 @@ namespace AdminMatri.ViewModel
                 var formData = new MultipartFormDataContent();
 
                 formData.Add(new StringContent(sessionToken), "sessiontoken");
-                formData.Add(new StringContent(whatsAppGroupName), "whatsAppGroupName");
+                formData.Add(new StringContent(whatsAppGroupName), SelectedGroupName.Name);
                 formData.Add(new ByteArrayContent(image, 0, image.Length), "file", fileName);
                 try
                 {

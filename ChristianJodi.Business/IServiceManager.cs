@@ -73,5 +73,7 @@ namespace Matri.Business
         Task<List<string>> GetLeads(string sessionToken);
 
         Task<bool> RetrieveNumbers4mImage(MultipartFormDataContent formData);
+
+        Task<List<Master>> GetWhatsappGroups(string sessiontoken);
     }
 }

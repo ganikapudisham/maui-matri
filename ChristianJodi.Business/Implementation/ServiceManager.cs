@@ -357,7 +357,7 @@ public class ServiceManager : IServiceManager
 
     public async Task<bool> UploadProfilePhoto(MultipartFormDataContent formData)
     {
-        return await _serviceRepository.UploadProfilePhoto(formData, Constants.API_URL_UploadFile);
+        return await _serviceRepository.UploadProfilePhoto(formData, Constants.API_URL_AdminUploadOCRFile);
     }
 
     public async Task<bool> UpdateEducationDetails(string sessiontoken, Profile profile)
@@ -445,5 +445,10 @@ public class ServiceManager : IServiceManager
     public async Task<bool> RetrieveNumbers4mImage(MultipartFormDataContent formData)
     {
         return await _serviceRepository.UploadProfilePhoto(formData, Constants.API_URL_AdminLeads);
+    }
+
+    public async Task<List<Master>> GetWhatsappGroups(string sessiontoken)
+    {
+        return await _serviceRepository.GetAsync<List<Master>>("",Constants.API_URL_AdminWhatsappGroupNames);
     }
 }
