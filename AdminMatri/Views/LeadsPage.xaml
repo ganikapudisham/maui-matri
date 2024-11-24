@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:AdminMatri.ViewModel"
              Title="Lead">
     <VerticalStackLayout>
-        <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}"/>
+        <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" WidthRequest="50" HeightRequest="50"/>
         <StackLayout>
             <syncfusion:SfDataGrid ItemsSource="{Binding Leads}" AutoGenerateColumnsMode="None"
                                    CellTappedCommand="{Binding CellTapCommand}" x:Name="LeadsGrid">

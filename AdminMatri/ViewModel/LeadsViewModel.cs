@@ -120,8 +120,6 @@ namespace AdminMatri.ViewModel
             }
         }
 
-        [RelayCommand]
-
         public async Task SaveCall(object obj)
         {
             var lead = obj as Lead;

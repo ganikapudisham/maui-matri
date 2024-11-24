@@ -35,9 +35,28 @@ public partial class CallCommentViewModel : ObservableObject
 
     [RelayCommand]
     public async Task Save()
-    {    
+    {
         lead.Comment = Comment;
-        await _serviceManager.UpdateLeadCall(lead);
-        //TODO Close Dialog
+
+        if (lead.IsCalled == false)
+        {
+            await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please call & check call", "Ok");
+            return;
+        }
+        else if (string.IsNullOrEmpty(lead.Comment))
+        {
+            await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please add comment", "Ok");
+            return;
+        }
+        else
+        {
+            var success = await _serviceManager.UpdateLeadCall(lead);
+
+            if (success)
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Record is updated", "Ok");
+            }
+            //TODO Close Dialog
+        }
     }
 }
