@@ -4,8 +4,8 @@ using CommunityToolkit.Mvvm.Input;
 using MvvmHelpers;
 using Syncfusion.Maui.DataGrid;
 using CommunityToolkit.Maui.Core;
-using Android.Widget;
-using System;
+using AdminMatri.FontsAwesome;
+using Matri.Model;
 
 //TODO : adding comment on popup and retrieving it back on the page
 //TODO : save the call data
@@ -27,6 +27,9 @@ namespace AdminMatri.ViewModel
 
         [ObservableProperty]
         public string comment = "";
+
+        [ObservableProperty]
+        public string floppyDisk = FontAwesomeIcons.FloppyDisk;
 
         public ObservableRangeCollection<Lead> Leads { get; private set; } = new ObservableRangeCollection<Lead>();
 
@@ -52,10 +55,10 @@ namespace AdminMatri.ViewModel
                     Leads.Add(new Lead
                     {
                         Number = ld,
-                        Whatsapp = "whatsapp.png",
+                        Whatsapp = "",
                         Comment = "",
                         IsMarriageBureau = true,
-                        MarkedAsCalled = true
+                        IsCalled = true
                     });
                 }
                 IsBusy = false;
@@ -90,7 +93,11 @@ namespace AdminMatri.ViewModel
                 }
                 else if (columnIndex == 2)//comment
                 {
-                    await this.popupService.ShowPopupAsync<CallCommentViewModel>(onPresenting: viewModel => viewModel.PerformUpdates($"{item.Comment}", false));
+                    await this.popupService.ShowPopupAsync<CallCommentViewModel>(onPresenting: viewModel => viewModel.PerformUpdates(item, false));
+                }
+                else if (columnIndex == 5)
+                {
+                    await SaveCall(item);
                 }
             }
         }
@@ -126,19 +133,10 @@ namespace AdminMatri.ViewModel
 
         [RelayCommand]
 
-        public async Task SaveCall(object number)
+        public async Task SaveCall(object obj)
         {
-            this.popupService.ShowPopup<CallCommentViewModel>(onPresenting: viewModel => viewModel.PerformUpdates($"{number.ToString()}", true));
+            var lead = obj as Lead;
+            this.popupService.ShowPopup<CallCommentViewModel>(onPresenting: viewModel => viewModel.PerformUpdates(lead, true));
         }
-    }
-
-    public class Lead
-    {
-        public int Id { get; set; }
-        public string Number { get; set; }
-        public string Whatsapp { get; set; }
-        public string Comment { get; set; }
-        public bool IsMarriageBureau { get; set; }
-        public bool MarkedAsCalled { get; set; }
     }
 }

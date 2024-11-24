@@ -65,6 +65,8 @@ namespace AdminMatri.FontsAwesome
         public const string Person = "";
 
         public const string EyeSlash = "\uf070";
+
+        public const string FloppyDisk = "\uf0c7";
         #endregion
     }
 

@@ -452,8 +452,8 @@ public class ServiceManager : IServiceManager
         return await _serviceRepository.GetAsync<List<Master>>("", Constants.API_URL_AdminWhatsappGroupNames);
     }
 
-    public async Task<bool> UpdateLeadCall(string id_number_comment)
+    public async Task<bool> UpdateLeadCall(Lead lead)
     {
-        return await _serviceRepository.PutAsync<string, bool>("", "", id_number_comment);
+        return await _serviceRepository.PutAsync<Lead, bool>("", Constants.API_URL_AdminLeads, lead);
     }
 }

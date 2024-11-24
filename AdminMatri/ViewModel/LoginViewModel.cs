@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Matri.Business;
+using AdminMatri.FontsAwesome;
 
 namespace AdminMatri.ViewModel;
 
@@ -47,6 +48,9 @@ public partial class LoginViewModel : ObservableObject
 
     [ObservableProperty]
     public string customerCareNumber = "";
+
+    [ObservableProperty]
+    public string passwordVisibilityIcon = FontAwesomeIcons.EyeSlash;
 
     [RelayCommand]
     public async Task Login()

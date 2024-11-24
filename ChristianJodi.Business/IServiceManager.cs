@@ -76,6 +76,6 @@ namespace Matri.Business
 
         Task<List<Master>> GetWhatsappGroups(string sessiontoken);
 
-        Task<bool> UpdateLeadCall(string id_number_comment);
+        Task<bool> UpdateLeadCall(Lead lead);
     }
 }

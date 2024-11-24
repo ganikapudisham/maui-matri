@@ -4,6 +4,7 @@
              x:Class="AdminMatri.Views.LeadsPage"
              xmlns:FoA="clr-namespace:AdminMatri.FontsAwesome;assembly=AdminMatri"
              xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             xmlns:local="clr-namespace:AdminMatri.ViewModel"
              Title="Lead">
     <VerticalStackLayout>
         <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}"/>
@@ -11,22 +12,53 @@
             <syncfusion:SfDataGrid ItemsSource="{Binding Leads}" AutoGenerateColumnsMode="None" HeaderRowHeight="0"
                                    CellTappedCommand="{Binding CellTapCommand}" x:Name="LeadsGrid">
                 <syncfusion:SfDataGrid.Columns>
-                    <syncfusion:DataGridTextColumn MappingName="Number" Width="150"/><!--Number-->
-                    <syncfusion:DataGridImageColumn MappingName="Whatsapp" Width="50"/><!--whatsapp-->
-                    <syncfusion:DataGridTextColumn MappingName="Comment" Width="50"/><!--Comment-->
-                    <syncfusion:DataGridCheckBoxColumn MappingName="IsMarriageBureau" Width="20"/><!--Save-->
-                    <syncfusion:DataGridCheckBoxColumn MappingName="MarkedAsCalled" Width="20"/><!--Save-->
-                    <syncfusion:DataGridTemplateColumn MappingName="Number">
+                    <syncfusion:DataGridTextColumn MappingName="Number" Width="150" CellPadding="10" />
+                    <syncfusion:DataGridTemplateColumn MappingName="Number" Width="40">
                         <syncfusion:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Text="Save" Command="{Binding Source={x:Reference LeadsGrid},Path=BindingContext.SaveCallCommand}"  
-                                        CommandParameter="{Binding .}"></Button>
+                                <Image HeightRequest="20" WidthRequest="20" >
+                                    <Image.Source>
+                                        <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.FaMobile}"
+Color="Grey" Size="30" />
+                                    </Image.Source>
+                                </Image>
+                            </DataTemplate>
+                        </syncfusion:DataGridTemplateColumn.CellTemplate>
+                    </syncfusion:DataGridTemplateColumn>
+                    <syncfusion:DataGridTemplateColumn Width="40">
+                        <syncfusion:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image HeightRequest="20" WidthRequest="20" >
+                                    <Image.Source>
+                                        <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.FaComment}"
+Color="Grey" Size="30" />
+                                    </Image.Source>
+                                </Image>
+                            </DataTemplate>
+                        </syncfusion:DataGridTemplateColumn.CellTemplate>
+                    </syncfusion:DataGridTemplateColumn>
+                    <syncfusion:DataGridCheckBoxColumn MappingName="IsMarriageBureau" Width="40"/>
+                    <syncfusion:DataGridCheckBoxColumn MappingName="IsCalled" Width="40"/>
+                    <syncfusion:DataGridTemplateColumn MappingName="Number" Width="40">
+                        <syncfusion:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <!--<ImageButton Command="{Binding Source={x:Reference LeadsGrid},Path=BindingContext.SaveCallCommand}"  
+                                        CommandParameter="{Binding .}" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <ImageButton.Source>
+                                        <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.FaComment}" Size="500"/>
+                                    </ImageButton.Source>
+                                </ImageButton>-->
+                                <Image HeightRequest="20" WidthRequest="20" >
+                                    <Image.Source>
+                                        <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.FloppyDisk}"
+Color="Grey" Size="30" />
+                                    </Image.Source>
+                                </Image>
                             </DataTemplate>
                         </syncfusion:DataGridTemplateColumn.CellTemplate>
                     </syncfusion:DataGridTemplateColumn>
                 </syncfusion:SfDataGrid.Columns>
             </syncfusion:SfDataGrid>
         </StackLayout>
-
     </VerticalStackLayout>
 </ContentPage>

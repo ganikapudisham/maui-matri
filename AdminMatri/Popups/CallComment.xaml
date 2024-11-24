@@ -5,6 +5,6 @@
              x:Class="AdminMatri.Popups.CallComment">
     <VerticalStackLayout>
         <Editor Text="{Binding Comment}" MaxLength="500" HeightRequest="300" WidthRequest="300" Margin="10,10,10,10"/>
-        <Button Command="{Binding SaveCommand}" Text="Add Comment" IsVisible="{Binding IsSave}"/>
+        <Button Command="{Binding SaveCommand}" Text="Comment and Update" IsVisible="{Binding IsSave}"/>
     </VerticalStackLayout>
 </toolkit:Popup>

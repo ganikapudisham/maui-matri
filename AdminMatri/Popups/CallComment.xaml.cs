@@ -9,5 +9,5 @@ public partial class CallComment : Popup
 	{
 		InitializeComponent();
 		BindingContext = viewModel;
-	}
+    }
 }
