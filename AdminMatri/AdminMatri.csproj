@@ -104,7 +104,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\fa-brands-400.ttf" />
+	  <None Remove="Resources\Fonts\fa-regular-400.ttf" />
+	  <None Remove="Resources\Fonts\fa-solid-900.ttf" />
+	  <None Remove="Resources\Fonts\fa-v4compatibility.ttf" />
 	  <None Remove="Resources\Images\logo.png" />
+	  <None Remove="Resources\Images\whatsappp.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -115,6 +120,7 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
 		<PackageReference Include="Syncfusion.Maui.Carousel" Version="27.1.58" />
+		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="27.2.3" />
 		<PackageReference Include="Syncfusion.Maui.Inputs" Version="27.2.3" />
 	</ItemGroup>
 
@@ -124,6 +130,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Popups\CallComment.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\LeadsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

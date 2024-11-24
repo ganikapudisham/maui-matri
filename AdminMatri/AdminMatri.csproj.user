@@ -8,6 +8,9 @@
     <DefaultDevice>phone_xxh-dpi_6_7in_-_api_34</DefaultDevice>
   </PropertyGroup>
   <ItemGroup>
+    <MauiXaml Update="Popups\CallComment.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Views\LeadsPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

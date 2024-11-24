@@ -9,6 +9,7 @@ using Matri.Data.Impl;
 using Matri.Services;
 using Matri.Abstract;
 using Syncfusion.Maui.Core.Hosting;
+using AdminMatri.Popups;
 
 namespace AdminMatri;
 
@@ -55,6 +56,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<IFirebaseAnalyticsService, FirebaseAnalyticsService>();
         builder.Services.AddSingleton<ISharedService, SharedService>();
         builder.Services.AddSingleton<IFirebaseCrashlyticsService, FirebaseCrashlyticsService>();
+
+        builder.Services.AddTransientPopup<CallComment, CallCommentViewModel>();
 
 #if DEBUG
         builder.Logging.AddDebug();

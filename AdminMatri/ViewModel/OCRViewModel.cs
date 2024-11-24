@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using Matri.Model;
 using System.Collections.ObjectModel;
 using MvvmHelpers;
+using System;
 
 namespace AdminMatri.ViewModel
 {
@@ -64,6 +65,8 @@ namespace AdminMatri.ViewModel
         public async Task BrowsePhoto()
         {
             ImageCollection.Clear();
+            ImageSources.Clear();
+
             var requestStorageRead = await Permissions.CheckStatusAsync<Permissions.Media>();
 
             if (requestStorageRead == PermissionStatus.Granted)
@@ -97,9 +100,14 @@ namespace AdminMatri.ViewModel
         public async Task UploadPhoto()
         {
             var sessionToken = await SecureStorage.GetAsync("Token");
-            var whatsAppGroupName = "ChristianJodi";
             var successCount = 0;
             var failureCount = 0;
+
+            if (selectedGroupName == null || string.IsNullOrEmpty(selectedGroupName.Name))
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please select group name", "Ok");
+                return;
+            }
 
             foreach (var path in imageSources)
             {
@@ -112,7 +120,7 @@ namespace AdminMatri.ViewModel
                 var formData = new MultipartFormDataContent();
 
                 formData.Add(new StringContent(sessionToken), "sessiontoken");
-                formData.Add(new StringContent(whatsAppGroupName), SelectedGroupName.Name);
+                formData.Add(new StringContent(SelectedGroupName.Name), "whatsAppGroupName");
                 formData.Add(new ByteArrayContent(image, 0, image.Length), "file", fileName);
                 try
                 {
@@ -120,12 +128,10 @@ namespace AdminMatri.ViewModel
                     var status = await _serviceManager.RetrieveNumbers4mImage(formData);
                     if (status)
                     {
-                        //await Shell.Current.CurrentPage.DisplayAlert("Alert", "Image Was Uploaded, Thank you", "Ok");
                         successCount = successCount + 1;
                     }
                     else
                     {
-                        //await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please try again", "Ok");
                         failureCount = failureCount + 1;
                     }
                     IsBusy = false;
@@ -144,6 +150,7 @@ namespace AdminMatri.ViewModel
 
             await Shell.Current.CurrentPage.DisplayAlert("Alert", $"{successCount} Uploaded {failureCount} failed , Thank you", "Ok");
             ImageCollection.Clear();
+            ImageSources.Clear();
         }
     }
 }

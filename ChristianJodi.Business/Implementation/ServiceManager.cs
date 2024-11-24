@@ -105,7 +105,7 @@ public class ServiceManager : IServiceManager
             }
             else
             {
-                profileToFormat.Height = heightInFeet_And_Inches.Replace("ft", "\'").Replace("in","\"").Replace(" ","").Trim();
+                profileToFormat.Height = heightInFeet_And_Inches.Replace("ft", "\'").Replace("in", "\"").Replace(" ", "").Trim();
             }
 
             userL.Add(profileToFormat);
@@ -444,11 +444,16 @@ public class ServiceManager : IServiceManager
 
     public async Task<bool> RetrieveNumbers4mImage(MultipartFormDataContent formData)
     {
-        return await _serviceRepository.UploadProfilePhoto(formData, Constants.API_URL_AdminLeads);
+        return await _serviceRepository.UploadProfilePhoto(formData, Constants.API_URL_AdminUploadOCRFile);
     }
 
     public async Task<List<Master>> GetWhatsappGroups(string sessiontoken)
     {
-        return await _serviceRepository.GetAsync<List<Master>>("",Constants.API_URL_AdminWhatsappGroupNames);
+        return await _serviceRepository.GetAsync<List<Master>>("", Constants.API_URL_AdminWhatsappGroupNames);
+    }
+
+    public async Task<bool> UpdateLeadCall(string id_number_comment)
+    {
+        return await _serviceRepository.PutAsync<string, bool>("", "", id_number_comment);
     }
 }

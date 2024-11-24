@@ -12,12 +12,20 @@ public partial class LoginViewModel : ObservableObject
     {
         _serviceManager = serviceManager;
     }
-    
+#if DEBUG
+    [ObservableProperty]
+    public string eMobile = "admin";
+
+    [ObservableProperty]
+    public string ePassword = "1234";
+#else
     [ObservableProperty]
     public string eMobile;
 
     [ObservableProperty]
     public string ePassword;
+
+#endif
 
     [ObservableProperty]
     public bool isBusy;
@@ -43,10 +51,11 @@ public partial class LoginViewModel : ObservableObject
     [RelayCommand]
     public async Task Login()
     {
+        IsBusy = true;
         var session = await _serviceManager.AdminLoginAsync(EMobile, EPassword);
 
         await SecureStorage.SetAsync("Token", session.SessionToken.ToString());
-
+        IsBusy = false;
         await Shell.Current.GoToAsync("//leads");
     }
 }

@@ -2,11 +2,31 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AdminMatri.Views.LeadsPage"
+             xmlns:FoA="clr-namespace:AdminMatri.FontsAwesome;assembly=AdminMatri"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
              Title="Lead">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}"/>
+        <StackLayout>
+            <syncfusion:SfDataGrid ItemsSource="{Binding Leads}" AutoGenerateColumnsMode="None" HeaderRowHeight="0"
+                                   CellTappedCommand="{Binding CellTapCommand}" x:Name="LeadsGrid">
+                <syncfusion:SfDataGrid.Columns>
+                    <syncfusion:DataGridTextColumn MappingName="Number" Width="150"/><!--Number-->
+                    <syncfusion:DataGridImageColumn MappingName="Whatsapp" Width="50"/><!--whatsapp-->
+                    <syncfusion:DataGridTextColumn MappingName="Comment" Width="50"/><!--Comment-->
+                    <syncfusion:DataGridCheckBoxColumn MappingName="IsMarriageBureau" Width="20"/><!--Save-->
+                    <syncfusion:DataGridCheckBoxColumn MappingName="MarkedAsCalled" Width="20"/><!--Save-->
+                    <syncfusion:DataGridTemplateColumn MappingName="Number">
+                        <syncfusion:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Text="Save" Command="{Binding Source={x:Reference LeadsGrid},Path=BindingContext.SaveCallCommand}"  
+                                        CommandParameter="{Binding .}"></Button>
+                            </DataTemplate>
+                        </syncfusion:DataGridTemplateColumn.CellTemplate>
+                    </syncfusion:DataGridTemplateColumn>
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
+        </StackLayout>
+
     </VerticalStackLayout>
 </ContentPage>
