@@ -70,7 +70,7 @@ namespace Matri.Business
 
         Task<Authentication> AdminLoginAsync(string username, string password);
 
-        Task<List<string>> GetLeads(string sessionToken);
+        Task<List<Lead>> GetLeads(string sessionToken);
 
         Task<bool> RetrieveNumbers4mImage(MultipartFormDataContent formData);
 

@@ -49,18 +49,7 @@ namespace AdminMatri.ViewModel
             try
             {
                 var dbLeads = await _serviceManager.GetLeads(token);
-                //Leads.AddRange(dbLeads);
-                foreach (var ld in dbLeads)
-                {
-                    Leads.Add(new Lead
-                    {
-                        Number = ld,
-                        Whatsapp = "",
-                        Comment = "",
-                        IsMarriageBureau = true,
-                        IsCalled = true
-                    });
-                }
+                Leads.AddRange(dbLeads);
                 IsBusy = false;
                 return true;
             }
@@ -136,7 +125,9 @@ namespace AdminMatri.ViewModel
         public async Task SaveCall(object obj)
         {
             var lead = obj as Lead;
-            this.popupService.ShowPopup<CallCommentViewModel>(onPresenting: viewModel => viewModel.PerformUpdates(lead, true));
+            await this.popupService.ShowPopupAsync<CallCommentViewModel>(onPresenting: viewModel => viewModel.PerformUpdates(lead, true));
+            Leads.Clear();
+            await this.GetLeads();
         }
     }
 }

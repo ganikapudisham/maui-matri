@@ -9,11 +9,11 @@
     <VerticalStackLayout>
         <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}"/>
         <StackLayout>
-            <syncfusion:SfDataGrid ItemsSource="{Binding Leads}" AutoGenerateColumnsMode="None" HeaderRowHeight="0"
+            <syncfusion:SfDataGrid ItemsSource="{Binding Leads}" AutoGenerateColumnsMode="None"
                                    CellTappedCommand="{Binding CellTapCommand}" x:Name="LeadsGrid">
                 <syncfusion:SfDataGrid.Columns>
-                    <syncfusion:DataGridTextColumn MappingName="Number" Width="150" CellPadding="10" />
-                    <syncfusion:DataGridTemplateColumn MappingName="Number" Width="40">
+                    <syncfusion:DataGridTextColumn MappingName="Number" Width="130" CellPadding="10" HeaderText="" />
+                    <syncfusion:DataGridTemplateColumn MappingName="Number" Width="45" HeaderText="W">
                         <syncfusion:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Image HeightRequest="20" WidthRequest="20" >
@@ -25,7 +25,7 @@ Color="Grey" Size="30" />
                             </DataTemplate>
                         </syncfusion:DataGridTemplateColumn.CellTemplate>
                     </syncfusion:DataGridTemplateColumn>
-                    <syncfusion:DataGridTemplateColumn Width="40">
+                    <syncfusion:DataGridTemplateColumn Width="45" HeaderText="C">
                         <syncfusion:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Image HeightRequest="20" WidthRequest="20" >
@@ -37,17 +37,11 @@ Color="Grey" Size="30" />
                             </DataTemplate>
                         </syncfusion:DataGridTemplateColumn.CellTemplate>
                     </syncfusion:DataGridTemplateColumn>
-                    <syncfusion:DataGridCheckBoxColumn MappingName="IsMarriageBureau" Width="40"/>
-                    <syncfusion:DataGridCheckBoxColumn MappingName="IsCalled" Width="40"/>
-                    <syncfusion:DataGridTemplateColumn MappingName="Number" Width="40">
+                    <syncfusion:DataGridCheckBoxColumn MappingName="IsMarriageBureau" Width="50" HeaderText="M"/>
+                    <syncfusion:DataGridCheckBoxColumn MappingName="IsCalled" Width="40" HeaderText="F"/>
+                    <syncfusion:DataGridTemplateColumn MappingName="Number" Width="40" HeaderText="">
                         <syncfusion:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <!--<ImageButton Command="{Binding Source={x:Reference LeadsGrid},Path=BindingContext.SaveCallCommand}"  
-                                        CommandParameter="{Binding .}" HorizontalOptions="Center" VerticalOptions="Center">
-                                    <ImageButton.Source>
-                                        <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.FaComment}" Size="500"/>
-                                    </ImageButton.Source>
-                                </ImageButton>-->
                                 <Image HeightRequest="20" WidthRequest="20" >
                                     <Image.Source>
                                         <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.FloppyDisk}"

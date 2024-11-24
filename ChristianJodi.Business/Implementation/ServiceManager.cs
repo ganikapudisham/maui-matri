@@ -437,9 +437,9 @@ public class ServiceManager : IServiceManager
         return response;
     }
 
-    public async Task<List<string>> GetLeads(string sessionToken)
+    public async Task<List<Lead>> GetLeads(string sessionToken)
     {
-        return await _serviceRepository.GetAsync<List<string>>(sessionToken, Constants.API_URL_AdminLeads);
+        return await _serviceRepository.GetAsync<List<Lead>>(sessionToken, Constants.API_URL_AdminLeads);
     }
 
     public async Task<bool> RetrieveNumbers4mImage(MultipartFormDataContent formData)
