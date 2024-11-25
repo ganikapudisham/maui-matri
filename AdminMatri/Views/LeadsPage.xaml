@@ -10,13 +10,14 @@
              xmlns:beh="clr-namespace:AdminMatri.Behavior"
              Title="Lead">
     <VerticalStackLayout>
-        <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" WidthRequest="50" HeightRequest="50"/>2
-        <StackLayout>
+        <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" WidthRequest="100" HeightRequest="100" BackgroundColor="Yellow"/>
+        <StackLayout Margin="0,30,0,0">
             <Border Margin="0" Style="{StaticResource FormBorderStyle}">
                 <combobox:SfComboBox x:Name="ddlGroupNames"  ItemsSource="{Binding GroupNames}"
 SelectedItem="{Binding SelectedGroupName}" Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name" IsEditable="True">
                     <combobox:SfComboBox.Behaviors>
-                        <beh:SelectionChangedBehavior Name="Lead"/>
+                        <toolkit:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding OnSelectionChangedCommand}" 
+                                                        CommandParameter="{x:Reference ddlGroupNames}"/>
                     </combobox:SfComboBox.Behaviors>
                 </combobox:SfComboBox>
             </Border>

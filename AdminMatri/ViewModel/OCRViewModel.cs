@@ -3,6 +3,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Matri.Model;
 using MvvmHelpers;
+using Syncfusion.Maui.Inputs;
+using System.ComponentModel;
 
 namespace AdminMatri.ViewModel;
 
@@ -47,19 +49,20 @@ public partial class OCRViewModel : CommunityToolkit.Mvvm.ComponentModel.Observa
     public OCRViewModel(IServiceManager serviceManager)
     {
         _serviceManager = serviceManager;
-        Task.Run(async () => {
-            IsBusy = true;
-            var dbGroupNames = await _serviceManager.GetWhatsappGroups("");
-            IsBusy = false;
-            GroupNames.AddRange(dbGroupNames);
+        IsBusy = true;
+        Task.Run(async () =>
+        {
+            await LoadWhatsappGroupNames();
         });
+        IsBusy = false;
     }
 
-    //public async Task LoadWhatsappGroupNames()
-    //{
-    //    var dbGroupNames = await _serviceManager.GetWhatsappGroups("");
-    //    GroupNames.AddRange(dbGroupNames);
-    //}
+    public async Task LoadWhatsappGroupNames()
+    {
+        var dbGroupNames = await _serviceManager.GetWhatsappGroups("");
+        GroupNames.AddRange(dbGroupNames);
+        SelectedGroupName = GroupNames[0];
+    }
 
     [RelayCommand]
     public async Task BrowsePhoto()
@@ -83,7 +86,7 @@ public partial class OCRViewModel : CommunityToolkit.Mvvm.ComponentModel.Observa
                 ImageCollection.Add(new CarouselModel(file.FullPath));
             }
 
-            if(imageSources.Count > 0)
+            if (imageSources.Count > 0)
             {
                 ShowUpload = true;
             }

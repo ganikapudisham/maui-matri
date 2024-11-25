@@ -32,9 +32,6 @@ Aspect="AspectFit"/>
                 <combobox:SfComboBox ItemsSource="{Binding GroupNames}"
 x:Name="ddlGroupNames" SelectedItem="{Binding SelectedGroupName}"
 Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name" IsEditable="True">
-                    <combobox:SfComboBox.Behaviors>
-                        <local:SelectionChangedBehavior Name="OCR" />
-                    </combobox:SfComboBox.Behaviors>
                 </combobox:SfComboBox>
             </Border>
 

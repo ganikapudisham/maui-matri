@@ -437,9 +437,10 @@ public class ServiceManager : IServiceManager
         return response;
     }
 
-    public async Task<List<Lead>> GetLeads(string sessionToken)
+    public async Task<List<Lead>> GetLeads(string sessionToken, string groupName)
     {
-        return await _serviceRepository.GetAsync<List<Lead>>(sessionToken, Constants.API_URL_AdminLeads);
+        groupName = groupName.Replace(' ', '_');
+        return await _serviceRepository.GetAsync<List<Lead>>(sessionToken, $"{Constants.API_URL_AdminLeads}?groupName={groupName}");
     }
 
     public async Task<bool> RetrieveNumbers4mImage(MultipartFormDataContent formData)
