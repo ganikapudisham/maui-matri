@@ -6,6 +6,7 @@ using Syncfusion.Maui.DataGrid;
 using CommunityToolkit.Maui.Core;
 using AdminMatri.FontsAwesome;
 using Matri.Model;
+using Syncfusion.Maui.Inputs;
 
 //TODO : adding comment on popup and retrieving it back on the page
 //TODO : save the call data
@@ -33,12 +34,32 @@ namespace AdminMatri.ViewModel
 
         public ObservableRangeCollection<Lead> Leads { get; private set; } = new ObservableRangeCollection<Lead>();
 
+        public ObservableRangeCollection<Master> groupNames = new();
+
+        public ObservableRangeCollection<Master> GroupNames
+        {
+            get { return groupNames; }
+            set
+            {
+                groupNames = value;
+            }
+        }
+
+        [ObservableProperty]
+        private Master selectedGroupName;
+
         public LeadsViewModel(IServiceManager serviceManager, IPopupService popupService)
         {
             _serviceManager = serviceManager;
             this.popupService = popupService;
             IsBusy = true;
-            Task.Run(async () => { await this.GetLeads(); });
+            Task.Run(async () =>
+            {
+                await this.GetLeads();
+                var dbGroupNames = await _serviceManager.GetWhatsappGroups("");
+                GroupNames.AddRange(dbGroupNames);
+                SelectedGroupName = GroupNames[0];
+            });
             IsBusy = false;
         }
 

@@ -5,10 +5,22 @@
              xmlns:FoA="clr-namespace:AdminMatri.FontsAwesome;assembly=AdminMatri"
              xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
              xmlns:local="clr-namespace:AdminMatri.ViewModel"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:combobox="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             xmlns:beh="clr-namespace:AdminMatri.Behavior"
              Title="Lead">
     <VerticalStackLayout>
-        <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" WidthRequest="50" HeightRequest="50"/>
+        <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" WidthRequest="50" HeightRequest="50"/>2
         <StackLayout>
+            <Border Margin="0" Style="{StaticResource FormBorderStyle}">
+                <combobox:SfComboBox x:Name="ddlGroupNames"  ItemsSource="{Binding GroupNames}"
+SelectedItem="{Binding SelectedGroupName}" Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name" IsEditable="True">
+                    <combobox:SfComboBox.Behaviors>
+                        <beh:SelectionChangedBehavior Name="Lead"/>
+                    </combobox:SfComboBox.Behaviors>
+                </combobox:SfComboBox>
+            </Border>
+
             <syncfusion:SfDataGrid ItemsSource="{Binding Leads}" AutoGenerateColumnsMode="None"
                                    CellTappedCommand="{Binding CellTapCommand}" x:Name="LeadsGrid">
                 <syncfusion:SfDataGrid.Columns>
