@@ -7,14 +7,13 @@
              xmlns:local="clr-namespace:AdminMatri.ViewModel"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:combobox="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
-             xmlns:beh="clr-namespace:AdminMatri.Behavior"
              Title="Lead">
     <VerticalStackLayout>
-        <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" WidthRequest="100" HeightRequest="100" BackgroundColor="Yellow"/>
+        <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" WidthRequest="25" HeightRequest="25" />
         <StackLayout Margin="0,30,0,0">
-            <Border Margin="0" Style="{StaticResource FormBorderStyle}">
+            <Border Margin="0">
                 <combobox:SfComboBox x:Name="ddlGroupNames"  ItemsSource="{Binding GroupNames}"
-SelectedItem="{Binding SelectedGroupName}" Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name" IsEditable="True">
+SelectedItem="{Binding SelectedGroupName}" DisplayMemberPath="Name" IsEditable="True">
                     <combobox:SfComboBox.Behaviors>
                         <toolkit:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding OnSelectionChangedCommand}" 
                                                         CommandParameter="{x:Reference ddlGroupNames}"/>

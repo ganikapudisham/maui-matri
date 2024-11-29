@@ -3,8 +3,8 @@
   <PropertyGroup>
     <IsFirstTimeProjectOpen>False</IsFirstTimeProjectOpen>
     <ActiveDebugFramework>net8.0-android34.0</ActiveDebugFramework>
-    <ActiveDebugProfile>Phone Xxh-DPI 6.7in - API 34 (Android 14.0 - API 34)</ActiveDebugProfile>
-    <SelectedPlatformGroup>Emulator</SelectedPlatformGroup>
+    <ActiveDebugProfile>OPPO CPH2285 (Android 13.0 - API 33)</ActiveDebugProfile>
+    <SelectedPlatformGroup>PhysicalDevice</SelectedPlatformGroup>
     <DefaultDevice>phone_xxh-dpi_6_7in_-_api_34</DefaultDevice>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetPlatformIdentifier)'=='iOS'">

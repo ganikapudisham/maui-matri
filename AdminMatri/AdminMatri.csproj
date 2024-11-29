@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net8.0-ios;net8.0-android34.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
 
@@ -56,6 +55,9 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
 	  <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	  <AndroidUseAapt2>True</AndroidUseAapt2>
+	  <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
@@ -68,6 +70,11 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
 	  <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|AnyCPU'">
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	  <RunAOTCompilation>False</RunAOTCompilation>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -126,7 +133,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\ChristianJodi.Business\ChristianJodi.Business.csproj" />
-	  <ProjectReference Include="..\ChristianJodi.Data\ChristianJodi.Data.csproj" />
+	  <ProjectReference Include="..\ChristianJodi.Model\ChristianJodi.Model.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -5,13 +5,11 @@
              xmlns:carousel="clr-namespace:Syncfusion.Maui.Carousel;assembly=Syncfusion.Maui.Carousel"
              xmlns:combobox="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:local="clr-namespace:AdminMatri.Behavior"
-             Title="Numbers">
+             Title="OCR">
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="itemTemplate">
-                <Image Source="{Binding Image}" 
-Aspect="AspectFit"/>
+                <Image Source="{Binding Image}" Aspect="AspectFit"/>
             </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -21,14 +19,13 @@ Aspect="AspectFit"/>
             <Label
     Grid.Row="4"
     Grid.Column="0" Grid.ColumnSpan="3"
-    FontFamily="Montserrat-Medium"
+    
     FontSize="16"
     Text="Group Name"
     TextColor="{DynamicResource Gray800}" />
             <Border
     Grid.Row="5"
-    Margin="0"
-    Style="{StaticResource FormBorderStyle}" Grid.ColumnSpan="3">
+    Margin="0" Grid.ColumnSpan="3">
                 <combobox:SfComboBox ItemsSource="{Binding GroupNames}"
 x:Name="ddlGroupNames" SelectedItem="{Binding SelectedGroupName}"
 Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name" IsEditable="True">
