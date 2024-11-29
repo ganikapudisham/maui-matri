@@ -15,35 +15,20 @@
     </ContentPage.Resources>
     <ScrollView>
         <StackLayout>
-
-            <Label
-    Grid.Row="4"
-    Grid.Column="0" Grid.ColumnSpan="3"
-    
-    FontSize="16"
-    Text="Group Name"
-    TextColor="{DynamicResource Gray800}" />
-            <Border
-    Grid.Row="5"
-    Margin="0" Grid.ColumnSpan="3">
+            <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" />
+            <Label FontSize="16" Text="Group Name"/>
+            
+            <Border>
                 <combobox:SfComboBox ItemsSource="{Binding GroupNames}"
-x:Name="ddlGroupNames" SelectedItem="{Binding SelectedGroupName}"
-Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="Name" IsEditable="True">
+x:Name="ddlGroupNames" SelectedItem="{Binding SelectedGroupName}" DisplayMemberPath="Name" IsEditable="True">
                 </combobox:SfComboBox>
             </Border>
 
             <Button x:Name="pickPhoto" Text="Browse Photo" Command="{Binding BrowsePhotoCommand}"/>
-            <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" Grid.Row="0" />
 
-            <carousel:SfCarousel
-x:Name="carousel"
-ItemTemplate="{StaticResource itemTemplate}"
-HeightRequest="400"
-ItemHeight="420"
-ItemWidth="300"
-ItemsSource="{Binding ImageCollection}"
-ViewMode="Default"
-WidthRequest="800" />
+            <carousel:SfCarousel x:Name="carousel" ItemTemplate="{StaticResource itemTemplate}"
+HeightRequest="400" ItemHeight="420" ItemWidth="300" ItemsSource="{Binding ImageCollection}"
+ViewMode="Default" WidthRequest="800" />
 
             <Button Text="Upload Photo" Command="{Binding UploadPhotoCommand}" IsVisible="{Binding ShowUpload}"/>
         </StackLayout>
