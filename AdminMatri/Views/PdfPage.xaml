@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AdminMatri.Views.PdfPage"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+             xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             Title="Pdf">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackLayout ZIndex="2" Spacing="0">
+                <Grid
+                Margin="10,12,10,16"
+                Padding="0"
+                ColumnSpacing="16"
+                RowSpacing="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    FontSize="12"
+                    Text="Age" />
+
+                    <Border
+                    Grid.Row="1" Grid.Column="0"
+                    Margin="0">
+
+                        <Entry
+                        Margin="12,0"
+                        FontSize="16"
+                        HeightRequest="40"
+                        Keyboard="Numeric"
+                        MaxLength="3"
+                        Placeholder="From" 
+                        Text="{Binding AgeFrom}"
+                                ClearButtonVisibility="WhileEditing">
+                        </Entry>
+
+                    </Border>
+
+                    <Border
+                    Grid.Row="1"
+                    Grid.Column="1">
+
+                        <Entry
+                        x:Name="cvvEntry"
+                        Margin="12,0"
+                        FontSize="16"
+                        HeightRequest="40"
+                        Keyboard="Numeric"
+                        MaxLength="3"
+                        Placeholder="To"
+                        Text="{Binding AgeTo}"
+                                ClearButtonVisibility="WhileEditing">
+
+                        </Entry>
+                    </Border>
+
+                    <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    FontSize="12"
+                    Text="Height" />
+
+                    <Border
+            Grid.Row="3"
+            Grid.Column="0"
+            Padding="6,0,0,0"
+            >
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                x:Name="DDLHeightFrom" SelectedItem="{Binding SelectedHeightFrom, Mode=TwoWay}"
+                  ItemsSource="{Binding MDHeightsFrom}">
+
+                        </editors:SfComboBox>
+                    </Border>
+
+                    <Border
+            Grid.Row="3"
+            Grid.Column="1"
+            Padding="6,0,0,0">
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                x:Name="DDLHeightTo" SelectedItem="{Binding SelectedHeightTo, Mode=TwoWay}"
+                 ItemsSource="{Binding MDHeightsFrom}">
+
+                        </editors:SfComboBox>
+                    </Border>
+
+                    <Label
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    FontSize="12"
+                    Text="Marital Status" />
+
+                    <Border
+            Grid.Row="5"
+            Grid.Column="0" Grid.ColumnSpan="2"
+            Padding="6,0,0,0"
+                            >
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                x:Name="DDLMaritalStatus" SelectedItem="{Binding SelectedMaritalStatus, Mode=TwoWay}"
+                  ItemsSource="{Binding MDMaritalStatus}">
+
+                        </editors:SfComboBox>
+                    </Border>
+
+                    <Label
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    FontSize="12"
+                    Text="Mother Tongue" />
+
+                    <Border
+            Grid.Row="8"
+            Grid.Column="0" Grid.ColumnSpan="2"
+            Padding="6,0,0,0">
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                x:Name="DDLLanguage" SelectedItem="{Binding SelectedMotherTongue, Mode=TwoWay}" ItemsSource="{Binding MDLanguages}">
+
+                        </editors:SfComboBox>
+                    </Border>
+
+                    <Label
+                    Grid.Row="9"
+                    Grid.Column="0"
+                    FontSize="12"
+                    Text="Religion" />
+
+                    <Border
+            Grid.Row="10"  Grid.ColumnSpan="2"
+            Grid.Column="0"
+            Padding="6,0,0,0" >
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                x:Name="DDLReligions" SelectedItem="{Binding SelectedReligion, Mode=TwoWay}"
+                 ItemsSource="{Binding MDReligions}">
+                            <editors:SfComboBox.Behaviors>
+                                 
+                            </editors:SfComboBox.Behaviors>
+                        </editors:SfComboBox>
+                    </Border>
+
+                    <StackLayout Grid.Row="11">
+                        <Grid>
+                            <Grid.RowDefinitions></Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                        <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    FontSize="12"
+                    Text="Caste" />
+
+                        <Border
+            Grid.Row="1"  Grid.ColumnSpan="2"
+            Grid.Column="0"
+            Padding="6,0,0,0" >
+                            <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                x:Name="DDLCastes" 
+                        SelectedItem="{Binding SelectedCaste, Mode=TwoWay}" ItemsSource="{Binding MDCastes}">
+
+                            </editors:SfComboBox>
+                        </Border>
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="13" IsVisible="{Binding ShowDenominations}">
+
+                        <Grid>
+                            <Grid.RowDefinitions></Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+
+                        <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    FontSize="12"
+                    Text="Denomination" />
+
+                        <Border
+            Grid.Row="1"  Grid.ColumnSpan="2" Grid.Column="0"
+            Padding="6,0,0,0" >
+                            <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                x:Name="DDLDenominations" SelectedItem="{Binding SelectedDenomination, Mode=TwoWay}"
+                 ItemsSource="{Binding MDDenominations}">
+
+                            </editors:SfComboBox>
+                        </Border>
+                    </StackLayout>
+                    <Label
+                    Grid.Row="15"
+                    Grid.Column="0"
+                    FontSize="12"
+                    Text="State" />
+
+                    <Border
+            Grid.Row="16"
+            Grid.Column="0"  Grid.ColumnSpan="2"
+            Padding="6,0,0,0" >
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                x:Name="DDLState" SelectedItem="{Binding SelectedState, Mode=TwoWay}"
+                 ItemsSource="{Binding MDStates}">
+
+                        </editors:SfComboBox>
+                    </Border>
+
+                    <Label
+                    Grid.Row="17"
+                    Grid.Column="0"
+                    FontSize="12"
+                    Text="District/Region" />
+
+                    <Border
+                    Grid.Row="18" Grid.Column="0"
+                    Margin="0" >
+
+                        <Entry
+                        Margin="12,0"
+                        FontSize="16"
+                        HeightRequest="40"
+                        MaxLength="3"
+                        Placeholder="District/Region"
+                        Text="{Binding District}"
+                                ClearButtonVisibility="WhileEditing">
+
+                        </Entry>
+
+                    </Border>
+
+                    <Label
+                    Grid.Row="19"
+                    Grid.Column="0"
+                    FontSize="12"
+                    Text="Education" />
+
+                    <Border
+            Grid.Row="20"
+            Grid.Column="0"  Grid.ColumnSpan="2"
+            Padding="6,0,0,0">
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                x:Name="DDLAcademics" SelectedItem="{Binding SelectedEducation, Mode=TwoWay}"
+                 ItemsSource="{Binding MDAcademics}">
+
+                        </editors:SfComboBox>
+                    </Border>
+
+                    <Label
+                    Grid.Row="21"
+                    Grid.Column="0"
+                    FontSize="12"
+                    Text="Job" />
+
+                    <Border
+            Grid.Row="22"
+            Grid.Column="0" Grid.ColumnSpan="2"
+            Padding="6,0,0,0" >
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                x:Name="DDLJob" SelectedItem="{Binding SelectedJob, Mode=TwoWay}"
+                 ItemsSource="{Binding MDJobs}">
+
+                        </editors:SfComboBox>
+                    </Border>
+
+                    <syncfusion:SfCheckBox Grid.Row="23"
+                Margin="4,16,0,4"
+                IsChecked="{Binding WithPhoto}"
+                VerticalOptions="Center" Text="With Photo" />
+
+                    <Label
+                    Grid.Row="24"
+                    Grid.Column="0"
+                    FontSize="12"
+                    Text="Residing Country" />
+
+                    <Border
+            Grid.Row="25"
+            Grid.Column="0" Grid.ColumnSpan="2"
+            Padding="0,0,0,0" >
+                        <editors:SfComboBox  IsEditable="True" DisplayMemberPath="Name"
+                x:Name="DDLResidingCountry" SelectedItem="{Binding SelectedResidingCountry, Mode=TwoWay}"
+                 ItemsSource="{Binding MDCountries}">
+
+                        </editors:SfComboBox>
+                    </Border>
+
+                </Grid>
+            </StackLayout>
+
+            <Button
+        Grid.Row="1"
+        Command="{Binding SearchCommand}"
+        HorizontalOptions="Center"
+        Text="SEARCH"
+        WidthRequest="245" />
+
+        </Grid>
+    </ScrollView>
+</ContentPage>

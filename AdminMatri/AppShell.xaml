@@ -83,4 +83,8 @@
             FlyoutIcon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaSearch}, Size=50,Color=Grey}">
         <ShellContent ContentTemplate="{DataTemplate local:OCRPage}" Route="OCR" />
     </FlyoutItem>
+    <FlyoutItem Title="Pdf" Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FileDownload}, Size=50,Color=Grey}" 
+        FlyoutIcon="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FileDownload}, Size=50,Color=Grey}">
+        <ShellContent ContentTemplate="{DataTemplate local:PdfPage}" Route="Pdf" />
+    </FlyoutItem>
 </Shell>

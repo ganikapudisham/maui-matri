@@ -50,6 +50,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<LeadsViewModel>();
         builder.Services.AddSingleton<LeadsPage>();
 
+        builder.Services.AddSingleton<PdfViewModel>();
+        builder.Services.AddSingleton<PdfPage>();
+
         builder.Services.AddSingleton<IServiceManager, ServiceManager>();
         builder.Services.AddSingleton<IServiceRepository, ServiceRepository>();
 
