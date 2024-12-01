@@ -1,7 +1,14 @@
+#if Android
+using Android.Content;
+using Android.Provider;
+#endif
 using Matri.Data;
 using Matri.Model;
 using Matri.Model.Email;
+using Microsoft.Maui.Controls.PlatformConfiguration;
 using System;
+using System.ComponentModel;
+using System.Net;
 
 namespace Matri.Business.Impl;
 
@@ -9,6 +16,8 @@ public class ServiceManager : IServiceManager
 {
     IServiceRepository _serviceRepository;
     string ImagesRepo = Constants.API_URL_ImagesRepo;//"https://api.christianjodi.com/";
+
+    //public event EventHandler<DownloadEventArgs> OnFileDownloaded;
     public ServiceManager(IServiceRepository serviceRepository)
     {
         _serviceRepository = serviceRepository;
@@ -457,4 +466,98 @@ public class ServiceManager : IServiceManager
     {
         return await _serviceRepository.PutAsync<Lead, bool>("", Constants.API_URL_AdminLeads, lead);
     }
+
+    //private void Completed(object sender, AsyncCompletedEventArgs e)
+    //{
+    //    if (e.Error != null)
+    //    {
+    //        if (OnFileDownloaded != null)
+    //            OnFileDownloaded.Invoke(this, new DownloadEventArgs(false));
+    //    }
+    //    else
+    //    {
+    //        if (OnFileDownloaded != null)
+    //            OnFileDownloaded.Invoke(this, new DownloadEventArgs(true));
+    //    }
+    //}
+
+    public async Task<bool> GetPDF(string sessionToken, SearchParameters searchParameters)
+    {
+        var requestStorageWrite = await Permissions.RequestAsync<Permissions.StorageWrite>();
+
+        if (requestStorageWrite == PermissionStatus.Granted)
+        {
+            var gender = "male";
+            var religion = "christian";
+            var caste = "mala";
+            //var folder = "downloadsMatri";
+
+            //string pathToNewFolder = "";
+            //System.Environment.SpecialFolder.Personal
+            //Android.OS.Environment.ExternalStorageDirectory.AbsolutePath
+            var url = $"{Constants.API_URL_ImagesRepo}{Constants.API_URL_AdminPdf}?gender={gender}&religion={religion}&caste={caste}";
+//#if ANDROID
+//         pathToNewFolder = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, folder);
+//#endif
+            //Directory.CreateDirectory(pathToNewFolder);
+
+            //try
+            //{
+            //    WebClient webClient = new WebClient();
+            //    webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
+            //    string pathToNewFile = Path.Combine(pathToNewFolder, "test.pdf");//, Path.GetFileName(url));
+            //    webClient.DownloadFileAsync(new Uri(url), pathToNewFile);
+            //}
+            //catch (Exception ex)
+            //{
+            //    if (OnFileDownloaded != null)
+            //        OnFileDownloaded.Invoke(this, new DownloadEventArgs(false));
+            //}
+
+            //string fileName = FileSystem.Current.AppDataDirectory + "Temp.pdf";
+
+            //return await _serviceRepository.GetAsync<bool>(sessionToken, );
+
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync(url);
+                if (response.IsSuccessStatusCode)
+                {
+                    //If we get the success status code, we can download it to the app data directory.
+                    var stream = await response.Content.ReadAsStreamAsync();
+
+#if ANDROID
+                var resolver = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity.ContentResolver;
+                var contentValues = new Android.Content.ContentValues();
+                contentValues.Put(Android.Provider.MediaStore.IMediaColumns.DisplayName, "Temp.pdf");
+                contentValues.Put(Android.Provider.MediaStore.IMediaColumns.MimeType, "application/pdf");
+                contentValues.Put(Android.Provider.MediaStore.IMediaColumns.RelativePath, Android.OS.Environment.DirectoryDownloads);
+                Android.Net.Uri uri = resolver.Insert(Android.Provider.MediaStore.Downloads.ExternalContentUri, contentValues);
+                Stream outputStream = resolver.OpenOutputStream(uri);
+                await stream.CopyToAsync(outputStream);
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "PDF file has been downloaded", "Ok");
+#endif
+                }
+                else
+                {
+                    throw new Exception("File not found");
+                }
+            }
+        }
+        else
+        {
+            await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please allow app to access Storage", "OK");
+            AppInfo.ShowSettingsUI();
+        }
+        return true;
+    }
 }
+
+//public class DownloadEventArgs : EventArgs
+//{
+//    public bool FileSaved = false;
+//    public DownloadEventArgs(bool fileSaved)
+//    {
+//        FileSaved = fileSaved;
+//    }
+//}

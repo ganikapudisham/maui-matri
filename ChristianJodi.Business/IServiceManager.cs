@@ -77,5 +77,7 @@ namespace Matri.Business
         Task<List<Master>> GetWhatsappGroups(string sessiontoken);
 
         Task<bool> UpdateLeadCall(Lead lead);
+
+        Task<bool> GetPDF(string sessionToken, SearchParameters searchParameters);
     }
 }

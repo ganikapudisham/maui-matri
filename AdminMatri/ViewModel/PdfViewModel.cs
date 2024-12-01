@@ -263,31 +263,32 @@ namespace AdminMatri.ViewModel
             //    return;
             //}
 
-            var searchParamters = new SearchParameters();
+            var searchParameters = new SearchParameters();
 
-            searchParamters.SubCaste = SelectedCaste.Id;
-            searchParamters.PageSize = 10;
-            searchParamters.StartPage = 1;
-            searchParamters.AgeFrom = AgeFrom;
-            searchParamters.AgeTo = AgeTo;
-            searchParamters.HeightFrom = SelectedHeightFrom.Id;
-            searchParamters.HeightTo = SelectedHeightTo.Id;
-            searchParamters.MaritalStatus = SelectedMaritalStatus.Id;
-            searchParamters.MotherTongue = SelectedMotherTongue.Id;
-            searchParamters.Religion = SelectedReligion.Id;
-            searchParamters.Caste = SelectedCaste.Id;
-            searchParamters.Denomination = SelectedDenomination.Id;
-            searchParamters.WithPhoto = WithPhoto == true ? 1 : 0;
-            searchParamters.State = SelectedState.Id;
-            searchParamters.DistrictRegion = District;
-            searchParamters.Education = SelectedEducation.Id;
-            searchParamters.Job = SelectedJob.Id;
-            searchParamters.ResidingCountry = SelectedResidingCountry.Id;
-            searchParamters.Community = "SELECT";
+            searchParameters.SubCaste = SelectedCaste.Id;
+            searchParameters.PageSize = 10;
+            searchParameters.StartPage = 1;
+            searchParameters.AgeFrom = AgeFrom;
+            searchParameters.AgeTo = AgeTo;
+            searchParameters.HeightFrom = SelectedHeightFrom.Id;
+            searchParameters.HeightTo = SelectedHeightTo.Id;
+            searchParameters.MaritalStatus = SelectedMaritalStatus.Id;
+            searchParameters.MotherTongue = SelectedMotherTongue.Id;
+            searchParameters.Religion = SelectedReligion.Id;
+            searchParameters.Caste = SelectedCaste.Id;
+            searchParameters.Denomination = SelectedDenomination.Id;
+            searchParameters.WithPhoto = WithPhoto == true ? 1 : 0;
+            searchParameters.State = SelectedState.Id;
+            searchParameters.DistrictRegion = District;
+            searchParameters.Education = SelectedEducation.Id;
+            searchParameters.Job = SelectedJob.Id;
+            searchParameters.ResidingCountry = SelectedResidingCountry.Id;
+            searchParameters.Community = "SELECT";
 
             //var searchParams = new Dictionary<string, object> { { "SearchParameters", searchParamters } };
 
             //await Shell.Current.GoToAsync("searchresults", searchParams);
+            var pdf =  await _serviceManager.GetPDF("", searchParameters);
         }
 
         private void OnReligionChanged(SfComboBox cmbReligion)

@@ -35,5 +35,6 @@ namespace Matri.Business
         internal const string API_URL_AdminLeads = "leads";
         internal const string API_URL_AdminUploadOCRFile = "ocr";
         internal const string API_URL_AdminWhatsappGroupNames = "leads/groupnames";
+        internal const string API_URL_AdminPdf = "pdf/profiles";
     }
 }
