@@ -78,6 +78,8 @@ namespace Matri.Business
 
         Task<bool> UpdateLeadCall(Lead lead);
 
-        Task<bool> GetPDF(string sessionToken, SearchParameters searchParameters);
+        Task<bool> GetPDF(string sessionToken, List<int> profileIds);
+
+        Task<List<int>> GetSearchedProfileIds(string sessionToken, SearchParameters searchParameters);
     }
 }

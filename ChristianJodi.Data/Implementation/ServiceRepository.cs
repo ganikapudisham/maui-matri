@@ -176,11 +176,11 @@ namespace Matri.Data.Impl
             }
             catch (HttpRequestException ex)
             {
-                _firebaseCrashlyticsService.Log(ex);
+                //_firebaseCrashlyticsService.Log(ex);
             }
             catch (Exception ex)
             {
-                _firebaseCrashlyticsService.Log(ex);
+                //_firebaseCrashlyticsService.Log(ex);
                 throw ex;
             }
             return objectToReturn;

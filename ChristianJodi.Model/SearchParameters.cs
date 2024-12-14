@@ -10,6 +10,8 @@ namespace Matri.Model
         public SearchParameters()
         { 
         }
+        [DataMember]
+        public string Gender { get; set; }
 
         [DataMember]
         public string SubCaste { get; set; }

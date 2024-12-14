@@ -481,24 +481,21 @@ public class ServiceManager : IServiceManager
     //    }
     //}
 
-    public async Task<bool> GetPDF(string sessionToken, SearchParameters searchParameters)
+    public async Task<bool> GetPDF(string sessionToken, List<int> profileIds)
     {
         var requestStorageWrite = await Permissions.RequestAsync<Permissions.StorageWrite>();
 
         if (requestStorageWrite == PermissionStatus.Granted)
         {
-            var gender = "male";
-            var religion = "christian";
-            var caste = "mala";
             //var folder = "downloadsMatri";
 
             //string pathToNewFolder = "";
             //System.Environment.SpecialFolder.Personal
             //Android.OS.Environment.ExternalStorageDirectory.AbsolutePath
-            var url = $"{Constants.API_URL_ImagesRepo}{Constants.API_URL_AdminPdf}?gender={gender}&religion={religion}&caste={caste}";
-//#if ANDROID
-//         pathToNewFolder = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, folder);
-//#endif
+            var url = $"{Constants.API_URL_ImagesRepo}pdf/bulk/{String.Join(",", profileIds)}";
+            //#if ANDROID
+            //         pathToNewFolder = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, folder);
+            //#endif
             //Directory.CreateDirectory(pathToNewFolder);
 
             //try
@@ -551,13 +548,19 @@ public class ServiceManager : IServiceManager
         }
         return true;
     }
+
+    public async Task<List<int>> GetSearchedProfileIds(string sessionToken, SearchParameters searchParameters)
+    {
+        var url = $"pdf/profiles?maritalstatus={searchParameters.MaritalStatus}&mothertongue={searchParameters.MotherTongue}" +
+                $"&religion={searchParameters.Religion}&caste={searchParameters.Caste}&subcaste={searchParameters.SubCaste}" +
+                $"&community={searchParameters.Community}&denomination={searchParameters.Denomination}" +
+                $"&photo={searchParameters.WithPhoto}&ageFrom={searchParameters.AgeFrom}&ageTo={searchParameters.AgeTo}" +
+                $"&state={searchParameters.State}&districtRegion={searchParameters.DistrictRegion}" +
+                $"&education={searchParameters.Education}&job={searchParameters.Job}" +
+                $"&residingCountry={searchParameters.ResidingCountry}&heightFrom={searchParameters.HeightFrom}" +
+                $"&heightTo={searchParameters.HeightTo}&gender={searchParameters.Gender}";
+
+        return await _serviceRepository.GetAsync<List<int>>(sessionToken, url);
+    }
 }
 
-//public class DownloadEventArgs : EventArgs
-//{
-//    public bool FileSaved = false;
-//    public DownloadEventArgs(bool fileSaved)
-//    {
-//        FileSaved = fileSaved;
-//    }
-//}

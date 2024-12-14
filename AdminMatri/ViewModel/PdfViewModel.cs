@@ -41,6 +41,8 @@ namespace AdminMatri.ViewModel
             MDDenominations = new ObservableRangeCollection<Master>();
             MDCastes = new ObservableRangeCollection<Master>();
 
+            MDGenders = new ObservableRangeCollection<Master>();
+
             Init();
         }
 
@@ -166,6 +168,16 @@ namespace AdminMatri.ViewModel
             }
         }
 
+        private ObservableRangeCollection<Master> mdGenders;
+        public ObservableRangeCollection<Master> MDGenders
+        {
+            get { return mdGenders; }
+            set
+            {
+                mdGenders = value;
+            }
+        }
+
         [ObservableProperty]
         private Master selectedHeightFrom;
 
@@ -202,6 +214,12 @@ namespace AdminMatri.ViewModel
         [ObservableProperty]
         public bool showDenominations = false;
 
+        [ObservableProperty]
+        public bool isBusy = false;
+
+        [ObservableProperty]
+        public Master selectedGender;
+
         private void Init()
         {
             var masterData = _sharedService.GetValue<MDD>("MasterData");
@@ -237,11 +255,21 @@ namespace AdminMatri.ViewModel
 
             MDDenominations.AddRange(masterData.Denominations);
             SelectedDenomination = masterData.Denominations[0];
+
+            var genders = new List<Master>();
+            genders.Add(new Master { Id = "1", Name = "Male" });
+            genders.Add(new Master { Id = "0", Name = "Female" });
+
+            MDGenders.AddRange(genders);
+            SelectedGender = genders[0];
+
         }
 
         [RelayCommand]
         public async Task Search()
         {
+            var sessionToken = await SecureStorage.GetAsync("Token");
+
             if (string.IsNullOrWhiteSpace(AgeFrom.ToString()))
             {
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please Specify From Age", "Ok");
@@ -264,10 +292,11 @@ namespace AdminMatri.ViewModel
             //}
 
             var searchParameters = new SearchParameters();
-
-            searchParameters.SubCaste = SelectedCaste.Id;
+            
+            
             searchParameters.PageSize = 10;
             searchParameters.StartPage = 1;
+            searchParameters.Gender = SelectedGender.Id;
             searchParameters.AgeFrom = AgeFrom;
             searchParameters.AgeTo = AgeTo;
             searchParameters.HeightFrom = SelectedHeightFrom.Id;
@@ -276,19 +305,32 @@ namespace AdminMatri.ViewModel
             searchParameters.MotherTongue = SelectedMotherTongue.Id;
             searchParameters.Religion = SelectedReligion.Id;
             searchParameters.Caste = SelectedCaste.Id;
+            searchParameters.SubCaste = SelectedCaste.Id;
             searchParameters.Denomination = SelectedDenomination.Id;
-            searchParameters.WithPhoto = WithPhoto == true ? 1 : 0;
             searchParameters.State = SelectedState.Id;
             searchParameters.DistrictRegion = District;
             searchParameters.Education = SelectedEducation.Id;
             searchParameters.Job = SelectedJob.Id;
             searchParameters.ResidingCountry = SelectedResidingCountry.Id;
             searchParameters.Community = "SELECT";
+            searchParameters.WithPhoto = WithPhoto == true ? 1 : 0;
 
-            //var searchParams = new Dictionary<string, object> { { "SearchParameters", searchParamters } };
+            var searchParams = new Dictionary<string, object> { { "SearchParameters", searchParameters } };
 
+            IsBusy = true;
             //await Shell.Current.GoToAsync("searchresults", searchParams);
-            var pdf =  await _serviceManager.GetPDF("", searchParameters);
+            var profileIds = await _serviceManager.GetSearchedProfileIds(sessionToken, searchParameters);
+
+            var my10List = profileIds;
+
+            if (profileIds.Count > 10)
+            {
+                my10List = profileIds.OrderBy(x => (new Random()).Next()).Take(10).ToList();
+            }
+
+            var downloadPDF = await _serviceManager.GetPDF(sessionToken, my10List);
+
+            IsBusy = false;
         }
 
         private void OnReligionChanged(SfComboBox cmbReligion)
