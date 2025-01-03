@@ -6,7 +6,7 @@ using Matri.Business;
 using System.Windows.Input;
 using Matri.Model;
 using System.Collections.ObjectModel;
-using Syncfusion.Maui.Carousel;
+using Syncfusion.Maui.Rotator;
 
 namespace Matri.ViewModel;
 
@@ -16,7 +16,7 @@ public partial class ViewPhotosViewModel : ObservableObject
 {
     IServiceManager _serviceManager;
 
-    private ObservableCollection<SfCarouselItem> _profilePhotos = new ObservableCollection<SfCarouselItem>();
+    private ObservableCollection<SfRotatorItem> _profilePhotos = new ObservableCollection<SfRotatorItem>();
 
     public event CloseHandler<ViewPhotos> OnClose;
 
@@ -39,15 +39,15 @@ public partial class ViewPhotosViewModel : ObservableObject
 
         var profileDetails = await _serviceManager.GetProfileById(sourceId, targetId);
 
-        ProfilePhotos = new ObservableCollection<SfCarouselItem>();
+        ProfilePhotos = new ObservableCollection<SfRotatorItem>();
 
         foreach (var pt in profileDetails.Photos)
         {
-            ProfilePhotos.Add(new SfCarouselItem() { ItemContent = new Image() { Source = pt.Name } });
+            ProfilePhotos.Add(new SfRotatorItem() { ItemContent = new Image() { Source = pt.Name } });
         }
     }
 
-    public ObservableCollection<SfCarouselItem> ProfilePhotos
+    public ObservableCollection<SfRotatorItem> ProfilePhotos
     {
         get { return _profilePhotos; }
         set { _profilePhotos = value; OnPropertyChanged(nameof(ProfilePhotos)); }
