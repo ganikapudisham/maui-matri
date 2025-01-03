@@ -8,11 +8,11 @@
         <carousel:SfCarousel
             x:Name="carousel"
             HeightRequest="500"
-            ItemHeight="520"
-            ItemWidth="250"
-            ItemsSource="{Binding ProfilePhotos}"
+            WidthRequest="350"
+            ItemHeight="450"
+            ItemWidth="350"
             ViewMode="Default"
-            WidthRequest="400">
+            ItemsSource="{Binding ProfilePhotos}">
         </carousel:SfCarousel>
         <Button Text="Close" Command="{Binding CloseCommand}"/>
     </VerticalStackLayout>
