@@ -43,7 +43,13 @@ public partial class ViewPhotosViewModel : ObservableObject
 
         foreach (var pt in profileDetails.Photos)
         {
-            ProfilePhotos.Add(new SfRotatorItem() { ItemContent = new Image() { Source = pt.Name } });
+            var sfRotatorItem = new SfRotatorItem();
+            var image = new Image();
+            image.Source = ImageSource.FromUri(new Uri(pt.Name));
+            image.HeightRequest = 400;
+            image.WidthRequest = 400;
+            sfRotatorItem.ItemContent = image;
+            ProfilePhotos.Add(sfRotatorItem);
         }
     }
 
