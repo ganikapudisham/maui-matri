@@ -5,9 +5,21 @@ namespace Matri.Views.Popups;
 
 public partial class ViewPhotos : Popup
 {
-	public ViewPhotos(ViewPhotosViewModel viewModel)
+    private ViewPhotosViewModel _viewModel;
+    public ViewPhotos(ViewPhotosViewModel viewModel)
 	{
 		InitializeComponent();
-		BindingContext = viewModel;
+		BindingContext = _viewModel = viewModel;
+        viewModel.OnClose += Close;
+    }
+
+    public void Dispose()
+    {
+        _viewModel.OnClose -= Close;
+    }
+
+    private async Task Close(ViewPhotos result)
+    {
+        await CloseAsync(result, CancellationToken.None);
     }
 }

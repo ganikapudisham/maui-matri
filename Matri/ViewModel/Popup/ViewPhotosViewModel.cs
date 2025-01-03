@@ -10,15 +10,24 @@ using Syncfusion.Maui.Carousel;
 
 namespace Matri.ViewModel;
 
+public delegate Task CloseHandler<T>(T result);
+
 public partial class ViewPhotosViewModel : ObservableObject
 {
     IServiceManager _serviceManager;
 
     private ObservableCollection<SfCarouselItem> _profilePhotos = new ObservableCollection<SfCarouselItem>();
+
+    public event CloseHandler<ViewPhotos> OnClose;
+
     public ViewPhotosViewModel(IServiceManager serviceManager)
     {
         _serviceManager = serviceManager;
+
+        CloseCommand = new RelayCommand<ViewPhotos>(async tt => await OnClose?.Invoke(tt));
     }
+
+    public ICommand CloseCommand { get; set; }
 
     public async Task LoadPhotos(IDictionary<string, object> query)
     {
@@ -42,12 +51,5 @@ public partial class ViewPhotosViewModel : ObservableObject
     {
         get { return _profilePhotos; }
         set { _profilePhotos = value; OnPropertyChanged(nameof(ProfilePhotos)); }
-    }
-
-    [RelayCommand]
-
-    public void Close()
-    {
-
     }
 }
