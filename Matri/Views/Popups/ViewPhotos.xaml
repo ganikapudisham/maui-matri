@@ -9,7 +9,7 @@
             x:Name="carousel"
             HeightRequest="500"
             WidthRequest="350"
-            NavigationStripMode="Dots"
+            NavigationStripMode="Thumbnail"
             ItemsSource="{Binding ProfilePhotos}">
         </rotator:SfRotator>
         <Button Text="Close" Command="{Binding CloseCommand}"/>
