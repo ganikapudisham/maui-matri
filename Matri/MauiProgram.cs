@@ -12,6 +12,7 @@ using Matri.Services;
 using Matri.Helper;
 using Matri.Abstract;
 using Microsoft.Maui.LifecycleEvents;
+using Matri.Views.Popups;
 
 namespace Matri
 {
@@ -153,6 +154,8 @@ namespace Matri
             builder.Services.AddSingleton<IFirebaseAnalyticsService, FirebaseAnalyticsService>();
             builder.Services.AddSingleton<ISharedService, SharedService>();
             builder.Services.AddSingleton<IFirebaseCrashlyticsService, FirebaseCrashlyticsService>();
+
+            builder.Services.AddTransientPopup<ViewPhotos, ViewPhotosViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();

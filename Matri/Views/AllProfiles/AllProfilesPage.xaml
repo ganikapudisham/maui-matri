@@ -89,16 +89,19 @@
                                         <ColumnDefinition Width="94"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Frame HorizontalOptions="Center" IsClippedToBounds="True" CornerRadius="4" HasShadow="False" Grid.Row="0" 
-                                   Grid.Column="0" HeightRequest="72" WidthRequest="72" Padding="0">
+                                    <!--<Frame HorizontalOptions="Center" IsClippedToBounds="True" CornerRadius="4" HasShadow="False" Grid.Row="0" 
+                                   Grid.Column="0" HeightRequest="72" WidthRequest="72" Padding="0">-->
                                         <Image Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="FillAndExpand" 
                                        HeightRequest="72" WidthRequest="72" 
                                        Aspect="Fill">
                                             <Image.Source>
                                                 <UriImageSource Uri="{Binding ThumbNailUri}"/>
                                             </Image.Source>
-                                        </Image>
-                                    </Frame>
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference profilesCollectionView},Path=BindingContext.ViewPhotosCommand}" CommandParameter="{Binding .}" NumberOfTapsRequired="1" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <!--</Frame>-->
                                     <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="Center" Margin="0,0,5,0">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>

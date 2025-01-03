@@ -147,6 +147,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\Popups\ViewPhotos.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\StylesEditBasic.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -325,6 +328,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\Popups\ViewPhotos.xaml.cs">
+	    <DependentUpon>ViewPhotos.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Resources\Login.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>

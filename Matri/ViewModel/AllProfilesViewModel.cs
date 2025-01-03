@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MvvmHelpers;
 using Matri.Helper;
+using CommunityToolkit.Maui.Core;
 
 namespace Matri.ViewModel
 {
@@ -27,9 +28,13 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public string currentAppVersion;
 
-        public AllProfilesViewModel(IServiceManager serviceManager)
+        private readonly IPopupService _popupService;
+
+        public AllProfilesViewModel(IServiceManager serviceManager, IPopupService popupService)
         {
             _serviceManager = serviceManager;
+            _popupService = popupService;
+
             PageSizeList.Add(new PageSize { Text = "5", Value = 5 });
             PageSizeList.Add(new PageSize { Text = "10", Value = 10 });
             PageSizeList.Add(new PageSize { Text = "20", Value = 20 });
@@ -236,6 +241,36 @@ namespace Matri.ViewModel
             {
 
             }
+        }
+
+        [RelayCommand]
+        public async Task ViewPhotos(Object obj)
+        {
+            if (obj != null && obj is MiniProfile)
+            {
+                var item = (MiniProfile)obj;
+
+                var sessionToken = await SecureStorage.GetAsync("Token");
+                var targetProfileId = item.Id;
+
+                //log the current user as visitor for the tapped profile
+                await _serviceManager.CreateProfileVisitor(sessionToken, targetProfileId);
+
+                var allRequests = await _serviceManager.GetAllRequests(sessionToken);
+                var requestsSentToSelectedUser = allRequests.Where(ar => ar.ReceiverId == targetProfileId).ToList();
+
+                var profileDetailsInput = ServiceHelper.InitialiseRequestsSent(requestsSentToSelectedUser);
+
+                profileDetailsInput.LoggedInId = sessionToken;
+                profileDetailsInput.TargetProfileId = targetProfileId;
+
+                var profileDetailsParams = new Dictionary<string, object> { { "ProfileDetailsInput", profileDetailsInput } };
+                IsBusy = false;
+
+                await this._popupService.ShowPopupAsync<ViewPhotosViewModel>(onPresenting: viewModel => viewModel.LoadPhotos(profileDetailsParams));
+            }
+
+            
         }
     }
 }
