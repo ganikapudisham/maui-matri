@@ -13,6 +13,7 @@ using Matri.Helper;
 using Matri.Abstract;
 using Microsoft.Maui.LifecycleEvents;
 using Matri.Views.Popups;
+using Plugin.Maui.ScreenSecurity;
 
 namespace Matri
 {
@@ -156,6 +157,7 @@ namespace Matri
             builder.Services.AddSingleton<IFirebaseCrashlyticsService, FirebaseCrashlyticsService>();
 
             builder.Services.AddTransientPopup<ViewPhotos, ViewPhotosViewModel>();
+            builder.Services.AddSingleton<IScreenSecurity>(ScreenSecurity.Default);
 
 #if DEBUG
             builder.Logging.AddDebug();

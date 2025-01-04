@@ -1,4 +1,5 @@
 ﻿using Matri.ViewModel;
+using Plugin.Maui.ScreenSecurity;
 
 namespace Matri
 {
@@ -9,7 +10,6 @@ namespace Matri
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzU2OTQ4NEAzMjM3MmUzMDJlMzBoOFljZjAveTgrVDBkWTRpOW1GZFZSYzNXbUw1THE3SUJsSEpraTNxdnBvPQ==");
             InitializeComponent();
-
             MainPage = new AppShell(viewModel);
         }
     }

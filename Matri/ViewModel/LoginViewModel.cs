@@ -11,6 +11,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Matri.Helper;
 using FirebaseAdmin.Messaging;
 using Matri.FontsAwesome;
+using Plugin.Maui.ScreenSecurity;
 
 namespace Matri.ViewModel
 {
@@ -34,10 +35,11 @@ namespace Matri.ViewModel
                 NavigateToPage();
             });
 
-
             ReadFireBaseAdminSdk();
 
             Task.Run(async () => { await ShowNewVersionAvailableMessage(); });
+
+            ScreenSecurity.Default.ActivateScreenSecurityProtection();
         }
 #if DEBUG
         [ObservableProperty]
