@@ -44,7 +44,7 @@
                         </Image.Source>
                     </Image>
                 </Frame>
-                <Frame HeightRequest="45" Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                <Frame HeightRequest="45" Margin="-20,0,25,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
                     <Entry Text="{Binding EMobile}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="User Name" Keyboard="Email" 
                        ClearButtonVisibility="WhileEditing" />
                 </Frame>

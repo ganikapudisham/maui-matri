@@ -14,6 +14,7 @@ using Matri.Abstract;
 using Microsoft.Maui.LifecycleEvents;
 using Matri.Views.Popups;
 using Plugin.Maui.ScreenSecurity;
+using Plugin.LocalNotification;
 
 namespace Matri
 {
@@ -25,6 +26,7 @@ namespace Matri
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
+                .UseLocalNotification()
                 .ConfigureSyncfusionCore()
                 .RegisterFirebase()
                 .ConfigureFonts(fonts =>
