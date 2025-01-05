@@ -141,7 +141,7 @@ namespace Matri.ViewModel
                     {
                         NotifyTime = DateTime.Now.AddSeconds(5),
                         NotifyRepeatInterval = TimeSpan.FromMinutes(1),
-                        //RepeatType=NotificationRepeat.
+                        RepeatType = NotificationRepeat.TimeInterval
                     }//,
                     //Android = new Plugin.LocalNotification.AndroidOption.AndroidOptions
                     //{
