@@ -130,7 +130,7 @@ namespace Matri.ViewModel
 
                 var deviceTokenSaved = await _serviceManager.CreateUpdateDeviceToken(sessionToken, fcmToken);
 
-                var request = new NotificationRequest
+                var birthdayNotification = new NotificationRequest
                 {
                     NotificationId = 1,
                     Title = "Testing",
@@ -151,7 +151,16 @@ namespace Matri.ViewModel
                     //{
 
                     //}
-                }
+
+                    //NotifyTime = new DateTime(2025, 01, 01),
+                    //NotifyRepeatInterval = DateTime.Now.AddYears(1) - DateTime.Now
+                };
+
+                //LocalNotificationCenter.Current.Show(birthdayNotification);
+                //LocalNotificationCenter.Current.Show(christmasNotification);
+                //LocalNotificationCenter.Current.Show(easterNotification);
+                //LocalNotificationCenter.Current.Show(newYearNotification);
+
 
                 await Shell.Current.GoToAsync("//AllProfilesPage");
             }
