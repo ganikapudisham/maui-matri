@@ -12,6 +12,8 @@ using Matri.Helper;
 using FirebaseAdmin.Messaging;
 using Matri.FontsAwesome;
 using Plugin.Maui.ScreenSecurity;
+using Plugin.LocalNotification;
+using System;
 
 namespace Matri.ViewModel
 {
@@ -127,6 +129,29 @@ namespace Matri.ViewModel
                 }
 
                 var deviceTokenSaved = await _serviceManager.CreateUpdateDeviceToken(sessionToken, fcmToken);
+
+                var request = new NotificationRequest
+                {
+                    NotificationId = 1,
+                    Title = "Testing",
+                    Subtitle = "Hello",
+                    Description = "Its me",
+                    BadgeNumber = 42,
+                    Schedule = new NotificationRequestSchedule
+                    {
+                        NotifyTime = DateTime.Now.AddSeconds(5),
+                        NotifyRepeatInterval = TimeSpan.FromMinutes(1),
+                        //RepeatType=NotificationRepeat.
+                    }//,
+                    //Android = new Plugin.LocalNotification.AndroidOption.AndroidOptions
+                    //{
+
+                    //},
+                    //iOS = new Plugin.LocalNotification.iOSOption.iOSOptions
+                    //{
+
+                    //}
+                }
 
                 await Shell.Current.GoToAsync("//AllProfilesPage");
             }
