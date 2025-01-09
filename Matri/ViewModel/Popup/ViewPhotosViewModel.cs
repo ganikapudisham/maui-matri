@@ -16,8 +16,6 @@ public partial class ViewPhotosViewModel : ObservableObject
 {
     IServiceManager _serviceManager;
 
-    private ObservableCollection<ImageSource> _profilePhotos = new ObservableCollection<ImageSource>();
-
     public event CloseHandler<ViewPhotos> OnClose;
 
     public ViewPhotosViewModel(IServiceManager serviceManager)
@@ -31,25 +29,27 @@ public partial class ViewPhotosViewModel : ObservableObject
 
     public async Task LoadPhotos(IDictionary<string, object> query)
     {
-        ProfilePhotos.Clear();
-
         var queryParam = query[nameof(ProfileDetailsInput)] as ProfileDetailsInput;
         var targetId = queryParam.TargetProfileId;
         var sourceId = queryParam.LoggedInId;
 
         var profileDetails = await _serviceManager.GetProfileById(sourceId, targetId);
 
-        ProfilePhotos = new ObservableCollection<ImageSource>();
-
         foreach (var pt in profileDetails.Photos)
         {
-            ProfilePhotos.Add(ImageSource.FromUri(new Uri(pt.Name)));
+            var imageSource = ImageSource.FromUri(new Uri(pt.Name));
+            tempPhotos.Add(imageSource);
         }
+
+        ProfilePhotos = tempPhotos;
     }
 
+    private ObservableCollection<ImageSource> tempPhotos = new ObservableCollection<ImageSource>();
+
+    private ObservableCollection<ImageSource> profilePhotos = new ObservableCollection<ImageSource>();
     public ObservableCollection<ImageSource> ProfilePhotos
     {
-        get { return _profilePhotos; }
-        set { _profilePhotos = value; OnPropertyChanged(nameof(ProfilePhotos)); }
+        get { return profilePhotos; }
+        set { profilePhotos = value; OnPropertyChanged(nameof(ProfilePhotos)); }
     }
 }

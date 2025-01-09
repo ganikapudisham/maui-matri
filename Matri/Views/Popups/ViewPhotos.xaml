@@ -2,21 +2,23 @@
 <toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-               xmlns:rotator="clr-namespace:Syncfusion.Maui.Rotator;assembly=Syncfusion.Maui.Rotator"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Rotator;assembly=Syncfusion.Maui.Rotator"
              x:Class="Matri.Views.Popups.ViewPhotos">
     <VerticalStackLayout>
-        <rotator:SfRotator Margin="0,10,0,10"
-            x:Name="carousel"
-            HeightRequest="500"
-            WidthRequest="350"
-            NavigationStripMode="Thumbnail"
-            ItemsSource="{Binding ProfilePhotos}">
-            <rotator:SfRotator.ItemTemplate>
+        <syncfusion:SfRotator x:Name="rotator" 
+                HeightRequest="500"
+                WidthRequest="350"
+                NavigationDelay="2000" 
+                ItemsSource="{Binding ProfilePhotos}" 
+                NavigationDirection="Horizontal"
+                NavigationStripMode="Thumbnail" 
+                BackgroundColor="#ececec">
+            <syncfusion:SfRotator.ItemTemplate>
                 <DataTemplate>
                     <Image Source="{Binding .}" Aspect="AspectFit" />
                 </DataTemplate>
-            </rotator:SfRotator.ItemTemplate>
-        </rotator:SfRotator>
+            </syncfusion:SfRotator.ItemTemplate>
+        </syncfusion:SfRotator>
         <Button Text="Close" Command="{Binding CloseCommand}"/>
     </VerticalStackLayout>
 </toolkit:Popup>
