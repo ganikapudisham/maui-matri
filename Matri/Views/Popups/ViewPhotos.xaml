@@ -11,6 +11,11 @@
             WidthRequest="350"
             NavigationStripMode="Thumbnail"
             ItemsSource="{Binding ProfilePhotos}">
+            <rotator:SfRotator.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding .}" Aspect="AspectFit" />
+                </DataTemplate>
+            </rotator:SfRotator.ItemTemplate>
         </rotator:SfRotator>
         <Button Text="Close" Command="{Binding CloseCommand}"/>
     </VerticalStackLayout>

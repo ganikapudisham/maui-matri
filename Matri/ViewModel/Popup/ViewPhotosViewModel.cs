@@ -16,7 +16,7 @@ public partial class ViewPhotosViewModel : ObservableObject
 {
     IServiceManager _serviceManager;
 
-    private ObservableCollection<SfRotatorItem> _profilePhotos = new ObservableCollection<SfRotatorItem>();
+    private ObservableCollection<ImageSource> _profilePhotos = new ObservableCollection<ImageSource>();
 
     public event CloseHandler<ViewPhotos> OnClose;
 
@@ -39,21 +39,15 @@ public partial class ViewPhotosViewModel : ObservableObject
 
         var profileDetails = await _serviceManager.GetProfileById(sourceId, targetId);
 
-        ProfilePhotos = new ObservableCollection<SfRotatorItem>();
+        ProfilePhotos = new ObservableCollection<ImageSource>();
 
         foreach (var pt in profileDetails.Photos)
         {
-            var sfRotatorItem = new SfRotatorItem();
-            var image = new Image();
-            image.Source = ImageSource.FromUri(new Uri(pt.Name));
-            image.HeightRequest = 400;
-            image.WidthRequest = 400;
-            sfRotatorItem.ItemContent = image;
-            ProfilePhotos.Add(sfRotatorItem);
+            ProfilePhotos.Add(ImageSource.FromUri(new Uri(pt.Name)));
         }
     }
 
-    public ObservableCollection<SfRotatorItem> ProfilePhotos
+    public ObservableCollection<ImageSource> ProfilePhotos
     {
         get { return _profilePhotos; }
         set { _profilePhotos = value; OnPropertyChanged(nameof(ProfilePhotos)); }
