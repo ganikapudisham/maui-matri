@@ -48,6 +48,9 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public bool isBusy = false;
 
+        [ObservableProperty]
+        public string deleteAccountIcon = FontAwesomeIcons2.Trash;
+
         [RelayCommand]
         public async Task EditProfile()
         {
@@ -134,6 +137,19 @@ namespace Matri.ViewModel
             IsBusy = true;
             await Shell.Current.GoToAsync("newprofiles");
             IsBusy = false;
+        }
+
+        [RelayCommand]
+        public async Task DeleteAccount()
+        {
+            var confirmed = await Shell.Current.CurrentPage.DisplayAlert("Confirm", "Are you sure you want to delete your Account", "Yes", "No");
+            
+            if (confirmed)
+            {
+                var sessionToken = await SecureStorage.GetAsync("Token");
+                await _serviceManager.DeleteProfile(sessionToken);
+                await Shell.Current.GoToAsync("///LoginPage");
+            }
         }
     }
 }

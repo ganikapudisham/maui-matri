@@ -19,5 +19,7 @@ namespace Matri.Data
         Task<TResult> GetAsync<TResult>(string token, string url);
         Task<TOut> PostAsync<TIn, TOut>(string token, string url, TIn content);
         Task<TOut> PutAsync<TIn, TOut>(string token, string url, TIn content);
+
+        Task<TResult> DeleteAsync<TResult>(string token, string url);
     }
 }

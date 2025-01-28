@@ -83,7 +83,7 @@ Command="{Binding RequestPhotoCommand}" BackgroundColor="#93c393" Grid.Row="0" G
                 </Grid>
 
                 <ContentView Grid.Row="3" Grid.ColumnSpan ="2">
-                    <syncfusion:SfAccordion x:Name="accordion" ExpandMode="SingleOrNone"
+                    <syncfusion:SfAccordion x:Name="accordion" ExpandMode="Multiple"
                         VerticalOptions="{OnPlatform Default=Fill}" 
                         IsClippedToBounds="True"
                         Grid.ColumnSpan="{OnPlatform Default=2, MacCatalyst=1,WinUI=1}" 
@@ -156,7 +156,7 @@ Command="{Binding RequestPhotoCommand}" BackgroundColor="#93c393" Grid.Row="0" G
                                 </Grid>
                             </syncfusion:AccordionItem.Content>
                         </syncfusion:AccordionItem>
-                        <syncfusion:AccordionItem>
+                        <syncfusion:AccordionItem IsExpanded="True">
                             <syncfusion:AccordionItem.Header>
                                 <Grid  HeightRequest="48" >
                                     <Label Text="Religion" Margin="16,14,0,14" CharacterSpacing="0.25" 
@@ -216,7 +216,7 @@ Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                 </Grid>
                             </syncfusion:AccordionItem.Content>
                         </syncfusion:AccordionItem>
-                        <syncfusion:AccordionItem>
+                        <syncfusion:AccordionItem IsExpanded="True">
                             <syncfusion:AccordionItem.Header>
                                 <Grid  HeightRequest="48">
                                     <Label Text="About Me" Margin="16,14,0,14" CharacterSpacing="0.25" 
@@ -293,7 +293,7 @@ Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}' />
                                 </Grid>
                             </syncfusion:AccordionItem.Content>
                         </syncfusion:AccordionItem>
-                        <syncfusion:AccordionItem>
+                        <syncfusion:AccordionItem IsExpanded="True">
                             <syncfusion:AccordionItem.Header>
                                 <Grid  HeightRequest="48">
                                     <Label Text="Academics/Job" Margin="16,14,0,14" CharacterSpacing="0.25" 
@@ -390,7 +390,7 @@ Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                 </Grid>
                             </syncfusion:AccordionItem.Content>
                         </syncfusion:AccordionItem>
-                        <syncfusion:AccordionItem>
+                        <syncfusion:AccordionItem IsExpanded="True">
                             <syncfusion:AccordionItem.Header>
                                 <Grid  HeightRequest="48">
                                     <Label Text="Family Details" Margin="16,14,0,14" CharacterSpacing="0.25" 
@@ -494,7 +494,7 @@ Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                 </Grid>
                             </syncfusion:AccordionItem.Content>
                         </syncfusion:AccordionItem>
-                        <syncfusion:AccordionItem>
+                        <syncfusion:AccordionItem IsExpanded="True">
                             <syncfusion:AccordionItem.Header>
                                 <Grid  HeightRequest="48">
                                     <Label Text="Looking For" Margin="16,14,0,14" CharacterSpacing="0.25" 
@@ -608,7 +608,7 @@ Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                 </Grid>
                             </syncfusion:AccordionItem.Content>
                         </syncfusion:AccordionItem>
-                        <syncfusion:AccordionItem>
+                        <syncfusion:AccordionItem IsExpanded="True">
                             <syncfusion:AccordionItem.Header>
                                 <Grid  HeightRequest="48">
                                     <Label Text="Address" Margin="16,14,0,14" CharacterSpacing="0.25" 

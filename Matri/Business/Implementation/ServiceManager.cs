@@ -424,5 +424,10 @@ namespace Matri.Business.Impl
         {
             return await _serviceRepository.GetAsync<List<RequestSent>>(sessiontoken.ToString(), Constants.API_URL_AllRequests);
         }
+
+        public async Task<bool> DeleteProfile(string sessiontoken)
+        {
+            return await _serviceRepository.DeleteAsync<bool>(sessiontoken, Constants.API_URL_DeleteProfile);
+        }
     }
 }

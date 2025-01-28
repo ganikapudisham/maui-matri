@@ -67,5 +67,7 @@ namespace Matri.Business
         Task<Profile> GetProfileByIdWithoutAuth(Guid profileId);
 
         Task<List<RequestSent>> GetAllRequests(string sessiontoken);
+
+        Task<bool> DeleteProfile(string sessiontoken);
     }
 }
