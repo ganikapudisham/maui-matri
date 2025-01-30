@@ -12,51 +12,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Matri.FontsAwesome;
+using Syncfusion.Maui.Picker;
 
 namespace Matri.ViewModel
 {
-    public partial class RegisterViewModel :ObservableObject
+    public partial class RegisterViewModel : ObservableObject
     {
         IServiceManager _serviceManager;
         public RegisterViewModel(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
-            BDDates = new ObservableCollection<Master>();
-            BDYears = new ObservableCollection<Master>();
-            BDMonths = new ObservableCollection<Master>();
             Genders = new ObservableCollection<Master>();
 
-            for (var i = 1; i < 32; i++)
-            {
-                BDDates.Add(new Master { Id = i.ToString(), Name = i.ToString() });
-            }
-            var currentYear = DateTime.Now.Year;
-            var UpperLimit = currentYear - 19; // 18 years back
-            var LowerLimit = UpperLimit - 70;
-            for (var i = UpperLimit; i > LowerLimit; i--)
-            {
-                BDYears.Add(new Master { Id = i.ToString(), Name = i.ToString() });
-            }
-
-            var months = new List<string>();
-            months.Add("Jan");
-            months.Add("Feb");
-            months.Add("Mar");
-            months.Add("Apr");
-            months.Add("May");
-            months.Add("Jun");
-            months.Add("Jul");
-            months.Add("Aug");
-            months.Add("Sep");
-            months.Add("Oct");
-            months.Add("Nov");
-            months.Add("Dec");
-
-            for (int i = 0; i < 12; i++)
-            {
-                var id = i + 1;
-                BDMonths.Add(new Master { Id = id.ToString(), Name = months[i] });
-            }
+            BirthDate = DateTime.Now.AddYears(-18).AddDays(1);
+            MaxDateString = DateTime.Now.AddYears(-18).AddDays(1).ToString("dd MMM yyyy");
+            MinDateString = DateTime.Now.AddYears(-70).ToString("dd MMM yyyy");
 
             Genders.Add(new Master { Id = "Male", Name = "Male" });
             Genders.Add(new Master { Id = "Female", Name = "Female" });
@@ -76,6 +46,15 @@ namespace Matri.ViewModel
 
         [ObservableProperty]
         public string password;
+
+        [ObservableProperty]
+        public string minDateString;
+
+        [ObservableProperty]
+        public string maxDateString;
+
+        [ObservableProperty]
+        public DateTime birthDate;
 
         [RelayCommand]
         public async Task Cancel()
@@ -110,42 +89,23 @@ namespace Matri.ViewModel
                 return;
             }
 
-
-            if (string.IsNullOrWhiteSpace(SelectedGender.Name))
+            if (SelectedGender == null)
             {
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please specify Gender", "Ok");
                 return;
             }
 
-            if (SelectedBirthDate == null)
+            if (BirthDate.ToString("dd MMM yyyy") == MaxDateString)
             {
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please provide Birth Date", "Ok");
+                await Shell.Current.CurrentPage.DisplayAlert("Alert", "You must be atleast 18 years old to use ChristianJodi app", "Ok");
                 return;
             }
-
-            if (SelectedBirthMonth == null)
-            {
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please provide Birth Month", "Ok");
-                return;
-            }
-
-            if (SelectedBirthYear == null)
-            {
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please provide Birth Year", "Ok");
-                return;
-            }
-
-            var year = Convert.ToInt16(SelectedBirthYear.Name);
-            var month = Convert.ToInt16(SelectedBirthMonth.Id);
-            var date = Convert.ToInt16(SelectedBirthDate.Name);
-
-            var birth = new DateTime(year, month, date);
 
             IsBusy = true;
             try
             {
                 var isSuccess = await _serviceManager.RegisterUserAsync(FirstName, LastName, UserName,
-                    Password, Password, SelectedGender.Name, birth, "");
+                    Password, Password, SelectedGender.Name, BirthDate, "");
                 await Shell.Current.CurrentPage.DisplayAlert("Alert", "Thank You For Registering With Us. You Can Now LogIn.", "Ok");
                 await Shell.Current.GoToAsync("///LoginPage");
             }
@@ -162,36 +122,6 @@ namespace Matri.ViewModel
             IsBusy = false;
         }
 
-        private ObservableCollection<Master> bdDates;
-        public ObservableCollection<Master> BDDates
-        {
-            get { return bdDates; }
-            set
-            {
-                bdDates = value;
-            }
-        }
-
-        private ObservableCollection<Master> bdMonths;
-        public ObservableCollection<Master> BDMonths
-        {
-            get { return bdMonths; }
-            set
-            {
-                bdMonths = value;
-            }
-        }
-
-        private ObservableCollection<Master> bdYears;
-        public ObservableCollection<Master> BDYears
-        {
-            get { return bdYears; }
-            set
-            {
-                bdYears = value;
-            }
-        }
-
         private ObservableCollection<Master> genders;
         public ObservableCollection<Master> Genders
         {
@@ -201,15 +131,6 @@ namespace Matri.ViewModel
                 genders = value;
             }
         }
-
-        [ObservableProperty]
-        public Master selectedBirthDate;
-
-        [ObservableProperty]
-        public Master selectedBirthMonth;
-
-        [ObservableProperty]
-        public Master selectedBirthYear;
 
         [ObservableProperty]
         public Master selectedGender;
@@ -234,6 +155,14 @@ namespace Matri.ViewModel
                 IsHiddenPassword = true;
                 PasswordVisibilityIcon = FontAwesomeIcons.EyeSlash;
             }, cancellationToken);
+        }
+
+        [RelayCommand]
+        public void BirthDateChanged(DatePickerSelectionChangedEventArgs datePickerSelectionChangedEventArgs)
+        {
+            var newSelectedDate = datePickerSelectionChangedEventArgs.NewValue;
+
+            BirthDate = new DateTime(newSelectedDate.Value.Year, newSelectedDate.Value.Month, newSelectedDate.Value.Day);
         }
     }
 }
