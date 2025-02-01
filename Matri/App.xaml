@@ -20,6 +20,7 @@
                 <ResourceDictionary Source="Resources/Styles/StylesSettings.xaml" />
 
                 <ResourceDictionary Source="Resources/Styles/StylesEditBasic.xaml" />
+                <ResourceDictionary Source="Resources/Styles/StylesProfileDetails.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

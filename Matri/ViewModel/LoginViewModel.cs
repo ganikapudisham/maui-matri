@@ -48,7 +48,7 @@ namespace Matri.ViewModel
         public string eMobile = "lucky";
 
         [ObservableProperty]
-        public string ePassword = "lucky";
+        public string ePassword = "rama";
 #else
         [ObservableProperty]
         public string eMobile;

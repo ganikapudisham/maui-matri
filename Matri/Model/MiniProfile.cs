@@ -49,5 +49,8 @@ namespace Matri.Model
         [DataMember]
         public Uri ThumbNailUri { get; set; }
 
+        [DataMember]
+        public int Index { get; set; }
+
     }
 }

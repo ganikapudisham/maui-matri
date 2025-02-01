@@ -81,7 +81,7 @@
                 </editors:SfComboBox>
             </Frame>
 
-            <picker:SfDatePicker HeightRequest="200" Margin="0,5,0,20" MinimumDate="{Binding MinDateString}" MaximumDate="{Binding MaxDateString}"
+            <picker:SfDatePicker HeightRequest="205" Margin="0,5,0,20" MinimumDate="{Binding MinDateString}" MaximumDate="{Binding MaxDateString}"
                                  Format="dd_MMM_yyyy"  SelectionChangedCommand="{Binding BirthDateChangedCommand}" 
                                  SelectedDate="{Binding MaxDateString}">
                 <picker:SfDatePicker.SelectionView >
@@ -90,6 +90,13 @@
                 <picker:SfDatePicker.HeaderView>
                     <picker:PickerHeaderView Height="40" Text="Select Birth Date" />
                 </picker:SfDatePicker.HeaderView>
+                <picker:SfDatePicker.ColumnHeaderView>
+                    <picker:DatePickerColumnHeaderView
+                                       Height="0"
+                                       DayHeaderText="Day Column"
+                                        MonthHeaderText="Month Column"
+                                        YearHeaderText="Year Column"/>
+                </picker:SfDatePicker.ColumnHeaderView>
             </picker:SfDatePicker>
 
             <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" ZIndex="2" />

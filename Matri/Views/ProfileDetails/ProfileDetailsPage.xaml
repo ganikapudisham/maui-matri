@@ -83,22 +83,22 @@ Command="{Binding RequestPhotoCommand}" BackgroundColor="#93c393" Grid.Row="0" G
                 </Grid>
 
                 <ContentView Grid.Row="3" Grid.ColumnSpan ="2">
-                    <syncfusion:SfAccordion x:Name="accordion" ExpandMode="Multiple"
+                    <syncfusion:SfAccordion x:Name="accordion" ExpandMode="MultipleOrNone"
                         VerticalOptions="{OnPlatform Default=Fill}" 
                         IsClippedToBounds="True"
                         Grid.ColumnSpan="{OnPlatform Default=2, MacCatalyst=1,WinUI=1}" 
                         Grid.Column="{OnPlatform Default=0, MacCatalyst=1,WinUI=1}" 
                         HorizontalOptions="Fill">
-
-                        <syncfusion:AccordionItem IsExpanded="True">
+                        <syncfusion:SfAccordion.Items>
+                        <syncfusion:AccordionItem IsExpanded="True" HeaderBackground="#f8e8cf">
                             <syncfusion:AccordionItem.Header>
                                 <Grid HeightRequest="48">
                                     <Label Text="Basic Information" Margin="16,14,0,14" CharacterSpacing="0.25" 
-                                                   FontFamily="Roboto-Regular"  FontSize="16" />
+                                                   Style="{StaticResource stylPDLblTitle}" />
                                 </Grid>
                             </syncfusion:AccordionItem.Header>
                             <syncfusion:AccordionItem.Content>
-                                <Grid ColumnSpacing="10" RowSpacing="2" BackgroundColor="White"  >
+                                <Grid ColumnSpacing="10" RowSpacing="2" BackgroundColor="#dfebfb"  >
                                     <Grid Margin="16,6,0,0">
                                         <Grid.Resources>
                                             <Style TargetType="Label">
@@ -122,31 +122,33 @@ Command="{Binding RequestPhotoCommand}" BackgroundColor="#93c393" Grid.Row="0" G
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-                                        <Label Text="Id" Grid.Row="0" Grid.Column="0"  FontAttributes="Bold"
-                                                       Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
+                                            <Label Text="Id" Grid.Row="0" Grid.Column="0" Style="{StaticResource stylPDLblItem}" HorizontalTextAlignment="Start"
+                                                       Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}' HorizontalOptions="StartAndExpand"/>
                                         <Label Text="{Binding WebsiteIdentifier}" Grid.Row="0" Grid.Column="1"  FontAttributes="Italic"
                 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="1" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Active On " Grid.Row="2" Grid.Column="0" FontAttributes="Bold"
-                                                       Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
-                                        <Label Text="{Binding LastLoggedIn}" Grid.Row="2" Grid.Column="1"  FontAttributes="Italic"
+                                            <Label Text="Active On " Grid.Row="2" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
+                                                       Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}' />
+                                        
+                                        <Label Text="{Binding LastLoggedIn}" Grid.Row="2" Grid.Column="1" FontAttributes="Italic"
                 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
+                                        
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="3" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Name" Grid.Row="4" Grid.Column="0"  FontAttributes="Bold"
+                                            <Label Text="Name" Grid.Row="4" Grid.Column="0"  Style="{StaticResource stylPDLblItem}"
                                                         Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding FirstName}" Grid.Row="4" Grid.Column="1"  FontAttributes="Italic"
                 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="5" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Mother Tongue " Grid.Row="6" Grid.Column="0"  FontAttributes="Bold"
+                                            <Label Text="Mother Tongue " Grid.Row="6" Grid.Column="0"  Style="{StaticResource stylPDLblItem}"
                                                         Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding MotherTongue}" Grid.Row="6" Grid.Column="1"  FontAttributes="Italic"
                 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="7" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Birth date" Grid.Row="8" Grid.Column="0"  FontAttributes="Bold"
+                                            <Label Text="Birth date" Grid.Row="8" Grid.Column="0"  Style="{StaticResource stylPDLblItem}"
                                                         Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
                                         <Label Text="{Binding BirthDate}" Grid.Row="8" Grid.Column="1"  FontAttributes="Italic"
                                                         Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
@@ -156,15 +158,15 @@ Command="{Binding RequestPhotoCommand}" BackgroundColor="#93c393" Grid.Row="0" G
                                 </Grid>
                             </syncfusion:AccordionItem.Content>
                         </syncfusion:AccordionItem>
-                        <syncfusion:AccordionItem IsExpanded="True">
+                        <syncfusion:AccordionItem IsExpanded="True" HeaderBackground="#f8e8cf">
                             <syncfusion:AccordionItem.Header>
                                 <Grid  HeightRequest="48" >
                                     <Label Text="Religion" Margin="16,14,0,14" CharacterSpacing="0.25" 
-                   FontFamily="Roboto-Regular"  FontSize="16" />
+                   Style="{StaticResource stylPDLblTitle}" />
                                 </Grid>
                             </syncfusion:AccordionItem.Header>
                             <syncfusion:AccordionItem.Content>
-                                <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="White" >
+                                    <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="#dfebfb" >
                                     <Grid Margin="16,6,0,0">
                                         <Grid.Resources>
                                             <Style TargetType="Label">
@@ -188,25 +190,25 @@ Command="{Binding RequestPhotoCommand}" BackgroundColor="#93c393" Grid.Row="0" G
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Label Text="Religion" Grid.Row="0" Grid.Column="0"   FontAttributes="Bold"
+                                            <Label Text="Religion" Grid.Row="0" Grid.Column="0"  Style="{StaticResource stylPDLblItem}"
                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding Religion}" Grid.Row="0" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="1" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Caste" Grid.Row="2" Grid.Column="0"  FontAttributes="Bold"
+                                            <Label Text="Caste" Grid.Row="2" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding Caste}" Grid.Row="2" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="3" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Denomination" Grid.Row="4" Grid.Column="0"  FontAttributes="Bold"
+                                            <Label Text="Denomination" Grid.Row="4" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                         Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding Denomination}" Grid.Row="4" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="5" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Caste Details" Grid.Row="6" Grid.ColumnSpan="2"  FontAttributes="Bold"
+                                            <Label Text="Caste Details" Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource stylPDLblItem}"
                         Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding CasteInformation}" Grid.Row="7" Grid.ColumnSpan="2"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
@@ -216,15 +218,15 @@ Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                 </Grid>
                             </syncfusion:AccordionItem.Content>
                         </syncfusion:AccordionItem>
-                        <syncfusion:AccordionItem IsExpanded="True">
+                        <syncfusion:AccordionItem IsExpanded="True" HeaderBackground="#f8e8cf">
                             <syncfusion:AccordionItem.Header>
                                 <Grid  HeightRequest="48">
                                     <Label Text="About Me" Margin="16,14,0,14" CharacterSpacing="0.25" 
-                                FontFamily="Roboto-Regular"  FontSize="16" />
+                                Style="{StaticResource stylPDLblTitle}" />
                                 </Grid>
                             </syncfusion:AccordionItem.Header>
                             <syncfusion:AccordionItem.Content>
-                                <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="White"  >
+                                    <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="#dfebfb"  >
                                     <Grid Margin="16,6,0,0">
                                         <Grid.Resources>
                                             <Style TargetType="Label">
@@ -252,37 +254,38 @@ Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Label Text="Height" Grid.Row="0" Grid.Column="0"   FontAttributes="Bold"
+                                            <Label Text="Height" Grid.Row="0" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding Height}" Grid.Row="0" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="1" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Weight" Grid.Row="2" Grid.Column="0"  FontAttributes="Bold"
+                                            <Label Text="Weight" Grid.Row="2" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding Weight}" Grid.Row="2" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="3" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Physical status" Grid.Row="4" Grid.Column="0"  FontAttributes="Bold"
+                                            <Label Text="Physical status" Grid.Row="4" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                      Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding PhysicalStatus}" Grid.Row="4" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="5" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Body type" Grid.Row="6" Grid.Column="0"  FontAttributes="Bold"
+                                            <Label Text="Body type" Grid.Row="6" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                      Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
                                         <Label Text="{Binding BodyType}" Grid.Row="6" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="7" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Complexion" Grid.Row="8" Grid.Column="0"  FontAttributes="Bold"
+                                            <Label Text="Complexion" Grid.Row="8" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
-                                        <Label Text="{Binding Complexion}" Grid.Row="8" Grid.Column="1"  FontAttributes="Italic"
+                                        
+                                        <Label Text="{Binding Complexion}" Grid.Row="8" Grid.Column="1" FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="9" Grid.ColumnSpan="2" />
 
-                                        <Label Text="About me" Grid.Row="10" Grid.Column="0"  FontAttributes="Bold"
+                                            <Label Text="About me" Grid.Row="10" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
 Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
                                         <Label Text="{Binding AboutMe}" Grid.Row="11" Grid.ColumnSpan="2"  FontAttributes="Italic"
 Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}' />
@@ -293,15 +296,14 @@ Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}' />
                                 </Grid>
                             </syncfusion:AccordionItem.Content>
                         </syncfusion:AccordionItem>
-                        <syncfusion:AccordionItem IsExpanded="True">
+                        <syncfusion:AccordionItem IsExpanded="True" HeaderBackground="#f8e8cf">
                             <syncfusion:AccordionItem.Header>
                                 <Grid  HeightRequest="48">
-                                    <Label Text="Academics/Job" Margin="16,14,0,14" CharacterSpacing="0.25" 
-FontFamily="Roboto-Regular"  FontSize="16" />
+                                        <Label Text="Academics/Job" Margin="16,14,0,14" CharacterSpacing="0.25" Style="{StaticResource stylPDLblTitle}" />
                                 </Grid>
                             </syncfusion:AccordionItem.Header>
                             <syncfusion:AccordionItem.Content>
-                                <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="White"  >
+                                    <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="#dfebfb"  >
                                     <Grid Margin="16,6,0,0">
                                         <Grid.Resources>
                                             <Style TargetType="Label">
@@ -339,49 +341,49 @@ FontFamily="Roboto-Regular"  FontSize="16" />
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Label Text="Education" Grid.Row="0" Grid.Column="0"   FontAttributes="Bold"
+                                            <Label Text="Education" Grid.Row="0" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                             Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding Education}" Grid.Row="0" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="1" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Education details" Grid.Row="2" Grid.Column="0" FontAttributes="Bold"
+                                            <Label Text="Education details" Grid.Row="2" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding EducationDetails}" Grid.Row="3" Grid.ColumnSpan="2"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="4" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Job type" Grid.Row="5" Grid.Column="0"  FontAttributes="Bold"
+                                            <Label Text="Job type" Grid.Row="5" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
      Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding JobType}" Grid.Row="5" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="6" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Job" Grid.Row="7" Grid.Column="0"  FontAttributes="Bold"
+                                            <Label Text="Job" Grid.Row="7" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
      Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
                                         <Label Text="{Binding Job}" Grid.Row="7" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="8" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Employment details" Grid.Row="9" Grid.Column="0"  FontAttributes="Bold"
+                                            <Label Text="Employment details" Grid.Row="9" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
 Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
                                         <Label Text="{Binding EmploymentDetails}" Grid.Row="10" Grid.ColumnSpan="2"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="11" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Annual income" Grid.Row="12" Grid.Column="0"  FontAttributes="Bold"
+                                            <Label Text="Annual income" Grid.Row="12" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding AnnualIncome}" Grid.Row="12" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="13" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Income details" Grid.Row="14" Grid.Column="0"  FontAttributes="Bold"
+                                            <Label Text="Income details" Grid.Row="14" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
                                         <Label Text="{Binding IncomeDetails}" Grid.Row="15" Grid.ColumnSpan="2"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="16" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Property details" Grid.Row="17" Grid.Column="0"  FontAttributes="Bold"
+                                            <Label Text="Property details" Grid.Row="17" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
                                         <Label Text="{Binding PropertyDetails}" Grid.Row="18" Grid.ColumnSpan="2"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
@@ -390,15 +392,14 @@ Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                 </Grid>
                             </syncfusion:AccordionItem.Content>
                         </syncfusion:AccordionItem>
-                        <syncfusion:AccordionItem IsExpanded="True">
+                        <syncfusion:AccordionItem IsExpanded="True" HeaderBackground="#f8e8cf">
                             <syncfusion:AccordionItem.Header>
                                 <Grid  HeightRequest="48">
-                                    <Label Text="Family Details" Margin="16,14,0,14" CharacterSpacing="0.25" 
-                                                   FontFamily="Roboto-Regular"  FontSize="16" />
+                                        <Label Text="Family Details" Margin="16,14,0,14" CharacterSpacing="0.25" Style="{StaticResource stylPDLblTitle}"/>
                                 </Grid>
                             </syncfusion:AccordionItem.Header>
                             <syncfusion:AccordionItem.Content>
-                                <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="White"  >
+                                    <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="#dfebfb"  >
                                     <Grid Margin="16,6,0,0">
                                         <Grid.Resources>
                                             <Style TargetType="Label">
@@ -435,55 +436,55 @@ Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Label Text="About Father" Grid.Row="0" Grid.Column="0"   FontAttributes="Bold"
+                                            <Label Text="About Father" Grid.Row="0" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding FathersOccupation}" Grid.Row="1" Grid.ColumnSpan="2"  FontAttributes="Italic"
                 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="2" Grid.ColumnSpan="2" />
 
-                                        <Label Text="About Mother" Grid.Row="3" Grid.Column="0"   FontAttributes="Bold"
+                                        <Label Text="About Mother" Grid.Row="3" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                                         Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding MothersOccupation}" Grid.Row="4" Grid.ColumnSpan="2"  FontAttributes="Italic"
                 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="5" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Brothers" Grid.Row="6" Grid.Column="0"  FontAttributes="Bold"
+                                        <Label Text="Brothers" Grid.Row="6" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                                        Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding BrothersCount}" Grid.Row="6" Grid.Column="1"  FontAttributes="Italic"
                 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="7" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Brothers Married" Grid.Row="8" Grid.Column="0"  FontAttributes="Bold"
+                                        <Label Text="Brothers Married" Grid.Row="8" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                                         Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding BrothersMarried}" Grid.Row="8" Grid.Column="1"  FontAttributes="Italic"
                 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="9" Grid.ColumnSpan="2" />
 
-                                        <Label Text="About Brothers" Grid.Row="10" Grid.Column="0"  FontAttributes="Bold"
+                                        <Label Text="About Brothers" Grid.Row="10" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                                         Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding AboutBrothers}" Grid.Row="11" Grid.ColumnSpan="2"  FontAttributes="Italic"
                 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="12" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Sisters" Grid.Row="13" Grid.Column="0"  FontAttributes="Bold"
+                                        <Label Text="Sisters" Grid.Row="13" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                                         Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
                                         <Label Text="{Binding SistersCount}" Grid.Row="13" Grid.Column="1"  FontAttributes="Italic"
                 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="14" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Sisters Married" Grid.Row="15" Grid.Column="0"  FontAttributes="Bold"
+                                        <Label Text="Sisters Married" Grid.Row="15" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                                         Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
                                         <Label Text="{Binding SistersMarried}" Grid.Row="15" Grid.Column="1"  FontAttributes="Italic"
                 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="16" Grid.ColumnSpan="2" />
 
-                                        <Label Text="About Sisters" Grid.Row="17" Grid.Column="0"  FontAttributes="Bold"
+                                        <Label Text="About Sisters" Grid.Row="17" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                                         Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
                                         <Label Text="{Binding AboutSisters}" Grid.Row="18" Grid.ColumnSpan="2"  FontAttributes="Italic"
                 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="19" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Family Details" Grid.Row="20" Grid.Column="0"  FontAttributes="Bold"
+                                        <Label Text="Family Details" Grid.Row="20" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                                         Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
                                         <Label Text="{Binding FamilyDetails}" Grid.Row="21" Grid.ColumnSpan="2"  FontAttributes="Italic"
                                                         Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
@@ -494,15 +495,14 @@ Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                 </Grid>
                             </syncfusion:AccordionItem.Content>
                         </syncfusion:AccordionItem>
-                        <syncfusion:AccordionItem IsExpanded="True">
+                        <syncfusion:AccordionItem IsExpanded="True" HeaderBackground="#f8e8cf">
                             <syncfusion:AccordionItem.Header>
                                 <Grid  HeightRequest="48">
-                                    <Label Text="Looking For" Margin="16,14,0,14" CharacterSpacing="0.25" 
-                                FontFamily="Roboto-Regular"  FontSize="16" />
+                                        <Label Text="Looking For" Margin="16,14,0,14" CharacterSpacing="0.25" Style="{StaticResource stylPDLblTitle}"/>
                                 </Grid>
                             </syncfusion:AccordionItem.Header>
                             <syncfusion:AccordionItem.Content>
-                                <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="White"  >
+                                    <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="#dfebfb"  >
                                     <Grid Margin="16,6,0,0">
                                         <Grid.Resources>
                                             <Style TargetType="Label">
@@ -539,67 +539,67 @@ Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-                                        <Label Text="Education" Grid.Row="0" Grid.Column="0"   FontAttributes="Bold"
+                                        <Label Text="Education" Grid.Row="0" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                             Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding ExpectedEducations}" Grid.Row="0" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="1" Grid.ColumnSpan="2" />
                                         
-                                        <Label Text="Job Type" Grid.Row="2" Grid.Column="0"   FontAttributes="Bold"
+                                        <Label Text="Job Type" Grid.Row="2" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                             Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding ExpectedJobTypes}" Grid.Row="2" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="3" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Marital Status" Grid.Row="4" Grid.Column="0"   FontAttributes="Bold"
+                                        <Label Text="Marital Status" Grid.Row="4" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding ExpectedMaritalStatuses}" Grid.Row="4" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="5" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Age" Grid.Row="6" Grid.Column="0"   FontAttributes="Bold"
+                                        <Label Text="Age" Grid.Row="6" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding ExpectedAge}" Grid.Row="6" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="7" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Height" Grid.Row="8" Grid.Column="0"   FontAttributes="Bold"
+                                        <Label Text="Height" Grid.Row="8" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding ExpectedHeight}" Grid.Row="8" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="9" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Physical Status" Grid.Row="10" Grid.Column="0"   FontAttributes="Bold"
+                                        <Label Text="Physical Status" Grid.Row="10" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding ExpectedPhysicalStatuses}" Grid.Row="10" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="11" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Mother tongue" Grid.Row="12" Grid.Column="0"   FontAttributes="Bold"
+                                        <Label Text="Mother tongue" Grid.Row="12" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding ExpectedLanguages}" Grid.Row="12" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="13" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Same Religion" Grid.Row="14" Grid.Column="0"   FontAttributes="Bold"
+                                        <Label Text="Same Religion" Grid.Row="14" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding SameReligion}" Grid.Row="14" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="15" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Same Caste" Grid.Row="16" Grid.Column="0"   FontAttributes="Bold"
+                                        <Label Text="Same Caste" Grid.Row="16" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding SameCaste}" Grid.Row="16" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="17" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Same Denomination" Grid.Row="18" Grid.Column="0"  FontAttributes="Bold"
+                                        <Label Text="Same Denomination" Grid.Row="18" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding SameDenomination}" Grid.Row="18" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="19" Grid.ColumnSpan="2" />
 
-                                        <Label Text="About Partner" Grid.Row="20" Grid.Column="0"  FontAttributes="Bold"
+                                        <Label Text="About Partner" Grid.Row="20" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
                                      Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}' />
                                         <Label Text="{Binding AboutPartner}" Grid.Row="21" Grid.ColumnSpan="2" FontAttributes="Italic"
                                      Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
@@ -608,15 +608,14 @@ Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                 </Grid>
                             </syncfusion:AccordionItem.Content>
                         </syncfusion:AccordionItem>
-                        <syncfusion:AccordionItem IsExpanded="True">
+                        <syncfusion:AccordionItem IsExpanded="True" HeaderBackground="#f8e8cf">
                             <syncfusion:AccordionItem.Header>
                                 <Grid  HeightRequest="48">
-                                    <Label Text="Address" Margin="16,14,0,14" CharacterSpacing="0.25" 
-FontFamily="Roboto-Regular"  FontSize="16" />
+                                        <Label Text="Address" Margin="16,14,0,14" CharacterSpacing="0.25" Style="{StaticResource stylPDLblTitle}"/>
                                 </Grid>
                             </syncfusion:AccordionItem.Header>
                             <syncfusion:AccordionItem.Content>
-                                <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="White"  >
+                                    <Grid ColumnSpacing="10" RowSpacing="2"  BackgroundColor="#dfebfb"  >
                                     <Grid Margin="16,6,0,0">
                                         <Grid.Resources>
                                             <Style TargetType="Label">
@@ -644,43 +643,43 @@ FontFamily="Roboto-Regular"  FontSize="16" />
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         
-                                        <Label Text="City" Grid.Row="0" Grid.Column="0"   FontAttributes="Bold"
+                                        <Label Text="City" Grid.Row="0" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding City}" Grid.Row="0" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="1" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Nativity" Grid.Row="2" Grid.Column="0"  FontAttributes="Bold"
+                                        <Label Text="Nativity" Grid.Row="2" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
     Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding Nativity}" Grid.Row="2" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="3" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Residing Town" Grid.Row="4" Grid.Column="0"  FontAttributes="Bold"
+                                        <Label Text="Residing Town" Grid.Row="4" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
      Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding ResidingTown}" Grid.Row="4" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="5" Grid.ColumnSpan="2" />
 
-                                        <Label Text="State" Grid.Row="6" Grid.Column="0"  FontAttributes="Bold"
+                                        <Label Text="State" Grid.Row="6" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
      Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="12,0,0,0"}'/>
                                         <Label Text="{Binding State}" Grid.Row="6" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="7" Grid.ColumnSpan="2" />
 
-                                        <Label Text="State of residence" Grid.Row="8" Grid.Column="0"  FontAttributes="Bold"
+                                        <Label Text="State of residence" Grid.Row="8" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
      Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
                                         <Label Text="{Binding StateOfResidence}" Grid.Row="8" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="9" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Residing Country" Grid.Row="10" Grid.Column="0"  FontAttributes="Bold"
+                                        <Label Text="Residing Country" Grid.Row="10" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
 Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
                                         <Label Text="{Binding Country}" Grid.Row="10" Grid.Column="1"  FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                         <BoxView Style="{StaticResource SeparatorStyle}" Grid.Row="11" Grid.ColumnSpan="2" />
 
-                                        <Label Text="Nationality" Grid.Row="12" Grid.Column="0"  FontAttributes="Bold"
+                                        <Label Text="Nationality" Grid.Row="12" Grid.Column="0" Style="{StaticResource stylPDLblItem}"
 Margin='{OnPlatform Default="6,0,0,0",MacCatalyst="6,0,0,0"}'/>
                                         <Label Text="{Binding Nationality}" Grid.Row="12" Grid.Column="1" FontAttributes="Italic"
 Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
@@ -691,6 +690,7 @@ Margin='{OnPlatform MacCatalyst="6,0,0,0"}'/>
                                 </Grid>
                             </syncfusion:AccordionItem.Content>
                         </syncfusion:AccordionItem>
+                        </syncfusion:SfAccordion.Items>
                     </syncfusion:SfAccordion>
                 </ContentView>
             </Grid>

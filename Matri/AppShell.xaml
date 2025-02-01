@@ -122,6 +122,10 @@
         <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" Route="SettingsPage" />
     </FlyoutItem>-->
 
+    <MenuItem Command="{Binding DeleteAccountCommand}"
+Text="Delete Account" IconImageSource="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons2.Trash}, Size=50,Color=Red}">
+    </MenuItem>
+
     <MenuItem Command="{Binding LogOutCommand}"
     Text="LogOut" IconImageSource="{FontImage FontFamily=FontAwesomeSolid, Glyph={x:Static FoA:FontAwesomeIcons.FaTimes}, Size=50,Color=Grey}">
     </MenuItem>

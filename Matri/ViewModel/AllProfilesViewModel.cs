@@ -93,7 +93,16 @@ namespace Matri.ViewModel
                 LNumberOfPages = $"/{totalPages}";
                 EPageNumber = pageNumber.ToString();
 
-                Profiles.AddRange(dbProfiles);
+                var lstProfiles = new List<MiniProfile>();
+                var index = 0;
+                foreach(var dbprofile in dbProfiles)
+                {
+                    index = index + 1;
+                    dbprofile.Index = index;
+                    lstProfiles.Add(dbprofile);
+                }
+
+                Profiles.AddRange(lstProfiles);
 
                 if (dbProfilesWithPaging.MetaData.TotalRecords == 0)
                 {

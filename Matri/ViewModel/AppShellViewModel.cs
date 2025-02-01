@@ -59,5 +59,18 @@ namespace Matri.ViewModel
             await _serviceManager.LogoutAsync(token);
             await Shell.Current.GoToAsync("///LoginPage");
         }
+
+        [RelayCommand]
+        public async Task DeleteAccount()
+        {
+            var confirmed = await Shell.Current.CurrentPage.DisplayAlert("Confirm", "Are you sure you want to delete your Account", "Yes", "No");
+
+            if (confirmed)
+            {
+                var sessionToken = await SecureStorage.GetAsync("Token");
+                await _serviceManager.DeleteProfile(sessionToken);
+                await Shell.Current.GoToAsync("///LoginPage");
+            }
+        }
     }
 }

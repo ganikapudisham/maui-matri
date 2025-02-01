@@ -4,7 +4,8 @@
              x:Class="Matri.Views.AllProfilesPage"
              xmlns:FoA="clr-namespace:Matri.FontsAwesome;assembly=Matri"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Title="All Profiles" BackgroundColor="White">
+             Title="All Profiles" BackgroundColor="#eee8da"
+             xmlns:convert="clr-namespace:Matri.Converters">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Shadow Brush="Black"
@@ -41,6 +42,7 @@
                 </Setter>
             </Style>
         </ResourceDictionary>
+        <convert:IndexToColorConverter x:Key="indexToColorConverter"/>
     </ContentPage.Resources>
     <Grid RowDefinitions="Auto,*">
         <VerticalStackLayout Grid.Row="0">
@@ -80,7 +82,7 @@
                             >
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <Grid>
+                                <Grid BackgroundColor="{Binding .,Converter={StaticResource indexToColorConverter},ConverterParameter={x:Reference Name=profilesCollectionView}}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="1"/>
@@ -159,7 +161,7 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                    <Frame Margin="10,5,10,5" BackgroundColor="White" Padding="5">
+                    <Frame Margin="10,5,10,5" BackgroundColor="#fec806" Padding="5">
                         <Grid x:Name="ParentGrid">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
