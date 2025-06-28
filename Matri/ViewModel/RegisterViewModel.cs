@@ -13,156 +13,163 @@ using System.Text;
 using System.Threading.Tasks;
 using Matri.FontsAwesome;
 using Syncfusion.Maui.Picker;
+using Matri.Abstract;
 
-namespace Matri.ViewModel
+namespace Matri.ViewModel;
+
+public partial class RegisterViewModel : ObservableObject
 {
-    public partial class RegisterViewModel : ObservableObject
+    IServiceManager _serviceManager;
+    private readonly Abstract.INotificationService _birthdayService;
+    private const int NotificationIdBirthday = 307;
+    public RegisterViewModel(IServiceManager serviceManager)
     {
-        IServiceManager _serviceManager;
-        public RegisterViewModel(IServiceManager serviceManager)
+        _serviceManager = serviceManager;
+        _birthdayService = Helper.ServiceHelper.GetService<INotificationService>();
+        Genders = new ObservableCollection<Master>();
+
+        BirthDate = DateTime.Now.AddYears(-18).AddDays(1);
+        MaxDateString = DateTime.Now.AddYears(-18).AddDays(1).ToString("dd MMM yyyy");
+        MinDateString = DateTime.Now.AddYears(-70).ToString("dd MMM yyyy");
+
+        Genders.Add(new Master { Id = "Male", Name = "Male" });
+        Genders.Add(new Master { Id = "Female", Name = "Female" });
+    }
+
+    [ObservableProperty]
+    public bool isBusy;
+
+    [ObservableProperty]
+    public string firstName;
+
+    [ObservableProperty]
+    public string lastName;
+
+    [ObservableProperty]
+    public string userName;
+
+    [ObservableProperty]
+    public string password;
+
+    [ObservableProperty]
+    public string minDateString;
+
+    [ObservableProperty]
+    public string maxDateString;
+
+    [ObservableProperty]
+    public DateTime birthDate;
+
+    [RelayCommand]
+    public async Task Cancel()
+    {
+        await Shell.Current.GoToAsync("///LoginPage");
+    }
+
+    [RelayCommand]
+    public async Task Register()
+    {
+        if (string.IsNullOrWhiteSpace(FirstName))
         {
-            _serviceManager = serviceManager;
-            Genders = new ObservableCollection<Master>();
-
-            BirthDate = DateTime.Now.AddYears(-18).AddDays(1);
-            MaxDateString = DateTime.Now.AddYears(-18).AddDays(1).ToString("dd MMM yyyy");
-            MinDateString = DateTime.Now.AddYears(-70).ToString("dd MMM yyyy");
-
-            Genders.Add(new Master { Id = "Male", Name = "Male" });
-            Genders.Add(new Master { Id = "Female", Name = "Female" });
+            await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please provide FirstName", "Ok");
+            return;
         }
 
-        [ObservableProperty]
-        public bool isBusy;
-
-        [ObservableProperty]
-        public string firstName;
-
-        [ObservableProperty]
-        public string lastName;
-
-        [ObservableProperty]
-        public string userName;
-
-        [ObservableProperty]
-        public string password;
-
-        [ObservableProperty]
-        public string minDateString;
-
-        [ObservableProperty]
-        public string maxDateString;
-
-        [ObservableProperty]
-        public DateTime birthDate;
-
-        [RelayCommand]
-        public async Task Cancel()
+        if (string.IsNullOrWhiteSpace(LastName))
         {
+            await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please provide LastName", "Ok");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(UserName))
+        {
+            await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please provide Mobile Number", "Ok");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(Password))
+        {
+            await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please provide Password", "Ok");
+            return;
+        }
+
+        if (SelectedGender == null)
+        {
+            await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please specify Gender", "Ok");
+            return;
+        }
+
+        if (BirthDate.ToString("dd MMM yyyy") == MaxDateString)
+        {
+            await Shell.Current.CurrentPage.DisplayAlert("Alert", "You must be atleast 18 years old to use ChristianJodi app", "Ok");
+            return;
+        }
+
+        IsBusy = true;
+        try
+        {
+            var isSuccess = await _serviceManager.RegisterUserAsync(FirstName, LastName, UserName,
+                Password, Password, SelectedGender.Name, BirthDate, "");
+
+            _birthdayService.CancelBirthdayNotification(NotificationIdBirthday);
+            _birthdayService.ScheduleBirthdayNotification(birthDate.Day, birthDate.Month, NotificationIdBirthday, "Happy Birthday", "Happy Birthday");
+
+            await Shell.Current.CurrentPage.DisplayAlert("Alert", "Thank You For Registering With Us. You Can Now LogIn.", "Ok");
             await Shell.Current.GoToAsync("///LoginPage");
         }
-
-        [RelayCommand]
-        public async Task Register()
+        catch (MatriInternetException exception)
         {
-            if (string.IsNullOrWhiteSpace(FirstName))
-            {
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please provide FirstName", "Ok");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(LastName))
-            {
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please provide LastName", "Ok");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(UserName))
-            {
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please provide Mobile Number", "Ok");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(Password))
-            {
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please provide Password", "Ok");
-                return;
-            }
-
-            if (SelectedGender == null)
-            {
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Please specify Gender", "Ok");
-                return;
-            }
-
-            if (BirthDate.ToString("dd MMM yyyy") == MaxDateString)
-            {
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", "You must be atleast 18 years old to use ChristianJodi app", "Ok");
-                return;
-            }
-
-            IsBusy = true;
-            try
-            {
-                var isSuccess = await _serviceManager.RegisterUserAsync(FirstName, LastName, UserName,
-                    Password, Password, SelectedGender.Name, BirthDate, "");
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Thank You For Registering With Us. You Can Now LogIn.", "Ok");
-                await Shell.Current.GoToAsync("///LoginPage");
-            }
-            catch (MatriInternetException exception)
-            {
-                IsBusy = false;
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "Ok");
-            }
-            catch (Exception exception)
-            {
-                IsBusy = false;
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", exception?.Message, "Ok");
-            }
             IsBusy = false;
+            await Shell.Current.CurrentPage.DisplayAlert("Alert", exception.Message, "Ok");
         }
-
-        private ObservableCollection<Master> genders;
-        public ObservableCollection<Master> Genders
+        catch (Exception exception)
         {
-            get { return genders; }
-            set
-            {
-                genders = value;
-            }
+            IsBusy = false;
+            await Shell.Current.CurrentPage.DisplayAlert("Alert", exception?.Message, "Ok");
         }
+        IsBusy = false;
+    }
 
-        [ObservableProperty]
-        public Master selectedGender;
-
-        [ObservableProperty]
-        public bool isHiddenPassword = true;
-
-        [ObservableProperty]
-        public string passwordVisibilityIcon = FontAwesomeIcons.EyeSlash;
-
-        [RelayCommand]
-        public void TogglePassword()
+    private ObservableCollection<Master> genders;
+    public ObservableCollection<Master> Genders
+    {
+        get { return genders; }
+        set
         {
-            IsHiddenPassword = false;
-            PasswordVisibilityIcon = FontAwesomeIcons.Eye;
-
-            var cancellationTokenSource = new CancellationTokenSource();
-            var cancellationToken = cancellationTokenSource.Token;
-
-            Task.Delay(500).ContinueWith(async (t) =>
-            {
-                IsHiddenPassword = true;
-                PasswordVisibilityIcon = FontAwesomeIcons.EyeSlash;
-            }, cancellationToken);
+            genders = value;
         }
+    }
 
-        [RelayCommand]
-        public void BirthDateChanged(DatePickerSelectionChangedEventArgs datePickerSelectionChangedEventArgs)
+    [ObservableProperty]
+    public Master selectedGender;
+
+    [ObservableProperty]
+    public bool isHiddenPassword = true;
+
+    [ObservableProperty]
+    public string passwordVisibilityIcon = FontAwesomeIcons.EyeSlash;
+
+    [RelayCommand]
+    public void TogglePassword()
+    {
+        IsHiddenPassword = false;
+        PasswordVisibilityIcon = FontAwesomeIcons.Eye;
+
+        var cancellationTokenSource = new CancellationTokenSource();
+        var cancellationToken = cancellationTokenSource.Token;
+
+        Task.Delay(500).ContinueWith(async (t) =>
         {
-            var newSelectedDate = datePickerSelectionChangedEventArgs.NewValue;
+            IsHiddenPassword = true;
+            PasswordVisibilityIcon = FontAwesomeIcons.EyeSlash;
+        }, cancellationToken);
+    }
 
-            BirthDate = new DateTime(newSelectedDate.Value.Year, newSelectedDate.Value.Month, newSelectedDate.Value.Day);
-        }
+    [RelayCommand]
+    public void BirthDateChanged(DatePickerSelectionChangedEventArgs datePickerSelectionChangedEventArgs)
+    {
+        var newSelectedDate = datePickerSelectionChangedEventArgs.NewValue;
+
+        BirthDate = new DateTime(newSelectedDate.Value.Year, newSelectedDate.Value.Month, newSelectedDate.Value.Day);
     }
 }

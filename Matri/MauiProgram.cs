@@ -14,7 +14,6 @@ using Matri.Abstract;
 using Microsoft.Maui.LifecycleEvents;
 using Matri.Views.Popups;
 using Plugin.Maui.ScreenSecurity;
-using Plugin.LocalNotification;
 
 namespace Matri
 {
@@ -26,7 +25,6 @@ namespace Matri
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
-                .UseLocalNotification()
                 .ConfigureSyncfusionCore()
                 .RegisterFirebase()
                 .ConfigureFonts(fonts =>
@@ -160,6 +158,10 @@ namespace Matri
 
             builder.Services.AddTransientPopup<ViewPhotos, ViewPhotosViewModel>();
             builder.Services.AddSingleton<IScreenSecurity>(ScreenSecurity.Default);
+
+#if ANDROID
+builder.Services.AddSingleton<INotificationService, Matri.Platforms.Android.Services.NotificationService>();
+#endif
 
 #if DEBUG
             builder.Logging.AddDebug();

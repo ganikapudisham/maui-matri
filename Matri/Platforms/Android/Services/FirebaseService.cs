@@ -41,7 +41,6 @@ namespace Matri.Platforms.Services
             intent.AddFlags(ActivityFlags.ClearTop);
             intent.AddFlags(ActivityFlags.SingleTop);
 
-
             foreach (var key in data.Keys)
             {
                 string value = data[key];
@@ -49,19 +48,19 @@ namespace Matri.Platforms.Services
             }
 
             var pendingIntent = PendingIntent.GetActivity(this,
-                MainActivity.NotificationID, intent, PendingIntentFlags.OneShot | PendingIntentFlags.Immutable);
+                MainActivity.NotificationIdCJ, intent, PendingIntentFlags.OneShot | PendingIntentFlags.Immutable);
 
-            var notificationBuilder = new NotificationCompat.Builder(this, MainActivity.Channel_ID)
+            var notificationBuilder = new NotificationCompat.Builder(this, MainActivity.NotificationChannelCJ)
                 .SetContentTitle(title)
                 .SetSmallIcon(Resource.Mipmap.appicon)
                 .SetContentText(messageBody)
-                .SetChannelId(MainActivity.Channel_ID)
+                .SetChannelId(MainActivity.NotificationChannelCJ)
                 .SetContentIntent(pendingIntent)
                 .SetAutoCancel(true)
                 .SetPriority((int)NotificationPriority.Max);
 
             var notificationManager = NotificationManagerCompat.From(this);
-            notificationManager.Notify(MainActivity.NotificationID, notificationBuilder.Build());
+            notificationManager.Notify(MainActivity.NotificationIdCJ, notificationBuilder.Build());
         }
         //private void SendTokenToServer(string token)
         //{

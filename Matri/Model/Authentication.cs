@@ -37,5 +37,7 @@ namespace Matri.Model
         public int FailedLoginAttempts { get; set; }
         
         public int PartnerId { get; set; }
+
+        public string BirthDate { get; set; }
     }
 }

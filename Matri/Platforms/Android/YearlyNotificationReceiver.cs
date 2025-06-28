@@ -1,0 +1,60 @@
+﻿using Android.App;
+using Android.Content;
+using Android.Graphics;
+using Android.OS;
+using AndroidX.Core.App;
+
+namespace Matri.Platforms.Android;
+
+[BroadcastReceiver(Enabled = true, Exported = true)]
+public class YearlyNotificationReceiver : BroadcastReceiver
+{
+    public override void OnReceive(Context context, Intent intent)
+    {
+        string title = intent.GetStringExtra("title") ?? "🎉 Reminder";
+        string message = intent.GetStringExtra("message") ?? "This is your yearly notification.";
+        int notificationId = intent.GetIntExtra("notificationId", 0);
+        int day = intent.GetIntExtra("day", 1);
+        int month = intent.GetIntExtra("month", 1); // 1-12
+        int hour = intent.GetIntExtra("hour", 1);
+        int minute = intent.GetIntExtra("minute", 1);
+
+        string channelId = "yearly_channel";
+        string channelName = "Yearly Notifications";
+
+        // Create notification channel if needed
+        var notificationManager = (NotificationManager)context.GetSystemService(Context.NotificationService);
+
+        if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+        {
+            var channel = new NotificationChannel(channelId, channelName, NotificationImportance.Default);
+            notificationManager.CreateNotificationChannel(channel);
+        }
+
+        var bitmap = BitmapFactory.DecodeResource(context.Resources, Resource.Drawable.notificationicon);
+
+        // Show the notification
+        var builder = new NotificationCompat.Builder(context, channelId)
+            .SetSmallIcon(Resource.Drawable.notificationicon)
+            .SetContentTitle(title)
+            .SetContentText(message)
+            .SetLargeIcon(bitmap) // This shows the image to the left of text
+            .SetStyle(new NotificationCompat.BigTextStyle().BigText(message)) // Optional: expand text
+            .SetAutoCancel(true);
+
+        var manager = NotificationManagerCompat.From(context);
+        manager.Notify(notificationId, builder.Build());
+
+        // 🔁 Reschedule for next year
+        NotificationScheduler.ScheduleYearlyNotification(
+            context,
+            day,
+            month,
+            hour,
+            minute,
+            notificationId,
+            title,
+            message
+        );
+    }
+}
