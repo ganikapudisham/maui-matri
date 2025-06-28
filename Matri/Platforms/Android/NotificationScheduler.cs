@@ -181,8 +181,6 @@ public static class NotificationScheduler
         }
         catch (Exception ex)
         {
-
-            throw;
         }
     }
 }
