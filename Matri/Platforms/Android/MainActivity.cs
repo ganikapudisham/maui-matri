@@ -4,17 +4,14 @@ using Android.Content.PM;
 using Android.OS;
 using AndroidX.Core.App;
 using AndroidX.Core.Content;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.Messaging;
-using Firebase;
-using Matri.Model;
 using Matri.Models;
-using Matri.Platforms.Android;
-using System.Text.Json;
-using static Android.Gms.Common.Apis.Api;
+using Matri.Views;
 
 namespace Matri;
 
-[Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]
+[Activity(LaunchMode = LaunchMode.SingleTop, Theme = "@style/Maui.SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]
 public class MainActivity : MauiAppCompatActivity
 {
     internal static readonly string NotificationChannelCJ = "ChristianJodiNC";
@@ -31,6 +28,9 @@ public class MainActivity : MauiAppCompatActivity
     protected override void OnCreate(Bundle savedInstanceState)
     {
         base.OnCreate(savedInstanceState);
+
+        HandleIntent(Intent);
+
         if (ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.PostNotifications) == Permission.Denied)
         {
             ActivityCompat.RequestPermissions(this, new String[] { Android.Manifest.Permission.PostNotifications }, 1);
@@ -38,13 +38,6 @@ public class MainActivity : MauiAppCompatActivity
 
         CreateNotificationChannel();
 
-        CreateNewYearNotifications();
-
-        CreateEasterNotifications();
-
-        CreateChristmasNotifications();
-
-        CreateDailyNotifications();
     }
 
     protected override void OnNewIntent(Intent intent)
@@ -66,6 +59,8 @@ public class MainActivity : MauiAppCompatActivity
                     WeakReferenceMessenger.Default.Send(new PushNotificationReceived("test"));
                 }
             }
+
+            HandleIntent(intent);
         }
     }
 
@@ -80,83 +75,22 @@ public class MainActivity : MauiAppCompatActivity
         }
     }
 
-    private void CreateChristmasNotifications()
+    private void HandleIntent(Intent? intent)
     {
-        NotificationScheduler.ScheduleYearlyNotification(
-context: this,
-day: 25,
-month: 12,
-hour: 0,
-minute: 0,
-notificationId: NotificationIdChristmasNight,
-title: "🎄 Merry Christmas!",
-message: "It's Christmas Night!"
-);
+        if (intent?.HasExtra("message") == true && intent?.HasExtra("title") == true)
+        {
+            string message = intent.GetStringExtra("message");
+            string title = intent.GetStringExtra("title");
 
-        NotificationScheduler.ScheduleYearlyNotification(
-context: this,
-day: 25,
-month: 12,
-hour: 9,
-minute: 0,
-notificationId: NotificationIdChristmasAfternoon, // Use a different ID
-title: "🎁 Christmas Morning!",
-message: "Good morning! Enjoy your Christmas Day!"
-);
-    }
-
-    private void CreateNewYearNotifications()
-    {
-        NotificationScheduler.ScheduleYearlyNotification(
-                    context: this,
-                    day: 1,
-                    month: 1,
-                    hour:0,
-                    minute:0,
-                    notificationId: NotificationIdNewYear,
-                    title: "🎆 Happy New Year!",
-                    message: "Welcome to a brand new year!"
-                );
-
-        NotificationScheduler.ScheduleYearlyNotification(
-                    context: this,
-                    day: 1,
-                    month: 1,
-                    hour: 7,
-                    minute: 0,
-                    notificationId: NotificationIdNewYear,
-                    title: "🎆 Happy New Year!",
-                    message: "Welcome to a brand new year!"
-                );
-    }
-
-    private void CreateEasterNotifications()
-    {
-        NotificationScheduler.ScheduleEasterNotification(
-            Android.App.Application.Context,
-            DateTime.Now.Year, 0, 0, NotificationIdEaster);
-
-        NotificationScheduler.ScheduleEasterNotification(
-            Android.App.Application.Context,
-            DateTime.Now.Year, 7, 0, NotificationIdEaster);
-    }
-
-    private async Task CreateDailyNotifications()
-    {
-        var context = Platform.CurrentActivity ?? throw new NullReferenceException("CurrentActivity is null");
-
-        await NotificationScheduler.ScheduleDailyNotification(
-    context: context,
-    hour: 7,
-    minute: 0,
-    notificationId: NotificationIdDailyMorning
-);
-
-        await NotificationScheduler.ScheduleDailyNotification(
-    context: context,
-    hour: 20,
-    minute: 0,
-    notificationId: NotificationIdDailyEvening
-);
+            Microsoft.Maui.Controls.Application.Current?.Dispatcher.Dispatch(() =>
+            {
+                var popup = new VersePopup(title, message);
+                Microsoft.Maui.Controls.Application.Current.MainPage?.ShowPopup(popup);
+            });
+        }
+        else
+        {
+            System.Diagnostics.Debug.WriteLine("Intent does not contain expected extras");
+        }
     }
 }

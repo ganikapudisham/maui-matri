@@ -44,17 +44,31 @@
         </ResourceDictionary>
         <convert:IndexToColorConverter x:Key="indexToColorConverter"/>
     </ContentPage.Resources>
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto,Auto,*">
         <VerticalStackLayout Grid.Row="0">
-            <Grid BackgroundColor="{Binding BgColor}">
+            <Grid Margin="0,0,0,5" BackgroundColor="{Binding BgColor}" IsVisible="{Binding NewVersionPromptVisibility}" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" HeightRequest="45" Text="{Binding NewVersionAvailableMessage}" 
-           TextColor="White" FontSize="15" Padding="0" IsVisible="{Binding NewVersionPromptVisibility}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+                <Label Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" HeightRequest="35" Text="{Binding NewVersionAvailableMessage}" 
+           TextColor="White" FontSize="14" Padding="0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UpdateAppCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+            <Grid Margin="0,0,0,10" BackgroundColor="{Binding BgColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" HeightRequest="35" Text="{Binding SubscriptionMessage}" 
+TextColor="White" FontSize="14" Padding="0" IsVisible="{Binding ShowSubscriptionBanner}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding UpdateAppCommand}" />
                     </Label.GestureRecognizers>

@@ -34,6 +34,7 @@ namespace Matri.ViewModel
             Routing.RegisterRoute("aboutus", typeof(AboutUsPage));
             Routing.RegisterRoute("contactus", typeof(ContactUsPage));
             Routing.RegisterRoute("notificationfrom", typeof(NotificationFromPage));
+            Routing.RegisterRoute(nameof(SubscriptionPage), typeof(SubscriptionPage));
         }
 
         [RelayCommand]

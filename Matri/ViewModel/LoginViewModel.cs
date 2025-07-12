@@ -12,8 +12,9 @@ using Matri.Helper;
 using FirebaseAdmin.Messaging;
 using Matri.FontsAwesome;
 using Plugin.Maui.ScreenSecurity;
-using Plugin.LocalNotification;
 using System;
+using PlatformIntegrationDemo.Helpers;
+using Matri.Views;
 
 namespace Matri.ViewModel;
 
@@ -24,15 +25,16 @@ public partial class LoginViewModel : ObservableObject
     IFirebaseAnalyticsService _firebaseAnalyticsService;
     IFirebaseCrashlyticsService _firebaseCrashlyticsService;
     private string _deviceToken;
-    private readonly Abstract.INotificationService _birthdayService;
     private const int NotificationIdBirthday = 307;
+    private readonly Abstract.IDateNotificationScheduler _birthdayService;
+
     public LoginViewModel(IServiceManager serviceManager, ISharedService sharedService)
     {
         _serviceManager = serviceManager;
         _sharedService = sharedService;
         _firebaseAnalyticsService = ServiceHelper.GetService<IFirebaseAnalyticsService>();
         _firebaseCrashlyticsService = ServiceHelper.GetService<IFirebaseCrashlyticsService>();
-        _birthdayService = ServiceHelper.GetService<Abstract.INotificationService>();
+        _birthdayService = ServiceHelper.GetService<Abstract.IDateNotificationScheduler>();
 
         WeakReferenceMessenger.Default.Register<PushNotificationReceived>(this, (r, m) =>
         {
@@ -42,7 +44,7 @@ public partial class LoginViewModel : ObservableObject
 
         ReadFireBaseAdminSdk();
 
-        Task.Run(async () => { await ShowNewVersionAvailableMessage(); });
+        //Task.Run(async () => { await ShowNewVersionAvailableMessage(); });
 
         ScreenSecurity.Default.ActivateScreenSecurityProtection();
     }
@@ -82,6 +84,12 @@ public partial class LoginViewModel : ObservableObject
 
     [ObservableProperty]
     public string customerCareNumber = "";
+
+    [ObservableProperty]
+    public bool showSubscriptionBanner;
+
+    [ObservableProperty]
+    public string subscriptionMessage;
 
     [RelayCommand]
     public async Task Login()
@@ -132,9 +140,15 @@ public partial class LoginViewModel : ObservableObject
             }
 
             var deviceTokenSaved = await _serviceManager.CreateUpdateDeviceToken(sessionToken, fcmToken);
-            _birthdayService.CancelBirthdayNotification(NotificationIdBirthday);
+
+            //_birthdayService.CancelNotification("tag");
             var birthDate = DateTime.Parse(session.BirthDate);
-            _birthdayService.ScheduleBirthdayNotification(birthDate.Day, birthDate.Month, NotificationIdBirthday, "Happy Birthday", "Happy Birthday");
+            _birthdayService.ScheduleNotification(birthDate, "Happy Birthday", "Happy Birthday", "tagBirthday");
+
+            if (!session.SubscriptionActive)
+            {
+                ShowRenewSubscriptionMessage();
+            }
 
             await Shell.Current.GoToAsync("//AllProfilesPage");
         }
@@ -148,6 +162,19 @@ public partial class LoginViewModel : ObservableObject
             await Shell.Current.CurrentPage.DisplayAlert("Alert", exception?.Message, "OK");
             IsBusy = false;
         }
+    }
+
+    private void ShowRenewSubscriptionMessage()
+    {
+        ShowSubscriptionBanner = true;
+        BgColor = "Brown";
+        SubscriptionMessage = $"Your Subscription has expired. Click here to renew.";
+    }
+
+    [RelayCommand]
+    public async Task ShowSubscriptionPlans()
+    {
+        //await Shell.Current.GoToAsync("//ForgotPasswordPage");
     }
 
     [RelayCommand]
@@ -225,7 +252,9 @@ public partial class LoginViewModel : ObservableObject
 
         CustomerCareNumber = appDetails.WAAdminNumber;
 
-        if (appDetails.LatestVersion.Trim() != AppInfo.Current.VersionString.Trim())
+        var newVersionIsAvailable = VersionHelper.IsNewVersionAvailable(UserAppVersion, AppVersionLatest);
+
+        if (newVersionIsAvailable)
         {
             NewVersionPromptVisibility = true;
             BgColor = "Brown";
@@ -286,5 +315,23 @@ public partial class LoginViewModel : ObservableObject
             Uri = $"http://play.google.com/store/apps/details?id={AppInfo.PackageName}",
             Title = "Link To Download ChristianJodi App",
         });
+    }
+
+    internal void OnPageAppearing()
+    {
+        Task.Run(async () => { await ShowNewVersionAvailableMessage(); });
+
+        var subscriptionActive = _sharedService.GetBool("SubScriptionType");
+
+        if (subscriptionActive != true)
+        {
+            ShowRenewSubscriptionMessage();
+        }
+    }
+
+    [RelayCommand]
+    public async Task Subscribe()
+    {
+        await Shell.Current.GoToAsync(nameof(SubscriptionPage));
     }
 }
