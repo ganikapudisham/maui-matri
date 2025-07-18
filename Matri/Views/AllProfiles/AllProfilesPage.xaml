@@ -44,7 +44,7 @@
         </ResourceDictionary>
         <convert:IndexToColorConverter x:Key="indexToColorConverter"/>
     </ContentPage.Resources>
-    <Grid RowDefinitions="Auto,Auto,*">
+    <Grid RowDefinitions="Auto,*,Auto">
         <VerticalStackLayout Grid.Row="0">
             <Grid Margin="0,0,0,5" BackgroundColor="{Binding BgColor}" IsVisible="{Binding NewVersionPromptVisibility}" >
                 <Grid.RowDefinitions>
@@ -81,193 +81,183 @@ TextColor="White" FontSize="14" Padding="0" IsVisible="{Binding ShowSubscription
                 <Label FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Records not found."/>
             </StackLayout>
         </VerticalStackLayout>
-
-        <ScrollView Grid.Row="1">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <StackLayout Grid.Row="0" IsVisible="{Binding ShowRecordsSection}">
-                    <CollectionView x:Name="profilesCollectionView" ItemsSource="{Binding Profiles}" 
+        <CollectionView x:Name="profilesCollectionView" ItemsSource="{Binding Profiles}" 
                             VerticalOptions="FillAndExpand" SelectionMode="Single" 
                             SelectionChangedCommand="{Binding ViewProfileCommand}"
                             SelectedItem="{Binding SelectedProfile}"
                             SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={x:Reference profilesCollectionView}}"
-                            >
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid BackgroundColor="{Binding .,Converter={StaticResource indexToColorConverter},ConverterParameter={x:Reference Name=profilesCollectionView}}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="1"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="94"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <!--<Frame HorizontalOptions="Center" IsClippedToBounds="True" CornerRadius="4" HasShadow="False" Grid.Row="0" 
+                            Grid.Row="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid BackgroundColor="{Binding .,Converter={StaticResource indexToColorConverter},ConverterParameter={x:Reference Name=profilesCollectionView}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="1"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="94"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--<Frame HorizontalOptions="Center" IsClippedToBounds="True" CornerRadius="4" HasShadow="False" Grid.Row="0" 
                                    Grid.Column="0" HeightRequest="72" WidthRequest="72" Padding="0">-->
-                                        <Image Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="FillAndExpand" 
+                        <Image Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="FillAndExpand" 
                                        HeightRequest="72" WidthRequest="72" 
                                        Aspect="Fill">
-                                            <Image.Source>
-                                                <UriImageSource Uri="{Binding ThumbNailUri}"/>
-                                            </Image.Source>
-                                        <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={x:Reference profilesCollectionView},Path=BindingContext.ViewPhotosCommand}" CommandParameter="{Binding .}" NumberOfTapsRequired="1" />
-                                        </Image.GestureRecognizers>
-                                    </Image>
-                                    <!--</Frame>-->
-                                    <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="Center" Margin="0,0,5,0">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="3*"/>
-                                            <ColumnDefinition Width="3*"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
+                            <Image.Source>
+                                <UriImageSource Uri="{Binding ThumbNailUri}"/>
+                            </Image.Source>
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference profilesCollectionView},Path=BindingContext.ViewPhotosCommand}" CommandParameter="{Binding .}" NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <!--</Frame>-->
+                        <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="Center" Margin="0,0,5,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                                        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10,0,0">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="5*"/>
-                                                <ColumnDefinition Width="3*"/>
-                                                <ColumnDefinition Width="2*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Label Grid.Row="0" Grid.Column="0"  Text="{Binding FirstName}" LineBreakMode="WordWrap" 
+                            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0"  Text="{Binding FirstName}" LineBreakMode="WordWrap" 
                                                     TextColor="#DE000000" FontFamily="Roboto-Medium" VerticalOptions="Center"
                                                     FontSize="{OnPlatform Android={OnIdiom Phone=15, Tablet=22}, iOS=16, WinUI=14, MacCatalyst=16}" 
                                                     />
-                                            <Label Grid.Row="0" Grid.Column="1" LineBreakMode="WordWrap" 
+                                <Label Grid.Row="0" Grid.Column="1" LineBreakMode="WordWrap" 
                                                    TextColor="#666666" LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
                                                    HorizontalTextAlignment="End" Text="{Binding Height}" FontFamily="Roboto-Regular" FontSize="10" 
                                                    CharacterSpacing="0.1" VerticalOptions="Center" />
 
-                                            <Label Grid.Row="0" Grid.Column="2" LineBreakMode="WordWrap" TextColor="#666666" 
+                                <Label Grid.Row="0" Grid.Column="2" LineBreakMode="WordWrap" TextColor="#666666" 
                                                     LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
                                                     Text="{Binding Age}" FontFamily="Roboto-Regular" FontSize="10" CharacterSpacing="0.1" 
                                                     HorizontalOptions="End" VerticalOptions="Center"/>
-                                        </Grid>
+                            </Grid>
 
-                                        <Label Grid.Row="0" Grid.Column="2" Text="" TextColor="#666666" HorizontalOptions="End"
+                            <Label Grid.Row="0" Grid.Column="2" Text="" TextColor="#666666" HorizontalOptions="End"
                                        FontSize="{OnPlatform Default=10,WinUI=12,MacCatalyst=12}" FontFamily="Roboto-Regular" 
                                        VerticalOptions="Center" />
 
-                                        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" LineBreakMode="WordWrap" TextColor="#666666" 
+                            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" LineBreakMode="WordWrap" TextColor="#666666" 
                                        LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
                                        Text="{Binding Education}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
                                        Margin="0,4,0,0" />
-                                        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" LineBreakMode="WordWrap" TextColor="#666666" 
+                            <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" LineBreakMode="WordWrap" TextColor="#666666" 
                                        LineHeight="{OnPlatform iOS={OnIdiom Tablet=1.2, Default=1.025}, Default=1.2}" 
                                        Text="{Binding Job}" FontFamily="Roboto-Regular" FontSize="14" CharacterSpacing="0.1" 
                                        Margin="0,4,0,10" />
-                                    </Grid>
-                                    <BoxView Grid.Row="1" Grid.Column="1" BackgroundColor="Black" HeightRequest="1" 
+                        </Grid>
+                        <BoxView Grid.Row="1" Grid.Column="1" BackgroundColor="Black" HeightRequest="1" 
                                      VerticalOptions="End" />
-                                </Grid>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    <Frame Margin="10,5,10,5" BackgroundColor="#fec806" Padding="5">
-                        <Grid x:Name="ParentGrid">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="35"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Frame Margin="10,5,10,5" BackgroundColor="#fec806" Padding="5" IsVisible="{Binding ShowRecordsSection}" Grid.Row="2">
+            <Grid x:Name="ParentGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="35"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
 
-                            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <ImageButton Aspect="AspectFill" Grid.Row="0" Grid.Column="0" HeightRequest="25" 
+                <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ImageButton Aspect="AspectFill" Grid.Row="0" Grid.Column="0" HeightRequest="25" 
                                          VerticalOptions="CenterAndExpand" HorizontalOptions="Start" WidthRequest="25"
                                         Command="{Binding BindingContext.FirstCommand, Source={x:Reference ParentGrid}}" 
                                              Style="{StaticResource UnifiedButtonStyle}">
-                                    <ImageButton.Source>
-                                        <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleDoubleLeft}" 
+                        <ImageButton.Source>
+                            <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleDoubleLeft}" 
                                                        />
-                                    </ImageButton.Source>
-                                </ImageButton>
+                        </ImageButton.Source>
+                    </ImageButton>
 
-                                <ImageButton HorizontalOptions="Start" Aspect="AspectFill" HeightRequest="35" WidthRequest="35" 
+                    <ImageButton HorizontalOptions="Start" Aspect="AspectFill" HeightRequest="35" WidthRequest="35" 
                                          VerticalOptions="Center" Grid.Row="0" Grid.Column="1" Command="{Binding PreviousCommand}"
                                              Style="{StaticResource UnifiedButtonStyle}" Padding="5">
-                                    <ImageButton.Source>
-                                        <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleLeft}" 
+                        <ImageButton.Source>
+                            <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleLeft}" 
                                                      Color="White"/>
-                                    </ImageButton.Source>
-                                </ImageButton>
+                        </ImageButton.Source>
+                    </ImageButton>
 
-                                <ImageButton HorizontalOptions="End" Aspect="AspectFill" Grid.Row="0" Grid.Column="2" 
+                    <ImageButton HorizontalOptions="End" Aspect="AspectFill" Grid.Row="0" Grid.Column="2" 
                                         HeightRequest="35" WidthRequest="35" VerticalOptions="Center" Command="{Binding NextCommand}"
                                              Style="{StaticResource UnifiedButtonStyle}" Padding="5">
-                                    <ImageButton.Source>
-                                        <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleRight}" 
+                        <ImageButton.Source>
+                            <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleRight}" 
                                                      Color="White"/>
-                                    </ImageButton.Source>
-                                </ImageButton>
+                        </ImageButton.Source>
+                    </ImageButton>
 
-                                <ImageButton HorizontalOptions="End" Aspect="AspectFill" Grid.Row="0" Grid.Column="3" HeightRequest="25" 
+                    <ImageButton HorizontalOptions="End" Aspect="AspectFill" Grid.Row="0" Grid.Column="3" HeightRequest="25" 
                                         WidthRequest="25" VerticalOptions="CenterAndExpand" Command="{Binding LastCommand}"
                                              Style="{StaticResource UnifiedButtonStyle}">
-                                    <ImageButton.Source>
-                                        <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleDoubleRight}" 
+                        <ImageButton.Source>
+                            <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static FoA:FontAwesomeIcons.AngleDoubleRight}" 
                                                      Color="White" />
-                                    </ImageButton.Source>
-                                </ImageButton>
-                            </Grid>
-                            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*" />
-                                    <ColumnDefinition Width="1*" />
-                                    <ColumnDefinition Width="2*" />
-                                    <ColumnDefinition Width="1*" />
-                                    <ColumnDefinition Width="1*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Label Grid.Row="0" FontSize="Small" Grid.Column="0" Text="Show" 
+                        </ImageButton.Source>
+                    </ImageButton>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" FontSize="Small" Grid.Column="0" Text="Show" 
                                VerticalOptions="Center"  HorizontalOptions="Start"></Label>
-                                <Picker x:Name="PickerPageSize" Grid.Row="0" Grid.Column="1" 
+                    <Picker x:Name="PickerPageSize" Grid.Row="0" Grid.Column="1" 
 VerticalOptions="Center" ItemsSource="{Binding PageSizeList}"  HorizontalOptions="Start"
  ItemDisplayBinding="{Binding Text}" SelectedItem="{Binding PPageSize}" >
-                                    <Picker.Behaviors>
-                                        <toolkit:EventToCommandBehavior
+                        <Picker.Behaviors>
+                            <toolkit:EventToCommandBehavior
                  EventName="SelectedIndexChanged"
                  Command="{Binding SelectedPageSizeCommand}"
                  CommandParameter="{ Binding .}" />
-                                    </Picker.Behaviors>
-                                </Picker>
-                                <Label Grid.Row="0" FontSize="Small" Grid.Column="2" Text="Current Page"
+                        </Picker.Behaviors>
+                    </Picker>
+                    <Label Grid.Row="0" FontSize="Small" Grid.Column="2" Text="Current Page"
         HorizontalOptions="End" VerticalOptions="Center"/>
-                                <Entry Keyboard="Numeric" Text="{Binding EPageNumber}" HorizontalOptions="End" Grid.Row="0" 
+                    <Entry Keyboard="Numeric" Text="{Binding EPageNumber}" HorizontalOptions="End" Grid.Row="0" 
        Grid.Column="3" FontSize="Small" VerticalOptions="End" Margin="0,0,0,0"/>
-                                <Label Grid.Row="0" Grid.Column="4" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start" 
+                    <Label Grid.Row="0" Grid.Column="4" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Start" 
        Text="{Binding LNumberOfPages}" />
-                            </Grid>
-                        </Grid>
-                    </Frame>
-                </StackLayout>
+                </Grid>
             </Grid>
-        </ScrollView>
+        </Frame>
     </Grid>
 </ContentPage>

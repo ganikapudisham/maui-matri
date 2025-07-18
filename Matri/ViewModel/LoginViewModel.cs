@@ -53,7 +53,7 @@ public partial class LoginViewModel : ObservableObject
     public string eMobile = "lucky";//alex
 
     [ObservableProperty]
-    public string ePassword = "lucky123";//alex123
+    public string ePassword = "123lucky";//alex123
 #else
     [ObservableProperty]
     public string eMobile;
