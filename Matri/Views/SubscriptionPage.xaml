@@ -18,7 +18,7 @@
                     <Button Text="Subscribe"
                 BackgroundColor="#383D75"
                 TextColor="White"
-                CornerRadius="12" />
+                CornerRadius="12" Command="{Binding PayCommand}" />
                 </VerticalStackLayout>
             </Frame>
 

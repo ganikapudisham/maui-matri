@@ -21,7 +21,7 @@
                 </Label.GestureRecognizers>
             </Label>
         </Grid>
-        <Grid Margin="0,0,0,5" BackgroundColor="{Binding BgColor}">
+        <!--<Grid Margin="0,0,0,5" BackgroundColor="{Binding BgColor}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
@@ -42,7 +42,7 @@ IsVisible="{Binding ShowSubscriptionBanner}">
                     <TapGestureRecognizer Command="{Binding SubscribeCommand}" />
                 </Label.GestureRecognizers>
             </Label>
-        </Grid>
+        </Grid>-->
         <StackLayout HeightRequest="30">
             <ActivityIndicator Margin="0,5,0,0" Grid.Row="1" IsVisible="{Binding IsBusy}" IsRunning="True"/>
         </StackLayout>

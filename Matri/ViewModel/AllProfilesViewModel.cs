@@ -7,6 +7,7 @@ using MvvmHelpers;
 using Matri.Helper;
 using CommunityToolkit.Maui.Core;
 using Matri.Abstract;
+using Matri.Views;
 
 namespace Matri.ViewModel;
 
@@ -304,5 +305,11 @@ public partial class AllProfilesViewModel : CommunityToolkit.Mvvm.ComponentModel
             BgColor = "Brown";
             SubscriptionMessage = $"Your Subscription has expired. Click here to renew.";
         }
+    }
+
+    [RelayCommand]
+    public async Task Subscribe()
+    {
+        await Shell.Current.GoToAsync(nameof(SubscriptionPage));
     }
 }

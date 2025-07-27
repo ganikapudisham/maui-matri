@@ -48,9 +48,9 @@ public static class MauiProgram
                 fonts.AddFont("Montserrat-Regular.ttf", "Montserrat-Regular");
                 //fonts.AddFont("Montserrat-Semibold.ttf", "Montserrat-Semibold");
             })
-            .ConfigureEssentials(essentials => 
-            { 
-                essentials.UseVersionTracking(); 
+            .ConfigureEssentials(essentials =>
+            {
+                essentials.UseVersionTracking();
             });
 
         builder.Services.AddSingleton<LoginViewModel>();

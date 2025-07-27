@@ -59,5 +59,28 @@ public partial class App : Application
 #endif
     }
 
-    
+    protected override void OnAppLinkRequestReceived(Uri uri)
+    {
+        base.OnAppLinkRequestReceived(uri);
+
+        if (uri != null)
+        {
+            // Example: christianjodi://payment-success
+            if (uri.Host == "payment-success")
+            {
+                //MainThread.BeginInvokeOnMainThread(async () =>
+                //{
+                //    await Shell.Current.GoToAsync("payment-success-page");
+                //});
+            }
+            else if (uri.Host == "payment-failed")
+            {
+                //MainThread.BeginInvokeOnMainThread(async () =>
+                //{
+                //    await Shell.Current.GoToAsync("payment-failed-page");
+                //});
+            }
+        }
+    }
+
 }

@@ -11,7 +11,15 @@ using Matri.Views;
 
 namespace Matri;
 
-[Activity(LaunchMode = LaunchMode.SingleTop, Theme = "@style/Maui.SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]
+[Activity(LaunchMode = LaunchMode.SingleTop, 
+    Theme = "@style/Maui.SplashTheme", 
+    MainLauncher = true, 
+    ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]
+
+[IntentFilter(
+    new[] { Android.Content.Intent.ActionView },
+    Categories = new[] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable },
+    DataScheme = "christianjodi")]
 public class MainActivity : MauiAppCompatActivity
 {
     internal static readonly string NotificationChannelCJ = "ChristianJodiNC";
@@ -59,9 +67,17 @@ public class MainActivity : MauiAppCompatActivity
                     WeakReferenceMessenger.Default.Send(new PushNotificationReceived("test"));
                 }
             }
-
-            HandleIntent(intent);
         }
+
+        // 2. Handle app link / deep link
+        var data = intent.Data;
+        if (data != null && data.Scheme == "christianjodi")
+        {
+            Microsoft.Maui.Controls.Application.Current?.SendOnAppLinkRequestReceived(new Uri(data.ToString()));
+        }
+
+        // Optional: If you have additional logic
+        HandleIntent(intent);
     }
 
     private void CreateNotificationChannel()

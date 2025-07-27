@@ -46,43 +46,43 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
-	  <ApplicationTitle>ChristianJodi</ApplicationTitle>
-	  <ApplicationDisplayVersion>1.1.8</ApplicationDisplayVersion>
+		<ApplicationTitle>ChristianJodi</ApplicationTitle>
+		<ApplicationDisplayVersion>1.1.8</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
-	  <ApplicationTitle>ChristianJodi</ApplicationTitle>
-	  <ApplicationDisplayVersion>1.0.11</ApplicationDisplayVersion>
+		<ApplicationTitle>ChristianJodi</ApplicationTitle>
+		<ApplicationDisplayVersion>1.0.11</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|AnyCPU'">
-	  <ApplicationTitle>ChristianJodi</ApplicationTitle>
-	  <ApplicationDisplayVersion>1.1.8</ApplicationDisplayVersion>
+		<ApplicationTitle>ChristianJodi</ApplicationTitle>
+		<ApplicationDisplayVersion>1.1.8</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
-	  <ApplicationTitle>ChristianJodi</ApplicationTitle>
-	  <ApplicationDisplayVersion>1.0.11</ApplicationDisplayVersion>
+		<ApplicationTitle>ChristianJodi</ApplicationTitle>
+		<ApplicationDisplayVersion>1.0.11</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
-	  <ApplicationTitle>ChristianJodi</ApplicationTitle>
-	  <ApplicationDisplayVersion>1.1.8</ApplicationDisplayVersion>
+		<ApplicationTitle>ChristianJodi</ApplicationTitle>
+		<ApplicationDisplayVersion>1.1.8</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
-	  <ApplicationTitle>ChristianJodi</ApplicationTitle>
-	  <ApplicationDisplayVersion>1.0.11</ApplicationDisplayVersion>
+		<ApplicationTitle>ChristianJodi</ApplicationTitle>
+		<ApplicationDisplayVersion>1.0.11</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|AnyCPU'">
-	  <ApplicationTitle>ChristianJodi</ApplicationTitle>
-	  <ApplicationDisplayVersion>1.1.8</ApplicationDisplayVersion>
+		<ApplicationTitle>ChristianJodi</ApplicationTitle>
+		<ApplicationDisplayVersion>1.1.8</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
-	  <ApplicationTitle>ChristianJodi</ApplicationTitle>
-	  <ApplicationDisplayVersion>1.0.11</ApplicationDisplayVersion>
+		<ApplicationTitle>ChristianJodi</ApplicationTitle>
+		<ApplicationDisplayVersion>1.0.11</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -104,27 +104,27 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Fonts\bak.Montserrat-SemiBold.ttf" />
-	  <None Remove="Resources\Fonts\fa-brands-400.ttf" />
-	  <None Remove="Resources\Fonts\fa-regular-400.ttf" />
-	  <None Remove="Resources\Fonts\fa-solid-900.ttf" />
-	  <None Remove="Resources\Fonts\fa-v4compatibility.ttf" />
-	  <None Remove="Resources\Fonts\FontAwesome5Brands.otf" />
-	  <None Remove="Resources\Fonts\FontAwesome5Regular.otf" />
-	  <None Remove="Resources\Fonts\FontAwesome5Solid.otf" />
-	  <None Remove="Resources\Fonts\ListViewFontIcons.ttf" />
-	  <None Remove="Resources\Fonts\Montserrat SemiBold.ttf" />
-	  <None Remove="Resources\Fonts\Montserrat-Bold.ttf" />
-	  <None Remove="Resources\Fonts\Montserrat-Medium.ttf" />
-	  <None Remove="Resources\Fonts\Montserrat-Regular.ttf" />
-	  <None Remove="Resources\Fonts\Roboto-Medium.ttf" />
-	  <None Remove="Resources\Fonts\Roboto-Regular.ttf" />
-	  <None Remove="Resources\Fonts\UIFontIcons.ttf" />
-	  <None Remove="Resources\Images\logo.png" />
-	  <None Remove="Resources\Images\whatsapp.svg" />
-	  <None Remove="Resources\Images\whatsappp.png" />
-	  <None Remove="Resources\Raw\admin_sdk.json" />
-	  <None Remove="Resources\Splash\splash.svg" />
+		<None Remove="Resources\Fonts\bak.Montserrat-SemiBold.ttf" />
+		<None Remove="Resources\Fonts\fa-brands-400.ttf" />
+		<None Remove="Resources\Fonts\fa-regular-400.ttf" />
+		<None Remove="Resources\Fonts\fa-solid-900.ttf" />
+		<None Remove="Resources\Fonts\fa-v4compatibility.ttf" />
+		<None Remove="Resources\Fonts\FontAwesome5Brands.otf" />
+		<None Remove="Resources\Fonts\FontAwesome5Regular.otf" />
+		<None Remove="Resources\Fonts\FontAwesome5Solid.otf" />
+		<None Remove="Resources\Fonts\ListViewFontIcons.ttf" />
+		<None Remove="Resources\Fonts\Montserrat SemiBold.ttf" />
+		<None Remove="Resources\Fonts\Montserrat-Bold.ttf" />
+		<None Remove="Resources\Fonts\Montserrat-Medium.ttf" />
+		<None Remove="Resources\Fonts\Montserrat-Regular.ttf" />
+		<None Remove="Resources\Fonts\Roboto-Medium.ttf" />
+		<None Remove="Resources\Fonts\Roboto-Regular.ttf" />
+		<None Remove="Resources\Fonts\UIFontIcons.ttf" />
+		<None Remove="Resources\Images\logo.png" />
+		<None Remove="Resources\Images\whatsapp.svg" />
+		<None Remove="Resources\Images\whatsappp.png" />
+		<None Remove="Resources\Raw\admin_sdk.json" />
+		<None Remove="Resources\Splash\splash.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -153,234 +153,235 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Resources\Styles\StylesProfileDetails.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\SubscriptionPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Popups\ViewPhotos.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\Styles\StylesEditBasic.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\Styles\StylesAboutUs.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\Styles\StylesContactUs.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\Styles\StylesMyAccount.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\Styles\StylesSearchAdvanced.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\Styles\StylesSearchById.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\Styles\StylesSearch.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\Styles\StylesSettings.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Themes\LightTheme.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\AboutUs\AboutUsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\AllProfiles\AllProfilesPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ContactUs\ContactUsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\EditProfile\EditAcademicsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\EditProfile\EditBasicPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\EditProfile\EditContactsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\EditProfile\EditExpectationsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\EditProfile\EditFamilyPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\EditProfile\EditHoroscopePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\EditProfile\EditLifeStylePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\EditProfile\EditPhotoPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\EditProfile\EditPhysicalPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\EditProfile\EditProfilePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\EditProfile\EditReligionPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ForgotPassword\ForgotPasswordPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Login\LoginPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\MyAccount\BlockedProfilesPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\MyAccount\ChangePasswordPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\MyAccount\LikedProfilesPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\MyAccount\MyAccountPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\MyAccount\NewProfilesPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\MyAccount\RequestsReceivedPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\MyAccount\RequestsSentPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\MyAccount\VisitorsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\NotificationFrom\NotificationFromPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ProfileDetails\ProfileDetailsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Register\RegisterPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\SearchAdvanced.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\SearchAdvancedPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\SearchById.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\SearchByIdPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Search\Results\SearchResultsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Search\SearchPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Settings\SettingsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\VersePopup.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+		<MauiXaml Update="Resources\Styles\StylesProfileDetails.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SubscriptionPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Popups\ViewPhotos.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Resources\Styles\StylesEditBasic.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Resources\Styles\StylesAboutUs.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Resources\Styles\StylesContactUs.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Resources\Styles\StylesMyAccount.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Resources\Styles\StylesSearchAdvanced.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Resources\Styles\StylesSearchById.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Resources\Styles\StylesSearch.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Resources\Styles\StylesSettings.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Themes\LightTheme.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\AboutUs\AboutUsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\AllProfiles\AllProfilesPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\ContactUs\ContactUsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\EditProfile\EditAcademicsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\EditProfile\EditBasicPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\EditProfile\EditContactsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\EditProfile\EditExpectationsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\EditProfile\EditFamilyPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\EditProfile\EditHoroscopePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\EditProfile\EditLifeStylePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\EditProfile\EditPhotoPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\EditProfile\EditPhysicalPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\EditProfile\EditProfilePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\EditProfile\EditReligionPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\ForgotPassword\ForgotPasswordPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Login\LoginPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\MyAccount\BlockedProfilesPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\MyAccount\ChangePasswordPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\MyAccount\LikedProfilesPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\MyAccount\MyAccountPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\MyAccount\NewProfilesPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\MyAccount\RequestsReceivedPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\MyAccount\RequestsSentPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\MyAccount\VisitorsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\NotificationFrom\NotificationFromPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\ProfileDetails\ProfileDetailsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Register\RegisterPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SearchAdvanced.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SearchAdvancedPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SearchById.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SearchByIdPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Search\Results\SearchResultsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Search\SearchPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Settings\SettingsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\VersePopup.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 	</ItemGroup>
-	
+
 	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android34.0'">
 		<PackageReference Include="Plugin.CurrentActivity">
-		  <Version>2.1.0.4</Version>
+			<Version>2.1.0.4</Version>
 		</PackageReference>
 		<PackageReference Include="Xamarin.AndroidX.Activity">
-		  <Version>1.9.0.3</Version>
+			<Version>1.9.0.3</Version>
 		</PackageReference>
 		<PackageReference Include="Xamarin.AndroidX.Activity.Ktx">
-		  <Version>1.9.0.3</Version>
+			<Version>1.9.0.3</Version>
 		</PackageReference>
 		<PackageReference Include="Xamarin.AndroidX.Collection">
-		  <Version>1.4.0.5</Version>
+			<Version>1.4.0.5</Version>
 		</PackageReference>
 		<PackageReference Include="Xamarin.AndroidX.Collection.Jvm">
-		  <Version>1.4.0.4</Version>
+			<Version>1.4.0.4</Version>
 		</PackageReference>
 		<PackageReference Include="Xamarin.AndroidX.Collection.Ktx">
-		  <Version>1.4.0.4</Version>
+			<Version>1.4.0.4</Version>
 		</PackageReference>
 		<PackageReference Include="Xamarin.AndroidX.Work.Runtime">
-		  <Version>2.8.0</Version>
+			<Version>2.8.0</Version>
 		</PackageReference>
 		<PackageReference Include="Xamarin.Firebase.Analytics">
-		  <Version>121.3.0.5</Version>
+			<Version>121.3.0.5</Version>
 		</PackageReference>
 		<PackageReference Include="Xamarin.Firebase.Core">
-		  <Version>121.1.1.7</Version>
+			<Version>121.1.1.7</Version>
 		</PackageReference>
 		<PackageReference Include="Xamarin.Firebase.Crashlytics">
-		  <Version>118.2.1.7</Version>
+			<Version>118.2.1.7</Version>
 		</PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Views\Search\Advanced\" />
-	  <Folder Include="Views\Search\ById\" />
+		<Folder Include="Views\Payments\" />
+		<Folder Include="Views\Search\Advanced\" />
+		<Folder Include="Views\Search\ById\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFFFFF" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFFFFF" BaseSize="128,128" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android34.0'">
 		<GoogleServicesJson Include="google-services.json" />
-	  <PackageReference Include="Xamarin.Firebase.Messaging">
-	    <Version>122.0.0</Version>
-	  </PackageReference>
-	  <PackageReference Include="Xamarin.Google.Dagger">
-	    <Version>2.39.1</Version>
-	  </PackageReference>
-	  <PackageReference Include="Xamarin.GooglePlayServices.Base">
-	    <Version>118.4.0</Version>
-	  </PackageReference>
-	  <PackageReference Include="Xamarin.GooglePlayServices.Basement">
-	    <Version>118.3.0.2</Version>
-	  </PackageReference>
+		<PackageReference Include="Xamarin.Firebase.Messaging">
+			<Version>122.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="Xamarin.Google.Dagger">
+			<Version>2.39.1</Version>
+		</PackageReference>
+		<PackageReference Include="Xamarin.GooglePlayServices.Base">
+			<Version>118.4.0</Version>
+		</PackageReference>
+		<PackageReference Include="Xamarin.GooglePlayServices.Basement">
+			<Version>118.3.0.2</Version>
+		</PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\SubscriptionPage.xaml.cs">
-	    <DependentUpon>SubscriptionPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\Popups\ViewPhotos.xaml.cs">
-	    <DependentUpon>ViewPhotos.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Resources\Login.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>Login.resx</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\NotificationFrom\NotificationFromPage.xaml.cs">
-	    <DependentUpon>NotificationFromPage.xaml</DependentUpon>
-	  </Compile>
+		<Compile Update="Views\SubscriptionPage.xaml.cs">
+			<DependentUpon>SubscriptionPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Popups\ViewPhotos.xaml.cs">
+			<DependentUpon>ViewPhotos.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\Login.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Login.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Views\NotificationFrom\NotificationFromPage.xaml.cs">
+			<DependentUpon>NotificationFromPage.xaml</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="Resources\Login.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>Login.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
+		<EmbeddedResource Update="Resources\Login.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Login.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 	</ItemGroup>
-
+	
 	<ItemGroup>
-	  <None Update="Platforms\Android\Resources\drawable\notificationicon.png">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </None>
+		<None Update="Platforms\Android\Resources\drawable\notificationicon.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 </Project>

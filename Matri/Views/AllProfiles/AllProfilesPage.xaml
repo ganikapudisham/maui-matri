@@ -60,7 +60,7 @@
                     </Label.GestureRecognizers>
                 </Label>
             </Grid>
-            <Grid Margin="0,0,0,10" BackgroundColor="{Binding BgColor}">
+            <!--<Grid Margin="0,0,0,10" BackgroundColor="{Binding BgColor}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
@@ -70,10 +70,10 @@
                 <Label Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" HeightRequest="35" Text="{Binding SubscriptionMessage}" 
 TextColor="White" FontSize="14" Padding="0" IsVisible="{Binding ShowSubscriptionBanner}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding UpdateAppCommand}" />
+                        <TapGestureRecognizer Command="{Binding SubscribeCommand}" />
                     </Label.GestureRecognizers>
                 </Label>
-            </Grid>
+            </Grid>-->
             <StackLayout>
                 <ActivityIndicator Margin="0,5,0,0" IsRunning="True" IsVisible="{Binding IsBusy}"></ActivityIndicator>
             </StackLayout>
