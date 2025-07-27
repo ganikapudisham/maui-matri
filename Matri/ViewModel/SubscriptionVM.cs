@@ -28,7 +28,7 @@ public partial class SubscriptionVM : CommunityToolkit.Mvvm.ComponentModel.Obser
             plan = subscriptionPlan,
             amount = Convert.ToInt32(amount), // in paise
             currency = "INR",
-            receipt = "receipt#001"
+            receipt = $"CJ-{DateTime.UtcNow:yyyyMMddHHmmss}-{Random.Shared.Next(1000, 9999)}"
         };
 
         var json = JsonConvert.SerializeObject(request);
@@ -59,10 +59,6 @@ public partial class SubscriptionVM : CommunityToolkit.Mvvm.ComponentModel.Obser
             // Log the error
             Console.WriteLine("Razorpay Error: " + responseBody);
         }
-    }
-
-    public void test()
-    {
     }
 
     public class OrderResponse
