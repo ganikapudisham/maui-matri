@@ -11,16 +11,22 @@ public partial class SubscriptionVM : CommunityToolkit.Mvvm.ComponentModel.Obser
     }
 
     [RelayCommand]
-    public async Task Pay()
+    public async Task Pay(string planType)
     {
-        //await Shell.Current.GoToAsync(nameof(NewPage1));
+        string amount;
+        string subscriptionPlan;
+
+        var split = planType.Split('_');
+        amount = split[1];
+        subscriptionPlan = split[0];
 
         // Fetch order_id from backend
         using var http = new HttpClient();
 
         var request = new
         {
-            amount = 50000, // in paise
+            plan = subscriptionPlan,
+            amount = Convert.ToInt32(amount), // in paise
             currency = "INR",
             receipt = "receipt#001"
         };
@@ -28,7 +34,7 @@ public partial class SubscriptionVM : CommunityToolkit.Mvvm.ComponentModel.Obser
         var json = JsonConvert.SerializeObject(request);
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-        var response = await http.PostAsync("https://api.christianjodi.com/payments/create-order",content);
+        var response = await http.PostAsync("https://api.christianjodi.com/payments/create-order", content);
         var responseBody = await response.Content.ReadAsStringAsync();
 
         if (response.IsSuccessStatusCode)
@@ -40,7 +46,7 @@ public partial class SubscriptionVM : CommunityToolkit.Mvvm.ComponentModel.Obser
 
             if (!string.IsNullOrWhiteSpace(order?.id))
             {
-                var checkoutUrl = $"https://api.christianjodi.com/checkout.html?order_id={order.id}&amount={order.amount}&key={order.key}&currency={order.currency}&name={order.name}&description={order.description}";
+                var checkoutUrl = $"https://api.christianjodi.com/checkout.html?order_id={order.id}&amount={order.amount}&key={order.key}&currency={order.currency}&name={order.name}&description={order.description}&plan={order.plan}";
                 await Launcher.Default.OpenAsync(checkoutUrl);
             }
             else
@@ -67,5 +73,6 @@ public partial class SubscriptionVM : CommunityToolkit.Mvvm.ComponentModel.Obser
         public string key { get; set; }            // Razorpay public key
         public string name { get; set; }           // Merchant/app name
         public string description { get; set; }
+        public string plan { get; set; }
     }
 }

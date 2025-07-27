@@ -68,17 +68,17 @@ public partial class App : Application
             // Example: christianjodi://payment-success
             if (uri.Host == "payment-success")
             {
-                //MainThread.BeginInvokeOnMainThread(async () =>
-                //{
-                //    await Shell.Current.GoToAsync("payment-success-page");
-                //});
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    await Shell.Current.GoToAsync("///LoginPage");
+                });
             }
             else if (uri.Host == "payment-failed")
             {
-                //MainThread.BeginInvokeOnMainThread(async () =>
-                //{
-                //    await Shell.Current.GoToAsync("payment-failed-page");
-                //});
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    await Shell.Current.GoToAsync("///LoginPage");
+                });
             }
         }
     }

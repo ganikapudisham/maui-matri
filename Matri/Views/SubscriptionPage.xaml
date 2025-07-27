@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Matri.Views.SubscriptionPage"
-             Title="Choose Your Plan"
+             Title="Choose Subscription Plan"
              BackgroundColor="#F8F9FA">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="24">
@@ -11,14 +11,14 @@
             <Frame CornerRadius="20" Padding="20" BackgroundColor="#E2E3F3" HasShadow="True">
                 <VerticalStackLayout Spacing="8">
                     <Label Text="PLATINUM" FontSize="22" FontAttributes="Bold" TextColor="#383D75" />
-                    <Label Text="$29.99 / month" FontSize="16" TextColor="#383D75" />
+                    <Label Text="Rs 10,000/-" FontSize="16" TextColor="#383D75" />
                     <Label Text="• All Gold features" TextColor="#383D75" />
                     <Label Text="• 24/7 support" TextColor="#383D75" />
-                    <Label Text="• Custom integrations" TextColor="#383D75" />
+                    <Label Text="• Conducting Meetings at Our office" TextColor="#383D75" />
                     <Button Text="Subscribe"
                 BackgroundColor="#383D75"
                 TextColor="White"
-                CornerRadius="12" Command="{Binding PayCommand}" />
+                CornerRadius="12" Command="{Binding PayCommand}" CommandParameter="platinum_1000000" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -26,13 +26,13 @@
             <Frame CornerRadius="20" Padding="20" BackgroundColor="#FFF3CD" HasShadow="True" BorderColor="#FFC107">
                 <VerticalStackLayout Spacing="8">
                     <Label Text="GOLD (Recommended)" FontSize="22" FontAttributes="Bold" TextColor="#856404" />
-                    <Label Text="$19.99 / month" FontSize="16" TextColor="#856404" />
+                    <Label Text="Rs 5,000/-" FontSize="16" TextColor="#856404" />
                     <Label Text="• All Silver features" TextColor="#856404" />
-                    <Label Text="• Priority support" TextColor="#856404" />
+                    <Label Text="• Updation of Feedback from our Team" TextColor="#856404" />
                     <Button Text="Subscribe"
                             BackgroundColor="#FFC107"
                             TextColor="#000"
-                            CornerRadius="12" />
+                            CornerRadius="12"  Command="{Binding PayCommand}" CommandParameter="gold_500000" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -40,13 +40,14 @@
             <Frame CornerRadius="20" Padding="20" BackgroundColor="#D1ECF1" HasShadow="True">
                 <VerticalStackLayout Spacing="8">
                     <Label Text="SILVER" FontSize="22" FontAttributes="Bold" TextColor="#0C5460" />
-                    <Label Text="$9.99 / month" FontSize="16" TextColor="#0C5460" />
-                    <Label Text="• Basic features" TextColor="#0C5460" />
-                    <Label Text="• Email support" TextColor="#0C5460" />
+                    <Label Text="Rs 3,000/-" FontSize="16" TextColor="#0C5460" />
+                    <Label Text="• SMS Campaing" TextColor="#0C5460" />
+                    <Label Text="• Whatsapp Campaing" TextColor="#0C5460" />
+                    <Label Text="• Sending the Suitable profiles List" TextColor="#0C5460" />
                     <Button Text="Subscribe"
                  BackgroundColor="#0C5460"
                  TextColor="White"
-                 CornerRadius="12" />
+                 CornerRadius="12"  Command="{Binding PayCommand}" CommandParameter="silver_300000" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
