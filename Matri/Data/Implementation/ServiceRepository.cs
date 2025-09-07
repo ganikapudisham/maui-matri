@@ -20,10 +20,10 @@ namespace Matri.Data.Impl;
 public class ServiceRepository : ServiceBase, IServiceRepository
 {
     HttpClient client = new HttpClient();
-    IFirebaseCrashlyticsService _firebaseCrashlyticsService;
+    //IFirebaseCrashlyticsService _firebaseCrashlyticsService;
     public ServiceRepository()
     {
-        _firebaseCrashlyticsService = ServiceHelper.GetService<IFirebaseCrashlyticsService>();
+        //_firebaseCrashlyticsService = ServiceHelper.GetService<IFirebaseCrashlyticsService>();
     }
     public async Task<bool> LogOut(string sessiontoken)
     {
@@ -114,7 +114,7 @@ public class ServiceRepository : ServiceBase, IServiceRepository
         }
         catch (Exception ex)
         {
-            _firebaseCrashlyticsService.Log(ex);
+            //_firebaseCrashlyticsService.Log(ex);
             throw ex;
         }
     }
@@ -133,7 +133,7 @@ public class ServiceRepository : ServiceBase, IServiceRepository
         }
         catch (Exception ex)
         {
-            _firebaseCrashlyticsService.Log(ex);
+            //_firebaseCrashlyticsService.Log(ex);
             return false;
         }
     }
@@ -176,11 +176,11 @@ public class ServiceRepository : ServiceBase, IServiceRepository
         }
         catch (HttpRequestException ex)
         {
-            _firebaseCrashlyticsService.Log(ex);
+            //_firebaseCrashlyticsService.Log(ex);
         }
         catch (Exception ex)
         {
-            _firebaseCrashlyticsService.Log(ex);
+            //_firebaseCrashlyticsService.Log(ex);
             throw ex;
         }
         return objectToReturn;
@@ -195,7 +195,7 @@ public class ServiceRepository : ServiceBase, IServiceRepository
         }
         catch (JsonReaderException ex)
         {
-            _firebaseCrashlyticsService.Log(ex);
+            //_firebaseCrashlyticsService.Log(ex);
             return false;
         }
     }
@@ -241,7 +241,7 @@ public class ServiceRepository : ServiceBase, IServiceRepository
         }
         catch (Exception ex)
         {
-            _firebaseCrashlyticsService.Log(ex);
+            //_firebaseCrashlyticsService.Log(ex);
             throw ex;
         }
         return objectToReturn;
@@ -286,7 +286,7 @@ public class ServiceRepository : ServiceBase, IServiceRepository
         }
         catch (Exception ex)
         {
-            _firebaseCrashlyticsService.Log(ex);
+            //_firebaseCrashlyticsService.Log(ex);
             throw ex;
         }
         return objectToReturn;

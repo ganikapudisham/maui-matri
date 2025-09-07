@@ -25,13 +25,13 @@ public class MainActivity : MauiAppCompatActivity
     internal static readonly string NotificationChannelCJ = "ChristianJodiNC";
     internal static readonly int NotificationIdCJ = 101;
 
-    const int NotificationIdChristmasNight = 301;
-    const int NotificationIdChristmasAfternoon = 302;
-    const int NotificationIdEaster = 303;
-    const int NotificationIdNewYear = 304;
-    const int NotificationIdDailyMorning = 305;
-    const int NotificationIdDailyEvening = 306;
-    const int NotificationIdTest = 307;
+    //const int NotificationIdChristmasNight = 301;
+    //const int NotificationIdChristmasAfternoon = 302;
+    //const int NotificationIdEaster = 303;
+    //const int NotificationIdNewYear = 304;
+    //const int NotificationIdDailyMorning = 305;
+    //const int NotificationIdDailyEvening = 306;
+    //const int NotificationIdTest = 307;
 
     protected override void OnCreate(Bundle savedInstanceState)
     {
@@ -101,7 +101,7 @@ public class MainActivity : MauiAppCompatActivity
             Microsoft.Maui.Controls.Application.Current?.Dispatcher.Dispatch(() =>
             {
                 var popup = new VersePopup(title, message);
-                Microsoft.Maui.Controls.Application.Current.MainPage?.ShowPopup(popup);
+                //Microsoft.Maui.Controls.Application.Current.MainPage?.ShowPopup(popup);
             });
         }
         else

@@ -1,13 +1,14 @@
-﻿using Matri.Business;
-using Matri.CustomExceptions;
-using Matri.Model;
+﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MvvmHelpers;
-using Matri.Helper;
-using CommunityToolkit.Maui.Core;
 using Matri.Abstract;
+using Matri.Business;
+using Matri.CustomExceptions;
+using Matri.Helper;
+using Matri.Model;
 using Matri.Views;
+using MvvmHelpers;
 
 namespace Matri.ViewModel;
 
@@ -289,7 +290,15 @@ public partial class AllProfilesViewModel : CommunityToolkit.Mvvm.ComponentModel
             var profileDetailsParams = new Dictionary<string, object> { { "ProfileDetailsInput", profileDetailsInput } };
             IsBusy = false;
 
-            await this._popupService.ShowPopupAsync<ViewPhotosViewModel>(onPresenting: viewModel => viewModel.LoadPhotos(profileDetailsParams));
+            var parameters = new Dictionary<string, object>
+            {
+                [nameof(ProfileDetailsInput)] = profileDetailsParams
+            };
+
+            await _popupService.ShowPopupAsync<ViewPhotosViewModel>(
+                Shell.Current,
+                options: PopupOptions.Empty,
+                shellParameters: parameters);
         }
     }
 

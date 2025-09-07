@@ -20,6 +20,6 @@ public partial class ViewPhotos : Popup
 
     private async Task Close(ViewPhotos result)
     {
-        await CloseAsync(result, CancellationToken.None);
+        //await CloseAsync(result, CancellationToken.None);
     }
 }

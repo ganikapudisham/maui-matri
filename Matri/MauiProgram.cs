@@ -14,9 +14,15 @@ using Matri.Abstract;
 using Microsoft.Maui.LifecycleEvents;
 using Matri.Views.Popups;
 using Plugin.Maui.ScreenSecurity;
+using Plugin.Firebase.Auth;
+using Plugin.Firebase.Crashlytics;
 
-#if ANDROID
-using Matri.Platforms.Android;
+
+
+#if IOS
+using Plugin.Firebase.Core.Platforms.iOS;
+#elif ANDROID
+using Plugin.Firebase.Core.Platforms.Android;
 #endif
 
 namespace Matri;
@@ -30,7 +36,7 @@ public static class MauiProgram
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
             .ConfigureSyncfusionCore()
-            .RegisterFirebase()
+            .RegisterFirebaseServices()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("fa-brands-400.ttf", "FontAwesomeBrands");
@@ -156,19 +162,12 @@ public static class MauiProgram
         builder.Services.AddSingleton<NotificationFromViewModel>();
         builder.Services.AddSingleton<NotificationFromPage>();
 
-        builder.Services.AddSingleton<IFirebaseAnalyticsService, FirebaseAnalyticsService>();
         builder.Services.AddSingleton<ISharedService, SharedService>();
-        builder.Services.AddSingleton<IFirebaseCrashlyticsService, FirebaseCrashlyticsService>();
-
         builder.Services.AddTransientPopup<ViewPhotos, ViewPhotosViewModel>();
         builder.Services.AddSingleton<IScreenSecurity>(ScreenSecurity.Default);
 
         builder.Services.AddSingleton<SubscriptionPage>();
         builder.Services.AddSingleton<SubscriptionVM>();
-
-#if ANDROID
-        builder.Services.AddSingleton<IDateNotificationScheduler, DateNotificationScheduler>();
-#endif
 
 #if DEBUG
         builder.Logging.AddDebug();
@@ -182,17 +181,22 @@ public static class MauiProgram
 
     }
 
-    private static MauiAppBuilder RegisterFirebase(this MauiAppBuilder builder)
+    private static MauiAppBuilder RegisterFirebaseServices(this MauiAppBuilder builder)
     {
-        builder.ConfigureLifecycleEvents(events =>
-        {
-#if ANDROID
-            events.AddAndroid(android => android.OnCreate((activity, bundle) => {
-                Firebase.FirebaseApp.InitializeApp(activity);
+        builder.ConfigureLifecycleEvents(events => {
+#if IOS
+            events.AddiOS(iOS => iOS.WillFinishLaunching((_, __) => {
+                CrossFirebase.Initialize();
+                return false;
             }));
+#elif ANDROID
+            events.AddAndroid(android => android.OnCreate((activity, _) =>
+                CrossFirebase.Initialize(activity)));
+            CrossFirebaseCrashlytics.Current.SetCrashlyticsCollectionEnabled(true);
 #endif
         });
 
+        builder.Services.AddSingleton(_ => CrossFirebaseAuth.Current);
         return builder;
     }
 }

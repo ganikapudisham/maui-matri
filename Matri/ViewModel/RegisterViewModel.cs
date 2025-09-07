@@ -22,11 +22,11 @@ public partial class RegisterViewModel : ObservableObject
 {
     IServiceManager _serviceManager;
     private const int NotificationIdBirthday = 307;
-    private readonly Abstract.IDateNotificationScheduler _birthdayService;
+    //private readonly Abstract.IDateNotificationScheduler _birthdayService;
     public RegisterViewModel(IServiceManager serviceManager)
     {
         _serviceManager = serviceManager;
-        _birthdayService = ServiceHelper.GetService<Abstract.IDateNotificationScheduler>();
+        //_birthdayService = ServiceHelper.GetService<Abstract.IDateNotificationScheduler>();
         Genders = new ObservableCollection<Master>();
 
         BirthDate = DateTime.Now.AddYears(-18).AddDays(1);
@@ -112,7 +112,7 @@ public partial class RegisterViewModel : ObservableObject
             var isSuccess = await _serviceManager.RegisterUserAsync(FirstName, LastName, UserName,
                 Password, Password, SelectedGender.Name, BirthDate, "");
 
-            _birthdayService.ScheduleNotification(birthDate, "Happy Birthday", "Happy Birthday", "tagBirthday");
+            //_birthdayService.ScheduleNotification(birthDate, "Happy Birthday", "Happy Birthday", "tagBirthday");
 
             await Shell.Current.CurrentPage.DisplayAlert("Alert", "Thank You For Registering With Us. You Can Now LogIn.", "Ok");
             await Shell.Current.GoToAsync("///LoginPage");

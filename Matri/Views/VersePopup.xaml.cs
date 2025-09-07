@@ -13,6 +13,6 @@ public partial class VersePopup : Popup
 
     private void Close_Clicked(object sender, EventArgs e)
     {
-        Close();
+        //Close();
     }
 }

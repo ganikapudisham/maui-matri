@@ -4,16 +4,10 @@ using Matri.CustomExceptions;
 using Matri.Business;
 using Matri.Abstract;
 using Matri.Model;
-using FirebaseAdmin;
-using Google.Apis.Auth.OAuth2;
 using Matri.Models;
 using CommunityToolkit.Mvvm.Messaging;
-using Matri.Helper;
-using FirebaseAdmin.Messaging;
 using Matri.FontsAwesome;
 using Plugin.Maui.ScreenSecurity;
-using System;
-using PlatformIntegrationDemo.Helpers;
 using Matri.Views;
 
 namespace Matri.ViewModel;
@@ -22,19 +16,19 @@ public partial class LoginViewModel : ObservableObject
 {
     IServiceManager _serviceManager;
     ISharedService _sharedService;
-    IFirebaseAnalyticsService _firebaseAnalyticsService;
-    IFirebaseCrashlyticsService _firebaseCrashlyticsService;
+    //IFirebaseAnalyticsService _firebaseAnalyticsService;
+    //IFirebaseCrashlyticsService _firebaseCrashlyticsService;
     private string _deviceToken;
     private const int NotificationIdBirthday = 307;
-    private readonly Abstract.IDateNotificationScheduler _birthdayService;
+    //private readonly Abstract.IDateNotificationScheduler _birthdayService;
 
     public LoginViewModel(IServiceManager serviceManager, ISharedService sharedService)
     {
         _serviceManager = serviceManager;
         _sharedService = sharedService;
-        _firebaseAnalyticsService = ServiceHelper.GetService<IFirebaseAnalyticsService>();
-        _firebaseCrashlyticsService = ServiceHelper.GetService<IFirebaseCrashlyticsService>();
-        _birthdayService = ServiceHelper.GetService<Abstract.IDateNotificationScheduler>();
+        //_firebaseAnalyticsService = ServiceHelper.GetService<IFirebaseAnalyticsService>();
+        //_firebaseCrashlyticsService = ServiceHelper.GetService<IFirebaseCrashlyticsService>();
+        //_birthdayService = ServiceHelper.GetService<Abstract.IDateNotificationScheduler>();
 
         WeakReferenceMessenger.Default.Register<PushNotificationReceived>(this, (r, m) =>
         {
@@ -42,7 +36,7 @@ public partial class LoginViewModel : ObservableObject
             NavigateToPage();
         });
 
-        ReadFireBaseAdminSdk();
+        //ReadFireBaseAdminSdk();
 
         //Task.Run(async () => { await ShowNewVersionAvailableMessage(); });
 
@@ -94,7 +88,7 @@ public partial class LoginViewModel : ObservableObject
     [RelayCommand]
     public async Task Login()
     {
-        _firebaseAnalyticsService?.Log("visited");
+        //_firebaseAnalyticsService?.Log("visited");
 
         if (string.IsNullOrWhiteSpace(EMobile))
         {
@@ -143,7 +137,7 @@ public partial class LoginViewModel : ObservableObject
 
             //_birthdayService.CancelNotification("tag");
             var birthDate = DateTime.Parse(session.BirthDate);
-            _birthdayService.ScheduleNotification(birthDate, "Happy Birthday", "Happy Birthday", "tagBirthday");
+            //_birthdayService.ScheduleNotification(birthDate, "Happy Birthday", "Happy Birthday", "tagBirthday");
 
             if (!session.SubscriptionActive)
             {
@@ -189,24 +183,24 @@ public partial class LoginViewModel : ObservableObject
         await Shell.Current.GoToAsync("//RegisterPage");
     }
 
-    private async void ReadFireBaseAdminSdk()
-    {
-#if ANDROID
-        var stream = await FileSystem.OpenAppPackageFileAsync("admin_sdk.json");
-        var reader = new StreamReader(stream);
+//    private async void ReadFireBaseAdminSdk()
+//    {
+//#if ANDROID
+//        var stream = await FileSystem.OpenAppPackageFileAsync("admin_sdk.json");
+//        var reader = new StreamReader(stream);
 
-        var jsonContent = reader.ReadToEnd();
+//        var jsonContent = reader.ReadToEnd();
 
 
-        if (FirebaseMessaging.DefaultInstance == null)
-        {
-            FirebaseApp.Create(new AppOptions()
-            {
-                Credential = GoogleCredential.FromJson(jsonContent)
-            });
-        }
-#endif
-    }
+//        if (FirebaseMessaging.DefaultInstance == null)
+//        {
+//            FirebaseApp.Create(new AppOptions()
+//            {
+//                Credential = GoogleCredential.FromJson(jsonContent)
+//            });
+//        }
+//#endif
+//    }
 
     private async Task NavigateToPage()
     {

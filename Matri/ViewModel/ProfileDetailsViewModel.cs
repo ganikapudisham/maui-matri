@@ -491,8 +491,8 @@ namespace Matri.ViewModel
 
                     if (showNotification && recipientDeviceTokens != null && recipientDeviceTokens.Count > 0)
                     {
-                        await ServiceNotificationHelper.SendNotification(recipientDeviceTokens, notificationTitle,
-                            notificationBody, Profile.ID.ToString());
+                        //await NotificationHelper.ShowCustomNotification(recipientDeviceTokens, notificationTitle,
+                        //    notificationBody, Profile.ID.ToString());
                     }
                 }
 
