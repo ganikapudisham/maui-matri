@@ -11,11 +11,13 @@ namespace Matri.Model
         {
         }
 
-        public string Token { get; set; }
+        public string DeviceId { get; set; }
 
         public string CreatedOn { get; set; }
 
         public string LastUsedOn { get; set; }
+
+        public string FcmToken { get; set; }
 
     }
 }

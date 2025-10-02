@@ -6,8 +6,15 @@ using AndroidX.Core.App;
 using AndroidX.Core.Content;
 using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.Messaging;
+using Matri.Business.Impl;
+using Matri.Data.Impl;
+using Matri.Model;
 using Matri.Models;
 using Matri.Views;
+using Plugin.Firebase.CloudMessaging;
+using Plugin.Firebase.Crashlytics;
+using System.Text;
+using System.Text.Json;
 
 namespace Matri;
 
@@ -33,7 +40,7 @@ public class MainActivity : MauiAppCompatActivity
     //const int NotificationIdDailyEvening = 306;
     //const int NotificationIdTest = 307;
 
-    protected override void OnCreate(Bundle savedInstanceState)
+    protected override async void OnCreate(Bundle savedInstanceState)
     {
         base.OnCreate(savedInstanceState);
 
@@ -45,7 +52,60 @@ public class MainActivity : MauiAppCompatActivity
         }
 
         CreateNotificationChannel();
+        try
+        {
+            await CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
 
+            var fcm = Plugin.Firebase.CloudMessaging.CrossFirebaseCloudMessaging.Current;
+
+            CrossFirebaseCloudMessaging.Current.NotificationReceived += (s, e) =>
+            {
+                string title = e.Notification?.Title ?? "No title";
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    //NotificationHelper.ShowCustomNotification(title, "");
+                });
+            };
+
+            CrossFirebaseCloudMessaging.Current.TokenChanged += (s, e) =>
+            {
+                //SendTokenToBackendAsync(e.Token);
+                GetOrCreateDeviceId();
+                if (Preferences.ContainsKey("FcmToken"))
+                {
+                    Preferences.Remove("FcmToken");
+                }
+                Preferences.Set("FcmToken", e.Token);
+            };
+
+            var token = await fcm.GetTokenAsync();
+            if (!string.IsNullOrEmpty(token))
+            {
+                //SendTokenToBackendAsync(token);
+                GetOrCreateDeviceId();
+                if (Preferences.ContainsKey("FcmToken"))
+                {
+                    Preferences.Remove("FcmToken");
+                }
+                Preferences.Set("FcmToken", token);
+            }
+
+            AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+            {
+                if (e.ExceptionObject is Exception ex)
+                    CrossFirebaseCrashlytics.Current.RecordException(ex);
+            };
+
+            TaskScheduler.UnobservedTaskException += (s, e) =>
+            {
+                CrossFirebaseCrashlytics.Current.RecordException(e.Exception);
+                e.SetObserved();
+            };
+        }
+        catch (Exception ex)
+        {
+            CrossFirebaseCrashlytics.Current.RecordException(ex);
+        }
     }
 
     protected override void OnNewIntent(Intent intent)
@@ -108,5 +168,61 @@ public class MainActivity : MauiAppCompatActivity
         {
             System.Diagnostics.Debug.WriteLine("Intent does not contain expected extras");
         }
+    }
+
+    //private static async Task SendTokenToBackendAsync(string FcmToken)
+    //{
+    //    var serviceRepository = new ServiceRepository();
+    //    // ^ Replace with your actual implementation class
+
+    //    // 2. Create ServiceManager instance with dependency injected
+    //    var serviceManager = new ServiceManager(serviceRepository);
+
+    //    try
+    //    {
+    //        var deviceId = GetOrCreateDeviceId();
+
+    //        var fcmToken = new FCMToken
+    //        {
+    //            DeviceId = deviceId,
+    //            FcmToken = FcmToken
+    //        };
+
+    //        //var json = JsonSerializer.Serialize(payload);
+    //        //var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+    //        //using var httpClient = new HttpClient();
+    //        //var url = $"https://api.christianjodi.com/devices/register-fcm-token";
+    //        var registered = await serviceManager.CreateUpdateDeviceToken("",fcmToken);
+    //        //var response = await httpClient.PostAsync(url, content);
+
+    //        //if (response.IsSuccessStatusCode)
+    //        //{
+    //        //    Console.WriteLine("✅ FCM token registered with backend.");
+    //        //}
+    //        //else
+    //        //{
+    //        //    Console.WriteLine($"❌ Failed to register token: {response.StatusCode}");
+    //        //}
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        Console.WriteLine($"❌ Exception in SendTokenToBackendAsync: {ex.Message}");
+    //        CrossFirebaseCrashlytics.Current.RecordException(ex);
+    //    }
+    //}
+
+    private static string GetOrCreateDeviceId()
+    {
+        const string key = "DeviceId";
+        var id = Preferences.Get(key, null);
+
+        if (string.IsNullOrEmpty(id))
+        {
+            id = Guid.NewGuid().ToString();
+            Preferences.Set(key, id);
+        }
+
+        return id;
     }
 }

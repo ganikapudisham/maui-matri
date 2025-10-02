@@ -17,8 +17,6 @@ using Plugin.Maui.ScreenSecurity;
 using Plugin.Firebase.Auth;
 using Plugin.Firebase.Crashlytics;
 
-
-
 #if IOS
 using Plugin.Firebase.Core.Platforms.iOS;
 #elif ANDROID
@@ -185,7 +183,7 @@ public static class MauiProgram
     {
         builder.ConfigureLifecycleEvents(events => {
 #if IOS
-            events.AddiOS(iOS => iOS.WillFinishLaunching((_, __) => {
+            events.AddiOS(iOS => iOS.WillFinishLaunching((_,__) => {
                 CrossFirebase.Initialize();
                 return false;
             }));

@@ -104,6 +104,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Remove="google-services.json" />
 		<None Remove="Platforms\Android\Resources\Layout\custom_notification.xml" />
 		<None Remove="Resources\drawable\ic_m.png" />
 		<None Remove="Resources\Fonts\bak.Montserrat-SemiBold.ttf" />
@@ -343,6 +344,10 @@
 		<Folder Include="Views\Payments\" />
 		<Folder Include="Views\Search\Advanced\" />
 		<Folder Include="Views\Search\ById\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <GoogleServicesJson Include="google-services.json" />
 	</ItemGroup>
 
 	<ItemGroup>

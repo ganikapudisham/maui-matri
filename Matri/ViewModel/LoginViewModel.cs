@@ -18,7 +18,8 @@ public partial class LoginViewModel : ObservableObject
     ISharedService _sharedService;
     //IFirebaseAnalyticsService _firebaseAnalyticsService;
     //IFirebaseCrashlyticsService _firebaseCrashlyticsService;
-    private string _deviceToken;
+    private string _deviceId;
+    private string _fcmToken;
     private const int NotificationIdBirthday = 307;
     //private readonly Abstract.IDateNotificationScheduler _birthdayService;
 
@@ -125,12 +126,17 @@ public partial class LoginViewModel : ObservableObject
             IsBusy = false;
 
             var fcmToken = new FCMToken();
-            fcmToken.Token = "";
+            fcmToken.DeviceId = "";
+            fcmToken.FcmToken = "";
 
-            if (Preferences.ContainsKey("DeviceToken"))
+            if (Preferences.ContainsKey("DeviceId"))
             {
-                _deviceToken = Preferences.Get("DeviceToken", "");
-                fcmToken.Token = _deviceToken;
+                fcmToken.DeviceId = Preferences.Get("DeviceId", ""); ;
+            }
+
+            if (Preferences.ContainsKey("FcmToken"))
+            {
+                fcmToken.FcmToken = Preferences.Get("FcmToken", ""); ;
             }
 
             var deviceTokenSaved = await _serviceManager.CreateUpdateDeviceToken(sessionToken, fcmToken);

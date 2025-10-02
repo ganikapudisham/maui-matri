@@ -60,7 +60,7 @@ namespace Matri.Business
         Task<bool> UploadProfilePhoto(MultipartFormDataContent formData);
 
         Task<bool> UpdateExpectations(string sessiontoken, Partner partner);
-        Task<bool> CreateUpdateDeviceToken(string sessiontoken, FCMToken fcmToken);
+        Task<bool> CreateUpdateDeviceToken(FCMToken fcmToken);
 
         Task<List<FCMToken>> GetUserDeviceTokens(string sessiontoken, string notificationRecipient);
 

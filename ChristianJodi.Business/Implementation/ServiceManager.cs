@@ -411,10 +411,10 @@ public class ServiceManager : IServiceManager
         return await _serviceRepository.PutAsync<Partner, bool>(sessiontoken.ToString(), url, partner);
     }
 
-    public async Task<bool> CreateUpdateDeviceToken(string sessiontoken, FCMToken fcmToken)
+    public async Task<bool> CreateUpdateDeviceToken(FCMToken fcmToken)
     {
         var url = Constants.API_URL_FCM;
-        return await _serviceRepository.PostAsync<FCMToken, bool>(sessiontoken.ToString(), url, fcmToken);
+        return await _serviceRepository.PostAsync<FCMToken, bool>("", url, fcmToken);
     }
 
     public async Task<List<FCMToken>> GetUserDeviceTokens(string sessiontoken, string notificationRecipient)
@@ -524,15 +524,15 @@ public class ServiceManager : IServiceManager
                     var stream = await response.Content.ReadAsStreamAsync();
 
 #if ANDROID
-                var resolver = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity.ContentResolver;
-                var contentValues = new Android.Content.ContentValues();
-                contentValues.Put(Android.Provider.MediaStore.IMediaColumns.DisplayName, "Temp.pdf");
-                contentValues.Put(Android.Provider.MediaStore.IMediaColumns.MimeType, "application/pdf");
-                contentValues.Put(Android.Provider.MediaStore.IMediaColumns.RelativePath, Android.OS.Environment.DirectoryDownloads);
-                Android.Net.Uri uri = resolver.Insert(Android.Provider.MediaStore.Downloads.ExternalContentUri, contentValues);
-                Stream outputStream = resolver.OpenOutputStream(uri);
-                await stream.CopyToAsync(outputStream);
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", "PDF file has been downloaded", "Ok");
+                    var resolver = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity.ContentResolver;
+                    var contentValues = new Android.Content.ContentValues();
+                    contentValues.Put(Android.Provider.MediaStore.IMediaColumns.DisplayName, "Temp.pdf");
+                    contentValues.Put(Android.Provider.MediaStore.IMediaColumns.MimeType, "application/pdf");
+                    contentValues.Put(Android.Provider.MediaStore.IMediaColumns.RelativePath, Android.OS.Environment.DirectoryDownloads);
+                    Android.Net.Uri uri = resolver.Insert(Android.Provider.MediaStore.Downloads.ExternalContentUri, contentValues);
+                    Stream outputStream = resolver.OpenOutputStream(uri);
+                    await stream.CopyToAsync(outputStream);
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", "PDF file has been downloaded", "Ok");
 #endif
                 }
                 else
