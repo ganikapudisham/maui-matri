@@ -32,13 +32,8 @@ public class MainActivity : MauiAppCompatActivity
     internal static readonly string NotificationChannelCJ = "ChristianJodiNC";
     internal static readonly int NotificationIdCJ = 101;
 
-    //const int NotificationIdChristmasNight = 301;
-    //const int NotificationIdChristmasAfternoon = 302;
-    //const int NotificationIdEaster = 303;
-    //const int NotificationIdNewYear = 304;
-    //const int NotificationIdDailyMorning = 305;
-    //const int NotificationIdDailyEvening = 306;
-    //const int NotificationIdTest = 307;
+    private const string DefaultChannelId = "default_channel";
+    private const string DefaultChannelName = "General";
 
     protected override async void OnCreate(Bundle savedInstanceState)
     {
@@ -148,6 +143,20 @@ public class MainActivity : MauiAppCompatActivity
 
             var notificationManager = (NotificationManager)GetSystemService(Android.Content.Context.NotificationService);
             notificationManager.CreateNotificationChannel(channel);
+        }
+
+        if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+        {
+            var channelDefault = new NotificationChannel(
+                DefaultChannelId,
+                DefaultChannelName,
+                NotificationImportance.Default)
+            {
+                Description = "General notifications"
+            };
+
+            var manager = (NotificationManager)GetSystemService(NotificationService);
+            manager.CreateNotificationChannel(channelDefault);
         }
     }
 

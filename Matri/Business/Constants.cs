@@ -25,7 +25,7 @@ namespace Matri.Business
         internal const string API_URL_ImagesRepo = "https://api.christianjodi.com/";
         internal const string API_URL_ContactUs = "email/contactus";
         internal const string API_URL_MasterData = "masterdata";
-        internal const string API_URL_FCM = "devicetoken";
+        internal const string API_URL_FCM = "device";
         internal const string API_URL_NotificationFrom = "featured";
         internal const string API_URL_AllRequests = "requests/all";
 

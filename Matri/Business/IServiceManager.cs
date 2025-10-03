@@ -62,7 +62,7 @@ namespace Matri.Business
         Task<bool> UpdateExpectations(string sessiontoken, Partner partner);
         Task<bool> CreateUpdateDeviceToken(string sessiontoken, FCMToken fcmToken);
 
-        Task<List<FCMToken>> GetUserDeviceTokens(string sessiontoken, string notificationRecipient);
+        Task<bool> SendNotification(string sessiontoken, string notificationRecipient);
 
         Task<Profile> GetProfileByIdWithoutAuth(Guid profileId);
 

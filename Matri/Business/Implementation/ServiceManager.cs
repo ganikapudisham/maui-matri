@@ -105,7 +105,7 @@ namespace Matri.Business.Impl
                 }
                 else
                 {
-                    profileToFormat.Height = heightInFeet_And_Inches.Replace("ft", "\'").Replace("in","\"").Replace(" ","").Trim();
+                    profileToFormat.Height = heightInFeet_And_Inches.Replace("ft", "\'").Replace("in", "\"").Replace(" ", "").Trim();
                 }
 
                 userL.Add(profileToFormat);
@@ -408,10 +408,10 @@ namespace Matri.Business.Impl
             return await _serviceRepository.PostAsync<FCMToken, bool>(sessiontoken.ToString(), url, fcmToken);
         }
 
-        public async Task<List<FCMToken>> GetUserDeviceTokens(string sessiontoken, string notificationRecipient)
+        public async Task<bool> SendNotification(string sessiontoken, string notificationRecipient)
         {
-            var url = $"{Constants.API_URL_FCM}?notificationRecipient={notificationRecipient}";
-            return await _serviceRepository.GetAsync<List<FCMToken>>(sessiontoken.ToString(), url);
+            var url = $"{Constants.API_URL_FCM}/notification?recipient={notificationRecipient}";
+            return await _serviceRepository.PostAsync<string, bool>(sessiontoken.ToString(), url, notificationRecipient);
         }
 
         public async Task<Profile> GetProfileByIdWithoutAuth(Guid profileId)

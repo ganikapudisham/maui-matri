@@ -434,14 +434,14 @@ namespace Matri.ViewModel
                 {
                     IsBusy = false;
 
-                    //if (request.Type == RequestAction.Favourite.ToString())
-                    //{
-                    //    message = "Profile already added to favourites list";
-                    //}
-                    //else if (request.Type == RequestAction.Block.ToString())
-                    //{
-                    //    message = "Profile already blocked";
-                    //}
+                    if (request.Type == RequestAction.Favourite.ToString())
+                    {
+                        message = "Profile already added to favourites list";
+                    }
+                    else if (request.Type == RequestAction.Block.ToString())
+                    {
+                        message = "Profile already blocked";
+                    }
                     if (request.Type == RequestAction.SendInterest.ToString())
                     {
                         message = "Interest already sent";
@@ -456,7 +456,6 @@ namespace Matri.ViewModel
                 else
                 {
                     Profile = _sharedService.GetValue<Profile>("LoggedInUser");
-                    var recipientDeviceTokens = await _serviceManager.GetUserDeviceTokens(sessionToken, request.To.ToString());
 
                     var notificationTitle = "";
                     var notificationBody = "";
@@ -489,10 +488,12 @@ namespace Matri.ViewModel
                         await Shell.Current.CurrentPage.DisplayAlert("Alert", message, "OK");
                     }
 
-                    if (showNotification && recipientDeviceTokens != null && recipientDeviceTokens.Count > 0)
+                    if (showNotification)
                     {
                         //await NotificationHelper.ShowCustomNotification(recipientDeviceTokens, notificationTitle,
                         //    notificationBody, Profile.ID.ToString());
+
+                        var notificationSent = await _serviceManager.SendNotification(sessionToken, request.To.ToString());
                     }
                 }
 
