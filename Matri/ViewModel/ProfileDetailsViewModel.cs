@@ -1,15 +1,17 @@
-﻿using Matri.Business;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Matri.Abstract;
+using Matri.Business;
 using Matri.CustomExceptions;
 using Matri.FontsAwesome;
+using Matri.Helper;
 using Matri.Model;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using MvvmHelpers;
 using Newtonsoft.Json;
 using Syncfusion.Maui.Carousel;
 using System.Collections.ObjectModel;
-using Matri.Abstract;
-using Matri.Helper;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Matri.ViewModel
 {
@@ -460,6 +462,11 @@ namespace Matri.ViewModel
                     var notificationTitle = "";
                     var notificationBody = "";
                     var showNotification = false;
+                    var notification = new Notification();
+                    var options = new JsonSerializerOptions
+                    {
+                        Converters = { new JsonStringEnumConverter() }
+                    };
 
                     if (request.Type == RequestAction.RequestPhoto.ToString())
                     {
@@ -467,6 +474,7 @@ namespace Matri.ViewModel
                         notificationTitle = "Received Photo Request";
                         notificationBody = $"{Profile.WebsiteIdentifier}{Profile.Number} has requested you to add photo";
                         showNotification = true;
+                        notification.Type = RequestAction.RequestPhoto;
                         await Shell.Current.CurrentPage.DisplayAlert("Alert", message, "OK");
                     }
                     else if (request.Type == RequestAction.SendInterest.ToString())
@@ -475,6 +483,7 @@ namespace Matri.ViewModel
                         notificationTitle = "Received Interest";
                         notificationBody = $"{Profile.WebsiteIdentifier}{Profile.Number} is interested in your profile";
                         showNotification = true;
+                        notification.Type = RequestAction.SendInterest;
                         await Shell.Current.CurrentPage.DisplayAlert("Alert", message, "OK");
                     }
                     else if (request.Type == RequestAction.Block.ToString() && request.Value)
@@ -490,10 +499,8 @@ namespace Matri.ViewModel
 
                     if (showNotification)
                     {
-                        //await NotificationHelper.ShowCustomNotification(recipientDeviceTokens, notificationTitle,
-                        //    notificationBody, Profile.ID.ToString());
-
-                        var notificationSent = await _serviceManager.SendNotification(sessionToken, request.To.ToString());
+                        notification.Recipient = request.To.ToString();
+                        var notificationSent = await _serviceManager.SendNotification(sessionToken, notification);
                     }
                 }
 

@@ -408,10 +408,10 @@ namespace Matri.Business.Impl
             return await _serviceRepository.PostAsync<FCMToken, bool>(sessiontoken.ToString(), url, fcmToken);
         }
 
-        public async Task<bool> SendNotification(string sessiontoken, string notificationRecipient)
+        public async Task<bool> SendNotification(string sessiontoken, Notification notification)
         {
-            var url = $"{Constants.API_URL_FCM}/notification?recipient={notificationRecipient}";
-            return await _serviceRepository.PostAsync<string, bool>(sessiontoken.ToString(), url, notificationRecipient);
+            var url = $"{Constants.API_URL_FCMNotification}";
+            return await _serviceRepository.PostAsync<Notification, bool>(sessiontoken.ToString(), url, notification);
         }
 
         public async Task<Profile> GetProfileByIdWithoutAuth(Guid profileId)
