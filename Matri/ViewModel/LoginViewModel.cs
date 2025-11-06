@@ -45,7 +45,7 @@ public partial class LoginViewModel : ObservableObject
     }
 #if DEBUG
     [ObservableProperty]
-    public string eMobile = "lucky";//alex //first
+    public string eMobile = "lucky1";//alex //first
 
     [ObservableProperty]
     public string ePassword = "123lucky";//alex123 //1234

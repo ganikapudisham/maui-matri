@@ -69,7 +69,7 @@ IsVisible="{Binding ShowSubscriptionBanner}">
                 </Frame>
                 <Frame HeightRequest="45" Margin="-20,0,25,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
                     <Entry Text="{Binding EMobile}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="User Name" Keyboard="Email" 
-                       ClearButtonVisibility="WhileEditing" />
+                       ClearButtonVisibility="WhileEditing" TextColor="Black" />
                 </Frame>
             </StackLayout>
 
@@ -82,9 +82,9 @@ IsVisible="{Binding ShowSubscriptionBanner}">
                         </Image.Source>
                     </Image>
                 </Frame>
-                <Frame HeightRequest="45" Margin="-20,0,5,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                <Frame HeightRequest="45" Margin="-20,0,5,0" Padding="0" HasShadow="True" BorderColor="White" HorizontalOptions="FillAndExpand">
                     <Entry Text="{Binding EPassword}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Password" IsPassword="{Binding IsHiddenPassword}" 
-                       ClearButtonVisibility="WhileEditing" />
+                       ClearButtonVisibility="WhileEditing" TextColor="Black" />
                 </Frame>
                 <ImageButton Command="{Binding TogglePasswordCommand}" HeightRequest="20" WidthRequest="20">
                     <ImageButton.Source>

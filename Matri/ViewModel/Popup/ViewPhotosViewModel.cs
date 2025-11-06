@@ -39,15 +39,15 @@ public partial class ViewPhotosViewModel : ObservableObject, IQueryAttributable
     // 🔑 This is where Shell parameters arrive
     public async void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        if (query.TryGetValue(nameof(ProfileDetailsInput), out var param) && param is ProfileDetailsInput details)
+        if (query.TryGetValue(nameof(ProfileDetailsInput), out var param) && param is ProfileDetailsInput profileDetailsInput)
         {
-            await LoadPhotos(details);
+            await LoadPhotos(profileDetailsInput);
         }
     }
 
-    private async Task LoadPhotos(ProfileDetailsInput input)
+    private async Task LoadPhotos(ProfileDetailsInput profileDetailsInput)
     {
-        var profileDetails = await _serviceManager.GetProfileById(input.LoggedInId, input.TargetProfileId);
+        var profileDetails = await _serviceManager.GetProfileById(profileDetailsInput.LoggedInId, profileDetailsInput.TargetProfileId);
 
         var tempPhotos = new ObservableCollection<ImageSource>();
         foreach (var pt in profileDetails.Photos)

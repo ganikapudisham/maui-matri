@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.christianjodi.app" android:versionCode="82" android:versionName="1.1.7">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.christianjodi.app" android:versionCode="84" android:versionName="2.0.0">
 	<application android:allowBackup="false" android:supportsRtl="true" android:label="ChristianJodi" android:networkSecurityConfig="@xml/network_security_config" android:icon="@mipmap/appicon" android:usesCleartextTraffic="true">
 		<meta-data android:name="com.google.firebase.messaging.default_notification_channel_id" android:value="default_channel" />
 		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />

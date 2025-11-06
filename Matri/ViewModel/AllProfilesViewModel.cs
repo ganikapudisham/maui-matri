@@ -287,12 +287,12 @@ public partial class AllProfilesViewModel : CommunityToolkit.Mvvm.ComponentModel
             profileDetailsInput.LoggedInId = sessionToken;
             profileDetailsInput.TargetProfileId = targetProfileId;
 
-            var profileDetailsParams = new Dictionary<string, object> { { "ProfileDetailsInput", profileDetailsInput } };
+            //var profileDetailsParams = new Dictionary<string, object> { { "ProfileDetailsInput", profileDetailsInput } };
             IsBusy = false;
 
             var parameters = new Dictionary<string, object>
             {
-                [nameof(ProfileDetailsInput)] = profileDetailsParams
+                [nameof(ProfileDetailsInput)] = profileDetailsInput
             };
 
             await _popupService.ShowPopupAsync<ViewPhotosViewModel>(
