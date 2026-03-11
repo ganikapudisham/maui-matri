@@ -141,20 +141,14 @@ public partial class LeadsViewModel : CommunityToolkit.Mvvm.ComponentModel.Obser
     {
         try
         {
-            bool supportsUri = await Launcher.Default.CanOpenAsync($"whatsapp://send?phone=+{user}");
+            //string message = Uri.EscapeDataString("Hello");
+            string url = $"https://wa.me/{user}?text=";
 
-            if (supportsUri)
-            {
-                var message = "";
-                await Launcher.Default.OpenAsync($"whatsapp://send?phone=+{user}&text={message}");
-            }
-
-            else
-                await Shell.Current.CurrentPage.DisplayAlert("Alert", "Failed to open WhatsApp.", "OK");
+            await Launcher.Default.OpenAsync(new Uri(url));
         }
         catch (Exception ex)
         {
-            await Shell.Current.CurrentPage.DisplayAlert("Alert", ex.Message, "OK");
+            await Shell.Current.DisplayAlert("Alert", ex.Message, "OK");
         }
     }
 

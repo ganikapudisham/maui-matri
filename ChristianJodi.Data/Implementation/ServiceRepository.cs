@@ -20,10 +20,10 @@ namespace Matri.Data.Impl
     public class ServiceRepository : ServiceBase, IServiceRepository
     {
         HttpClient client = new HttpClient();
-        IFirebaseCrashlyticsService _firebaseCrashlyticsService;
-        public ServiceRepository(IFirebaseCrashlyticsService firebaseCrashlyticsService)
+        //IFirebaseCrashlyticsService _firebaseCrashlyticsService;
+        public ServiceRepository()
         {
-            _firebaseCrashlyticsService = firebaseCrashlyticsService; //ServiceHelper.GetService<IFirebaseCrashlyticsService>();
+            //_firebaseCrashlyticsService = firebaseCrashlyticsService; //ServiceHelper.GetService<IFirebaseCrashlyticsService>();
         }
         public async Task<bool> LogOut(string sessiontoken)
         {
@@ -114,7 +114,7 @@ namespace Matri.Data.Impl
             }
             catch (Exception ex)
             {
-                _firebaseCrashlyticsService.Log(ex);
+                //_firebaseCrashlyticsService.Log(ex);
                 throw ex;
             }
         }
@@ -133,7 +133,7 @@ namespace Matri.Data.Impl
             }
             catch (Exception ex)
             {
-                _firebaseCrashlyticsService.Log(ex);
+                //_firebaseCrashlyticsService.Log(ex);
                 return false;
             }
         }
@@ -195,7 +195,7 @@ namespace Matri.Data.Impl
             }
             catch (JsonReaderException ex)
             {
-                _firebaseCrashlyticsService.Log(ex);
+                //_firebaseCrashlyticsService.Log(ex);
                 return false;
             }
         }
@@ -241,7 +241,7 @@ namespace Matri.Data.Impl
             }
             catch (Exception ex)
             {
-                _firebaseCrashlyticsService.Log(ex);
+                //_firebaseCrashlyticsService.Log(ex);
                 throw ex;
             }
             return objectToReturn;

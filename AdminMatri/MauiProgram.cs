@@ -56,9 +56,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<IServiceManager, ServiceManager>();
         builder.Services.AddSingleton<IServiceRepository, ServiceRepository>();
 
-        builder.Services.AddSingleton<IFirebaseAnalyticsService, FirebaseAnalyticsService>();
+        //builder.Services.AddSingleton<IFirebaseAnalyticsService, FirebaseAnalyticsService>();
         builder.Services.AddSingleton<ISharedService, SharedService>();
-        builder.Services.AddSingleton<IFirebaseCrashlyticsService, FirebaseCrashlyticsService>();
+        //builder.Services.AddSingleton<IFirebaseCrashlyticsService, FirebaseCrashlyticsService>();
 
         builder.Services.AddTransientPopup<CallComment, CallCommentViewModel>();
 
